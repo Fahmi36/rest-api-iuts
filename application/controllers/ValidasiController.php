@@ -607,7 +607,7 @@ class ValidasiController extends CI_Controller {
 
             $this->email->set_mailtype("html");
             $this->email->set_newline("\r\n");
-            $mesg = $this->load->view('pages/mailTplExcept', $data, true);
+            $mesg = $this->load->view('pages/mail', $data, true);
             $this->email->to($emailpemohon);
             $this->email->from('cs@perizinan.pkkmart.com', 'Perizinan DKI');
             $this->email->reply_to('cs@perizinan.pkkmart.com', 'Perizinan DKI');
