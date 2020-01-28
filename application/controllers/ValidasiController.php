@@ -98,6 +98,7 @@ class ValidasiController extends CI_Controller {
 
             //Tambahan 
 
+            $nik = htmlspecialchars($json[0]->nomorInKepen);
 			$email = htmlspecialchars($json[0]->emailAktif);
             $volume_sumur_input = htmlspecialchars($json[0]->volume_sumur_input);
             $kdh_kondisi_input = htmlspecialchars($json[0]->kdh_kondisi_input);
@@ -378,7 +379,7 @@ class ValidasiController extends CI_Controller {
                 $savekondisi = $this->saveKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$volume_sumur_input,$kdh_kondisi_input,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input);
 			if ($skor == true) {
 				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
-				// $this->sendmail($email);
+				$this->sendmail($nik);
           	}else{
           		$json = $this->returnResultErrorDB();
           	}
@@ -578,30 +579,52 @@ class ValidasiController extends CI_Controller {
 		}
         return $q;
 	}
-	function sendmail()
+	function sendmail($nik)
 	{
-		$config = array(
-			'protocol'  => 'mail',
-			'smtp_host' => 'mail.perizinan.pkkmart.com',
-			'smtp_port' => 587,
-			'smtp_user' => 'cs@perizinan.pkkmart.com',
-			'smtp_pass' => 'goodgame001',
-			'mailtype'  => 'html',
-			'wordwrap'  => TRUE,
-			'charset'   => 'utf-8',
-			'priority'  => 1
-		);
-		$this->email->initialize($config);
+        $dPemohon = $this->us->cekPemohon($nik);
+        $result = $this->returnResult($dPemohon);
+        $json = json_encode($result);
+        $decoder = json_decode($json);
+        if($decoder->rowCount>0){
+            $decodeData = $decoder->row[0];
+            $emailpemohon = $decodeData->email;
+            $tokenpemohon = $decodeData->token;
+            $data = array();
+            $data['data'] = $decodeData;
+            $data['title'] = "Detail Permohonan Izin";
+            $config = array(
+             'protocol'  => 'mail',
+             'smtp_host' => 'mail.perizinan.pkkmart.com',
+             'smtp_port' => 587,
+             'smtp_user' => 'cs@perizinan.pkkmart.com',
+             'smtp_pass' => 'goodgame001',
+             'mailtype'  => 'html',
+             'wordwrap'  => TRUE,
+             'charset'   => 'utf-8',
+             'priority'  => 1
+         );
+            $this->email->initialize($config);
 
-		$this->email->set_mailtype("html");
-		$this->email->set_newline("\r\n");
-		$this->email->to($emailpemohon);
-		$this->email->from('cs@perizinan.pkkmart.com', 'Perizinan DKI');
-		$this->email->reply_to('cs@perizinan.pkkmart.com', 'Perizinan DKI');
+            $this->email->set_mailtype("html");
+            $this->email->set_newline("\r\n");
+            $mesg = $this->load->view('pages/mailTplExcept', $data, true);
+            $this->email->to($emailpemohon);
+            $this->email->from('cs@perizinan.pkkmart.com', 'Perizinan DKI');
+            $this->email->reply_to('cs@perizinan.pkkmart.com', 'Perizinan DKI');
 
-		$this->email->subject($data['title'] . ' - Perizinan DKI');
-		$this->email->message($mesg);
-	}
+            $this->email->subject($data['title'] . ' - Perizinan DKI');
+            $this->email->message($mesg);
+            if ($this->email->send()) {
+                    $result = $this->returnResultCustom(true,'Success send mail');
+                } else {
+                    $result = $this->returnResultCustom(false,'Failed to send mail '. $this->email->print_debugger());
+                }
+        }else{
+            $result = $this->returnResultCustom(false,'Tidak ditemukan data dengan nomor token '.$token);
+        }
+
+        echo json_encode($result);
+    }
 }
 
 /* End of file ValidasiController.php */
