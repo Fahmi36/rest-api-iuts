@@ -49,7 +49,7 @@ class UserController extends CI_Controller {
 			$email = $this->input->post('email');
 			$token = $this->input->post('token');
 			if ($email != null AND $token != NULL) {
-				$login = $this->us->loginuser();
+				$login = $this->us->loginuser($email,$token);
 				if ($login) {
 					$res = $this->returnResult($login);
 				}else{
@@ -58,11 +58,29 @@ class UserController extends CI_Controller {
 			}else{
 				$res = $this->returnResultCustom(False,'Email dan Token Tidak Boleh Kosong');
 			}
-			echo json_encode($res);
 		} catch (Exception $e) {
-			
+			$res = $this->returnResultCustom(false,$e);
 		}
+		echo json_encode($res);
 	}
+	function loginemail()
+	{
+		try {
+			$token = $this->input->get('token');
+			if ($token != NULL) {
+				$login = $this->us->loginemail($token);
+				if ($login) {
+					$res = $this->returnResult($login);
+				}else{
+					$res = $this->returnResultCustom(False,'Password anda salah');
+				}
+			}else{
+				$res = $this->returnResultCustom(False,'Email dan Token Tidak Boleh Kosong');
+			}
+		} catch (Exception $e) {
+			$res = $this->returnResultCustom(false,$e);
+		}
+			echo json_encode($res);
 
 }
 

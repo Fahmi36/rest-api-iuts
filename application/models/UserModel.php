@@ -145,6 +145,20 @@ class UserModel extends CI_Model {
             $q = false;
         }
         return $q;
+    } 
+    public function loginemail($token)
+    {
+        $where = array(
+            'token'=>$token,
+        );
+        $row = $this->db->get('pemohon_iuts',$where)->row();
+        $cekpemohon = password_verify(''.$token.'', ''.$row->password.'');
+        if ($cekpemohon == true) {
+            $q = $this->db->get('pemohon_iuts',$where);
+        }else{
+            $q = false;
+        }
+        return $q;
     }
 
 }
