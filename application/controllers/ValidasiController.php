@@ -622,8 +622,6 @@ class ValidasiController extends CI_Controller {
         }else{
             $result = $this->returnResultCustom(false,'Tidak ditemukan data dengan nomor token '.$token);
         }
-
-        echo json_encode($result);
     }
 }
 
