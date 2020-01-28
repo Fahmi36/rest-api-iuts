@@ -81,6 +81,7 @@ class UserController extends CI_Controller {
 			$res = $this->returnResultCustom(false,$e);
 		}
 			echo json_encode($res);
+		}
 
 }
 
