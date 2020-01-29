@@ -80,9 +80,41 @@ class UserController extends CI_Controller {
 		} catch (Exception $e) {
 			$res = $this->returnResultCustom(false,$e);
 		}
-			echo json_encode($res);
+		echo json_encode($res);
+	}
+	function listPermohonan()
+	{
+		try {
+			$id = $this->input->post('id');
+			$status = $this->input->post('status');
+			$start = $this->input->post('start');
+			$offset = $this->input->post('offset');
+			$data = $this->us->listPermohonan($id,$status,$start,$offset);
+			if ($data->num_rows>0) {
+				$res = $this->returnResult($data);
+			}else{
+				$res = $this->returnResultCustom(false,'Tidak ada data');
+			}
+		} catch (Exception $e) {
+			$res = $this->returnResultCustom(false,$e);
 		}
 
+		echo json_encode($res);
+	}
+	function detailPermohonan()
+	{
+		try {
+			$id = $this->input->post('id');
+			$idbangunan = $this->input->post('idbangunan');
+			$code = $this->input->post('code');
+			$data = $this->us->detailPermohonan($id,$idbangunan,$code);
+			$res = $this->returnResult($data);
+		} catch (Exception $e) {
+			$res = $this->returnResultCustom(false,$e);
+		}
+		echo json_encode($res);
+
+	}
 }
 
 /* End of file UserController.php */

@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+date_default_timezone_set('Asia/Jakarta');
 header('Access-Control-Allow-Origin:*');
 header("Access-Control-Allow-Credentials: true");
 header('Access-Control-Allow-Methods: GET, PUT, POST, DELETE, OPTIONS');
@@ -57,6 +57,14 @@ class ValidasiController extends CI_Controller {
           $now /= $base;
         }
         return substr($result, -6);
+    }
+    function randstr ($len=4, $abc="aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789") {
+        $letters = str_split($abc);
+        $str = "";
+        for ($i=0; $i<=$len; $i++) {
+            $str .= $letters[rand(0, count($letters)-1)];
+        };
+        return $str;
     }
 	function getallSelect()
 	{
@@ -447,8 +455,8 @@ class ValidasiController extends CI_Controller {
 		$status_milik = htmlspecialchars($data[0]->status_milik);
 		$lokasi = htmlspecialchars($data[0]->alamat);
 
-		$lat = htmlspecialchars(@$data[0]->lat);
-		$lng = htmlspecialchars(@$data[0]->lng);
+		$lat = htmlspecialchars($data[0]->lat);
+		$lng = htmlspecialchars($data[0]->lng);
 
 		$kondisi = htmlspecialchars($data[0]->kondisi_eksisting);
 		$mengajukan = htmlspecialchars($data[0]->lama_izin);
@@ -469,7 +477,7 @@ class ValidasiController extends CI_Controller {
 		$volume = htmlspecialchars($data[0]->volumeSumur);
 
 		$cek = $this->us->cekBangunan($no_reg);
-
+        $kode = $this->randstr();
 		if ($cek->num_rows() > 0) {
 			$getdata = $cek->row();
 			$id = $getdata->id_bangunan;
@@ -489,6 +497,7 @@ class ValidasiController extends CI_Controller {
                 'luas_tapak'=>$ltb,
                 'luas_lantai'=>$luas_lantai,
                 'jumlah_lantai'=>$jml_lantai,
+                'code'=>$kode,
                 'status' => 0,
                 'created_at' => $getdata->created_at,
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -498,7 +507,7 @@ class ValidasiController extends CI_Controller {
 			$this->load->library('uuid');
 			$uuid = $this->uuid->v4();
         	$id = str_replace('-', '', $uuid);
-			$q = $this->us->InsertBangunan($id,$idpemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng);
+			$q = $this->us->InsertBangunan($id,$idpemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng,$kode);
 		}
         if ($q) {
         	return $id;

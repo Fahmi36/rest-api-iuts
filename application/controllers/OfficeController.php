@@ -45,6 +45,14 @@ class OfficeController extends CI_Controller {
 			'msg'=>$msg
 		);
 	}
+	function detailBangunan()
+	{
+		try {
+			$this->detailPermohonanAdmin($id_bangunan,$code);
+		} catch (Exception $e) {
+			
+		}
+	}
 
 }
 

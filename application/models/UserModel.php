@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
+date_default_timezone_set('Asia/Jakarta');
 class UserModel extends CI_Model {
 
 	function cekPemohon($nik='')
@@ -35,7 +35,7 @@ class UserModel extends CI_Model {
         $q = $this->db->get('kondisi_bangunan');
         return $q;
     }
-	function InsertBangunan($id,$id_pemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng)
+	function InsertBangunan($id,$id_pemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng,$kode)
 	{
 		$arrayPermohonan = array(
                 'id_bangunan'=>$id,
@@ -51,7 +51,9 @@ class UserModel extends CI_Model {
                 'luas_tapak'=>$ltb,
                 'luas_lantai'=>$luas_lantai,
                 'jumlah_lantai'=>$jml_lantai,
+                'code' => $kode,
                 'status' => 0,
+                'status_jalan' => 0,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             );
@@ -131,7 +133,7 @@ class UserModel extends CI_Model {
         return $q;
 		
 	}
-    public function loginuser($email,$token)
+    function loginuser($email,$token)
     {
         $where = array(
             'email'=>$email,
@@ -142,11 +144,21 @@ class UserModel extends CI_Model {
         if ($cekpemohon == true) {
             $q = $this->db->get('pemohon_iuts',$where);
         }else{
-            $q = false;
+            $whereadmin = array(
+                'username'=>$email,
+                'password'=>$token,
+            );
+            $rowadmin = $this->db->get('users',$whereadmin)->row();
+            $cekuser = password_verify(''.$token.'', ''.$rowadmin->password.'');
+            if ($cekuser == true) {
+                $q = $this->db->get('pemohon_iuts',$where);
+            }else{
+                $q = false;
+            }
         }
         return $q;
     } 
-    public function loginemail($token)
+    function loginemail($token)
     {
         $where = array(
             'token'=>$token,
@@ -160,7 +172,56 @@ class UserModel extends CI_Model {
         }
         return $q;
     }
-
+    function listPermohonan($id,$status='',$awal,$akhir)
+    {
+        $this->db->select('*');
+        $this->db->from('bangunan_iuts');
+        if ($status != '') {
+            $this->db->where('status', $status);
+        }
+        $this->db->where('id_pemohon', $id);
+        $this->db->where('status !=', 4);
+        $q = $this->db->get();
+        return $q;
+    }
+    function detailPermohonan($id,$id_bangunan,$code)
+    {
+        $this->db->select('*');
+        $this->db->from('bangunan_iuts');
+        $this->db->join('administrasi', 'administrasi.id_bangunan = bangunan_iuts.id_bangunan', 'left');
+        $this->db->join('admin_teknis', 'admin_teknis.id_bangunan = bangunan_iuts.id_bangunan', 'left');
+        $this->db->join('admindinas', 'admindinas.id_bangunan = bangunan_iuts.id_bangunan', 'left');
+        $this->db->where('bangunan_iuts.id_bangunan', $id_bangunan);
+        $this->db->where('bangunan_iuts.code', $code);
+        $this->db->where('bangunan_iuts.id_pemohon', $id);
+        $this->db->where('bangunan_iuts.status !=', 4);
+        $q = $this->db->get();
+        return $q;
+    }
+    function detailMessage($id,$idpemohon)
+    {
+        $this->db->select('*');
+        $this->db->from('message');
+        $this->db->where('id_pesan', $id);
+        $this->db->where('id_pengirim', $idpemohon);
+        $this->db->where('id_penerima', $idpemohon);
+        $q = $this->db->get();
+        return $q;
+    }
+    function SendMessage()
+    {
+        $array = array(
+            'id_pesan' => $bangunan,
+            'id_pengirim' => $hasil,
+            'id_penerima' =>0,
+            'pesan' => $dampak,
+            'lihat' => 0,
+            'created_at' => date('Y-m-d H:i:s'),
+            'created_at' => date('Y-m-d H:i:s'),
+        );
+        $q = $this->db->insert('message',$array);
+        return $q;
+    }
 }
 
 /* End of file UserModel.php */
