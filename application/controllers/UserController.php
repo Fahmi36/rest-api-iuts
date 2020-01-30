@@ -90,9 +90,8 @@ class UserController extends CI_Controller {
 			$start = $this->input->post('start');
 			$offset = $this->input->post('offset');
 			$data = $this->us->listPermohonan($id,$status,$start,$offset);
-			if ($data->num_rows>0) {
+			if ($data->num_rows()>0) {
 				$res = $this->returnResult($data);
-				return var_dump($this->db->last_query());
 			}else{
 				$res = $this->returnResultCustom(false,'Tidak ada data');
 			}
