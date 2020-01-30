@@ -63,6 +63,26 @@ class UserController extends CI_Controller {
 		}
 		echo json_encode($res);
 	}
+	function loginAdmin()
+	{
+		try {
+			$email = $this->input->post('email');
+			$token = $this->input->post('token');
+			if ($email != null AND $token != NULL) {
+				$login = $this->us->loginadmin($email,$token);
+				if ($login) {
+					$res = $this->returnResult($login);
+				}else{
+					$res = $this->returnResultCustom(False,'Password anda salah');
+				}
+			}else{
+				$res = $this->returnResultCustom(False,'Email dan Token Tidak Boleh Kosong');
+			}
+		} catch (Exception $e) {
+			$res = $this->returnResultCustom(false,$e);
+		}
+		echo json_encode($res);
+	}
 	function loginemail()
 	{
 		try {
@@ -113,7 +133,49 @@ class UserController extends CI_Controller {
 			$res = $this->returnResultCustom(false,$e);
 		}
 		echo json_encode($res);
+	}
+	function countside()
+	{
+		$id = $this->input->post('id');
 
+		$expired = $this->db->get_where('bangunan_iuts',array('status'=>'3','id_pemohon'=>$id))->num_rows();
+        $pending = $this->db->get_where('bangunan_iuts',array('status'=>'0','id_pemohon'=>$id))->num_rows();
+
+        $this->db->select('*');
+        $this->db->from('bangunan_iuts');
+        $this->db->where('bangunan_iuts.id_pemohon', $id);
+        $this->db->where_in('status',[1,2]);
+        $selesai = $this->db->get();
+        $hasilselesai = $selesai->num_rows();
+        echo json_encode(array('expired'=>$expired,'pending'=>$pending,'selesai'=>$hasilselesai));
+	}
+	function SendMessage()
+	{
+		try {
+			$id = $this->input->post('id');
+			$pesan = htmlspecialchars($this->input->post('pesan'));
+			if ($id != null AND $pesan != null) {
+				$res = $this->us->SendMessage($id,$pesan);
+			}else{
+				$res = $this->returnResultCustom(false,'Pesan tidak boleh kosong');
+			}
+		} catch (Exception $e) {
+			$res = $this->returnResultCustom(false,$e);
+		}
+		echo json_encode($res);
+	}
+	function detailPesan()
+	{
+		try {
+			$id = $this->input->post('id');
+			$detail = $this->us->detailMessage($id);
+			if ($detail) {
+				$res = $this->returnResult($detail);
+			}
+		} catch (Exception $e) {
+			$res = $this->returnResultCustom(false,$e);
+		}
+		echo json_encode($res);
 	}
 }
 

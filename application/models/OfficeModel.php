@@ -3,7 +3,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 date_default_timezone_set('Asia/Jakarta');
 
 class OfficeModel extends CI_Model {
-
+	var $column_order = array('nama','npwp','code','email','status');
+	var $column_search = array('nama','npwp','code','email','status');
+	var $order = array('nama' => 'asc');
+	function countdata($status)
+	{
+		$this->db->select('count(*) as total');
+        $this->db->from('bangunan_iuts');
+        $this->db->where('status', $status);
+        $q = $this->db->get();
+        return $q;
+	}
 	function InsertAdministrasi()
 	{
 		$arrayPermohonan = array(
@@ -252,6 +262,166 @@ class OfficeModel extends CI_Model {
 		);
 		$q = $this->db->insert('bangunan_iuts',$arrayPermohonan);
 		return $q;
+    }
+    function getdatatable()
+	{
+		$this->db->select('pemohon_iuts.id_pemohon as id ,bangunan_iuts.id_bangunan as idbangunan,pemohon_iuts.nama,pemohon_iuts.npwp,bangunan_iuts.code,pemohon_iuts.email,pemohon_iuts.created_at,bangunan_iuts.updated_at,bangunan_iuts.status');
+		$this->db->from('pemohon_iuts');
+		$this->db->join('bangunan_iuts', 'bangunan_iuts.id_pemohon = pemohon_iuts.id_pemohon', 'INNER');
+
+        foreach ($this->column_search as $item) // loop column 
+        {
+        	$c = 0;
+        	if($_POST['search']['value'])
+        	{
+        		$this->db->or_like($item, $_POST['search']['value']);
+        	}
+        	$c++;
+        }
+
+        if(isset($_POST['order'])) // here order processing
+        {
+        	$test = $this->db->order_by($this->column_order[$_POST['order']['0']['column']], $_POST['order']['0']['dir']);
+        } 
+        else if(isset($this->order))
+        {
+        	$order = $this->order;
+        	$this->db->order_by(key($order), $order[key($order)]);
+        }
+    }
+    public function getAll()
+    {
+        $status = $this->input->post('status');
+        if ($status == null) {
+        	$statusbangunan = null;
+        }else{
+        	$statusbangunan = $this->input->post('status');
+    		$this->db->where('bangunan_iuts.status', $statusbangunan);
+        }
+    	$this->getdatatable();
+    	if($this->input->post('length') != -1)
+    		$this->db->limit($this->input->post('length'), $this->input->post('start'));
+    	$query = $this->db->get();
+    	$data = "";
+    	$i = 0;
+    	$no = 1;
+    	foreach ($query->result() as $key) {
+    		if ($key->status == 0) {
+    			$statusdata = 'Proses';
+    		}elseif ($key->status == 1) {
+    			$statusdata = 'Terima';
+    		}else if ($key->status == 2) {
+    			$statusdata = 'Tolak';
+    		}else if ($key->status == 3) {
+    			$statusdata = 'Expired';
+    		}
+    		$data[$i] = array(
+    			'no' => $no++,
+    			'code' => $key->code,
+    			'id_pemohon' => $key->id,
+    			'id_bangunan' => $key->idbangunan,
+    			'npwp' => $key->npwp,
+    			'tanggal' => date('d F, Y',strtotime($key->created_at)),
+                'update' => date('d F, Y',strtotime($key->updated_at)),
+    			'nama' => $key->nama,
+    			'email' => $key->email,
+    			'status' => $statusdata,
+    		);
+    		$i++;
+    	}
+    	$output = array(
+    		"draw" => $this->input->post('draw'),
+    		"recordsTotal" => $this->countDatatable($statusbangunan),
+    		"recordsFiltered" =>  $this->filterTableData($statusbangunan),
+    		"data" => $data,
+    	);
+    	return $output;
+    }
+    public function getAllJalan()
+    {
+        $level = $this->input->post('level');
+        if ($level == 1) {
+        	$statusjalan = '3';
+    		$this->db->where('bangunan_iuts.status_jalan', $statusjalan);
+        }elseif ($level == 2) {
+        	$statusjalan = '2';
+    		$this->db->where('bangunan_iuts.status_jalan', $statusjalan);
+        }elseif ($level == 3) {
+        	$statusjalan = '1';
+    		$this->db->where('bangunan_iuts.status_jalan', $statusjalan);
+        }
+    	$this->getdatatable();
+    	if($this->input->post('length') != -1)
+    		$this->db->limit($this->input->post('length'), $this->input->post('start'));
+    	$query = $this->db->get();
+    	$data = "";
+    	$i = 0;
+    	$no = 1;
+    	foreach ($query->result() as $key) {
+    		if ($key->status == 0) {
+    			$statusdata = 'Proses';
+    		}elseif ($key->status == 1) {
+    			$statusdata = 'Terima';
+    		}else if ($key->status == 2) {
+    			$statusdata = 'Tolak';
+    		}else if ($key->status == 3) {
+    			$statusdata = 'Expired';
+    		}
+    		$data[$i] = array(
+    			'no' => $no++,
+    			'code' => $key->code,
+    			'id_pemohon' => $key->id,
+    			'id_bangunan' => $key->idbangunan,
+    			'npwp' => $key->npwp,
+    			'tanggal' => date('d F, Y',strtotime($key->created_at)),
+                'update' => date('d F, Y',strtotime($key->updated_at)),
+    			'nama' => $key->nama,
+    			'email' => $key->email,
+    			'status' => $statusdata,
+    		);
+    		$i++;
+    	}
+    	$output = array(
+    		"draw" => $this->input->post('draw'),
+    		"recordsTotal" => $this->countDatatableJalan($statusjalan),
+    		"recordsFiltered" =>  $this->filterTableDataJalan($statusjalan),
+    		"data" => $data,
+    	);
+    	return $output;
+    }
+    public function filterTableDataJalan($id)
+    {
+        $this->getdatatable();
+        if ($id!=null) {
+    		$this->db->where('bangunan_iuts.status_jalan', $id);
+        }
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+    public function countDatatableJalan($id)
+    {
+        $this->getdatatable();
+        if ($id!=null) {
+    		$this->db->where('bangunan_iuts.status_jalan', $id);
+        }
+    	return $this->db->count_all_results();
+    }
+    public function filterTableData($id)
+    {
+        $this->getdatatable();
+        if ($id!=null) {
+    		$this->db->where('bangunan_iuts.status', $id);
+        }
+        $query = $this->db->get();
+        return $query->num_rows();
+    }
+    public function countDatatable($id)
+    {
+        $this->getdatatable();
+        if ($id!=null) {
+    		$this->db->where('bangunan_iuts.status', $id);
+        }
+    	return $this->db->count_all_results();
     }
 }
 

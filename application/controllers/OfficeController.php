@@ -17,8 +17,7 @@ class OfficeController extends CI_Controller {
 		header('Access-Control-Max-Age: 1000');
 		header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
 
-		$this->load->model('MatriksModel', 'mm');
-		$this->load->model('UsersModel', 'um');
+		$this->load->model('OfficeModel', 'oc');
 	}
 
 	function returnResult($data)
@@ -53,7 +52,37 @@ class OfficeController extends CI_Controller {
 			
 		}
 	}
+	public function countsideoffice()
+	{
+		$expired = $this->db->get_where('bangunan_iuts',array('status'=>'3'))->num_rows();
+        $pending = $this->db->get_where('bangunan_iuts',array('status'=>'0'))->num_rows();
 
+        $this->db->select('*');
+        $this->db->from('bangunan_iuts');
+        $this->db->where('status','1');
+        $this->db->or_where('status','2');
+        $selesai = $this->db->get();
+        $hasilselesai = $selesai->num_rows();
+        echo json_encode(array('expired'=>$expired,'pending'=>$pending,'selesai'=>$hasilselesai));
+	}
+	function getDataSemua()
+	{
+		try {
+            $data = $this->oc->getAll();
+        } catch (Exception $e) {
+            throw $e;
+        }
+        echo json_encode($data);
+	}
+	function getDataJalan()
+	{
+		try {
+            $data = $this->oc->getAllJalan();
+        } catch (Exception $e) {
+            throw $e;
+        }
+        echo json_encode($data);
+	}
 }
 
 /* End of file OfficeController.php */

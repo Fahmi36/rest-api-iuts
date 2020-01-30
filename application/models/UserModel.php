@@ -139,30 +139,40 @@ class UserModel extends CI_Model {
             'email'=>$email,
             'token'=>$token,
         );
-        $row = $this->db->get('pemohon_iuts',$where)->row();
-        $cekpemohon = password_verify(''.$token.'', ''.$row->password.'');
-        if ($cekpemohon == true) {
-            $q = $this->db->get('pemohon_iuts',$where);
-        }else{
-            $whereadmin = array(
-                'username'=>$email,
-                'password'=>$token,
-            );
-            $rowadmin = $this->db->get('users',$whereadmin);
-            if ($rowadmin->num_rows() > 0) {
-              $cekrow = $rowadmin->row();
-              $cekuser = password_verify(''.$token.'', ''.$cekrow->password.'');
-              if ($cekuser == true) {
-                    $q = $this->db->get('pemohon_iuts',$where);
-                }else{
-                    $q = false;
-                }
+        $row = $this->db->get_where('pemohon_iuts',$where);
+        if ($row->num_rows() > 0) {
+            $cekrow = $row->row();
+            $cekpemohon = password_verify(''.$token.'', ''.$cekrow->password.'');
+            if ($cekpemohon == true) {
+                $q = $this->db->get_where('pemohon_iuts',$where);
             }else{
                 $q = false;
             }
+        }else{
+            $q = false;
+        }
+        
+        return $q;
+    }
+    function loginadmin($email,$token)
+    {
+       $whereadmin = array(
+            'username'=>$email,
+        );
+        $rowadmin = $this->db->get_where('users',$whereadmin);
+        if ($rowadmin->num_rows() > 0) {
+            $cekrow = $rowadmin->row();
+            $cekuser = password_verify(''.$token.'', ''.$cekrow->password.'');
+            if ($cekuser == true) {
+                $q = $this->db->get_where('users',$whereadmin);
+            }else{
+                $q = false;
+            }
+        }else{
+            $q = false;
         }
         return $q;
-    } 
+     } 
     function loginemail($token)
     {
         $where = array(
@@ -183,11 +193,17 @@ class UserModel extends CI_Model {
         $this->db->from('bangunan_iuts');
         $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = bangunan_iuts.id_pemohon', 'left');
         if ($status != '') {
-            $this->db->where('bangunan_iuts.status', $status);
+            if ($status == '1') {
+                $this->db->where('bangunan_iuts.status', 1);
+                $this->db->or_where('bangunan_iuts.status', 2);
+            }else{
+                $this->db->where('bangunan_iuts.status', $status);
+            }
         }
         $this->db->where('bangunan_iuts.id_pemohon', $id);
         $this->db->where('bangunan_iuts.status !=', 4);
         $q = $this->db->get();
+        $this->db->last_query();
         return $q;
     }
     function detailPermohonan($id,$id_bangunan,$code)
@@ -204,26 +220,24 @@ class UserModel extends CI_Model {
         $q = $this->db->get();
         return $q;
     }
-    function detailMessage($id,$idpemohon)
+    function detailMessage($idpemohon)
     {
         $this->db->select('*');
         $this->db->from('message');
-        $this->db->where('id_pesan', $id);
         $this->db->where('id_pengirim', $idpemohon);
-        $this->db->where('id_penerima', $idpemohon);
+        $this->db->or_where('id_penerima', $idpemohon);
         $q = $this->db->get();
         return $q;
     }
-    function SendMessage()
+    function SendMessage($id,$pesan)
     {
         $array = array(
-            'id_pesan' => $bangunan,
-            'id_pengirim' => $hasil,
-            'id_penerima' =>0,
-            'pesan' => $dampak,
+            'id_pengirim' => $id,
+            'id_penerima' =>'administrasi',
+            'pesan' => $pesan,
             'lihat' => 0,
             'created_at' => date('Y-m-d H:i:s'),
-            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
         );
         $q = $this->db->insert('message',$array);
         return $q;
