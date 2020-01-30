@@ -148,10 +148,15 @@ class UserModel extends CI_Model {
                 'username'=>$email,
                 'password'=>$token,
             );
-            $rowadmin = $this->db->get('users',$whereadmin)->row();
-            $cekuser = password_verify(''.$token.'', ''.$rowadmin->password.'');
-            if ($cekuser == true) {
-                $q = $this->db->get('pemohon_iuts',$where);
+            $rowadmin = $this->db->get('users',$whereadmin);
+            if ($rowadmin->num_rows() > 0) {
+              $cekrow = $rowadmin->row();
+              $cekuser = password_verify(''.$token.'', ''.$cekrow->password.'');
+              if ($cekuser == true) {
+                    $q = $this->db->get('pemohon_iuts',$where);
+                }else{
+                    $q = false;
+                }
             }else{
                 $q = false;
             }
@@ -174,13 +179,14 @@ class UserModel extends CI_Model {
     }
     function listPermohonan($id,$status='',$awal,$akhir)
     {
-        $this->db->select('*');
+        $this->db->select('bangunan_iuts.code,bangunan_iuts.status,bangunan_iuts.created_at,pemohon_iuts.nama');
         $this->db->from('bangunan_iuts');
+        $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = bangunan_iuts.id_pemohon', 'left');
         if ($status != '') {
-            $this->db->where('status', $status);
+            $this->db->where('bangunan_iuts.status', $status);
         }
-        $this->db->where('id_pemohon', $id);
-        $this->db->where('status !=', 4);
+        $this->db->where('bangunan_iuts.id_pemohon', $id);
+        $this->db->where('bangunan_iuts.status !=', 4);
         $q = $this->db->get();
         return $q;
     }
