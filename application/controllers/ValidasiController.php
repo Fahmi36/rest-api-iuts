@@ -499,6 +499,7 @@ class ValidasiController extends CI_Controller {
                 'jumlah_lantai'=>$jml_lantai,
                 'code'=>$kode,
                 'status' => 0,
+                'status_jalan' =>0,
                 'created_at' => $getdata->created_at,
                 'updated_at' => date('Y-m-d H:i:s'),
             );

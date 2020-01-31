@@ -147,7 +147,7 @@ class OfficeModel extends CI_Model {
     {
     	$this->db->select('*');
         $this->db->from('bangunan_iuts');
-        $this->db->where('code', $code);
+        $this->db->where('id_bangunan', $code);
         $q = $this->db->get();
         return $q;
     }
@@ -269,13 +269,13 @@ class OfficeModel extends CI_Model {
     {
         $level = $this->input->post('level');
         if ($level == 1) {
-        	$statusjalan = '3';
-    		$this->db->where('bangunan_iuts.status_jalan', $statusjalan);
-        }elseif ($level == 2) {
         	$statusjalan = '2';
     		$this->db->where('bangunan_iuts.status_jalan', $statusjalan);
-        }elseif ($level == 3) {
+        }elseif ($level == 2) {
         	$statusjalan = '1';
+    		$this->db->where('bangunan_iuts.status_jalan', $statusjalan);
+        }elseif ($level == 3) {
+        	$statusjalan = '0';
     		$this->db->where('bangunan_iuts.status_jalan', $statusjalan);
         }
     	$this->getdatatable();

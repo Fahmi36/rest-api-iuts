@@ -75,7 +75,20 @@ class OfficeController extends CI_Controller {
 		}else{
 			$q = $this->oc->InsertAdministrasi($bangunan,$kelengkapan,$lama,$kondisi,$pbb,$npwp,$skor,$keterangan);
 		}
-        return $q;
+        if ($q == true) {
+			$data = array(
+				'status_jalan'=>1,
+			);
+			$update = $this->db->update('bangunan_iuts', $data,$where);
+			if ($update == true) {
+				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
+          	}else{
+          		$json = $this->returnResultErrorDB();
+          	}
+		}else{
+          	$json = $this->returnResultErrorDB();
+		}
+		echo json_encode($json);
 	}
 	function InsertAdminTeknis()
 	{
@@ -110,7 +123,21 @@ class OfficeController extends CI_Controller {
 		}else{
 			$q = $this->oc->InsertAdminTeknis($bangunan,$pasar,$rencana,$rencana_eksi,$tata_ruang,$jarak,$lahan,$keteranga,$skor,$cek);
 		}
-        return $q;
+		if ($q == true) {
+			$data = array(
+				'status_jalan'=>2,
+			);
+			$update = $this->db->update('bangunan_iuts', $data,$where);
+			if ($update == true) {
+				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
+          	}else{
+          		$json = $this->returnResultErrorDB();
+          	}
+		}else{
+          	$json = $this->returnResultErrorDB();
+		}
+		echo json_encode($json);
+
 	}
 	function InsertAdminDinas()
 	{
@@ -133,7 +160,20 @@ class OfficeController extends CI_Controller {
 		}else{
 			$q = $this->oc->InsertAdminDinas($bangunan,$keterangan,$status);
 		}
-        return $q;
+        if ($q == true) {
+			$data = array(
+				'status_jalan'=>3,
+			);
+			$update = $this->db->update('bangunan_iuts', $data,$where);
+			if ($update == true) {
+				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
+          	}else{
+          		$json = $this->returnResultErrorDB();
+          	}
+		}else{
+          	$json = $this->returnResultErrorDB();
+		}
+		echo json_encode($json);
 	}
 	function detailBangunan()
 	{
