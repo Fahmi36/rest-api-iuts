@@ -44,6 +44,97 @@ class OfficeController extends CI_Controller {
 			'msg'=>$msg
 		);
 	}
+	function InsertAdministrasi()
+	{
+		$bangunan = $this->input->post('id_bangunan');
+		$kelengkapan = $this->input->post('id_bangunan');
+		$lama = $this->input->post('id_bangunan');
+		$kondisi = $this->input->post('id_bangunan');
+		$pbb = $this->input->post('id_bangunan');
+		$npwp = $this->input->post('id_bangunan');
+		$skor = $this->input->post('id_bangunan');
+		$keterangan = $this->input->post('id_bangunan');
+		$cek = $this->oc->cekAdministrasi($bangunan);
+		if ($cek->num_rows() > 0) {
+			$getdata = $cek->row();
+			$id = $getdata->id;
+            $where = array(
+                'id_bangunan' => $bangunan,
+            );
+            $array = array(
+            'kelengkapan' => $kelengkapan,
+            'lama_waktu' => $lama,
+            'kondisi_eksisting' => $kondisi,
+            'status_pbb' => $pbb,
+            'status_npwp' => $npwp,
+            'total_skor' => $skor,
+            'keterangan' => $keterangan,
+            'updated_at' => date('Y-m-d H:i:s'),
+        );
+            $q = $this->db->update('administrasi',$array,$where);
+		}else{
+			$q = $this->oc->InsertAdministrasi($bangunan,$kelengkapan,$lama,$kondisi,$pbb,$npwp,$skor,$keterangan);
+		}
+        return $q;
+	}
+	function InsertAdminTeknis()
+	{
+		$bangunan = $this->input->post('id_bangunan');
+		$pasar = $this->input->post('id_bangunan');
+		$rencana = $this->input->post('id_bangunan');
+		$rencana_eksis = $this->input->post('id_bangunan');
+		$tata_ruang = $this->input->post('id_bangunan');
+		$jarak = $this->input->post('id_bangunan');
+		$lahan = $this->input->post('id_bangunan');
+		$keterangan = $this->input->post('id_bangunan');
+		$skor = $this->input->post('id_bangunan');
+		$cek = $this->oc->cekTeknis($bangunan);
+		if ($cek->num_rows() > 0) {
+			$getdata = $cek->row();
+			$id = $getdata->id;
+            $where = array(
+                'id_bangunan' => $bangunan,
+            );
+            $array = array(
+            'id_pasar' => $pasar,
+            'id_rencana' => $rencana,
+            'id_rencana_eksisting' => $rencana_eksis,
+            'id_tata_ruang' => $tata_ruang,
+            'id_jarak' => $jarak,
+            'id_lahan' => $lahan,
+            'keterangan' => $keterangan,
+            'total_skor' => $skor,
+            'updated_at' => date('Y-m-d H:i:s'),
+        );
+            $q = $this->db->update('admin_teknis',$array,$where);
+		}else{
+			$q = $this->oc->InsertAdminTeknis($bangunan,$pasar,$rencana,$rencana_eksi,$tata_ruang,$jarak,$lahan,$keteranga,$skor,$cek);
+		}
+        return $q;
+	}
+	function InsertAdminDinas()
+	{
+		$bangunan = $this->input->post('id_bangunan');
+		$keterangan = $this->input->post('id_bangunan');
+		$status = $this->input->post('id_bangunan');
+		$cek = $this->oc->cekDinas($bangunan);
+		if ($cek->num_rows() > 0) {
+			$getdata = $cek->row();
+			$id = $getdata->id;
+            $where = array(
+                'id_bangunan' => $bangunan,
+            );
+            $array = array(
+            'keterangan' => $keterangan,
+            'status' => $status,
+            'updated_at' => date('Y-m-d H:i:s'),
+        );
+            $q = $this->db->update('admindinas',$array,$where);
+		}else{
+			$q = $this->oc->InsertAdminDinas($bangunan,$keterangan,$status);
+		}
+        return $q;
+	}
 	function detailBangunan()
 	{
 		try {

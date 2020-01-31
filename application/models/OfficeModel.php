@@ -14,79 +14,73 @@ class OfficeModel extends CI_Model {
         $q = $this->db->get();
         return $q;
 	}
-	function InsertAdministrasi()
+	function cekAdministrasi($id)
+	{
+		if($id){
+            $this->db->where('id_bangunan',$id);
+        }
+        $q = $this->db->get('administrasi');
+        return $q;
+	}
+	function cekTeknis($id)
+	{
+		if($id){
+            $this->db->where('id_bangunan',$id);
+        }
+        $q = $this->db->get('admin_teknis');
+        return $q;
+	}
+	function cekDinas($id)
+	{
+		if($id){
+            $this->db->where('id_bangunan',$id);
+        }
+        $q = $this->db->get('admindinas');
+        return $q;
+	}
+	function InsertAdministrasi($bangunan,$kelengkapan,$lama,$kondisi,$pbb,$npwp,$skor,$keterangan)
 	{
 		$arrayPermohonan = array(
-			'id_bangunan'=>$id,
-			'id_pemohon'=>$id_pemohon,
-			'nop'=>$nop,
-			'no_reg_bangunan'=>$no_reg,
-			'alamat'=>$lokasi,
-			'lat'=>$lat,
-			'lon'=>$lng,
-			'luas_lahan'=>$luas_lahan,
-			'status_milik'=>$status_milik,
-			'status_bangunan'=>$status_bangunan,
-			'luas_tapak'=>$ltb,
-			'luas_lantai'=>$luas_lantai,
-			'jumlah_lantai'=>$jml_lantai,
-			'code' => $kode,
-			'status' => 0,
-			'status_jalan' => 0,
-			'created_at' => date('Y-m-d H:i:s'),
-			'updated_at' => date('Y-m-d H:i:s'),
+			'id_bangunan' => $bangunan,
+            'kelengkapan' => $kelengkapan,
+            'lama_waktu' => $lama,
+            'kondisi_eksisting' => $kondisi,
+            'status_pbb' => $pbb,
+            'status_npwp' => $npwp,
+            'total_skor' => $skor,
+            'keterangan' => $keterangan,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
 		);
 		$q = $this->db->insert('bangunan_iuts',$arrayPermohonan);
 		return $q;
 	}
-	function InsertAdminTeknis()
+	function InsertAdminTeknis($bangunan,$pasar,$rencana,$rencana_eksi,$tata_ruang,$jarak,$lahan,$keteranga,$skor,$cek)
 	{
 		$arrayPermohonan = array(
-			'id_bangunan'=>$id,
-			'id_pemohon'=>$id_pemohon,
-			'nop'=>$nop,
-			'no_reg_bangunan'=>$no_reg,
-			'alamat'=>$lokasi,
-			'lat'=>$lat,
-			'lon'=>$lng,
-			'luas_lahan'=>$luas_lahan,
-			'status_milik'=>$status_milik,
-			'status_bangunan'=>$status_bangunan,
-			'luas_tapak'=>$ltb,
-			'luas_lantai'=>$luas_lantai,
-			'jumlah_lantai'=>$jml_lantai,
-			'code' => $kode,
-			'status' => 0,
-			'status_jalan' => 0,
-			'created_at' => date('Y-m-d H:i:s'),
-			'updated_at' => date('Y-m-d H:i:s'),
+			'id_bangunan' => $bangunan,
+            'id_pasar' => $pasar,
+            'id_rencana' => $rencana,
+            'id_rencana_eksisting' => $rencana_eksis,
+            'id_tata_ruang' => $tata_ruang,
+            'id_jarak' => $jarak,
+            'id_lahan' => $lahan,
+            'keterangan' => $keterangan,
+            'total_skor' => $skor,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
 		);
-		$q = $this->db->insert('bangunan_iuts',$arrayPermohonan);
+		$q = $this->db->insert('admin_teknis',$arrayPermohonan);
 		return $q;
 	}
 	function InsertAdminDinas()
 	{
 		$arrayPermohonan = array(
-			'id_bangunan'=>$id,
-			'id_pemohon'=>$id_pemohon,
-			'nop'=>$nop,
-			'no_reg_bangunan'=>$no_reg,
-			'alamat'=>$lokasi,
-			'lat'=>$lat,
-			'lon'=>$lng,
-			'luas_lahan'=>$luas_lahan,
-			'status_milik'=>$status_milik,
-			'status_bangunan'=>$status_bangunan,
-			'luas_tapak'=>$ltb,
-			'luas_lantai'=>$luas_lantai,
-			'jumlah_lantai'=>$jml_lantai,
-			'code' => $kode,
-			'status' => 0,
-			'status_jalan' => 0,
-			'created_at' => date('Y-m-d H:i:s'),
-			'updated_at' => date('Y-m-d H:i:s'),
+			'keterangan' => $keterangan,
+            'status' => $status,
+            'updated_at' => date('Y-m-d H:i:s'),
 		);
-		$q = $this->db->insert('bangunan_iuts',$arrayPermohonan);
+		$q = $this->db->insert('admindinas',$arrayPermohonan);
 		return $q;
 	}
 	function PemberitahuanAdministrasi()
@@ -114,81 +108,6 @@ class OfficeModel extends CI_Model {
 		$q = $this->db->insert('bangunan_iuts',$arrayPermohonan);
 		return $q;
 	}	
-	function UbahAdministrasi()
-	{
-		$arrayPermohonan = array(
-			'id_bangunan'=>$id,
-			'id_pemohon'=>$id_pemohon,
-			'nop'=>$nop,
-			'no_reg_bangunan'=>$no_reg,
-			'alamat'=>$lokasi,
-			'lat'=>$lat,
-			'lon'=>$lng,
-			'luas_lahan'=>$luas_lahan,
-			'status_milik'=>$status_milik,
-			'status_bangunan'=>$status_bangunan,
-			'luas_tapak'=>$ltb,
-			'luas_lantai'=>$luas_lantai,
-			'jumlah_lantai'=>$jml_lantai,
-			'code' => $kode,
-			'status' => 0,
-			'status_jalan' => 0,
-			'created_at' => date('Y-m-d H:i:s'),
-			'updated_at' => date('Y-m-d H:i:s'),
-		);
-		$q = $this->db->update('bangunan_iuts',$arrayPermohonan,$where);
-		return $q;
-	}
-	function UbahAdminTeknis()
-	{
-		$arrayPermohonan = array(
-			'id_bangunan'=>$id,
-			'id_pemohon'=>$id_pemohon,
-			'nop'=>$nop,
-			'no_reg_bangunan'=>$no_reg,
-			'alamat'=>$lokasi,
-			'lat'=>$lat,
-			'lon'=>$lng,
-			'luas_lahan'=>$luas_lahan,
-			'status_milik'=>$status_milik,
-			'status_bangunan'=>$status_bangunan,
-			'luas_tapak'=>$ltb,
-			'luas_lantai'=>$luas_lantai,
-			'jumlah_lantai'=>$jml_lantai,
-			'code' => $kode,
-			'status' => 0,
-			'status_jalan' => 0,
-			'created_at' => date('Y-m-d H:i:s'),
-			'updated_at' => date('Y-m-d H:i:s'),
-		);
-		$q = $this->db->update('bangunan_iuts',$arrayPermohonan,$where);
-		return $q;
-	}
-	function UbahAdminDinas()
-	{
-		$arrayPermohonan = array(
-			'id_bangunan'=>$id,
-			'id_pemohon'=>$id_pemohon,
-			'nop'=>$nop,
-			'no_reg_bangunan'=>$no_reg,
-			'alamat'=>$lokasi,
-			'lat'=>$lat,
-			'lon'=>$lng,
-			'luas_lahan'=>$luas_lahan,
-			'status_milik'=>$status_milik,
-			'status_bangunan'=>$status_bangunan,
-			'luas_tapak'=>$ltb,
-			'luas_lantai'=>$luas_lantai,
-			'jumlah_lantai'=>$jml_lantai,
-			'code' => $kode,
-			'status' => 0,
-			'status_jalan' => 0,
-			'created_at' => date('Y-m-d H:i:s'),
-			'updated_at' => date('Y-m-d H:i:s'),
-		);
-		$q = $this->db->update('bangunan_iuts',$arrayPermohonan,$where);
-		return $q;
-	}
 	function UbahDataBangunan($idbangunan,$status,$status_jalan)
 	{
 		$where = array(
