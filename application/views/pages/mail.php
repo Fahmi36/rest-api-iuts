@@ -42,7 +42,7 @@
 							</tr>
 						</table>
 							<center>
-								<a href="https://rest-iuts.pkkmart.com/fLoginAct?token=<?=$data->token?>">
+								<a href="https://iuts.pkkmart.com/admin/login.html">
 								<button style="cursor:pointer;background: #335589;height:auto;padding:20px;width:auto;border: none;border-radius: 2px;color:#f9f9f9;box-shadow: 0 0 8px 2px rgba(0,0,0,0.2)">Login Sekarang!</button>
 							</a>
 						</center>
