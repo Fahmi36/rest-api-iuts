@@ -191,11 +191,10 @@ class UserModel extends CI_Model {
     {
         $this->db->select('bangunan_iuts.code,bangunan_iuts.status,bangunan_iuts.created_at,pemohon_iuts.nama');
         $this->db->from('bangunan_iuts');
-        $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = bangunan_iuts.id_pemohon', 'left');
+        $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = bangunan_iuts.id_pemohon', 'INNER');
         if ($status != '') {
             if ($status == '1') {
-                $this->db->where('bangunan_iuts.status', 1);
-                $this->db->or_where('bangunan_iuts.status', 2);
+                $this->db->where_in('bangunan_iuts.status', [1,2]);
             }else{
                 $this->db->where('bangunan_iuts.status', $status);
             }

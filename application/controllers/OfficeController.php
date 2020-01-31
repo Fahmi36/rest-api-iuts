@@ -55,33 +55,93 @@ class OfficeController extends CI_Controller {
 	public function countsideoffice()
 	{
 		$expired = $this->db->get_where('bangunan_iuts',array('status'=>'3'))->num_rows();
-        $pending = $this->db->get_where('bangunan_iuts',array('status'=>'0'))->num_rows();
+		$pending = $this->db->get_where('bangunan_iuts',array('status'=>'0'))->num_rows();
 
-        $this->db->select('*');
-        $this->db->from('bangunan_iuts');
-        $this->db->where('status','1');
-        $this->db->or_where('status','2');
-        $selesai = $this->db->get();
-        $hasilselesai = $selesai->num_rows();
-        echo json_encode(array('expired'=>$expired,'pending'=>$pending,'selesai'=>$hasilselesai));
+		$this->db->select('*');
+		$this->db->from('bangunan_iuts');
+		$this->db->where('status','1');
+		$this->db->or_where('status','2');
+		$selesai = $this->db->get();
+		$hasilselesai = $selesai->num_rows();
+		echo json_encode(array('expired'=>$expired,'pending'=>$pending,'selesai'=>$hasilselesai));
 	}
 	function getDataSemua()
 	{
 		try {
-            $data = $this->oc->getAll();
-        } catch (Exception $e) {
-            throw $e;
-        }
-        echo json_encode($data);
+			$data = $this->oc->getAll();
+		} catch (Exception $e) {
+			throw $e;
+		}
+		echo json_encode($data);
 	}
 	function getDataJalan()
 	{
 		try {
-            $data = $this->oc->getAllJalan();
-        } catch (Exception $e) {
-            throw $e;
-        }
-        echo json_encode($data);
+			$data = $this->oc->getAllJalan();
+		} catch (Exception $e) {
+			throw $e;
+		}
+		echo json_encode($data);
+	}
+	function getAllChat()
+	{
+		try {
+			$iduser= $this->input->post('id');
+			if ($iduser == null) {
+				$data = $this->oc->CekPesan($iduser);
+				if ($data) {
+					$res = $this->returnResult($data);
+				}else{
+					$res = $this->returnResultErrorDB();
+				}
+			}else{
+				$res = $this->returnResultCustom(false,'Tidak ada data');
+			}
+
+		} catch (Exception $e) {
+			throw $e;
+		}
+		echo json_encode($res);
+	}
+	function getDetailChat()
+	{
+		try {
+			$idpesan= $this->input->post('id');
+			if ($idpesan == null) {
+				$data = $this->oc->DetailPesan($idpesan);
+				if ($data) {
+					$res = $this->returnResult($data);
+				}else{
+					$res = $this->returnResultErrorDB();
+				}
+			}else{
+				$res = $this->returnResultCustom(false,'Tidak ada data');
+			}
+
+		} catch (Exception $e) {
+			throw $e;
+		}
+		echo json_encode($res);
+	}
+	function getBangunan()
+	{
+		try {
+			$code= $this->input->post('code');
+			if ($code == null) {
+				$data = $this->oc->DetailBangunan($code);
+				if ($data) {
+					$res = $this->returnResult($data);
+				}else{
+					$res = $this->returnResultErrorDB();
+				}
+			}else{
+				$res = $this->returnResultCustom(false,'Tidak ada data');
+			}
+
+		} catch (Exception $e) {
+			throw $e;
+		}
+		echo json_encode($res);
 	}
 }
 

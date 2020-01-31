@@ -224,11 +224,20 @@ class OfficeModel extends CI_Model {
         $q = $this->db->get();
         return $q;
     }
-    function CekPesan()
+    function DetailBangunan($code)
+    {
+    	$this->db->select('*');
+        $this->db->from('bangunan_iuts');
+        $this->db->where('code', $code);
+        $q = $this->db->get();
+        return $q;
+    }
+    function CekPesan($id)
     {
     	$this->db->select('*');
     	$this->db->from('message');
-    	$this->db->where('id_penerima', 0);
+    	$this->db->where('id_pengirim', $id);
+    	$this->db->where('id_penerima', $id);
     	$q = $this->db->get();
     	return $q;
     }
