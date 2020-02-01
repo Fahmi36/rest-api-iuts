@@ -227,6 +227,20 @@ class UserController extends CI_Controller {
 		}
 		echo json_encode($json);
 	}
+	function detailPemohonAdministrasi()
+	{
+		try {
+			$id = $this->input->post('id');
+			$idbangunan = $this->input->post('idbangunan');
+			$detail = $this->us->detailPemohonAdministrasi($idbangunan,$id);
+			if ($detail) {
+				$res = $this->returnResult($detail);
+			}
+		} catch (Exception $e) {
+			$res = $this->returnResultCustom(false,$e);
+		}
+		echo json_encode($res);
+	}
 	function detailPemohonteknis()
 	{
 		try {
