@@ -159,60 +159,6 @@ class OfficeModel extends CI_Model {
 		return $q;
 	}
 
-    function detailPemohonAdministrasi($id_bangunan,$id)
-    {
-        $this->db->select('kelengkapan_admin.skor as skorlengkap, lama_izin.skor as skorwaktu, status_pbb.skor as skorpbb, status_npwp.skor as skornpwp, AVG(kelengkapan_admin.skor + lama_izin.skor) as skoradministrasi');
-        $this->db->from('bangunan_iuts');
-        $this->db->join('administrasi', 'administrasi.id_bangunan = bangunan_iuts.id_bangunan', 'INNER');
-        $this->db->join('kelengkapan_admin', 'kelengkapan_admin.id = administrasi.kelengkapan', 'INNER');
-        $this->db->join('lama_izin', 'lama_izin.id = administrasi.lama_waktu', 'INNER');
-        $this->db->join('status_pbb', 'status_pbb.id = administrasi.status_pbb', 'INNER');
-        $this->db->join('status_npwp', 'status_npwp.id = administrasi.status_npwp', 'INNER');
-
-        $this->db->where('bangunan_iuts.id_bangunan', $id_bangunan);
-        $this->db->where('bangunan_iuts.id_pemohon', $id);
-        $this->db->group_by('bangunan_iuts.id_bangunan');
-        $q = $this->db->get();
-        return $q;
-        // return var_dump($this->db->last_query());
-    }
-
-    function detailPemohonteknis($id_bangunan,$id)
-    {
-        $this->db->select(' jarak_pasar.skor as skorjarakpasar, rencana_jalan.skor as skorrenjalan, jalan_eksisting.skor as skorjalaneksis, tata_ruang.skor as skortataruang, jarak_usaha.skor as skorjarakusaha, penggunaan_lahan.skor as skorpenglahan, AVG(pemutakhiran_pbb.skor + rekomen_umkm.skor + perjanjian_sewa.skor + penggunaan_lahan.skor + setuju_warga_sekitar.skor + jalan_eksisting.skor) as skormanfaat ');
-        $this->db->from('bangunan_iuts');
-        $this->db->join('kondisi_bangunan', 'kondisi_bangunan.id_bangunan = bangunan_iuts.id_bangunan', 'INNER');
-        $this->db->join('admin_teknis', 'admin_teknis.id_bangunan = bangunan_iuts.id_bangunan', 'INNER');
-
-
-        $this->db->join('jarak_pasar', 'jarak_pasar.id = admin_teknis.id_pasar', 'INNER');
-        $this->db->join('rencana_jalan', 'rencana_jalan.id = admin_teknis.id_rencana', 'INNER');
-        $this->db->join('jalan_eksisting', 'jalan_eksisting.id = admin_teknis.id_rencana_eksisting', 'INNER');
-        $this->db->join('tata_ruang', 'tata_ruang.id = admin_teknis.id_tata_ruang', 'INNER');
-        $this->db->join('jarak_usaha', 'jarak_usaha.id = admin_teknis.id_jarak', 'INNER');
-        $this->db->join('penggunaan_lahan', 'penggunaan_lahan.id = admin_teknis.id_lahan', 'INNER');
-        $this->db->where('bangunan_iuts.id_bangunan', $id_bangunan);
-        $this->db->where('bangunan_iuts.id_pemohon', $id);
-        $this->db->group_by('bangunan_iuts.id_bangunan');
-        $q = $this->db->get();
-        return $q;
-        // return var_dump($this->db->last_query());
-    }
-    function detailPemohonDinas($id_bangunan,$id)
-    {
-        $this->db->select(' jarak_pasar.skor as skorjarakpasar, rencana_jalan.skor as skorrenjalan, jalan_eksisting.skor as skorjalaneksis, tata_ruang.skor as skortataruang, jarak_usaha.skor as skorjarakusaha, penggunaan_lahan.skor as skorpenglahan, AVG(pemutakhiran_pbb.skor + rekomen_umkm.skor + perjanjian_sewa.skor + penggunaan_lahan.skor + setuju_warga_sekitar.skor + jalan_eksisting.skor) as skormanfaat ');
-        $this->db->from('bangunan_iuts');
-        $this->db->join('kondisi_bangunan', 'kondisi_bangunan.id_bangunan = bangunan_iuts.id_bangunan', 'INNER');
-        $this->db->join('admindinas', 'admindinas.id_bangunan = bangunan_iuts.id_bangunan', 'INNER');
-        $this->db->join('janjian', 'janjian.id_bangunan = bangunan_iuts.id_bangunan', 'INNER');
-
-        $this->db->where('bangunan_iuts.id_bangunan', $id_bangunan);
-        $this->db->where('bangunan_iuts.id_pemohon', $id);
-        $this->db->group_by('bangunan_iuts.id_bangunan');
-        $q = $this->db->get();
-        return $q;
-        // return var_dump($this->db->last_query());
-    }
     function AmbilSurat($id)
     {
         $this->db->select('*');

@@ -227,6 +227,47 @@ class UserController extends CI_Controller {
 		}
 		echo json_encode($json);
 	}
+	function detailPemohonteknis()
+	{
+		try {
+			$id = $this->input->post('id');
+			$idbangunan = $this->input->post('idbangunan');
+			$detail = $this->us->detailPemohonteknis($idbangunan,$id);
+			if ($detail) {
+				$res = $this->returnResult($detail);
+			}
+		} catch (Exception $e) {
+			$res = $this->returnResultCustom(false,$e);
+		}
+		echo json_encode($res);
+	}
+	function detailPemohonDinas()
+	{
+		try {
+			$id = $this->input->post('id');
+			$idbangunan = $this->input->post('idbangunan');
+			$detail = $this->us->detailPemohonDinas($idbangunan,$id);
+			if ($detail) {
+				$res = $this->returnResult($detail);
+			}
+		} catch (Exception $e) {
+			$res = $this->returnResultCustom(false,$e);
+		}
+		echo json_encode($res);
+	}
+	function detailPemohonAmbil()
+	{
+		try {
+			$idbangunan = $this->input->post('idbangunan');
+			$detail = $this->us->detailPemohonAmbil($idbangunan);
+			if ($detail) {
+				$res = $this->returnResult($detail);
+			}
+		} catch (Exception $e) {
+			$res = $this->returnResultCustom(false,$e);
+		}
+		echo json_encode($res);
+	}
 }
 
 /* End of file UserController.php */
