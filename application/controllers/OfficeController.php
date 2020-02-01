@@ -105,9 +105,9 @@ class OfficeController extends CI_Controller {
 
 		if ($cek->num_rows() > 0) {
 			$getdata = $cek->row();
-			$id = $getdata->id;
+			$id = $getdata->id_admintrasi;
             $where = array(
-                'id_bangunan' => $bangunan,
+                'id_admintrasi' => $getdata->id_admintrasi,
             );
             $array = array(
             'kelengkapan' => $kelengkapan,
