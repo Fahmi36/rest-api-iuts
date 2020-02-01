@@ -308,7 +308,7 @@ class OfficeController extends CI_Controller {
 	{
 		try {
 			$code= $this->input->post('code');
-			if ($code == null) {
+			if ($code != null) {
 				$data = $this->oc->DetailBangunan($code);
 				if ($data) {
 					$res = $this->returnResult($data);
