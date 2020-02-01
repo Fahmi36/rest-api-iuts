@@ -35,6 +35,14 @@ class UserModel extends CI_Model {
         $q = $this->db->get('kondisi_bangunan');
         return $q;
     }
+    function cekCodeBangunan($id)
+    {
+        if($id){
+            $this->db->where('code',$id);
+        }
+        $q = $this->db->get('bangunan_iuts');
+        return $q;
+    }
 	function InsertBangunan($id,$id_pemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng,$kode)
 	{
 		$arrayPermohonan = array(
@@ -189,7 +197,7 @@ class UserModel extends CI_Model {
     }
     function listPermohonan($id,$status='',$awal,$akhir)
     {
-        $this->db->select('bangunan_iuts.code,bangunan_iuts.status,bangunan_iuts.created_at,pemohon_iuts.nama');
+        $this->db->select('bangunan_iuts.id_bangunan,bangunan_iuts.code,bangunan_iuts.status,bangunan_iuts.created_at,pemohon_iuts.nama');
         $this->db->from('bangunan_iuts');
         $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = bangunan_iuts.id_pemohon', 'INNER');
         if ($status != '') {

@@ -102,7 +102,7 @@ class OfficeController extends CI_Controller {
 			$skorpbb = 0;
 		}
 
-		$skor = ($skorlengkap + $skorlama + $skornpwp + $skorpbb / 4);
+		$skor = ($skorlengkap + $skorlama + $skornpwp + $skorpbb)/4;
 
 		if ($cek->num_rows() > 0) {
 			$getdata = $cek->row();
@@ -225,7 +225,7 @@ class OfficeController extends CI_Controller {
 			$skorpasar = 0;
 		}
 
-		$skor = ($skorpasar + $skorrenjalan + $skoreksijalan + $skortata + $skortusah + $skorlahan  / 6);
+		$skor = ($skorpasar + $skorrenjalan + $skoreksijalan + $skortata + $skortusah + $skorlahan)/6;
 
 		$cek = $this->oc->cekTeknis($id_bangunan);
 		if ($cek->num_rows() > 0) {
@@ -273,6 +273,7 @@ class OfficeController extends CI_Controller {
 		$bangunan = $this->input->post('id_bangunan');
 		$id_admin = $this->input->post('admin');
 		$keterangan = $this->input->post('keterangan');
+		$skor = $this->input->post('skor');
 		$status = $this->input->post('status');
 		$cek = $this->oc->cekDinas($bangunan);
 		if ($cek->num_rows() > 0) {
@@ -284,6 +285,7 @@ class OfficeController extends CI_Controller {
             $array = array(
             'keterangan' => $keterangan,
             'status' => $status,
+            'skor_akhir' => $skor,
             'updated_at' => date('Y-m-d H:i:s'),
         );
             $q = $this->db->update('admindinas',$array,$where);
@@ -291,8 +293,14 @@ class OfficeController extends CI_Controller {
 			$q = $this->oc->InsertAdminDinas($bangunan,$admin,$keterangan,$status);
 		}
         if ($q == true) {
+        	$this->sendmail($bangunan);
+        	if ($status == 1) {
+        		$status_bangun = 4;
+        	}else{
+        		$status_bangun = 5;
+        	}
 			$data = array(
-				'status_jalan'=>3,
+				'status_jalan'=>$status_bangun,
 			);
 			$update = $this->db->update('bangunan_iuts', $data,$where);
 			if ($update == true) {
@@ -303,6 +311,35 @@ class OfficeController extends CI_Controller {
 		}else{
           	$json = $this->returnResultErrorDB();
 		}
+		echo json_encode($json);
+	}
+	function InsertSuratKuasa()
+	{
+		$bangunan = $this->input->post('id_bangunan');
+		$id_admin = $this->input->post('admin');
+		$tgl = date('Y-m-d',strtotime($this->input->post('tanggal')));
+		$cek = $this->oc->cekSurat($bangunan);
+		if ($cek->num_rows() > 0) {
+			$getdata = $cek->row();
+			$id = $getdata->id_janji;
+            $where = array(
+                'id_bangunan' => $bangunan,
+            );
+            $array = array(
+	            'id_bangunan' => $bangunan,
+	            'tanggal' => $tgl,
+	            'updated_at' => date('Y-m-d H:i:s'),
+        	);
+            $q = $this->db->update('janjian',$array,$where);
+		}else{
+			$q = $this->oc->InsertSurat($bangunan,$id_admin,$tgl);
+		}
+        if ($q == true) {
+			$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
+        }else{
+          	$json = $this->returnResultErrorDB();
+        }
+		
 		echo json_encode($json);
 	}
 	function detailBangunan()
@@ -424,6 +461,49 @@ class OfficeController extends CI_Controller {
 		}
 		echo json_encode($res);
 	}
+	function sendmail($idbangun)
+	{
+        $dPemohon = $this->oc->cekPemohon($idbangun);
+        $result = $this->returnResult($dPemohon);
+        $json = json_encode($result);
+        $decoder = json_decode($json);
+        if($decoder->rowCount>0){
+            $decodeData = $decoder->row[0];
+            $emailpemohon = $decodeData->email;
+            $data = array();
+            $data['data'] = $decodeData;
+            $data['title'] = "Detail Permohonan Izin";
+            $config = array(
+             'protocol'  => 'mail',
+             'smtp_host' => 'mail.perizinan.pkkmart.com',
+             'smtp_port' => 587,
+             'smtp_user' => 'cs@perizinan.pkkmart.com',
+             'smtp_pass' => 'goodgame001',
+             'mailtype'  => 'html',
+             'wordwrap'  => TRUE,
+             'charset'   => 'utf-8',
+             'priority'  => 1
+         );
+            $this->email->initialize($config);
+
+            $this->email->set_mailtype("html");
+            $this->email->set_newline("\r\n");
+            $mesg = $this->load->view('pages/mailselesai', $data, true);
+            $this->email->to($emailpemohon);
+            $this->email->from('cs@perizinan.pkkmart.com', 'Perizinan DKI');
+            $this->email->reply_to('cs@perizinan.pkkmart.com', 'Perizinan DKI');
+
+            $this->email->subject($data['title'] . ' - Perizinan DKI');
+            $this->email->message($mesg);
+            if ($this->email->send()) {
+                    $result = $this->returnResultCustom(true,'Success send mail');
+                } else {
+                    $result = $this->returnResultCustom(false,'Failed to send mail '. $this->email->print_debugger());
+                }
+        }else{
+            $result = $this->returnResultCustom(false,'Tidak ditemukan data dengan nomor token '.$token);
+        }
+    }
 }
 
 /* End of file OfficeController.php */

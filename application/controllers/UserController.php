@@ -134,20 +134,36 @@ class UserController extends CI_Controller {
 		}
 		echo json_encode($res);
 	}
+	function getTimelinePemohon()
+	{
+		try {
+			$id = $this->input->post('code');
+			$data = $this->us->cekCodeBangunan($id,$status,$start,$offset);
+			if ($data->num_rows()>0) {
+				$res = $this->returnResult($data);
+			}else{
+				$res = $this->returnResultCustom(false,'Tidak ada data');
+			}
+		} catch (Exception $e) {
+			$res = $this->returnResultCustom(false,$e);
+		}
+
+		echo json_encode($res);
+	}
 	function countside()
 	{
 		$id = $this->input->post('id');
 
 		$expired = $this->db->get_where('bangunan_iuts',array('status'=>'3','id_pemohon'=>$id))->num_rows();
-        $pending = $this->db->get_where('bangunan_iuts',array('status'=>'0','id_pemohon'=>$id))->num_rows();
+		$pending = $this->db->get_where('bangunan_iuts',array('status'=>'0','id_pemohon'=>$id))->num_rows();
 
-        $this->db->select('*');
-        $this->db->from('bangunan_iuts');
-        $this->db->where('bangunan_iuts.id_pemohon', $id);
-        $this->db->where_in('status',[1,2]);
-        $selesai = $this->db->get();
-        $hasilselesai = $selesai->num_rows();
-        echo json_encode(array('expired'=>$expired,'pending'=>$pending,'selesai'=>$hasilselesai));
+		$this->db->select('*');
+		$this->db->from('bangunan_iuts');
+		$this->db->where('bangunan_iuts.id_pemohon', $id);
+		$this->db->where_in('status',[1,2]);
+		$selesai = $this->db->get();
+		$hasilselesai = $selesai->num_rows();
+		echo json_encode(array('expired'=>$expired,'pending'=>$pending,'selesai'=>$hasilselesai));
 	}
 	function SendMessage()
 	{
@@ -189,6 +205,27 @@ class UserController extends CI_Controller {
 			$res = $this->returnResultCustom(false,$e);
 		}
 		echo json_encode($res);
+	}
+	function PemohonSelesai()
+	{
+		$id = $this->input->post('idbangunan');
+		try { 
+			$data = array(
+				'status_jalan'=>6,
+			);
+			$where = array(
+				'id_bangunan'=>$id
+			);
+			$update = $this->db->update('bangunan_iuts', $data,$where);
+			if ($skor == true) {
+				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
+			}else{
+				$json = $this->returnResultErrorDB();
+			}
+		} catch (Exception $e) {
+			$json = $this->returnResultErrorDB();
+		}
+		echo json_encode($json);
 	}
 }
 
