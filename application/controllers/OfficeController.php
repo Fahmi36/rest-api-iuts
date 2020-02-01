@@ -52,6 +52,7 @@ class OfficeController extends CI_Controller {
 		$npwp = $this->input->post('statusNPWP');
 		$pbb = $this->input->post('statusPBB');
 		$keterangan = $this->input->post('keterangan');
+		$id_admin = $this->input->post('admin');
 		$cek = $this->oc->cekAdministrasi($bangunan);
 
 		if ($kelengkapan == '1') {
@@ -120,7 +121,7 @@ class OfficeController extends CI_Controller {
         );
             $q = $this->db->update('administrasi',$array,$where);
 		}else{
-			$q = $this->oc->InsertAdministrasi($bangunan,$kelengkapan,$lama,$npwp,$pbb,$skor,$keterangan);
+			$q = $this->oc->InsertAdministrasi($bangunan,$id_admin,$kelengkapan,$lama,$npwp,$pbb,$skor,$keterangan);
 		}
         if ($q == true) {
 			$data = array(
@@ -142,42 +143,120 @@ class OfficeController extends CI_Controller {
 	}
 	function InsertAdminTeknis()
 	{
-		$bangunan = $this->input->post('id_bangunan');
-		$pasar = $this->input->post('id_bangunan');
-		$rencana = $this->input->post('id_bangunan');
-		$rencana_eksis = $this->input->post('id_bangunan');
-		$tata_ruang = $this->input->post('id_bangunan');
-		$jarak = $this->input->post('id_bangunan');
-		$lahan = $this->input->post('id_bangunan');
-		$keterangan = $this->input->post('id_bangunan');
-		$skor = $this->input->post('id_bangunan');
+		$id_bangunan = $this->input->post('id_bangunan');
+		$admin = $this->input->post('admin');
+		$lahansekitar = $this->input->post('lahansekitar');
+		$rencanajalan = $this->input->post('rencanajalan');
+		$eksitingjalan = $this->input->post('eksitingjalan');
+		$tataruang = $this->input->post('tataruang');
+		$statususaha = $this->input->post('statususaha');
+		$statuspasar = $this->input->post('statuspasar');
+		$keterangan = $this->input->post('keterangan');
+
+		if ($lahansekitar == '1') {
+			$skorlahan = 0;
+		}elseif ($lahansekitar == '2') {
+			$skorlahan = 1;
+		}elseif($lahansekitar == '3'){
+			$skorlahan = 2;
+		}else if($lahansekitar == '4'){
+			$skorlahan = 3;
+		}else{
+			$skorlahan = 0;
+		}
+
+		if ($rencanajalan == '1') {
+			$skorrenjalan = 0;
+		}elseif ($rencanajalan == '2') {
+			$skorrenjalan = 1;
+		}elseif($rencanajalan == '3'){
+			$skorrenjalan = 2;
+		}else if($rencanajalan == '4'){
+			$skorrenjalan = 3;
+		}else{
+			$skorrenjalan = 0;
+		}
+
+		if ($eksitingjalan == '1') {
+			$skoreksijalan = 0;
+		}elseif ($eksitingjalan == '2') {
+			$skoreksijalan = 1;
+		}elseif($eksitingjalan == '3'){
+			$skoreksijalan = 2;
+		}else if($eksitingjalan == '4'){
+			$skoreksijalan = 3;
+		}else{
+			$skoreksijalan = 0;
+		}
+
+		if ($tataruang == '1') {
+			$skortata = 0;
+		}elseif ($tataruang == '2') {
+			$skortata = 1;
+		}elseif($tataruang == '3'){
+			$skortata = 2;
+		}else if($tataruang == '4'){
+			$skortata = 3;
+		}else{
+			$skortata = 0;
+		}
+
+		if ($statususaha == '1') {
+			$skortusah = 0;
+		}elseif ($statususaha == '2') {
+			$skortusah = 1;
+		}elseif($statususaha == '3'){
+			$skortusah = 2;
+		}else if($statususaha == '4'){
+			$skortusah = 3;
+		}else{
+			$skortusah = 0;
+		}
+
+		if ($statuspasar == '1') {
+			$skorpasar = 0;
+		}elseif ($statuspasar == '2') {
+			$skorpasar = 1;
+		}elseif($statuspasar == '3'){
+			$skorpasar = 2;
+		}else if($statuspasar == '4'){
+			$skorpasar = 3;
+		}else{
+			$skorpasar = 0;
+		}
+
+		$skor = ($skorpasar + $skorrenjalan + $skoreksijalan + $skortata + $skortusah + $skorlahan  / 6);
+
 		$cek = $this->oc->cekTeknis($bangunan);
 		if ($cek->num_rows() > 0) {
 			$getdata = $cek->row();
-			$id = $getdata->id;
+			$id = $getdata->id_teknis;
             $where = array(
-                'id_bangunan' => $bangunan,
+                'id_teknis' => $id,
             );
             $array = array(
-            'id_pasar' => $pasar,
-            'id_rencana' => $rencana,
-            'id_rencana_eksisting' => $rencana_eksis,
-            'id_tata_ruang' => $tata_ruang,
-            'id_jarak' => $jarak,
-            'id_lahan' => $lahan,
+            'id_pasar' => $statuspasar,
+            'id_rencana' => $rencanajalan,
+            'id_rencana_eksisting' => $eksitingjalan,
+            'id_tata_ruang' => $tataruang,
+            'id_jarak' => $statususaha,
+            'id_lahan' => $lahansekitar,
             'keterangan' => $keterangan,
             'total_skor' => $skor,
             'updated_at' => date('Y-m-d H:i:s'),
         );
             $q = $this->db->update('admin_teknis',$array,$where);
 		}else{
-			$q = $this->oc->InsertAdminTeknis($bangunan,$pasar,$rencana,$rencana_eksi,$tata_ruang,$jarak,$lahan,$keteranga,$skor,$cek);
+			$q = $this->oc->InsertAdminTeknis($id_bangunan,$admin,$lahansekitar,$rencanajalan,$eksitingjalan,$tataruang,$statususaha,$statuspasar,$keterangan);
 		}
 		if ($q == true) {
+			$wherebangun = array(
+                'id_bangunan' => $id_bangunan,
+            );
 			$data = array(
 				'status_jalan'=>2,
 			);
-			$update = $this->db->update('bangunan_iuts', $data,$where);
+			$update = $this->db->update('bangunan_iuts', $data,$wherebangun);
 			if ($update == true) {
 				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
           	}else{
@@ -192,8 +271,9 @@ class OfficeController extends CI_Controller {
 	function InsertAdminDinas()
 	{
 		$bangunan = $this->input->post('id_bangunan');
-		$keterangan = $this->input->post('id_bangunan');
-		$status = $this->input->post('id_bangunan');
+		$id_admin = $this->input->post('admin');
+		$keterangan = $this->input->post('keterangan');
+		$status = $this->input->post('status');
 		$cek = $this->oc->cekDinas($bangunan);
 		if ($cek->num_rows() > 0) {
 			$getdata = $cek->row();
@@ -208,7 +288,7 @@ class OfficeController extends CI_Controller {
         );
             $q = $this->db->update('admindinas',$array,$where);
 		}else{
-			$q = $this->oc->InsertAdminDinas($bangunan,$keterangan,$status);
+			$q = $this->oc->InsertAdminDinas($bangunan,$admin,$keterangan,$status);
 		}
         if ($q == true) {
 			$data = array(
@@ -232,6 +312,26 @@ class OfficeController extends CI_Controller {
 		} catch (Exception $e) {
 			
 		}
+	}
+	public function detailBangunanDinas()
+	{
+		try {
+			$idbangun= $this->input->post('id');
+			if ($idbangun == null) {
+				$data = $this->oc->detailPermohonanAdminDinas($idbangun);
+				if ($data) {
+					$res = $this->returnResult($data);
+				}else{
+					$res = $this->returnResultErrorDB();
+				}
+			}else{
+				$res = $this->returnResultCustom(false,'Tidak ada data');
+			}
+
+		} catch (Exception $e) {
+			throw $e;
+		}
+		echo json_encode($res);
 	}
 	public function countsideoffice()
 	{

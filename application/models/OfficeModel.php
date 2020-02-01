@@ -38,10 +38,11 @@ class OfficeModel extends CI_Model {
         $q = $this->db->get('admindinas');
         return $q;
 	}
-	function InsertAdministrasi($bangunan,$kelengkapan,$lama,$npwp,$pbb,$skor,$keterangan)
+	function InsertAdministrasi($bangunan,$id_admin,$kelengkapan,$lama,$npwp,$pbb,$skor,$keterangan)
 	{
 		$arrayPermohonan = array(
 			'id_bangunan' => $bangunan,
+            'id_admin'=>$id_admin,
             'kelengkapan' => $kelengkapan,
             'lama_waktu' => $lama,
             'status_pbb' => $pbb,
@@ -54,16 +55,16 @@ class OfficeModel extends CI_Model {
 		$q = $this->db->insert('administrasi',$arrayPermohonan);
 		return $q;
 	}
-	function InsertAdminTeknis($bangunan,$pasar,$rencana,$rencana_eksi,$tata_ruang,$jarak,$lahan,$keteranga,$skor,$cek)
+	function InsertAdminTeknis($id_bangunan,$admin,$lahansekitar,$rencanajalan,$eksitingjalan,$tataruang,$statususaha,$statuspasar,$keterangan)
 	{
 		$arrayPermohonan = array(
 			'id_bangunan' => $bangunan,
-            'id_pasar' => $pasar,
-            'id_rencana' => $rencana,
-            'id_rencana_eksisting' => $rencana_eksis,
-            'id_tata_ruang' => $tata_ruang,
-            'id_jarak' => $jarak,
-            'id_lahan' => $lahan,
+            'id_pasar' => $statuspasar,
+            'id_rencana' => $rencanajalan,
+            'id_rencana_eksisting' => $eksitingjalan,
+            'id_tata_ruang' => $tataruang,
+            'id_jarak' => $statususaha,
+            'id_lahan' => $lahansekitar,
             'keterangan' => $keterangan,
             'total_skor' => $skor,
             'created_at' => date('Y-m-d H:i:s'),
@@ -72,10 +73,11 @@ class OfficeModel extends CI_Model {
 		$q = $this->db->insert('admin_teknis',$arrayPermohonan);
 		return $q;
 	}
-	function InsertAdminDinas()
+	function InsertAdminDinas($bangunan,$admin,$keterangan,$status)
 	{
 		$arrayPermohonan = array(
-			'keterangan' => $keterangan,
+			'id_admin' => $admin,
+            'keterangan' => $keterangan,
             'status' => $status,
             'updated_at' => date('Y-m-d H:i:s'),
 		);
@@ -130,17 +132,45 @@ class OfficeModel extends CI_Model {
 		$q = $this->db->update('bangunan_iuts', $data,$where);
 		return $q;
 	}
-	function detailPermohonanAdmin($id_bangunan,$code)
+	function detailPermohonanAdminDinas($id_bangunan)
     {
         $this->db->select('*');
         $this->db->from('bangunan_iuts');
+        $this->db->join('pemohon_iuts', 'bangunan_iuts.id_pemohon = bangunan_iuts.id_pemohon', 'left');
+        $this->db->join('kondisi_bangunan', 'kondisi_bangunan.id_bangunan = bangunan_iuts.id_bangunan', 'left');
         $this->db->join('administrasi', 'administrasi.id_bangunan = bangunan_iuts.id_bangunan', 'left');
         $this->db->join('admin_teknis', 'admin_teknis.id_bangunan = bangunan_iuts.id_bangunan', 'left');
-        $this->db->join('admindinas', 'admindinas.id_bangunan = bangunan_iuts.id_bangunan', 'left');
+
+        $this->db->join('kelengkapan_admin', 'kelengkapan_admin.if = administrasi.kelengkapan', 'left');
+        $this->db->join('lama_izin', 'lama_izin.id = administrasi.lama_waktu', 'left');
+        $this->db->join('status_pbb', 'status_pbb.id = administrasi.status_pbb', 'left');
+        $this->db->join('status_npwp', 'status_npwp.id = administrasi.status_npwp', 'left');
+
+        $this->db->join('jarak_pasar', 'jarak_pasar.id = admin_teknis.id_pasar', 'left');
+        $this->db->join('rencana_jalan', 'rencana_jalan.id = admin_teknis.id_rencana', 'left');
+        $this->db->join('jalan_eksisting', 'jalan_eksisting.id = admin_teknis.id_rencana_eksisting', 'left');
+        $this->db->join('tata_ruang', 'tata_ruang.id = admin_teknis.id_tata_ruang', 'left');
+        $this->db->join('jarak_usaha', 'jarak_usaha.id = admin_teknis.id_jarak', 'left');
+        $this->db->join('penggunaan_lahan', 'penggunaan_lahan.id = admin_teknis.id_lahan', 'left');
+
+        $this->db->join('kondisi_eksisting', 'kondisi_eksisting.id = kondisi_bangunan.id_kondisi', 'left');
+        $this->db->join('pemutakhiran_pbb', 'pemutakhiran_pbb.id = kondisi_bangunan.id_pbb', 'left');
+        $this->db->join('keterlibatan_umkm', 'keterlibatan_umkm.id = kondisi_bangunan.id_umkm', 'left');
+        $this->db->join('perjanjian_sewa', 'perjanjian_sewa.id = kondisi_bangunan.id_sewa', 'left');
+        $this->db->join('setuju_warga_sekitar', 'setuju_warga_sekitar.id = kondisi_bangunan.id_warga', 'left');
+        $this->db->join('rekomen_umkm', 'rekomen_umkm.id = kondisi_bangunan.id_rek_umkm', 'left');
+        $this->db->join('slf_eksisting', 'slf_eksisting.id = kondisi_bangunan.id_slf', 'left');
+        $this->db->join('imb_eksisting', 'imb_eksisting.id = kondisi_bangunan.id_imb', 'left');
+        $this->db->join('kajian_sostek', 'kajian_sostek.id = kondisi_bangunan.id_kajian', 'left');
+        $this->db->join('volume_sumur', 'volume_sumur.id = kondisi_bangunan.id_volume_sumur', 'left');
+        $this->db->join('kondisi_drainase', 'kondisi_drainase.id = kondisi_bangunan.id_drainase', 'left');
+        $this->db->join('kondisi_sumur', 'kondisi_sumur.id = kondisi_bangunan.id_kondisi_sumur', 'left');
+        $this->db->join('kdh_minimum', 'kdh_minimum.id = kondisi_bangunan.id_kdh_minimum', 'left');
         $this->db->where('bangunan_iuts.id_bangunan', $id_bangunan);
-        $this->db->where('bangunan_iuts.code', $code);
+        $this->db->group_by('bangunan_iuts.id_bangunan');
         $q = $this->db->get();
-        return $q;
+        // return $q;
+        return var_dump($this->db->last_query());
     }
     function DetailBangunan($code)
     {
