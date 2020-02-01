@@ -300,10 +300,9 @@ class UserModel extends CI_Model {
         $this->db->select('admindinas.skor_akhir, admindinas.status, janjian.tanggal');
         $this->db->from('bangunan_iuts');
         $this->db->join('admindinas', 'admindinas.id_bangunan = bangunan_iuts.id_bangunan', 'INNER');
-        $this->db->join('janjian', 'janjian.id_bangunan = bangunan_iuts.id_bangunan', 'INNER');
+        $this->db->join('janjian', 'janjian.id_bangunan = bangunan_iuts.id_bangunan', 'LEFT');
 
         $this->db->where('bangunan_iuts.id_bangunan', $id_bangunan);
-        $this->db->where('bangunan_iuts.id_pemohon', $id);
         $this->db->group_by('bangunan_iuts.id_bangunan');
         $q = $this->db->get();
         return $q;
