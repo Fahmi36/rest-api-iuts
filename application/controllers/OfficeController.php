@@ -317,7 +317,7 @@ class OfficeController extends CI_Controller {
 	{
 		try {
 			$idbangun= $this->input->post('id');
-			if ($idbangun == null) {
+			if ($idbangun != null) {
 				$data = $this->oc->detailPermohonanAdminDinas($idbangun);
 				if ($data) {
 					$res = $this->returnResult($data);
