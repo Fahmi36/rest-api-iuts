@@ -141,7 +141,7 @@ class OfficeModel extends CI_Model {
         $this->db->join('administrasi', 'administrasi.id_bangunan = bangunan_iuts.id_bangunan', 'left');
         $this->db->join('admin_teknis', 'admin_teknis.id_bangunan = bangunan_iuts.id_bangunan', 'left');
 
-        $this->db->join('kelengkapan_admin', 'kelengkapan_admin.if = administrasi.kelengkapan', 'left');
+        $this->db->join('kelengkapan_admin', 'kelengkapan_admin.id = administrasi.kelengkapan', 'left');
         $this->db->join('lama_izin', 'lama_izin.id = administrasi.lama_waktu', 'left');
         $this->db->join('status_pbb', 'status_pbb.id = administrasi.status_pbb', 'left');
         $this->db->join('status_npwp', 'status_npwp.id = administrasi.status_npwp', 'left');
