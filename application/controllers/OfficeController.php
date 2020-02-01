@@ -227,7 +227,7 @@ class OfficeController extends CI_Controller {
 
 		$skor = ($skorpasar + $skorrenjalan + $skoreksijalan + $skortata + $skortusah + $skorlahan  / 6);
 
-		$cek = $this->oc->cekTeknis($bangunan);
+		$cek = $this->oc->cekTeknis($id_bangunan);
 		if ($cek->num_rows() > 0) {
 			$getdata = $cek->row();
 			$id = $getdata->id_teknis;
