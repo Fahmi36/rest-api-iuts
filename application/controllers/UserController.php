@@ -138,7 +138,7 @@ class UserController extends CI_Controller {
 	{
 		try {
 			$id = $this->input->post('code');
-			$data = $this->us->cekCodeBangunan($id,$status,$start,$offset);
+			$data = $this->us->cekCodeBangunan($id);
 			if ($data->num_rows()>0) {
 				$res = $this->returnResult($data);
 			}else{
