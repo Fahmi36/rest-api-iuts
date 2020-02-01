@@ -293,17 +293,20 @@ class OfficeController extends CI_Controller {
 			$q = $this->oc->InsertAdminDinasBaru($bangunan,$id_admin,$keterangan,$status,$skor);
 		}
         if ($q == true) {
-        	$this->sendmail($bangunan);
         	if ($status == 1) {
         		$status_bangun = 4;
         	}else{
         		$status_bangun = 5;
         	}
+        	$where = array(
+                'id_bangunan' => $bangunan,
+            );
 			$data = array(
 				'status_jalan'=>$status_bangun,
 			);
 			$update = $this->db->update('bangunan_iuts', $data,$where);
 			if ($update == true) {
+        		$this->sendmail($bangunan);
 				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
           	}else{
           		$json = $this->returnResultErrorDB();
