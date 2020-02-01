@@ -170,8 +170,8 @@ class OfficeModel extends CI_Model {
         $this->db->where('bangunan_iuts.id_bangunan', $id_bangunan);
         $this->db->group_by('bangunan_iuts.id_bangunan');
         $q = $this->db->get();
-        // return $q;
-        return var_dump($this->db->last_query());
+        return $q;
+        // return var_dump($this->db->last_query());
     }
     function DetailBangunan($code)
     {
