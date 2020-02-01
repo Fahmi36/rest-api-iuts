@@ -247,7 +247,7 @@ class OfficeController extends CI_Controller {
         );
             $q = $this->db->update('admin_teknis',$array,$where);
 		}else{
-			$q = $this->oc->InsertAdminTeknis($id_bangunan,$admin,$lahansekitar,$rencanajalan,$eksitingjalan,$tataruang,$statususaha,$statuspasar,$keterangan);
+			$q = $this->oc->InsertAdminTeknis($id_bangunan,$admin,$lahansekitar,$rencanajalan,$eksitingjalan,$tataruang,$statususaha,$statuspasar,$keterangan,$skor);
 		}
 		if ($q == true) {
 			$wherebangun = array(

@@ -55,7 +55,7 @@ class OfficeModel extends CI_Model {
 		$q = $this->db->insert('administrasi',$arrayPermohonan);
 		return $q;
 	}
-	function InsertAdminTeknis($id_bangunan,$admin,$lahansekitar,$rencanajalan,$eksitingjalan,$tataruang,$statususaha,$statuspasar,$keterangan)
+	function InsertAdminTeknis($id_bangunan,$admin,$lahansekitar,$rencanajalan,$eksitingjalan,$tataruang,$statususaha,$statuspasar,$keterangan,$skor)
 	{
 		$arrayPermohonan = array(
 			'id_bangunan' => $id_bangunan,
