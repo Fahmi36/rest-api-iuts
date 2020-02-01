@@ -305,7 +305,7 @@ class OfficeController extends CI_Controller {
             );
 			$data = array(
 				'status_jalan'=>$status_bangun,
-				'status'=>$status_bangun,
+				'status'=>$statusweb,
 
 			);
 			$update = $this->db->update('bangunan_iuts', $data,$where);

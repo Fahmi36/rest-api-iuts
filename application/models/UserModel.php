@@ -209,7 +209,7 @@ class UserModel extends CI_Model {
         }
         $this->db->where('bangunan_iuts.id_pemohon', $id);
         $q = $this->db->get();
-        $this->db->last_query();
+        // $this->db->last_query();
         return $q;
     }
     function detailPermohonan($id,$id_bangunan,$code)
