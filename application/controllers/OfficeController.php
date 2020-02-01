@@ -278,7 +278,7 @@ class OfficeController extends CI_Controller {
 		$cek = $this->oc->cekDinas($bangunan);
 		if ($cek->num_rows() > 0) {
 			$getdata = $cek->row();
-			$id = $getdata->id;
+			$id = $getdata->id_dinas;
             $where = array(
                 'id_bangunan' => $bangunan,
             );
