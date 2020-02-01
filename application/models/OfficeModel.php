@@ -87,6 +87,7 @@ class OfficeModel extends CI_Model {
 	function InsertAdminDinas($bangunan,$admin,$keterangan,$status,$skor)
 	{
 		$arrayPermohonan = array(
+            'id_bangunan'=>$bangunan,
 			'id_admin' => $admin,
             'keterangan' => $keterangan,
             'skor_akhir' => $skor,
