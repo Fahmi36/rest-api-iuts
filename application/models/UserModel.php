@@ -228,6 +228,16 @@ class UserModel extends CI_Model {
         $q = $this->db->get();
         return $q;
     }
+    function AmbilMessage($idpemohon)
+    {
+        $this->db->select('*');
+        $this->db->from('message');
+        $this->db->where('id_pengirim', $idpemohon);
+        $this->db->or_where('id_penerima', $idpemohon);
+        $this->db->where('lihat', 0);
+        $q = $this->db->get();
+        return $q;
+    }
     function SendMessage($id,$pesan)
     {
         $array = array(

@@ -7,6 +7,13 @@ class MainModel extends CI_Model {
 	{
 		return $this->db->get($table);
 	}
+	function getSelectNilai($id,$table)
+	{
+		$this->db->select('skor');
+		$this->db->from($table);
+		$this->db->where('id', $id);
+		return $this->db->get();
+	}
 
 }
 

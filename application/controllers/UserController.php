@@ -177,6 +177,19 @@ class UserController extends CI_Controller {
 		}
 		echo json_encode($res);
 	}
+	function ambilPesan()
+	{
+		try {
+			$id = $this->input->post('id');
+			$detail = $this->us->AmbilMessage($id);
+			if ($detail) {
+				$res = $this->returnResult($detail);
+			}
+		} catch (Exception $e) {
+			$res = $this->returnResultCustom(false,$e);
+		}
+		echo json_encode($res);
+	}
 }
 
 /* End of file UserController.php */
