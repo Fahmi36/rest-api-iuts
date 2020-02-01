@@ -333,8 +333,8 @@ class OfficeController extends CI_Controller {
                 'id_bangunan' => $bangunan,
             );
             $array = array(
-	            'id_bangunan' => $bangunan,
 	            'tanggal' => $tgl,
+	            'tgl_ambil' => $tgl,
 	            'updated_at' => date('Y-m-d H:i:s'),
         	);
             $q = $this->db->update('janjian',$array,$where);

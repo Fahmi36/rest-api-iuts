@@ -48,6 +48,14 @@ class OfficeModel extends CI_Model {
         $q = $this->db->get('admindinas');
         return $q;
 	}
+    function cekSurat($id)
+    {
+        if($id){
+            $this->db->where('id_bangunan',$id);
+        }
+        $q = $this->db->get('janjian');
+        return $q;
+    }
 	function InsertAdministrasi($bangunan,$id_admin,$kelengkapan,$lama,$npwp,$pbb,$skor,$keterangan)
 	{
 		$arrayPermohonan = array(
@@ -104,6 +112,7 @@ class OfficeModel extends CI_Model {
             'id_admin' => $id_admin,
             'id_bangunan' => $bangunan,
             'tanggal' => $tgl,
+            'tgl_ambil' => $tgl,
             'status'=>1,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
