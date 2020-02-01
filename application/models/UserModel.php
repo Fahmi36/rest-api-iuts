@@ -258,7 +258,7 @@ class UserModel extends CI_Model {
     }
     function detailPemohonAdministrasi($id_bangunan,$id)
     {
-        $this->db->select('kelengkapan_admin.skor as skorlengkap, lama_izin.skor as skorwaktu, status_pbb.skor as skorpbb, status_npwp.skor as skornpwp, AVG(kelengkapan_admin.skor + lama_izin.skor) as skoradministrasi');
+        $this->db->select('kelengkapan_admin.skor as skorlengkap, lama_izin.skor as skorwaktu, status_pbb.skor as skorpbb, status_npwp.skor as skornpwp, SUM(kelengkapan_admin.skor + lama_izin.skor) as skoradministrasi');
         $this->db->from('bangunan_iuts');
         $this->db->join('administrasi', 'administrasi.id_bangunan = bangunan_iuts.id_bangunan', 'INNER');
         $this->db->join('kelengkapan_admin', 'kelengkapan_admin.id = administrasi.kelengkapan', 'INNER');
@@ -276,7 +276,7 @@ class UserModel extends CI_Model {
 
     function detailPemohonteknis($id_bangunan,$id)
     {
-        $this->db->select(' jarak_pasar.skor as skorjarakpasar, rencana_jalan.skor as skorrenjalan, jalan_eksisting.skor as skorjalaneksis, tata_ruang.skor as skortataruang, jarak_usaha.skor as skorjarakusaha, penggunaan_lahan.skor as skorpenglahan, AVG(jarak_pasar.skor + rencana_jalan.skor + jalan_eksisting.skor + tata_ruang.skor + jarak_usaha.skor + penggunaan_lahan.skor) as skormanfaat ');
+        $this->db->select(' jarak_pasar.skor as skorjarakpasar, rencana_jalan.skor as skorrenjalan, jalan_eksisting.skor as skorjalaneksis, tata_ruang.skor as skortataruang, jarak_usaha.skor as skorjarakusaha, penggunaan_lahan.skor as skorpenglahan, SUM(jarak_pasar.skor + rencana_jalan.skor + jalan_eksisting.skor + tata_ruang.skor + jarak_usaha.skor + penggunaan_lahan.skor) as skormanfaat ');
         $this->db->from('bangunan_iuts');
         $this->db->join('kondisi_bangunan', 'kondisi_bangunan.id_bangunan = bangunan_iuts.id_bangunan', 'INNER');
         $this->db->join('admin_teknis', 'admin_teknis.id_bangunan = bangunan_iuts.id_bangunan', 'INNER');
