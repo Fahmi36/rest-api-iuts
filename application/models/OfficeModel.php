@@ -58,7 +58,8 @@ class OfficeModel extends CI_Model {
 	function InsertAdminTeknis($id_bangunan,$admin,$lahansekitar,$rencanajalan,$eksitingjalan,$tataruang,$statususaha,$statuspasar,$keterangan)
 	{
 		$arrayPermohonan = array(
-			'id_bangunan' => $bangunan,
+			'id_bangunan' => $id_bangunan,
+            'id_admin'=>$admin,
             'id_pasar' => $statuspasar,
             'id_rencana' => $rencanajalan,
             'id_rencana_eksisting' => $eksitingjalan,
@@ -134,7 +135,7 @@ class OfficeModel extends CI_Model {
 	}
 	function detailPermohonanAdminDinas($id_bangunan)
     {
-        $this->db->select('*');
+        $this->db->select('kelengkapan_admin.skor as skorlengkap, lama_izin.skor as skorwaktu, status_pbb.skor as skorpbb, status_npwp.skor as skornpwp, jarak_pasar.skor as skorjarakpasar, rencana_jalan.skor as skorrenjalan, jalan_eksisting.skor as skorjalaneksis, tata_ruang.skor as skortataruang, jarak_usaha.skor as skorjarakusaha, penggunaan_lahan.skor as skorpenglahan, kondisi_eksisting.skor as skorkondisieksis, pemutakhiran_pbb.skor as skotpempbb, keterlibatan_umkm.skor as skorketumkm, perjanjian_sewa.skor as skorsewa, setuju_warga_sekitar.skor as skorwarga, rekomen_umkm.skor as skorrekumkm, slf_eksisting.skor as skorslf, imb_eksisting.skor as skorimb, kajian_sostek.skor as skorkajian, volume_sumur.skor as skorvolsumur, kondisi_drainase.skor as skordrainase, kondisi_sumur.skor as skorkondisisumur, kdh_minimum.skor as skorkdhmini, bangunan_iuts.code, pemohon_iuts.nama, pemohon_iuts.nib, pemohon_iuts.npwp, bangunan_iuts.created_at as tgl, bangunan_iuts.alamat, administrasi.keterangan as ketadmin, admin_teknis.keterangan as ketteknis');
         $this->db->from('bangunan_iuts');
         $this->db->join('pemohon_iuts', 'bangunan_iuts.id_pemohon = bangunan_iuts.id_pemohon', 'left');
         $this->db->join('kondisi_bangunan', 'kondisi_bangunan.id_bangunan = bangunan_iuts.id_bangunan', 'left');
