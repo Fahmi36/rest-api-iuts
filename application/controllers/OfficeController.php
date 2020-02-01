@@ -126,6 +126,9 @@ class OfficeController extends CI_Controller {
 			$data = array(
 				'status_jalan'=>1,
 			);
+			$where = array(
+                'id_bangunan' => $bangunan,
+            );
 			$update = $this->db->update('bangunan_iuts', $data,$where);
 			if ($update == true) {
 				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
