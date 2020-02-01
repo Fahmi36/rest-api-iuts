@@ -295,14 +295,18 @@ class OfficeController extends CI_Controller {
         if ($q == true) {
         	if ($status == 1) {
         		$status_bangun = 4;
+        		$statusweb = 1;
         	}else{
         		$status_bangun = 5;
+        		$statusweb = 2;
         	}
         	$where = array(
                 'id_bangunan' => $bangunan,
             );
 			$data = array(
 				'status_jalan'=>$status_bangun,
+				'status'=>$status_bangun,
+
 			);
 			$update = $this->db->update('bangunan_iuts', $data,$where);
 			if ($update == true) {
