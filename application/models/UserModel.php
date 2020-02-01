@@ -200,7 +200,6 @@ class UserModel extends CI_Model {
             }
         }
         $this->db->where('bangunan_iuts.id_pemohon', $id);
-        $this->db->where('bangunan_iuts.status !=', 4);
         $q = $this->db->get();
         $this->db->last_query();
         return $q;
@@ -213,9 +212,7 @@ class UserModel extends CI_Model {
         $this->db->join('admin_teknis', 'admin_teknis.id_bangunan = bangunan_iuts.id_bangunan', 'left');
         $this->db->join('admindinas', 'admindinas.id_bangunan = bangunan_iuts.id_bangunan', 'left');
         $this->db->where('bangunan_iuts.id_bangunan', $id_bangunan);
-        $this->db->where('bangunan_iuts.code', $code);
         $this->db->where('bangunan_iuts.id_pemohon', $id);
-        $this->db->where('bangunan_iuts.status !=', 4);
         $q = $this->db->get();
         return $q;
     }

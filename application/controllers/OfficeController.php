@@ -47,14 +47,62 @@ class OfficeController extends CI_Controller {
 	function InsertAdministrasi()
 	{
 		$bangunan = $this->input->post('id_bangunan');
-		$kelengkapan = $this->input->post('id_bangunan');
-		$lama = $this->input->post('id_bangunan');
-		$kondisi = $this->input->post('id_bangunan');
-		$pbb = $this->input->post('id_bangunan');
-		$npwp = $this->input->post('id_bangunan');
-		$skor = $this->input->post('id_bangunan');
-		$keterangan = $this->input->post('id_bangunan');
+		$kelengkapan = $this->input->post('kelengkapan_admin');
+		$lama = $this->input->post('lama_mengajukan');
+		$npwp = $this->input->post('statusNPWP');
+		$pbb = $this->input->post('statusPBB');
+		$keterangan = $this->input->post('keterangan');
 		$cek = $this->oc->cekAdministrasi($bangunan);
+
+		if ($kelengkapan == '1') {
+			$skorlengkap = 0;
+		}elseif ($kelengkapan == '2') {
+			$skorlengkap = 1;
+		}elseif($kelengkapan == '3'){
+			$skorlengkap = 2;
+		}else if($kelengkapan == '4'){
+			$skorlengkap = 3;
+		}else{
+			$skorlengkap = 0;
+		}
+
+		if ($lama == '1') {
+			$skorlama = 0;
+		}elseif ($lama == '2') {
+			$skorlama = 1;
+		}elseif($lama == '3'){
+			$skorlama = 2;
+		}else if($lama == '4'){
+			$skorlama = 3;
+		}else{
+			$skorlama = 0;
+		}
+
+		if ($npwp == '1') {
+			$skornpwp = 0;
+		}elseif ($npwp == '2') {
+			$skornpwp = 1;
+		}elseif($npwp == '3'){
+			$skornpwp = 2;
+		}else if($npwp == '4'){
+			$skornpwp = 3;
+		}else{
+			$skornpwp = 0;
+		}
+		if ($pbb == '1') {
+			$skorpbb = 0;
+		}elseif ($pbb == '2') {
+			$skorpbb = 1;
+		}elseif($pbb == '3'){
+			$skorpbb = 2;
+		}else if($pbb == '4'){
+			$skorpbb = 3;
+		}else{
+			$skorpbb = 0;
+		}
+
+		$skor = ($skorlengkap + $skorlama + $skornpwp + $skorpbb / 4);
+
 		if ($cek->num_rows() > 0) {
 			$getdata = $cek->row();
 			$id = $getdata->id;
@@ -64,7 +112,6 @@ class OfficeController extends CI_Controller {
             $array = array(
             'kelengkapan' => $kelengkapan,
             'lama_waktu' => $lama,
-            'kondisi_eksisting' => $kondisi,
             'status_pbb' => $pbb,
             'status_npwp' => $npwp,
             'total_skor' => $skor,
@@ -73,7 +120,7 @@ class OfficeController extends CI_Controller {
         );
             $q = $this->db->update('administrasi',$array,$where);
 		}else{
-			$q = $this->oc->InsertAdministrasi($bangunan,$kelengkapan,$lama,$kondisi,$pbb,$npwp,$skor,$keterangan);
+			$q = $this->oc->InsertAdministrasi($bangunan,$kelengkapan,$lama,$npwp,$pbb,$skor,$keterangan);
 		}
         if ($q == true) {
 			$data = array(

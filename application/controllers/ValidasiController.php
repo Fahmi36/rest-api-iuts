@@ -605,6 +605,25 @@ class ValidasiController extends CI_Controller {
 		}
         return $q;
 	}
+    function DetailPemohon()
+    {
+        try {
+            $idbangunan = $this->input->post('idbangunan');
+            $id = $this->input->post('id');
+            $start = $this->input->post('start');
+            $offset = $this->input->post('offset');
+            $data = $this->us->DetailPermohonan($id,$idbangunan,$status,$start,$offset);
+            if ($data->num_rows()>0) {
+                $res = $this->returnResult($data);
+            }else{
+                $res = $this->returnResultCustom(false,'Tidak ada data');
+            }
+        } catch (Exception $e) {
+            $res = $this->returnResultCustom(false,$e);
+        }
+
+        echo json_encode($res);
+    }
 	function sendmail($nik)
 	{
         $dPemohon = $this->us->cekPemohon($nik);

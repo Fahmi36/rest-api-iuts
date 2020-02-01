@@ -38,13 +38,12 @@ class OfficeModel extends CI_Model {
         $q = $this->db->get('admindinas');
         return $q;
 	}
-	function InsertAdministrasi($bangunan,$kelengkapan,$lama,$kondisi,$pbb,$npwp,$skor,$keterangan)
+	function InsertAdministrasi($bangunan,$kelengkapan,$lama,$npwp,$pbb,$skor,$keterangan)
 	{
 		$arrayPermohonan = array(
 			'id_bangunan' => $bangunan,
             'kelengkapan' => $kelengkapan,
             'lama_waktu' => $lama,
-            'kondisi_eksisting' => $kondisi,
             'status_pbb' => $pbb,
             'status_npwp' => $npwp,
             'total_skor' => $skor,
@@ -52,7 +51,7 @@ class OfficeModel extends CI_Model {
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
 		);
-		$q = $this->db->insert('bangunan_iuts',$arrayPermohonan);
+		$q = $this->db->insert('administrasi',$arrayPermohonan);
 		return $q;
 	}
 	function InsertAdminTeknis($bangunan,$pasar,$rencana,$rencana_eksi,$tata_ruang,$jarak,$lahan,$keteranga,$skor,$cek)
