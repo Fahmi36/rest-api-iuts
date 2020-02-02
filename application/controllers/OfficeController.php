@@ -454,7 +454,7 @@ class OfficeController extends CI_Controller {
         $html = $this->load->view('pages/mail',$this->data, true);
         $mpdf->WriteHTML($html);
         // $mpdf->Output(); // opens in browser
-        $mpdf->Output('test.pdf','D'); // it downloads the file into the user system.
+        return $mpdf->Output('test.pdf','D'); // it downloads the file into the user system.
 	}
 	function getBangunan()
 	{
