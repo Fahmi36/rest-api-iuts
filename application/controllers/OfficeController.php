@@ -451,7 +451,7 @@ class OfficeController extends CI_Controller {
 	function downloadpdf()
 	{
 		$mpdf = new \Mpdf\Mpdf();
-        $html = $this->load->view('pages/mail',$this->data, true);
+        $html = $this->load->view('pages/mail',[], true);
         $mpdf->WriteHTML($html);
         // $mpdf->Output(); // opens in browser
         return $mpdf->Output('test.pdf','D'); // it downloads the file into the user system.
