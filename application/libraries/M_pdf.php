@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-function __construct(){
-    
+class m_pdf {
+    function __construct(){
     function m_pdf()
     {
         $CI = & get_instance();
@@ -19,4 +19,5 @@ function __construct(){
         //return new mPDF($param);
         return new mPDF();
     }
+}
 }
