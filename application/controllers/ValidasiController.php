@@ -470,6 +470,7 @@ class ValidasiController extends CI_Controller {
 		$status_bangunan = htmlspecialchars($data[0]->status_bangunan);
 		$status_milik = htmlspecialchars($data[0]->status_milik);
 		$lokasi = htmlspecialchars($data[0]->alamat);
+        $alamatpemohon = htmlspecialchars($data[0]->alamat_lengkap);
 
 		$lat = htmlspecialchars($data[0]->lat);
 		$lng = htmlspecialchars($data[0]->lng);
@@ -493,7 +494,6 @@ class ValidasiController extends CI_Controller {
 		$sampah = htmlspecialchars($data[0]->pengelolaan_sampah);
 		$parkir = htmlspecialchars($data[0]->kondisi_parkir);
 		$volume = htmlspecialchars($data[0]->volumeSumur);
-        $alamatpemohon = htmlspecialchars($data[0]->alamat_lengkap);
 
 		$cek = $this->us->cekBangunan($no_reg);
         $kode = $this->randstr();
