@@ -450,28 +450,11 @@ class OfficeController extends CI_Controller {
 	}
 	function downloadpdf()
 	{
-		 //load mPDF library
-        $this->load->library('m_pdf');
- 
-        //now pass the data//
-         $this->data['title']="MY PDF TITLE 1.";
-         $this->data['description']="";
-         $this->data['description']="Jancoek";
-         //now pass the data //
- 
-        
-        $html=$this->load->view('pages/mail',$this->data, true); //load the pdf_output.php by passing our data and get all data in $html varriable.
-     
-        //this the the PDF filename that user will get to download
-        $pdfFilePath ="SK-".time()."-download.pdf";
- 
-        
-        //actually, you can pass mPDF parameter on this load() function
-        $pdf = $this->m_pdf->load();
-        //generate the PDF!
-        $pdf->WriteHTML($html,2);
-        //offer it to user via browser download! (The PDF won't be saved on your server HDD)
-        $pdf->Output($pdfFilePath, "D");
+		$mpdf = new \Mpdf\Mpdf();
+        $html = $this->load->view('pages/mail',$this->data, true);
+        $mpdf->WriteHTML($html);
+        // $mpdf->Output(); // opens in browser
+        $mpdf->Output('test.pdf','D'); // it downloads the file into the user system.
 	}
 	function getBangunan()
 	{
