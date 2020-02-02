@@ -398,7 +398,7 @@ class ValidasiController extends CI_Controller {
           		$savepemohon = $this->savePemohon($json);
           		$bangunan = $this->saveBangunan($savepemohon,$json);
           		$skor = $this->saveSkor($bangunan,$hasiladmin,$hasilteknis,$hasildampak,$rarata);
-                $savekondisi = $this->saveKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input);
+                $savekondisi = $this->saveKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input);
 			if ($skor == true) {
 				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
 				$this->sendmail($nik);
