@@ -124,8 +124,6 @@ class ValidasiController extends CI_Controller {
 
             $nik = htmlspecialchars($json[0]->nomorInKepen);
 			$email = htmlspecialchars($json[0]->emailAktif);
-            $volume_sumur_input = htmlspecialchars($json[0]->volume_sumur_input);
-            $kdh_kondisi_input = htmlspecialchars($json[0]->kdh_kondisi_input);
             $janji_sewa_input = htmlspecialchars($json[0]->janji_sewa_input);
             $keterlibatan_umkm_input = htmlspecialchars($json[0]->keterlibatan_umkm_input);
             $lama_izin_input = htmlspecialchars($json[0]->lama_izin_input);
@@ -400,7 +398,7 @@ class ValidasiController extends CI_Controller {
           		$savepemohon = $this->savePemohon($json);
           		$bangunan = $this->saveBangunan($savepemohon,$json);
           		$skor = $this->saveSkor($bangunan,$hasiladmin,$hasilteknis,$hasildampak,$rarata);
-                $savekondisi = $this->saveKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$volume_sumur_input,$kdh_kondisi_input,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input);
+                $savekondisi = $this->saveKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input);
 			if ($skor == true) {
 				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
 				$this->sendmail($nik);
@@ -539,7 +537,7 @@ class ValidasiController extends CI_Controller {
         }
        echo json_encode($json);
 	}
-    function saveKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$volume_sumur_input,$kdh_kondisi_input,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input)
+    function saveKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input)
     {
         $cek = $this->us->cekKondisi($bangunan);
         if ($cek->num_rows() > 0) {
@@ -564,19 +562,17 @@ class ValidasiController extends CI_Controller {
                 'id_imb' => $imb,
                 'id_slf' => $slf,
                 'id_volume_sumur' => $volume,
-                'volume_sumur' => $volume_sumur_input,
                 'id_kondisi_sumur' => $kondisi_sumur,
                 'id_drainase' => $drainase,
                 'id_kdh_minimum' => $kdh_minimum,
                 'id_kondisi_kdh' => $kondisi_kdh,
-                'kondisi_kdh' => $kdh_kondisi_input,
                 'id_sampah' => $sampah,
                 'id_parkir' => $parkir,
                 'created_at' => $getdata->created_at,
             );
         $q = $this->db->update('kondisi_bangunan',$array,$where);
         }else{
-            $q = $this->us->InsertKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$volume_sumur_input,$kdh_kondisi_input,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input);
+            $q = $this->us->InsertKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input);
         }
         return $q;
     }
