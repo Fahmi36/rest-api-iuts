@@ -53,7 +53,7 @@ class UserModel extends CI_Model {
         $q = $this->db->get();
         return $q;
     }
-	function InsertBangunan($id,$nama_toko,$kelompok,$untuk_toko,$id_pemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng,$kode,$jasa,$atm,$zona)
+	function InsertBangunan($id,$nama_toko,$kelompok,$untuk_toko,$id_pemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng,$kode,$jasa,$atm,$zona,$sublock)
 	{
 		$arrayPermohonan = array(
                 'id_bangunan'=>$id,
