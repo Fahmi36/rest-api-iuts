@@ -484,7 +484,6 @@ class ValidasiController extends CI_Controller {
 		$lng = htmlspecialchars($data[0]->lng);
         $zona = htmlspecialchars($data[0]->subzona);
         $sublock = htmlspecialchars($data[0]->idsubblok);
-        $kecamatan = htmlspecialchars($data[0]->kecamatan);
 
 		$kondisi = htmlspecialchars($data[0]->kondisi_eksisting);
 		$mengajukan = htmlspecialchars($data[0]->lama_izin);
@@ -525,7 +524,6 @@ class ValidasiController extends CI_Controller {
                 'peruntukan_toko'=>$untuk_toko,
                 'lat'=>$lat,
                 'lon'=>$lng,
-                'kecamatan'=>$kecamatan,
                 'jml_atm'=>$atm,
                 'jasa'=>$jasa,
                 'zona'=>$zona,
