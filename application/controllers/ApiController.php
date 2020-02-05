@@ -17,7 +17,7 @@ class ApiController extends CI_Controller {
 	}
 	function ApiPajakNPWP()
 	{
-		$id = $this->input->get('npwp');
+		$id = $this->input->post('nik');
 		$curl = curl_init();
 		curl_setopt_array($curl, array(
 			CURLOPT_URL => "https://soadki.jakarta.go.id/rest/com/gov/dki/ws/TAX?NIKNPWP=".$id,

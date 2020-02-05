@@ -53,7 +53,7 @@ class UserModel extends CI_Model {
         $q = $this->db->get();
         return $q;
     }
-	function InsertBangunan($id,$nama_toko,$nama_badan_usaha,$kelompok,$untuk_toko,$kecamatan,$id_pemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng,$kode)
+	function InsertBangunan($id,$nama_toko,$nama_badan_usaha,$kelompok,$untuk_toko,$kecamatan,$id_pemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng,$kode,$jasa,$atm)
 	{
 		$arrayPermohonan = array(
                 'id_bangunan'=>$id,
@@ -70,6 +70,8 @@ class UserModel extends CI_Model {
                 'lon'=>$lng,
                 'kecamatan'=>$kecamatan,
                 'zona'=>$zona,
+                'jml_atm'=>$atm,
+                'jasa'=>$jasa,
                 'kode_sublok'=>$sublock,
                 'luas_lahan'=>$luas_lahan,
                 'status_milik'=>$status_milik,
@@ -86,7 +88,7 @@ class UserModel extends CI_Model {
         $q = $this->db->insert('bangunan_iuts',$arrayPermohonan);
         return $q;
 	}
-	function InsertPemohon($id,$nama,$nik,$nib,$npwp,$no_telp,$njop,$email,$token)
+	function InsertPemohon($id,$jabatan,$npwp_perusahaan,$alamat_perusahaan,$nama,$nik,$nib,$npwp,$no_telp,$njop,$email,$token)
 	{
 		$array = array(
 			'id_pemohon'=>$id,
@@ -97,6 +99,9 @@ class UserModel extends CI_Model {
             'npwp' => $npwp,
             'no_hp' => $no_telp,
             'njop' => $njop,
+            'jabatan'=>$jabatan,
+            'npwp_usaha'=>$npwp_perusahaan,
+            'alamat_perusahaan'=>$alamat_perusahaan,
             'password'=>password_hash($token, PASSWORD_DEFAULT),
             'token' => $token,
             'created_at' => date('Y-m-d H:i:s'),

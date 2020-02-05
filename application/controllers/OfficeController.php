@@ -47,7 +47,7 @@ class OfficeController extends CI_Controller {
 	function InsertAdministrasi()
 	{
 		$bangunan = $this->input->post('id_bangunan');
-		$kelengkapan = $this->input->post('kelengkapan_admin');
+		// $kelengkapan = $this->input->post('kelengkapan_admin');
 		$lama = $this->input->post('lama_mengajukan');
 		$npwp = $this->input->post('statusNPWP');
 		$pbb = $this->input->post('statusPBB');
@@ -111,7 +111,7 @@ class OfficeController extends CI_Controller {
                 'id_administrasi' => $id,
             );
             $array = array(
-            'kelengkapan' => $kelengkapan,
+            // 'kelengkapan' => $kelengkapan,
             'lama_waktu' => $lama,
             'status_pbb' => $pbb,
             'status_npwp' => $npwp,
@@ -121,7 +121,7 @@ class OfficeController extends CI_Controller {
         );
             $q = $this->db->update('administrasi',$array,$where);
 		}else{
-			$q = $this->oc->InsertAdministrasi($bangunan,$id_admin,$kelengkapan,$lama,$npwp,$pbb,$skor,$keterangan);
+			$q = $this->oc->InsertAdministrasi($bangunan,$id_admin,$lama,$npwp,$pbb,$skor,$keterangan);
 		}
         if ($q == true) {
 			$data = array(
@@ -465,7 +465,7 @@ class OfficeController extends CI_Controller {
 				$data['kewajiban'] = $this->oc->detailKewajiban();
 				$data['larangan'] = $this->oc->detailLarangan();
     			$tcpdf->AddPage();
-		        $html = $this->load->view('pages/suratsk',[], true);
+		        $html = $this->load->view('pages/suratsk',$data, true);
 		        $tcpdf->WriteHTML($html);
 		        $info = array(
 		        	'Name' => 'DPMPTSP DKI JAKARTA',

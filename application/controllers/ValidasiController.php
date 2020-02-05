@@ -128,7 +128,7 @@ class ValidasiController extends CI_Controller {
             $keterlibatan_umkm_input = htmlspecialchars($json[0]->keterlibatan_umkm_input);
             $lama_izin_input = htmlspecialchars($json[0]->lama_izin_input);
             $detail_kondisi_input = htmlspecialchars($json[0]->detail_kondisi_input);
-            $sublock = htmlspecialchars($data[0]->idsubblok);
+            $sublock = htmlspecialchars($json[0]->idsubblok);
             // return var_dump($json);
             if(empty($kondisi) OR $kondisi == '-'){
                 echo json_encode($this->returnResultCustom(false,"Kondisi Eksisting Tidak Boleh Kosong"));
@@ -442,7 +442,6 @@ class ValidasiController extends CI_Controller {
                 'njop'=>$njop,
                 'jabatan'=>$jabatan,
                 'npwp_usaha'=>$npwp_perusahaan,
-                'barang_jasa'=>$barang_jasa,
                 'alamat_perusahaan'=>$alamat_perusahaan,
                 'password'=>password_hash($token, PASSWORD_DEFAULT),
                 'token'=>$token,
@@ -454,7 +453,7 @@ class ValidasiController extends CI_Controller {
 			$this->load->library('uuid');
 			$uuid = $this->uuid->v4();
         	$id = str_replace('-', '', $uuid);
-			$q = $this->us->InsertPemohon($id,$jabatan,$npwp_perusahaan,$barang_jasa,$alamat_perusahaan,$nama,$nik,$nib,$npwp,$no_telp,$njop,$email,$token);
+			$q = $this->us->InsertPemohon($id,$jabatan,$npwp_perusahaan,$alamat_perusahaan,$nama,$nik,$nib,$npwp,$no_telp,$njop,$email,$token);
 		}
 		
         if ($q) {
@@ -493,6 +492,8 @@ class ValidasiController extends CI_Controller {
 		$umkm = htmlspecialchars($data[0]->keterlibatan_umkm);
 		$sewa = htmlspecialchars($data[0]->perjanjian_sewa);
 		$warga = htmlspecialchars($data[0]->persetujuan_warga);
+        $atm = htmlspecialchars($data[0]->jumlah_atm);
+        $jasa = htmlspecialchars($data[0]->barang_jasa);
 		$rek_umkm = htmlspecialchars($data[0]->rekomendasi_umkm);
 		$kajian = htmlspecialchars($data[0]->kajian_sostek);
 		$imb = htmlspecialchars($data[0]->imb_eksisting);
@@ -526,6 +527,8 @@ class ValidasiController extends CI_Controller {
                 'lat'=>$lat,
                 'lon'=>$lng,
                 'kecamatan'=>$kecamatan,
+                'jml_atm'=>$atm,
+                'jasa'=>$jasa,
                 'zona'=>$zona,
                 'kode_sublok'=>$sublock,
                 'luas_lahan'=>$luas_lahan,
@@ -545,7 +548,7 @@ class ValidasiController extends CI_Controller {
 			$this->load->library('uuid');
 			$uuid = $this->uuid->v4();
         	$id = str_replace('-', '', $uuid);
-			$q = $this->us->InsertBangunan($id,$nama_toko,$nama_badan_usaha,$kelompok,$untuk_toko,$kecamatan,$idpemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng,$kode);
+			$q = $this->us->InsertBangunan($id,$nama_toko,$nama_badan_usaha,$kelompok,$untuk_toko,$kecamatan,$idpemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng,$kode,$jasa,$atm);
 		}
         if ($q) {
         	return $id;

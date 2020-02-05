@@ -5,7 +5,7 @@
 </head>
 <body>
 	<div style="word-break:break-word">
-		<div style="padding: 20px 20px;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:15px;color: rgba(255, 255, 255, 0.87);border-radius: 15px;">
+		<div style="padding: 20px 20px;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:15px;border-radius: 15px;">
 			<div style="margin-top:10px!important;padding:10px;margin-top:10px;">
 				<center>
 					<img class="CToWUd" height="52" src="http://iuts.pkkmart.com/assets/img/logopemprov.png" width="52">
@@ -20,11 +20,8 @@
 						<td colspan="3">
 							<h4 style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.8">IZIN USAHA TOKO SWALAYAN</h4>
 						</td>
-						<td colspan="3">
-							<h4 style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.8">NOMOR</h4>
-						</td>
 					</tr>
-					<?php foreach ($datauser as $data): ?>
+					<?php foreach ($datauser->result() as $data): ?>
 						
 					<tr>
 						<td>Nama Perusahaan</td><td style="width: 20px">:</td><td><?=$data->nama_badan_usaha?></td>
@@ -53,8 +50,8 @@
 					<tr>
 						<td>Barang/Jasa Dagangan Utama</td><td style="width: 20px">:</td><td><?=$data->jasa?> </td>
 					</tr>
-					<?php endforeach ?>
 				</table>
+					<?php endforeach ?>
 				<!-- Buat Pemohon baru -->
 				<p>Izin usaha ini berlaku untuk melakukan kegiatan usaha Toko Swalayan pada 1 (satu) lokasi dan wajib didaftarkan ulang setiap 5 (lima) tahun.</p>
 				<p>Setiap perubahan jenis barang/jasa dagangan utama dan luas lantai usaha yang digunakan, terlebih dahulu harus mendapat persetujuan tertulis dari Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu Provinsi DKI Jakarta.</p>
@@ -63,9 +60,7 @@
 		</div>
 		<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:24px">
 			<p style="float: right;">Ditetapkan di Jakarta</p>
-			<p style="float: right;">pada tanggal <?=$tgl_ambil?></p>
-			<p style="float: right;align-items:center;">Kepala Unit Pengelola Penanaman Modal dan PTSP</p>
-			<p style="float: right;">Kecamatan : <?=$kec?></p>
+
 			<br>
 			<br>
 			<br>
@@ -89,9 +84,9 @@
 		<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:24px">
 			<p><b>KEWAJIBAN</b></p>
 			<ol>
-				<?php foreach ($kewajiban as $key): ?>
+				<?php foreach ($kewajiban->result() as $key): ?>
 					
-				<li><?=$key->deskrpisi?></li>
+				<li><?=$key->deskripsi?></li>
 				<?php endforeach ?>
 				
 			</ol>
@@ -99,9 +94,9 @@
 		<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:24px">
 			<p><b>Larangan</b></p>
 			<ol>
-				<?php foreach ($larangan as $larang): ?>
+				<?php foreach ($larangan->result() as $larang): ?>
 					
-				<li><?=$larang->deskrpisi?></li>
+				<li><?=$larang->deksripsi?></li>
 				<?php endforeach ?>
 				
 			</ol>
