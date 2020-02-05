@@ -43,25 +43,43 @@ class UserModel extends CI_Model {
         $q = $this->db->get('bangunan_iuts');
         return $q;
     }
-	function InsertBangunan($id,$id_pemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng,$kode)
+    function cekSpasial($id)
+    {
+        $this->db->select('tata_ruang.id');
+        $this->db->from('spasial');
+        $this->db->join('zona_sub', 'zona_sub.id = spasial.id_subzona', 'INNER');
+        $this->db->join('tata_ruang', 'tata_ruang.id = spasial.id_tataruang', 'left');
+        $this->db->where('zona_sub.kode_subzona', $id);
+        $q = $this->db->get();
+        return $q;
+    }
+	function InsertBangunan($id,$nama_toko,$nama_badan_usaha,$kelompok,$untuk_toko,$kecamatan,$id_pemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng,$kode)
 	{
 		$arrayPermohonan = array(
                 'id_bangunan'=>$id,
                 'id_pemohon'=>$id_pemohon,
                 'nop'=>$nop,
                 'no_reg_bangunan'=>$no_reg,
+                'nama_usaha'=>$nama_toko,
+                'nama_badan_usaha'=>$nama_badan_usaha,
                 'alamat'=>$lokasi,
+                'alamat_lengkap'=>$alamatpemohon,
+                'kelompok_usaha'=>$kelompok,
+                'peruntukan_toko'=>$untuk_toko,
                 'lat'=>$lat,
                 'lon'=>$lng,
+                'kecamatan'=>$kecamatan,
+                'zona'=>$zona,
+                'kode_sublok'=>$sublock,
                 'luas_lahan'=>$luas_lahan,
                 'status_milik'=>$status_milik,
                 'status_bangunan'=>$status_bangunan,
                 'luas_tapak'=>$ltb,
                 'luas_lantai'=>$luas_lantai,
                 'jumlah_lantai'=>$jml_lantai,
-                'code' => $kode,
+                'code'=>$kode,
                 'status' => 0,
-                'status_jalan' => 0,
+                'status_jalan' =>0,
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             );
@@ -86,7 +104,7 @@ class UserModel extends CI_Model {
         $q = $this->db->insert('pemohon_iuts',$array);
         return $q;
 	}
-    function InsertKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input)
+    function InsertKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input,$id_tata)
     {
         $array = array(
             'id_bangunan' => $bangunan,
@@ -101,6 +119,7 @@ class UserModel extends CI_Model {
             'perjanjian_sewa' => $janji_sewa_input,
             'id_warga' => $warga,
             'id_rek_umkm' => $rek_umkm,
+            'id_tata_ruang' => $id_tata,
             'id_kajian' => $kajian,
             'id_imb' => $imb,
             'id_slf' => $slf,
@@ -315,6 +334,36 @@ class UserModel extends CI_Model {
         $q = $this->db->get();
         return $q;
         // return var_dump($this->db->last_query());
+    }
+    function KonfirmasiPemohon($idbangunan,$file)
+    {
+        $fileupload = $this->Uploadfoto($file);
+        $where = array(
+            'id_bangunan'=>$idbangunan,
+        );
+        $data = array(
+            'tgl_terima'=>date('Y-m-d'),
+            'file'=>$fileupload,
+        );
+        $this->db->update('janjian', $data,$where);
+    }
+    public function Uploadfoto($param)
+    {
+        $this->load->library('upload');
+        $config['upload_path'] = './assets/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['encrypt_name']         = TRUE;
+        $config['remove_spaces']        = TRUE;
+
+        $this->upload->initialize($config);
+        $upload = $this->upload->do_upload($param);
+        if (! $upload) {
+            $image = null;
+        }else{
+            $data = $this->upload->data();
+            $image = $data['file_name'];
+        }
+        return $image;
     }
 }
 

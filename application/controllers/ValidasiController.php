@@ -128,7 +128,7 @@ class ValidasiController extends CI_Controller {
             $keterlibatan_umkm_input = htmlspecialchars($json[0]->keterlibatan_umkm_input);
             $lama_izin_input = htmlspecialchars($json[0]->lama_izin_input);
             $detail_kondisi_input = htmlspecialchars($json[0]->detail_kondisi_input);
-
+            $sublock = htmlspecialchars($data[0]->idsubblok);
             // return var_dump($json);
             if(empty($kondisi) OR $kondisi == '-'){
                 echo json_encode($this->returnResultCustom(false,"Kondisi Eksisting Tidak Boleh Kosong"));
@@ -398,7 +398,7 @@ class ValidasiController extends CI_Controller {
           		$savepemohon = $this->savePemohon($json);
           		$bangunan = $this->saveBangunan($savepemohon,$json);
           		$skor = $this->saveSkor($bangunan,$hasiladmin,$hasilteknis,$hasildampak,$rarata);
-                $savekondisi = $this->saveKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input);
+                $savekondisi = $this->saveKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input,$sublock);
 			if ($skor == true) {
 				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
 				$this->sendmail($nik);
@@ -415,10 +415,14 @@ class ValidasiController extends CI_Controller {
 		$nama = htmlspecialchars($data[0]->namaLengkap);
 		$nik = htmlspecialchars($data[0]->nomorInKepen);
 		$nib = htmlspecialchars($data[0]->nomorInBeru);
+        $jabatan = htmlspecialchars($data[0]->jabatan);
 		$npwp = htmlspecialchars($data[0]->npwp);
+        $npwp_usaha = htmlspecialchars($data[0]->npwp_perusahaan);
 		$njop = htmlspecialchars($data[0]->njop);
+        $barang_jasa = htmlspecialchars($data[0]->barang_jasa);
 		$no_telp = htmlspecialchars($data[0]->no_telp);
 		$email = htmlspecialchars($data[0]->emailAktif);
+        $alamat_perusahaan = htmlspecialchars($data[0]->alamat_perusahaan);
 
 		$cek = $this->us->cekPemohon($nik);
 		$idpemohon = $cek->row();
@@ -436,7 +440,10 @@ class ValidasiController extends CI_Controller {
                 'email'=>$email,
                 'npwp'=>$npwp,
                 'njop'=>$njop,
-                'no_hp'=>$no_telp,
+                'jabatan'=>$jabatan,
+                'npwp_usaha'=>$npwp_perusahaan,
+                'barang_jasa'=>$barang_jasa,
+                'alamat_perusahaan'=>$alamat_perusahaan,
                 'password'=>password_hash($token, PASSWORD_DEFAULT),
                 'token'=>$token,
                 'created_at' => $tgl,
@@ -447,7 +454,7 @@ class ValidasiController extends CI_Controller {
 			$this->load->library('uuid');
 			$uuid = $this->uuid->v4();
         	$id = str_replace('-', '', $uuid);
-			$q = $this->us->InsertPemohon($id,$nama,$nik,$nib,$npwp,$no_telp,$njop,$email,$token);
+			$q = $this->us->InsertPemohon($id,$jabatan,$npwp_perusahaan,$barang_jasa,$alamat_perusahaan,$nama,$nik,$nib,$npwp,$no_telp,$njop,$email,$token);
 		}
 		
         if ($q) {
@@ -461,6 +468,8 @@ class ValidasiController extends CI_Controller {
 	{
 		$nop = htmlspecialchars($data[0]->nop);
 		$no_reg = htmlspecialchars($data[0]->nrb);
+        $nama_toko = htmlspecialchars($data[0]->nama_toko);
+        $nama_badan_usaha = htmlspecialchars($data[0]->nama_badan_usaha);
 		$luas_lahan = htmlspecialchars($data[0]->luas_lahan);
 		$ltb = htmlspecialchars($data[0]->ltb);
 		$luas_lantai = htmlspecialchars($data[0]->luas_lantai);
@@ -469,11 +478,14 @@ class ValidasiController extends CI_Controller {
 		$status_milik = htmlspecialchars($data[0]->status_milik);
 		$lokasi = htmlspecialchars($data[0]->alamat);
         $alamatpemohon = htmlspecialchars($data[0]->alamat_lengkap);
+        $kelompok = htmlspecialchars($data[0]->kelompok);
+        $untuk_toko = htmlspecialchars($data[0]->peruntukan_toko);
 
 		$lat = htmlspecialchars($data[0]->lat);
 		$lng = htmlspecialchars($data[0]->lng);
         $zona = htmlspecialchars($data[0]->subzona);
         $sublock = htmlspecialchars($data[0]->idsubblok);
+        $kecamatan = htmlspecialchars($data[0]->kecamatan);
 
 		$kondisi = htmlspecialchars($data[0]->kondisi_eksisting);
 		$mengajukan = htmlspecialchars($data[0]->lama_izin);
@@ -505,10 +517,15 @@ class ValidasiController extends CI_Controller {
                 'id_pemohon'=>$idpemohon,
                 'nop'=>$nop,
                 'no_reg_bangunan'=>$no_reg,
+                'nama_usaha'=>$nama_toko,
+                'nama_badan_usaha'=>$nama_badan_usaha,
                 'alamat'=>$lokasi,
                 'alamat_lengkap'=>$alamatpemohon,
+                'kelompok_usaha'=>$kelompok,
+                'peruntukan_toko'=>$untuk_toko,
                 'lat'=>$lat,
                 'lon'=>$lng,
+                'kecamatan'=>$kecamatan,
                 'zona'=>$zona,
                 'kode_sublok'=>$sublock,
                 'luas_lahan'=>$luas_lahan,
@@ -523,12 +540,12 @@ class ValidasiController extends CI_Controller {
                 'created_at' => $getdata->created_at,
                 'updated_at' => date('Y-m-d H:i:s'),
             );
-        $q = $this->db->update('bangunan_iuts',$arrayPermohonan,$where);
+            $q = $this->db->update('bangunan_iuts',$arrayPermohonan,$where);
 		}else{
 			$this->load->library('uuid');
 			$uuid = $this->uuid->v4();
         	$id = str_replace('-', '', $uuid);
-			$q = $this->us->InsertBangunan($id,$idpemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng,$kode);
+			$q = $this->us->InsertBangunan($id,$nama_toko,$nama_badan_usaha,$kelompok,$untuk_toko,$kecamatan,$idpemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng,$kode);
 		}
         if ($q) {
         	return $id;
@@ -537,9 +554,16 @@ class ValidasiController extends CI_Controller {
         }
        echo json_encode($json);
 	}
-    function saveKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input)
+    function saveKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input,$sublock)
     {
         $cek = $this->us->cekKondisi($bangunan);
+        $spasial = $this->us->cekSpasial($subzona);
+        if ($spasial->num_rows() > 0) {
+            $row = $spasial->row();
+            $id_tata = $row->id;
+        }else{
+            $id_tata = 1;
+        }
         if ($cek->num_rows() > 0) {
             $getdata = $cek->row();
             $id = $getdata->id;
@@ -558,6 +582,7 @@ class ValidasiController extends CI_Controller {
                 'perjanjian_sewa' => $janji_sewa_input,
                 'id_warga' => $warga,
                 'id_rek_umkm' => $rek_umkm,
+                'id_tata_ruang' => $id_tata,
                 'id_kajian' => $kajian,
                 'id_imb' => $imb,
                 'id_slf' => $slf,
@@ -572,7 +597,7 @@ class ValidasiController extends CI_Controller {
             );
         $q = $this->db->update('kondisi_bangunan',$array,$where);
         }else{
-            $q = $this->us->InsertKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input);
+            $q = $this->us->InsertKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input,$id_tata);
         }
         return $q;
     }
@@ -626,6 +651,7 @@ class ValidasiController extends CI_Controller {
 
         echo json_encode($res);
     }
+
 	function sendmail($nik)
 	{
         $dPemohon = $this->us->cekPemohon($nik);

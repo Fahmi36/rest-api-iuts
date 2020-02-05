@@ -448,13 +448,41 @@ class OfficeController extends CI_Controller {
 		}
 		echo json_encode($res);
 	}
-	function downloadpdf()
+	function downloadpdf($id)
 	{
-		$mpdf = new \Mpdf\Mpdf();
-        $html = $this->load->view('pages/mail',[], true);
-        $mpdf->WriteHTML($html);
-        // $mpdf->Output(); // opens in browser
-        return $mpdf->Output('test.pdf','D'); // it downloads the file into the user system.
+		
+		$tcpdf = new setasign\Fpdi\Tcpdf\Fpdi;
+		if ($id == null) {
+        	$html = $this->load->view('errors/error_404',[], true);
+        	$tcpdf->WriteHTML($html);
+			return $tcpdf->Output('test.pdf','D');
+		}else{
+		$newP12 = openssl_pkcs12_read(file_get_contents(site_url('assets/sertifikat/JAKEVO.p12')), $results, "AJ102938++!");
+	    	if ($newP12){
+	    		$filename = str_replace(' ','','Surat' . date('YmdHis') . '.pdf'); 
+				$data['datauser'] = $this->oc->cekPemohon($id);
+				$data['janji'] = $this->oc->cekSurat($id);
+				$data['kewajiban'] = $this->oc->detailKewajiban();
+				$data['larangan'] = $this->oc->detailLarangan();
+    			$tcpdf->AddPage();
+		        $html = $this->load->view('pages/suratsk',[], true);
+		        $tcpdf->WriteHTML($html);
+		        $info = array(
+		        	'Name' => 'DPMPTSP DKI JAKARTA',
+		        	'Location' => 'DPMPTSP DKI JAKARTA',
+		        	'Reason' => 'Verified Berkas',
+		        	'ContactInfo' => site_url('/'),
+    			);    		
+    			$taut='Diisikan dengan informasi yang diinginkan'; 
+				$tcpdf->write2DBarcode($taut, 'QRCODE,H', 20,190,20,20);
+      			$tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info); 
+      			$tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG'); 
+      			$tcpdf->setSignatureAppearance(117, 201, 60, 18); 
+				$tcpdf->Output($filename, 'D'); 
+				ob_end_clean();
+		    }
+		}
+		
 	}
 	function getBangunan()
 	{

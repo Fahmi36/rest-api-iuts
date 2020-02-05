@@ -16,7 +16,7 @@ class OfficeModel extends CI_Model {
 	}
     function cekPemohon($idbangun)
     {
-        $this->db->select('pemohon_iuts.nama,pemohon_iuts.email,bangunan_iuts.code,bangunan_iuts.no_reg_bangunan,bangunan_iuts.nop,bangunan_iuts.alamat,bangunan_iuts.status,pemohon_iuts.nib,pemohon_iuts.npwp,bangunan_iuts.created_at,bangunan_iuts.zona,bangunan_iuts.kode_sublok,bangunan_iuts.lat,bangunan_iuts.lon');
+        $this->db->select('pemohon_iuts.nama,pemohon_iuts.email,pemohon_iuts.no_hp,pemohon_iuts.nib,pemohon_iuts.npwp,bangunan_iuts.nama_usaha,bangunan_iuts.code,bangunan_iuts.no_reg_bangunan,bangunan_iuts.nop,bangunan_iuts.alamat_lengkap as alamat,bangunan_iuts.alamat_perusahaan,bangunan_iuts.luas_lantai,bangunan_iuts.status,bangunan_iuts.jasa,bangunan_iuts.created_at,bangunan_iuts.zona,bangunan_iuts.kode_sublok,bangunan_iuts.lat,bangunan_iuts.lon,bangunan_iuts.kecamatan');
         $this->db->from('bangunan_iuts');
         $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = bangunan_iuts.id_pemohon', 'INNER');
         $this->db->where('id_bangunan', $idbangun);
@@ -54,6 +54,16 @@ class OfficeModel extends CI_Model {
             $this->db->where('id_bangunan',$id);
         }
         $q = $this->db->get('janjian');
+        return $q;
+    }
+    function detailKewajiban()
+    {
+        $q = $this->db->get('kewajiban_sk');
+        return $q;
+    }
+    function detailLarangan()
+    {
+        $q = $this->db->get('larangan_sk');
         return $q;
     }
 	function InsertAdministrasi($bangunan,$id_admin,$kelengkapan,$lama,$npwp,$pbb,$skor,$keterangan)

@@ -32,9 +32,9 @@
 				</td>
 				<td style="box-shadow: 0 0 15px 2px rgba(0,0,0,.4);">
 					<div style="word-break:break-word">
-						<div style="padding: 20px 20px;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:15px;color: rgba(255, 255, 255, 0.87);background-color: rgb(36, 186, 24);border-radius: 15px;">
+						<div style="padding: 20px 20px;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:15px;color: rgba(255, 255, 255, 0.87);background-color: rgb(26, 198, 103);border-radius: 15px;">
 
-							<table style="border: solid 1px rgb(36, 186, 24);width:100%;padding:10px;margin-top:10px;word-break:break-all;word-wrap:break-word;">
+							<table style="border: solid 1px rgb(26, 198, 103);width:100%;padding:10px;margin-top:10px;word-break:break-all;word-wrap:break-word;">
 								<tr>
 									<td colspan="3">
 										<h4 style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.8">Halo <?=$data->nama?>,</h4>
@@ -97,7 +97,7 @@
 							</tr>
 						</table> -->
 
-						<div style="background: rgb(36, 186, 24);border: solid 1px rgb(36, 186, 24);margin-top:10px!important;padding:10px;margin-top:10px;">
+						<div style="background: rgb(26, 198, 103);border: solid 1px rgb(26, 198, 103);margin-top:10px!important;padding:10px;margin-top:10px;">
 							<?php if ($data->status == 4) { ?>
 								<h4 style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;color:rgba(0,0,0,0.87);font-size:16px;line-height:1.8">Selamat Data Anda Di Terima Oleh Kepala Dinas DPMPTSP, Silakan cek detail dan tanggal serah terima Surat Keputusan Izin di Halaman Perizinan Anda</h4>
 							<?php }elseif ($data->status == 5) { ?>
@@ -109,7 +109,7 @@
 									</button>
 								</a>
 							</center>
-							<table style="border: solid 1px rgb(36, 186, 24);width:100%;padding:10px;margin-top:10px;word-break:break-all;word-wrap:break-word;">
+							<table style="border: solid 1px rgb(26, 198, 103);width:100%;padding:10px;margin-top:10px;word-break:break-all;word-wrap:break-word;">
 								<tr>
 									<td colspan="3">
 										<h4 style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;color:rgba(0,0,0,0.87);font-size:16px;line-height:1.8">Data Bangunan Anda</h4>

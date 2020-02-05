@@ -18,6 +18,7 @@ class UserController extends CI_Controller {
 		header('Access-Control-Allow-Headers: Content-Type, Content-Range, Content-Disposition, Content-Description');
 
 		$this->load->model('UserModel', 'us');
+		$this->load->model('OfficeModel', 'oc');
 	}
 	function returnResult($data)
 	{
@@ -274,6 +275,20 @@ class UserController extends CI_Controller {
 		try {
 			$idbangunan = $this->input->post('idbangunan');
 			$detail = $this->us->detailPemohonAmbil($idbangunan);
+			if ($detail) {
+				$res = $this->returnResult($detail);
+			}
+		} catch (Exception $e) {
+			$res = $this->returnResultCustom(false,$e);
+		}
+		echo json_encode($res);
+	}
+	function KonfirmasiIzin()
+	{
+		try {
+			$idbangunan = $this->input->post('idbangunan');
+			$file = $this->input->post('file');
+			$detail = $this->us->KonfirmasiPemohon($idbangunan,$file);
 			if ($detail) {
 				$res = $this->returnResult($detail);
 			}
