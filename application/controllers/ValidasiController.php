@@ -544,7 +544,7 @@ class ValidasiController extends CI_Controller {
 			$this->load->library('uuid');
 			$uuid = $this->uuid->v4();
         	$id = str_replace('-', '', $uuid);
-			$q = $this->us->InsertBangunan($id,$nama_toko,$kelompok,$untuk_toko,$idpemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng,$kode,$jasa,$atm,$zona);
+			$q = $this->us->InsertBangunan($id,$nama_toko,$kelompok,$untuk_toko,$idpemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng,$kode,$jasa,$atm,$zona,$sublock);
 		}
         if ($q) {
         	return $id;
