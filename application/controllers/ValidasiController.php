@@ -468,7 +468,7 @@ class ValidasiController extends CI_Controller {
 		$nop = htmlspecialchars($data[0]->nop);
 		$no_reg = htmlspecialchars($data[0]->nrb);
         $nama_toko = htmlspecialchars($data[0]->nama_toko);
-        $nama_badan_usaha = htmlspecialchars($data[0]->nama_badan_usaha);
+        $nama_badan_usaha = htmlspecialchars($data[0]->nama_usaha);
 		$luas_lahan = htmlspecialchars($data[0]->luas_lahan);
 		$ltb = htmlspecialchars($data[0]->ltb);
 		$luas_lantai = htmlspecialchars($data[0]->luas_lantai);
