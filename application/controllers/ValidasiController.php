@@ -556,13 +556,13 @@ class ValidasiController extends CI_Controller {
     function saveKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input,$sublock)
     {
         $cek = $this->us->cekKondisi($bangunan);
-        $spasial = $this->us->cekSpasial($subzona);
-        if ($spasial->num_rows() > 0) {
-            $row = $spasial->row();
-            $id_tata = $row->id;
-        }else{
-            $id_tata = 1;
-        }
+        // $spasial = $this->us->cekSpasial($subzona);
+        // if ($spasial->num_rows() > 0) {
+        //     $row = $spasial->row();
+        //     $id_tata = $row->id;
+        // }else{
+        //     $id_tata = 1;
+        // }
         if ($cek->num_rows() > 0) {
             $getdata = $cek->row();
             $id = $getdata->id;
@@ -581,7 +581,7 @@ class ValidasiController extends CI_Controller {
                 'perjanjian_sewa' => $janji_sewa_input,
                 'id_warga' => $warga,
                 'id_rek_umkm' => $rek_umkm,
-                'id_tata_ruang' => $id_tata,
+                // 'id_tata_ruang' => $id_tata,
                 'id_kajian' => $kajian,
                 'id_imb' => $imb,
                 'id_slf' => $slf,
@@ -596,7 +596,7 @@ class ValidasiController extends CI_Controller {
             );
         $q = $this->db->update('kondisi_bangunan',$array,$where);
         }else{
-            $q = $this->us->InsertKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input,$id_tata);
+            $q = $this->us->InsertKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input);
         }
         return $q;
     }
