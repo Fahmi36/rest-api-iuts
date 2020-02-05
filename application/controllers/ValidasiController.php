@@ -441,7 +441,7 @@ class ValidasiController extends CI_Controller {
                 'npwp'=>$npwp,
                 'njop'=>$njop,
                 'jabatan'=>$jabatan,
-                'npwp_usaha'=>$npwp_perusahaan,
+                'npwp_usaha'=>$npwp_usaha,
                 'alamat_perusahaan'=>$alamat_perusahaan,
                 'password'=>password_hash($token, PASSWORD_DEFAULT),
                 'token'=>$token,
@@ -453,7 +453,7 @@ class ValidasiController extends CI_Controller {
 			$this->load->library('uuid');
 			$uuid = $this->uuid->v4();
         	$id = str_replace('-', '', $uuid);
-			$q = $this->us->InsertPemohon($id,$jabatan,$npwp_perusahaan,$alamat_perusahaan,$nama,$nik,$nib,$npwp,$no_telp,$njop,$email,$token);
+			$q = $this->us->InsertPemohon($id,$jabatan,$npwp_usaha,$alamat_perusahaan,$nama,$nik,$nib,$npwp,$no_telp,$njop,$email,$token);
 		}
 		
         if ($q) {
