@@ -62,7 +62,6 @@ class UserModel extends CI_Model {
                 'no_reg_bangunan'=>$no_reg,
                 'nama_usaha'=>$nama_toko,
                 'alamat'=>$lokasi,
-                'alamat_lengkap'=>$alamatpemohon,
                 'kelompok_usaha'=>$kelompok,
                 'peruntukan_toko'=>$untuk_toko,
                 'lat'=>$lat,

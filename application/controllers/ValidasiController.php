@@ -475,7 +475,6 @@ class ValidasiController extends CI_Controller {
 		$status_bangunan = htmlspecialchars($data[0]->status_bangunan);
 		$status_milik = htmlspecialchars($data[0]->status_milik);
 		$lokasi = htmlspecialchars($data[0]->alamat);
-        $alamatpemohon = htmlspecialchars($data[0]->alamat_lengkap);
         $kelompok = htmlspecialchars($data[0]->kelompok);
         $untuk_toko = htmlspecialchars($data[0]->peruntukan_toko);
         $kontak_pemohon = htmlspecialchars($data[0]->kontak_pemohon);
@@ -519,7 +518,6 @@ class ValidasiController extends CI_Controller {
                 'no_reg_bangunan'=>$no_reg,
                 'nama_usaha'=>$nama_toko,
                 'alamat'=>$lokasi,
-                'alamat_lengkap'=>$alamatpemohon,
                 'kelompok_usaha'=>$kelompok,
                 'peruntukan_toko'=>$untuk_toko,
                 'lat'=>$lat,
