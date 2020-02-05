@@ -468,7 +468,6 @@ class ValidasiController extends CI_Controller {
 		$nop = htmlspecialchars($data[0]->nop);
 		$no_reg = htmlspecialchars($data[0]->nrb);
         $nama_toko = htmlspecialchars($data[0]->nama_toko);
-        $nama_badan_usaha = htmlspecialchars($data[0]->nama_usaha);
 		$luas_lahan = htmlspecialchars($data[0]->luas_lahan);
 		$ltb = htmlspecialchars($data[0]->ltb);
 		$luas_lantai = htmlspecialchars($data[0]->luas_lantai);
@@ -520,7 +519,6 @@ class ValidasiController extends CI_Controller {
                 'nop'=>$nop,
                 'no_reg_bangunan'=>$no_reg,
                 'nama_usaha'=>$nama_toko,
-                'nama_badan_usaha'=>$nama_badan_usaha,
                 'alamat'=>$lokasi,
                 'alamat_lengkap'=>$alamatpemohon,
                 'kelompok_usaha'=>$kelompok,
@@ -550,7 +548,7 @@ class ValidasiController extends CI_Controller {
 			$this->load->library('uuid');
 			$uuid = $this->uuid->v4();
         	$id = str_replace('-', '', $uuid);
-			$q = $this->us->InsertBangunan($id,$nama_toko,$nama_badan_usaha,$kelompok,$untuk_toko,$kecamatan,$idpemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng,$kode,$jasa,$atm);
+			$q = $this->us->InsertBangunan($id,$nama_toko,$kelompok,$untuk_toko,$kecamatan,$idpemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng,$kode,$jasa,$atm);
 		}
         if ($q) {
         	return $id;
