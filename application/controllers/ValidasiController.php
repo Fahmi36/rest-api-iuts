@@ -479,6 +479,7 @@ class ValidasiController extends CI_Controller {
         $alamatpemohon = htmlspecialchars($data[0]->alamat_lengkap);
         $kelompok = htmlspecialchars($data[0]->kelompok);
         $untuk_toko = htmlspecialchars($data[0]->peruntukan_toko);
+        $kontak_pemohon = htmlspecialchars($data[0]->kontak_pemohon);
 
 		$lat = htmlspecialchars($data[0]->lat);
 		$lng = htmlspecialchars($data[0]->lng);
@@ -537,6 +538,7 @@ class ValidasiController extends CI_Controller {
                 'luas_tapak'=>$ltb,
                 'luas_lantai'=>$luas_lantai,
                 'jumlah_lantai'=>$jml_lantai,
+                'kontak_pemohon'=>$kontak_pemohon,
                 'code'=>$kode,
                 'status' => 0,
                 'status_jalan' =>0,
