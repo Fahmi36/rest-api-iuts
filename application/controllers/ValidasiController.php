@@ -484,7 +484,7 @@ class ValidasiController extends CI_Controller {
         $kecamatan = htmlspecialchars($data[0]->kecamatan);
         $kelurahan = htmlspecialchars($data[0]->kelurahan);
 
-		$cek = $this->us->cekBangunan($no_reg);
+		$cek = $this->us->cekBangunan($nop);
         $kode = $this->randstr();
 		if ($cek->num_rows() > 0) {
 			$getdata = $cek->row();

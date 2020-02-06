@@ -14,7 +14,7 @@ class UserModel extends CI_Model {
     function cekBangunan($data)
     {
         if($data){
-            $this->db->where('no_reg_bangunan',$data);
+            $this->db->where('nop',$data);
         }
         $q = $this->db->get('bangunan_iuts');
         return $q;
