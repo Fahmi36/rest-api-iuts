@@ -386,7 +386,7 @@ class ValidasiController extends CI_Controller {
             }
            	$hasildampak = ($skordampak + $skordampak1 + $skordampak2 + $skordampak3 + $skordampak4 + $skordampak5 + $skordampak6 + $skordampak7 + $skordampak8 + $skordampak9 + $skordampak10) / 11;
 
-          	$rarata = $hasiladmin + $hasildampak + $hasilteknis) / 3;
+          	$rarata = ($hasiladmin + $hasildampak + $hasilteknis) / 3;
             
             $hasiltotal = round($rarata,1);
           	$savepemohon = $this->savePemohon($json);
