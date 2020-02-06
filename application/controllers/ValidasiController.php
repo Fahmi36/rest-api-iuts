@@ -102,6 +102,7 @@ class ValidasiController extends CI_Controller {
 		try {
             $json = json_decode($this->input->post('dataRegist'));
 
+        $nik = htmlspecialchars($json[0]->nomorInKepen);
         /*Administrasi Bangunan*/
         $kondisi = htmlspecialchars($json[0]->kondisi_eksisting);
         $detail_kondisi_input = htmlspecialchars($json[0]->detail_kondisi_input);
