@@ -91,7 +91,7 @@ class UserModel extends CI_Model {
 	function InsertPemohon($id,$nama,$nik,$nib,$jabatan,$npwp,$npwp_perusahaan,$alamat_perusahaan,$njop,$barang_jasa,$no_telp,$email,$token)
 	{
 		$array = array(
-            'id'=>$id,
+            'id_pemohon'=>$id,
 			'nama'=>$nama,
             'nik'=>$nik,
             'nib'=>$nib,
