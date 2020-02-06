@@ -134,6 +134,13 @@ class ValidasiController extends CI_Controller {
         $parkir = htmlspecialchars($json[0]->kondisi_parkir);
         /*Informasi Antisipasi Dampak/Resiko*/
 
+        $spasial = $this->us->cekSpasial($sublock);
+        if ($spasial->num_rows() > 0) {
+            $row = $spasial->row();
+            $id_tata = $row->id;
+        }else{
+            $id_tata = 1;
+        }
 
             // return var_dump($json);
             if(empty($kondisi) OR $kondisi == '-'){
@@ -249,8 +256,20 @@ class ValidasiController extends CI_Controller {
             }else{
             	$skorteknis3 = 0;
             }
+            if ($id_tata == '1') {
+                $skorteknis4 = 0;
+            }elseif ($id_tata == '2') {
+                $skorteknis4 = 1;
+            }elseif($id_tata == '3'){
+                $skorteknis4 = 2;
+            }else if($id_tata == '4'){
+                $skorteknis4 = 3;
+            }else{
+                $skorteknis4 = 0;
+            }
 
-            $hasilteknis = ($skorteknis + $skorteknis1 + $skorteknis2 + $skorteknis3) / 4;
+
+            $hasilteknis = ($skorteknis + $skorteknis1 + $skorteknis2 + $skorteknis3 + $skorteknis4) / 5;
 
             // Dampak 
 
