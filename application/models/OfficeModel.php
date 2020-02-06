@@ -83,7 +83,7 @@ class OfficeModel extends CI_Model {
 		$q = $this->db->insert('administrasi',$arrayPermohonan);
 		return $q;
 	}
-	function InsertAdminTeknis($id_bangunan,$admin,$lahansekitar,$rencanajalan,$eksitingjalan,$tataruang,$statususaha,$statuspasar,$keterangan,$skor)
+	function InsertAdminTeknis($id_bangunan,$admin,$lahansekitar,$rencanajalan,$eksitingjalan,$statususaha,$statuspasar,$keterangan,$skor)
 	{
 		$arrayPermohonan = array(
 			'id_bangunan' => $id_bangunan,
@@ -91,7 +91,6 @@ class OfficeModel extends CI_Model {
             'id_pasar' => $statuspasar,
             'id_rencana' => $rencanajalan,
             'id_rencana_eksisting' => $eksitingjalan,
-            'id_tata_ruang' => $tataruang,
             'id_jarak' => $statususaha,
             'id_lahan' => $lahansekitar,
             'keterangan' => $keterangan,
@@ -206,7 +205,7 @@ class OfficeModel extends CI_Model {
         $this->db->join('jarak_pasar', 'jarak_pasar.id = admin_teknis.id_pasar', 'left');
         $this->db->join('rencana_jalan', 'rencana_jalan.id = admin_teknis.id_rencana', 'left');
         $this->db->join('jalan_eksisting', 'jalan_eksisting.id = admin_teknis.id_rencana_eksisting', 'left');
-        $this->db->join('tata_ruang', 'tata_ruang.id = admin_teknis.id_tata_ruang', 'left');
+        $this->db->join('tata_ruang', 'tata_ruang.id = kondisi_bangunan.id_tata_ruang', 'left');
         $this->db->join('jarak_usaha', 'jarak_usaha.id = admin_teknis.id_jarak', 'left');
         $this->db->join('penggunaan_lahan', 'penggunaan_lahan.id = admin_teknis.id_lahan', 'left');
 
@@ -355,10 +354,10 @@ class OfficeModel extends CI_Model {
     {
         $level = $this->input->post('level');
         if ($level == 1) {
-        	$statusjalan = '2';
+        	$statusjalan = '1';
     		$this->db->where('bangunan_iuts.status_jalan', $statusjalan);
         }elseif ($level == 2) {
-        	$statusjalan = '1';
+        	$statusjalan = '0';
     		$this->db->where('bangunan_iuts.status_jalan', $statusjalan);
         }elseif ($level == 3) {
         	$statusjalan = '0';

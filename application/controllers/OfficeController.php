@@ -148,7 +148,6 @@ class OfficeController extends CI_Controller {
 		$lahansekitar = $this->input->post('lahansekitar');
 		$rencanajalan = $this->input->post('rencanajalan');
 		$eksitingjalan = $this->input->post('eksitingjalan');
-		$tataruang = $this->input->post('tataruang');
 		$statususaha = $this->input->post('statususaha');
 		$statuspasar = $this->input->post('statuspasar');
 		$keterangan = $this->input->post('keterangan');
@@ -189,18 +188,6 @@ class OfficeController extends CI_Controller {
 			$skoreksijalan = 0;
 		}
 
-		if ($tataruang == '1') {
-			$skortata = 0;
-		}elseif ($tataruang == '2') {
-			$skortata = 1;
-		}elseif($tataruang == '3'){
-			$skortata = 2;
-		}else if($tataruang == '4'){
-			$skortata = 3;
-		}else{
-			$skortata = 0;
-		}
-
 		if ($statususaha == '1') {
 			$skortusah = 0;
 		}elseif ($statususaha == '2') {
@@ -225,7 +212,7 @@ class OfficeController extends CI_Controller {
 			$skorpasar = 0;
 		}
 
-		$skor = ($skorpasar + $skorrenjalan + $skoreksijalan + $skortata + $skortusah + $skorlahan)/6;
+		$skor = ($skorpasar + $skorrenjalan + $skoreksijalan + $skortusah + $skorlahan)/5;
 
 		$cek = $this->oc->cekTeknis($id_bangunan);
 		if ($cek->num_rows() > 0) {
@@ -238,7 +225,6 @@ class OfficeController extends CI_Controller {
             'id_pasar' => $statuspasar,
             'id_rencana' => $rencanajalan,
             'id_rencana_eksisting' => $eksitingjalan,
-            'id_tata_ruang' => $tataruang,
             'id_jarak' => $statususaha,
             'id_lahan' => $lahansekitar,
             'keterangan' => $keterangan,
@@ -247,14 +233,14 @@ class OfficeController extends CI_Controller {
         );
             $q = $this->db->update('admin_teknis',$array,$where);
 		}else{
-			$q = $this->oc->InsertAdminTeknis($id_bangunan,$admin,$lahansekitar,$rencanajalan,$eksitingjalan,$tataruang,$statususaha,$statuspasar,$keterangan,$skor);
+			$q = $this->oc->InsertAdminTeknis($id_bangunan,$admin,$lahansekitar,$rencanajalan,$eksitingjalan,$statususaha,$statuspasar,$keterangan,$skor);
 		}
 		if ($q == true) {
 			$wherebangun = array(
                 'id_bangunan' => $id_bangunan,
             );
 			$data = array(
-				'status_jalan'=>2,
+				'status_jalan'=>1,
 			);
 			$update = $this->db->update('bangunan_iuts', $data,$wherebangun);
 			if ($update == true) {
