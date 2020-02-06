@@ -317,7 +317,7 @@ class UserModel extends CI_Model {
     }
     function detailPemohonDinas($id_bangunan,$id)
     {
-        $this->db->select('admindinas.skor_akhir, admindinas.status, janjian.tanggal');
+        $this->db->select('admindinas.skor_akhir, admindinas.status, janjian.tanggal,admindinas.keterangan');
         $this->db->from('bangunan_iuts');
         $this->db->join('admindinas', 'admindinas.id_bangunan = bangunan_iuts.id_bangunan', 'INNER');
         $this->db->join('janjian', 'janjian.id_bangunan = bangunan_iuts.id_bangunan', 'LEFT');
