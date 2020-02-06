@@ -102,45 +102,48 @@ class ValidasiController extends CI_Controller {
 		try {
             $json = json_decode($this->input->post('dataRegist'));
 
-        $nik = htmlspecialchars($json[0]->nomorInKepen);
-        /*Administrasi Bangunan*/
-        $kondisi = htmlspecialchars($json[0]->kondisi_eksisting);
-        $detail_kondisi_input = htmlspecialchars($json[0]->detail_kondisi_input);
+            $nik = htmlspecialchars($json[0]->nomorInKepen);
+            /*Administrasi Bangunan*/
+            $kondisi = htmlspecialchars($json[0]->kondisi_eksisting);
+            $detail_kondisi_input = htmlspecialchars($json[0]->detail_kondisi_input);
 
-        $sublock = htmlspecialchars($json[0]->idsubblok);
-        /*Administrasi Bangunan*/
+            $sublock = htmlspecialchars($json[0]->idsubblok);
+            /*Administrasi Bangunan*/
 
+                /*Informasi Kebermanfaatan Usaha*/
+            $pbb = htmlspecialchars($json[0]->pemutakhiran_pbb);
+            $umkm = htmlspecialchars($json[0]->keterlibatan_umkm);
+            $keterlibatan_umkm_input = htmlspecialchars($json[0]->keterlibatan_umkm_input);
+            $sewa = htmlspecialchars($json[0]->perjanjian_sewa);
+            $janji_sewa_input = htmlspecialchars($json[0]->janji_sewa_input);
+            $warga = htmlspecialchars($json[0]->persetujuan_warga);
+            $jumlah_atm = htmlspecialchars($json[0]->jumlah_atm);
             /*Informasi Kebermanfaatan Usaha*/
-        $pbb = htmlspecialchars($json[0]->pemutakhiran_pbb);
-        $umkm = htmlspecialchars($json[0]->keterlibatan_umkm);
-        $keterlibatan_umkm_input = htmlspecialchars($json[0]->keterlibatan_umkm_input);
-        $sewa = htmlspecialchars($json[0]->perjanjian_sewa);
-        $janji_sewa_input = htmlspecialchars($json[0]->janji_sewa_input);
-        $warga = htmlspecialchars($json[0]->persetujuan_warga);
-        $jumlah_atm = htmlspecialchars($json[0]->jumlah_atm);
-        /*Informasi Kebermanfaatan Usaha*/
 
-        /*Informasi Antisipasi Dampak/Resiko*/
-        $rek_umkm = htmlspecialchars($json[0]->rekomendasi_umkm);
-        $kajian = htmlspecialchars($json[0]->kajian_sostek);
-        $imb = htmlspecialchars($json[0]->imb_eksisting);
-        $slf = htmlspecialchars($json[0]->slf_eksisting);
-        $kondisi_sumur = htmlspecialchars($json[0]->kondisi_sumur_r);
-        $volume = htmlspecialchars($json[0]->volumeSumur);
-        $drainase = htmlspecialchars($json[0]->drainase_disekeliling);
-        $kdh_minimum = htmlspecialchars($json[0]->kdh_minimum);
-        $kondisi_kdh = htmlspecialchars($json[0]->kondisi_kdh);
-        $sampah = htmlspecialchars($json[0]->pengelolaan_sampah);
-        $parkir = htmlspecialchars($json[0]->kondisi_parkir);
-        /*Informasi Antisipasi Dampak/Resiko*/
+            /*Informasi Antisipasi Dampak/Resiko*/
+            $rek_umkm = htmlspecialchars($json[0]->rekomendasi_umkm);
+            $kajian = htmlspecialchars($json[0]->kajian_sostek);
+            $imb = htmlspecialchars($json[0]->imb_eksisting);
+            $slf = htmlspecialchars($json[0]->slf_eksisting);
+            $kondisi_sumur = htmlspecialchars($json[0]->kondisi_sumur_r);
+            $volume = htmlspecialchars($json[0]->volumeSumur);
+            $drainase = htmlspecialchars($json[0]->drainase_disekeliling);
+            $kdh_minimum = htmlspecialchars($json[0]->kdh_minimum);
+            $kondisi_kdh = htmlspecialchars($json[0]->kondisi_kdh);
+            $sampah = htmlspecialchars($json[0]->pengelolaan_sampah);
+            $parkir = htmlspecialchars($json[0]->kondisi_parkir);
+            /*Informasi Antisipasi Dampak/Resiko*/
 
-        $spasial = $this->us->cekSpasial($sublock);
-        if ($spasial->num_rows() > 0) {
-            $row = $spasial->row();
-            $id_tata = $row->id;
-        }else{
-            $id_tata = 1;
-        }
+            $status_npwp = htmlspecialchars($json[0]->status_npwp);
+            $status_pbb = htmlspecialchars($json[0]->status_pbb);
+
+            $spasial = $this->us->cekSpasial($sublock);
+            if ($spasial->num_rows() > 0) {
+                $row = $spasial->row();
+                $id_tata = $row->id;
+            }else{
+                $id_tata = 1;
+            }
 
             // return var_dump($json);
             if(empty($kondisi) OR $kondisi == '-'){
@@ -191,6 +194,12 @@ class ValidasiController extends CI_Controller {
             }else if(empty($parkir) OR $parkir=='-' ){
             	echo json_encode($this->returnResultCustom(false,"Kondisi Parkir Tidak Boleh Kosong"));
                 return;
+            }else if(empty($status_pbb) OR $status_pbb=='-' OR $status_pbb=='0'){
+                echo json_encode($this->returnResultCustom(false,"Harus Melakukan Verifikasi NIK dan PBB"));
+                return;
+            }else if(empty($status_npwp) OR $status_npwp=='-' OR $status_npwp=='0'){
+                echo json_encode($this->returnResultCustom(false,"Harus Melakukan Verifikasi NIK dan PBB"));
+                return;
             }
 
             // Administrasi
@@ -204,6 +213,17 @@ class ValidasiController extends CI_Controller {
             	$skor = 3;
             }else{
             	$skor = 0;
+            }
+            if ($status_pbb == '1') {
+                $skorstatus_pbb = 1;
+            }else {
+                $skorstatus_pbb = 0;
+            }
+
+            if ($status_npwp == '1') {
+                $skorstatus_npwp = 1;
+            }else {
+                $skorstatus_npwp = 0;
             }
             
             $hasiladmin = ($skor) / 1;
@@ -412,7 +432,7 @@ class ValidasiController extends CI_Controller {
           	$savepemohon = $this->savePemohon($json);
           	$bangunan = $this->saveBangunan($savepemohon,$json);
           	$skor = $this->saveSkor($bangunan,$hasiladmin,$hasilteknis,$hasildampak,$hasiltotal);
-            $savekondisi = $this->saveKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$jumlah_atm,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$volume,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$sublock);
+            $savekondisi = $this->saveKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$jumlah_atm,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$volume,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$sublock,$status_pbb,$status_npwp);
 			if ($skor == true) {
 				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
 				$this->sendmail($nik);
@@ -556,7 +576,7 @@ class ValidasiController extends CI_Controller {
         }
        echo json_encode($json);
 	}
-    function saveKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$volume,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$sublock)
+    function saveKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$volume,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$sublock,$status_pbb,$status_npwp)
     {
         $cek = $this->us->cekKondisi($bangunan);
         $spasial = $this->us->cekSpasial($sublock);
@@ -576,6 +596,8 @@ class ValidasiController extends CI_Controller {
                 'id_kondisi' => $kondisi,
                 'kondisi_eksisting' => $detail_kondisi_input,
                 'id_pbb' => $pbb,
+                'status_pbb' => $status_pbb,
+                'status_npwp' => $status_npwp,
                 'id_umkm' => $umkm,
                 'keterlibatan_umkm' => $keterlibatan_umkm_input,
                 'id_sewa' => $sewa,
