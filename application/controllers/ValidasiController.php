@@ -102,39 +102,41 @@ class ValidasiController extends CI_Controller {
 		try {
             $json = json_decode($this->input->post('dataRegist'));
 
-	        $kondisi = htmlspecialchars($json[0]->kondisi_eksisting);
-			$mengajukan = htmlspecialchars($json[0]->lama_izin);
-			$pbb = htmlspecialchars($json[0]->pemutakhiran_pbb);
-			$umkm = htmlspecialchars($json[0]->keterlibatan_umkm);
-			$sewa = htmlspecialchars($json[0]->perjanjian_sewa);
-			$warga = htmlspecialchars($json[0]->persetujuan_warga);
-			$rek_umkm = htmlspecialchars($json[0]->rekomendasi_umkm);
-			$kajian = htmlspecialchars($json[0]->kajian_sostek);
-			$imb = htmlspecialchars($json[0]->imb_eksisting);
-			$slf = htmlspecialchars($json[0]->slf_eksisting);
-			$kondisi_sumur = htmlspecialchars($json[0]->kondisi_sumur_r);
-			$drainase = htmlspecialchars($json[0]->drainase_disekeliling);
-			$kdh_minimum = htmlspecialchars($json[0]->kdh_minimum);
-			$kondisi_kdh = htmlspecialchars($json[0]->kondisi_kdh);
-			$sampah = htmlspecialchars($json[0]->pengelolaan_sampah);
-			$parkir = htmlspecialchars($json[0]->kondisi_parkir);
-			$volume = htmlspecialchars($json[0]->volumeSumur);
+        /*Administrasi Bangunan*/
+        $kondisi = htmlspecialchars($json[0]->kondisi_eksisting);
+        $detail_kondisi_input = htmlspecialchars($json[0]->detail_kondisi_input);
 
-            //Tambahan 
+        $sublock = htmlspecialchars($json[0]->idsubblok);
+        /*Administrasi Bangunan*/
 
-            $nik = htmlspecialchars($json[0]->nomorInKepen);
-			$email = htmlspecialchars($json[0]->emailAktif);
-            $janji_sewa_input = htmlspecialchars($json[0]->janji_sewa_input);
-            $keterlibatan_umkm_input = htmlspecialchars($json[0]->keterlibatan_umkm_input);
-            $lama_izin_input = htmlspecialchars($json[0]->lama_izin_input);
-            $detail_kondisi_input = htmlspecialchars($json[0]->detail_kondisi_input);
-            $sublock = htmlspecialchars($json[0]->idsubblok);
+            /*Informasi Kebermanfaatan Usaha*/
+        $pbb = htmlspecialchars($json[0]->pemutakhiran_pbb);
+        $umkm = htmlspecialchars($json[0]->keterlibatan_umkm);
+        $keterlibatan_umkm_input = htmlspecialchars($json[0]->keterlibatan_umkm_input);
+        $sewa = htmlspecialchars($json[0]->perjanjian_sewa);
+        $janji_sewa_input = htmlspecialchars($json[0]->janji_sewa_input);
+        $warga = htmlspecialchars($json[0]->persetujuan_warga);
+        $jumlah_atm = htmlspecialchars($json[0]->jumlah_atm);
+        /*Informasi Kebermanfaatan Usaha*/
+
+        /*Informasi Antisipasi Dampak/Resiko*/
+        $rek_umkm = htmlspecialchars($json[0]->rekomendasi_umkm);
+        $kajian = htmlspecialchars($json[0]->kajian_sostek);
+        $imb = htmlspecialchars($json[0]->imb_eksisting);
+        $slf = htmlspecialchars($json[0]->slf_eksisting);
+        $kondisi_sumur = htmlspecialchars($json[0]->kondisi_sumur_r);
+        $volume = htmlspecialchars($json[0]->volumeSumur);
+        $drainase = htmlspecialchars($json[0]->drainase_disekeliling);
+        $kdh_minimum = htmlspecialchars($json[0]->kdh_minimum);
+        $kondisi_kdh = htmlspecialchars($json[0]->kondisi_kdh);
+        $sampah = htmlspecialchars($json[0]->pengelolaan_sampah);
+        $parkir = htmlspecialchars($json[0]->kondisi_parkir);
+        /*Informasi Antisipasi Dampak/Resiko*/
+
+
             // return var_dump($json);
             if(empty($kondisi) OR $kondisi == '-'){
                 echo json_encode($this->returnResultCustom(false,"Kondisi Eksisting Tidak Boleh Kosong"));
-                return;
-            }else if(empty($mengajukan) OR $mengajukan == '-'){
-            	echo json_encode($this->returnResultCustom(false,"Lama Izin Mengajukan Tidak Boleh Kosong"));
                 return;
             }else if(empty($pbb) OR $pbb == '-'){
             	echo json_encode($this->returnResultCustom(false,"Pemutakhiran PBB Tidak Boleh Kosong"));
@@ -163,6 +165,9 @@ class ValidasiController extends CI_Controller {
             }else if(empty($kondisi_sumur) OR $kondisi_sumur == '-'){
             	echo json_encode($this->returnResultCustom(false,"Kondisi Sumur Resapan Tidak Boleh Kosong"));
                 return;
+            }else if(empty($volume) OR $volume == '-'){
+                echo json_encode($this->returnResultCustom(false,"Volume Sumur Resapan Tidak Boleh Kosong"));
+                return;
             }else if(empty($drainase) OR $drainase=='-' ){
             	echo json_encode($this->returnResultCustom(false,"Drainase Sekeliling Tidak Boleh Kosong"));
                 return;
@@ -178,11 +183,7 @@ class ValidasiController extends CI_Controller {
             }else if(empty($parkir) OR $parkir=='-' ){
             	echo json_encode($this->returnResultCustom(false,"Kondisi Parkir Tidak Boleh Kosong"));
                 return;
-            }else if(empty($volume) OR $volume=='-' ){
-            	echo json_encode($this->returnResultCustom(false,"Volume Sumur Tidak Boleh Kosong"));
-                return;
             }
-
 
             // Administrasi
             if ($kondisi == '1') {
@@ -196,19 +197,8 @@ class ValidasiController extends CI_Controller {
             }else{
             	$skor = 0;
             }
-            if ($mengajukan == '1') {
-            	$skor1 = 0;
-            }elseif ($mengajukan == '2') {
-            	$skor1 = 1;
-            }elseif($mengajukan == '3'){
-            	$skor1 = 2;
-            }else if($mengajukan == '4'){
-            	$skor1 = 3;
-            }else{
-            	$skor1 = 0;
-            }
-
-            $hasiladmin = ($skor + $skor1) / 2;
+            
+            $hasiladmin = ($skor) / 1;
 
             // Admin Teknis
             if ($pbb == '1') {
@@ -262,6 +252,7 @@ class ValidasiController extends CI_Controller {
             $hasilteknis = ($skorteknis + $skorteknis1 + $skorteknis2 + $skorteknis3) / 4;
 
             // Dampak 
+
             if ($rek_umkm == '1') {
             	$skordampak = 0;
             }elseif ($rek_umkm == '2') {
@@ -382,23 +373,26 @@ class ValidasiController extends CI_Controller {
             	$skordampak9 = 0;
             }
 
-            if ($volume == 0 OR $volume == null) {
+            if ($volume== '1') {
             	$skordampak10 = 0;
-            }elseif ($volume < 25) {
+            }elseif ($volume == '2') {
             	$skordampak10 = 1;
-            }else if($volume >= 25){
-            	$skordampak10 = 3;
+            }else if($volume == '3'){
+            	$skordampak10 = 2;
+            }else if($volume == '4'){
+                $skordampak10 = 3;
             }else{
             	$skordampak10 = 0;
             }
            	$hasildampak = ($skordampak + $skordampak1 + $skordampak2 + $skordampak3 + $skordampak4 + $skordampak5 + $skordampak6 + $skordampak7 + $skordampak8 + $skordampak9 + $skordampak10) / 11;
 
-          	$rarata = ($hasiladmin + $hasildampak + $hasilteknis) / 3;
-
-          		$savepemohon = $this->savePemohon($json);
-          		$bangunan = $this->saveBangunan($savepemohon,$json);
-          		$skor = $this->saveSkor($bangunan,$hasiladmin,$hasilteknis,$hasildampak,$rarata);
-                $savekondisi = $this->saveKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input,$sublock);
+          	$rarata = $hasiladmin + $hasildampak + $hasilteknis) / 3;
+            
+            $hasiltotal = round($rarata,1);
+          	$savepemohon = $this->savePemohon($json);
+          	$bangunan = $this->saveBangunan($savepemohon,$json);
+          	$skor = $this->saveSkor($bangunan,$hasiladmin,$hasilteknis,$hasildampak,$hasiltotal);
+            $savekondisi = $this->saveKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$jumlah_atm,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$volume,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$sublock);
 			if ($skor == true) {
 				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
 				$this->sendmail($nik);
@@ -418,11 +412,11 @@ class ValidasiController extends CI_Controller {
         $jabatan = htmlspecialchars($data[0]->jabatan);
 		$npwp = htmlspecialchars($data[0]->npwp);
         $npwp_usaha = htmlspecialchars($data[0]->npwp_perusahaan);
-		$njop = htmlspecialchars($data[0]->njop);
-        $barang_jasa = htmlspecialchars($data[0]->barang_jasa);
+		$alamat_perusahaan = htmlspecialchars($data[0]->alamat_perusahaan);
+        $njop = htmlspecialchars($data[0]->njop);
+		$barang_jasa = htmlspecialchars($data[0]->barang_jasa);
 		$no_telp = htmlspecialchars($data[0]->no_telp);
-		$email = htmlspecialchars($data[0]->emailAktif);
-        $alamat_perusahaan = htmlspecialchars($data[0]->alamat_perusahaan);
+        $email = htmlspecialchars($data[0]->emailAktif);
 
 		$cek = $this->us->cekPemohon($nik);
 		$idpemohon = $cek->row();
@@ -437,23 +431,25 @@ class ValidasiController extends CI_Controller {
                 'nama'=>$nama,
                 'nik'=>$nik,
                 'nib'=>$nib,
-                'email'=>$email,
-                'npwp'=>$npwp,
-                'njop'=>$njop,
                 'jabatan'=>$jabatan,
-                'npwp_usaha'=>$npwp_usaha,
+                'npwp'=>$npwp,
+                'npwp_usaha'=>$npwp_perusahaan,
                 'alamat_perusahaan'=>$alamat_perusahaan,
+                'njop'=>$njop,
+                'barang_jasa'=>$barang_jasa,
+                'no_hp'=>$no_telp,
+                'email'=>$email,
                 'password'=>password_hash($token, PASSWORD_DEFAULT),
                 'token'=>$token,
                 'created_at' => $tgl,
                 'updated_at' => date('Y-m-d H:i:s'),
             );
-        $q = $this->db->update('pemohon_iuts',$arrayPermohonan,$where);
+            $q = $this->db->update('pemohon_iuts',$arrayPermohonan,$where);
 		}else{
 			$this->load->library('uuid');
 			$uuid = $this->uuid->v4();
         	$id = str_replace('-', '', $uuid);
-			$q = $this->us->InsertPemohon($id,$jabatan,$npwp_usaha,$alamat_perusahaan,$nama,$nik,$nib,$npwp,$no_telp,$njop,$email,$token);
+			$q = $this->us->InsertPemohon($id,$nama,$nik,$nib,$jabatan,$npwp,$npwp_perusahaan,$alamat_perusahaan,$njop,$barang_jasa,$no_telp,$email,$token);
 		}
 		
         if ($q) {
@@ -465,44 +461,28 @@ class ValidasiController extends CI_Controller {
 	}
 	function saveBangunan($idpemohon,$data)
 	{
-		$nop = htmlspecialchars($data[0]->nop);
-		$no_reg = htmlspecialchars($data[0]->nrb);
+        $nop = htmlspecialchars($data[0]->nop);
+        $luas_lahan = htmlspecialchars($data[0]->luas_lahan);
+        $ltb = htmlspecialchars($data[0]->ltb);
+        $luas_lantai = htmlspecialchars($data[0]->luas_lantai);
+        $luas_lantai_input = htmlspecialchars($data[0]->luas_lantai_input);
+        $jml_lantai = htmlspecialchars($data[0]->jml_lantai);
+        $status_bangunan = htmlspecialchars($data[0]->status_bangunan);
+        $status_milik = htmlspecialchars($data[0]->status_milik);
+
         $nama_toko = htmlspecialchars($data[0]->nama_toko);
-		$luas_lahan = htmlspecialchars($data[0]->luas_lahan);
-		$ltb = htmlspecialchars($data[0]->ltb);
-		$luas_lantai = htmlspecialchars($data[0]->luas_lantai);
-		$jml_lantai = htmlspecialchars($data[0]->jml_lantai);
-		$status_bangunan = htmlspecialchars($data[0]->status_bangunan);
-		$status_milik = htmlspecialchars($data[0]->status_milik);
-		$lokasi = htmlspecialchars($data[0]->alamat);
         $kelompok = htmlspecialchars($data[0]->kelompok);
         $untuk_toko = htmlspecialchars($data[0]->peruntukan_toko);
-        $kontak_pemohon = htmlspecialchars($data[0]->kontak_pemohon);
+        $nama_badan_usaha = htmlspecialchars($data[0]->nama_badan_usaha);
+        $lokasi = htmlspecialchars($data[0]->alamat);
 
-		$lat = htmlspecialchars($data[0]->lat);
-		$lng = htmlspecialchars($data[0]->lng);
+        $lat = htmlspecialchars($data[0]->lat);
+        $lng = htmlspecialchars($data[0]->lng);
         $zona = htmlspecialchars($data[0]->subzona);
         $sublock = htmlspecialchars($data[0]->idsubblok);
-
-		$kondisi = htmlspecialchars($data[0]->kondisi_eksisting);
-		$mengajukan = htmlspecialchars($data[0]->lama_izin);
-		$pbb = htmlspecialchars($data[0]->pemutakhiran_pbb);
-		$umkm = htmlspecialchars($data[0]->keterlibatan_umkm);
-		$sewa = htmlspecialchars($data[0]->perjanjian_sewa);
-		$warga = htmlspecialchars($data[0]->persetujuan_warga);
-        $atm = htmlspecialchars($data[0]->jumlah_atm);
-        $jasa = htmlspecialchars($data[0]->barang_jasa);
-		$rek_umkm = htmlspecialchars($data[0]->rekomendasi_umkm);
-		$kajian = htmlspecialchars($data[0]->kajian_sostek);
-		$imb = htmlspecialchars($data[0]->imb_eksisting);
-		$slf = htmlspecialchars($data[0]->slf_eksisting);
-		$kondisi_sumur = htmlspecialchars($data[0]->kondisi_sumur_r);
-		$drainase = htmlspecialchars($data[0]->drainase_disekeliling);
-		$kdh_minimum = htmlspecialchars($data[0]->kdh_minimum);
-		$kondisi_kdh = htmlspecialchars($data[0]->kondisi_kdh);
-		$sampah = htmlspecialchars($data[0]->pengelolaan_sampah);
-		$parkir = htmlspecialchars($data[0]->kondisi_parkir);
-		$volume = htmlspecialchars($data[0]->volumeSumur);
+        $alamatpemohon = htmlspecialchars($data[0]->alamat_lengkap);
+        $kecamatan = htmlspecialchars($data[0]->kecamatan);
+        $kelurahan = htmlspecialchars($data[0]->kelurahan);
 
 		$cek = $this->us->cekBangunan($no_reg);
         $kode = $this->randstr();
@@ -515,15 +495,16 @@ class ValidasiController extends CI_Controller {
             $arrayPermohonan = array(
                 'id_pemohon'=>$idpemohon,
                 'nop'=>$nop,
-                'no_reg_bangunan'=>$no_reg,
                 'nama_usaha'=>$nama_toko,
+                'nama_badan_usaha'=>$nama_badan_usaha,
                 'alamat'=>$lokasi,
+                'alamat_lengkap'=>$alamatpemohon,
                 'kelompok_usaha'=>$kelompok,
                 'peruntukan_toko'=>$untuk_toko,
                 'lat'=>$lat,
                 'lon'=>$lng,
-                'jml_atm'=>$atm,
-                'jasa'=>$jasa,
+                'kecamatan'=>$kecamatan,
+                'kelurahan'=>$kelurahan,
                 'zona'=>$zona,
                 'kode_sublok'=>$sublock,
                 'luas_lahan'=>$luas_lahan,
@@ -531,8 +512,9 @@ class ValidasiController extends CI_Controller {
                 'status_bangunan'=>$status_bangunan,
                 'luas_tapak'=>$ltb,
                 'luas_lantai'=>$luas_lantai,
+                'detail_luas_lantai'=>$luas_lantai_input,
                 'jumlah_lantai'=>$jml_lantai,
-                'kontak_pemohon'=>$kontak_pemohon,
+                'jml_atm'=>$jumlah_atm,
                 'code'=>$kode,
                 'status' => 0,
                 'status_jalan' =>0,
@@ -544,7 +526,7 @@ class ValidasiController extends CI_Controller {
 			$this->load->library('uuid');
 			$uuid = $this->uuid->v4();
         	$id = str_replace('-', '', $uuid);
-			$q = $this->us->InsertBangunan($id,$nama_toko,$kelompok,$untuk_toko,$idpemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng,$kode,$jasa,$atm,$zona,$sublock);
+			$q = $this->us->InsertBangunan($id,$idpemohon,$nop,$nama_toko,$nama_badan_usaha,$lokasi,$alamatpemohon,$kelompok,$untuk_toko,$lat,$lng,$kecamatan,$kelurahan,$zona,$sublock,$luas_lahan,$status_milik,$status_bangunan,$ltb,$luas_lantai,$luas_lantai_input,$jml_lantai,$jumlah_atm,$kode);
 		}
         if ($q) {
         	return $id;
@@ -553,16 +535,16 @@ class ValidasiController extends CI_Controller {
         }
        echo json_encode($json);
 	}
-    function saveKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input,$sublock)
+    function saveKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$volume,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$sublock)
     {
         $cek = $this->us->cekKondisi($bangunan);
-        // $spasial = $this->us->cekSpasial($subzona);
-        // if ($spasial->num_rows() > 0) {
-        //     $row = $spasial->row();
-        //     $id_tata = $row->id;
-        // }else{
-        //     $id_tata = 1;
-        // }
+        $spasial = $this->us->cekSpasial($sublock);
+        if ($spasial->num_rows() > 0) {
+            $row = $spasial->row();
+            $id_tata = $row->id;
+        }else{
+            $id_tata = 1;
+        }
         if ($cek->num_rows() > 0) {
             $getdata = $cek->row();
             $id = $getdata->id;
@@ -572,8 +554,6 @@ class ValidasiController extends CI_Controller {
              $array = array(
                 'id_kondisi' => $kondisi,
                 'kondisi_eksisting' => $detail_kondisi_input,
-                'id_waktu' => $mengajukan,
-                'lama_izin' => $lama_izin_input,
                 'id_pbb' => $pbb,
                 'id_umkm' => $umkm,
                 'keterlibatan_umkm' => $keterlibatan_umkm_input,
@@ -581,7 +561,7 @@ class ValidasiController extends CI_Controller {
                 'perjanjian_sewa' => $janji_sewa_input,
                 'id_warga' => $warga,
                 'id_rek_umkm' => $rek_umkm,
-                // 'id_tata_ruang' => $id_tata,
+                'id_tata_ruang' => $id_tata, // baru
                 'id_kajian' => $kajian,
                 'id_imb' => $imb,
                 'id_slf' => $slf,
@@ -596,7 +576,7 @@ class ValidasiController extends CI_Controller {
             );
         $q = $this->db->update('kondisi_bangunan',$array,$where);
         }else{
-            $q = $this->us->InsertKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input);
+            $q = $this->us->InsertKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$rek_umkm,$id_tata,$kajian,$imb,$slf,$volume,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir);
         }
         return $q;
     }

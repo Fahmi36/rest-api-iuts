@@ -53,29 +53,32 @@ class UserModel extends CI_Model {
         $q = $this->db->get();
         return $q;
     }
-	function InsertBangunan($id,$nama_toko,$kelompok,$untuk_toko,$id_pemohon,$nop,$no_reg,$luas_lahan,$ltb,$luas_lantai,$jml_lantai,$status_bangunan,$status_milik,$lokasi,$lat,$lng,$kode,$jasa,$atm,$zona,$sublock)
+	function InsertBangunan($id,$idpemohon,$nop,$nama_toko,$nama_badan_usaha,$lokasi,$alamatpemohon,$kelompok,$untuk_toko,$lat,$lng,$kecamatan,$kelurahan,$zona,$sublock,$luas_lahan,$status_milik,$status_bangunan,$ltb,$luas_lantai,$luas_lantai_input,$jml_lantai,$jumlah_atm,$kode)
 	{
 		$arrayPermohonan = array(
                 'id_bangunan'=>$id,
-                'id_pemohon'=>$id_pemohon,
+                'id_pemohon'=>$idpemohon,
                 'nop'=>$nop,
-                'no_reg_bangunan'=>$no_reg,
                 'nama_usaha'=>$nama_toko,
+                'nama_badan_usaha'=>$nama_badan_usaha,
                 'alamat'=>$lokasi,
+                'alamat_lengkap'=>$alamatpemohon,
                 'kelompok_usaha'=>$kelompok,
                 'peruntukan_toko'=>$untuk_toko,
                 'lat'=>$lat,
                 'lon'=>$lng,
+                'kecamatan'=>$kecamatan,
+                'kelurahan'=>$kelurahan,
                 'zona'=>$zona,
-                'jml_atm'=>$atm,
-                'jasa'=>$jasa,
                 'kode_sublok'=>$sublock,
                 'luas_lahan'=>$luas_lahan,
                 'status_milik'=>$status_milik,
                 'status_bangunan'=>$status_bangunan,
                 'luas_tapak'=>$ltb,
                 'luas_lantai'=>$luas_lantai,
+                'detail_luas_lantai'=>$luas_lantai_input,
                 'jumlah_lantai'=>$jml_lantai,
+                'jml_atm'=>$jumlah_atm,
                 'code'=>$kode,
                 'status' => 0,
                 'status_jalan' =>0,
@@ -85,35 +88,34 @@ class UserModel extends CI_Model {
         $q = $this->db->insert('bangunan_iuts',$arrayPermohonan);
         return $q;
 	}
-	function InsertPemohon($id,$jabatan,$npwp_perusahaan,$alamat_perusahaan,$nama,$nik,$nib,$npwp,$no_telp,$njop,$email,$token)
+	function InsertPemohon($id,$nama,$nik,$nib,$jabatan,$npwp,$npwp_perusahaan,$alamat_perusahaan,$njop,$barang_jasa,$no_telp,$email,$token)
 	{
 		$array = array(
-			'id_pemohon'=>$id,
-            'nama' => $nama,
-            'nik' => $nik,
-            'nib' => $nib,
-            'email' => $email,
-            'npwp' => $npwp,
-            'no_hp' => $no_telp,
-            'njop' => $njop,
+            'id'=>$id,
+			'nama'=>$nama,
+            'nik'=>$nik,
+            'nib'=>$nib,
             'jabatan'=>$jabatan,
+            'npwp'=>$npwp,
             'npwp_usaha'=>$npwp_perusahaan,
             'alamat_perusahaan'=>$alamat_perusahaan,
+            'njop'=>$njop,
+            'barang_jasa'=>$barang_jasa,
+            'no_hp'=>$no_telp,
+            'email'=>$email,
             'password'=>password_hash($token, PASSWORD_DEFAULT),
-            'token' => $token,
+            'token'=>$token,
             'created_at' => date('Y-m-d H:i:s'),
         );
         $q = $this->db->insert('pemohon_iuts',$array);
         return $q;
 	}
-    function InsertKondisi($bangunan,$kondisi,$mengajukan,$pbb,$umkm,$sewa,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$volume,$janji_sewa_input,$keterlibatan_umkm_input,$lama_izin_input,$detail_kondisi_input)
+    function InsertKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$rek_umkm,$id_tata,$kajian,$imb,$slf,$volume,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir)
     {
         $array = array(
             'id_bangunan' => $bangunan,
             'id_kondisi' => $kondisi,
             'kondisi_eksisting' => $detail_kondisi_input,
-            'id_waktu' => $mengajukan,
-            'lama_izin' => $lama_izin_input,
             'id_pbb' => $pbb,
             'id_umkm' => $umkm,
             'keterlibatan_umkm' => $keterlibatan_umkm_input,
@@ -121,7 +123,7 @@ class UserModel extends CI_Model {
             'perjanjian_sewa' => $janji_sewa_input,
             'id_warga' => $warga,
             'id_rek_umkm' => $rek_umkm,
-            // 'id_tata_ruang' => $id_tata,
+            'id_tata_ruang' => $id_tata, // baru
             'id_kajian' => $kajian,
             'id_imb' => $imb,
             'id_slf' => $slf,
