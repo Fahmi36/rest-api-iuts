@@ -469,8 +469,8 @@ class ValidasiController extends CI_Controller {
         $jml_lantai = htmlspecialchars($data[0]->jml_lantai);
         $status_bangunan = htmlspecialchars($data[0]->status_bangunan);
         $status_milik = htmlspecialchars($data[0]->status_milik);
-        
-        $jumlah_atm = htmlspecialchars($json[0]->jumlah_atm);
+
+        $jumlah_atm = htmlspecialchars($data[0]->jumlah_atm);
         $nama_toko = htmlspecialchars($data[0]->nama_toko);
         $kelompok = htmlspecialchars($data[0]->kelompok);
         $untuk_toko = htmlspecialchars($data[0]->peruntukan_toko);
