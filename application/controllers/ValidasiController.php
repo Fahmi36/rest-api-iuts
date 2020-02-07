@@ -430,15 +430,27 @@ class ValidasiController extends CI_Controller {
             
             $hasiltotal = round($rarata,1);
           	$savepemohon = $this->savePemohon($json);
-          	$bangunan = $this->saveBangunan($savepemohon,$json);
-          	$skor = $this->saveSkor($bangunan,$hasiladmin,$hasilteknis,$hasildampak,$hasiltotal);
-            $savekondisi = $this->saveKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$jumlah_atm,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$volume,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$sublock,$status_pbb,$status_npwp);
-			if ($skor == true) {
-				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
-				$this->sendmail($nik);
-          	}else{
-          		$json = $this->returnResultErrorDB();
-          	}
+            if ($savepemohon) {
+          	     $bangunan = $this->saveBangunan($savepemohon,$json);
+                if ($bangunan) {
+                    $savekondisi = $this->saveKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$jumlah_atm,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$volume,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$sublock,$status_pbb,$status_npwp);
+                    if ($savekondisi) {
+                        $skor = $this->saveSkor($bangunan,$hasiladmin,$hasilteknis,$hasildampak,$hasiltotal);
+                        if ($skor == true) {
+                            $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
+                            $this->sendmail($nik);
+                        }else{
+                            $json = $this->returnResultErrorDB();
+                        }
+                    }else{
+                        $json = $this->returnResultErrorDB();
+                    }
+                }else{
+                    $json = $this->returnResultErrorDB();
+                }
+            }else{
+                $json = $this->returnResultErrorDB();
+            }
 		} catch (Exception $e) {
 			$json = $this->returnResultCustom(false,'Throws');
 		}

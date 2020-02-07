@@ -117,6 +117,8 @@ class UserModel extends CI_Model {
             'id_kondisi' => $kondisi,
             'kondisi_eksisting' => $detail_kondisi_input,
             'id_pbb' => $pbb,
+            'status_pbb' => $status_pbb,
+            'status_npwp' => $status_npwp,
             'id_umkm' => $umkm,
             'keterlibatan_umkm' => $keterlibatan_umkm_input,
             'id_sewa' => $sewa,
