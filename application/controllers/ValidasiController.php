@@ -103,7 +103,7 @@ class ValidasiController extends CI_Controller {
             $json = json_decode($this->input->post('dataRegist'));
 
             $nik = htmlspecialchars($json[0]->nomorInKepen);
-        $email = htmlspecialchars($json[0]->emailAktif);
+            $email = htmlspecialchars($json[0]->emailAktif);
             /*Administrasi Bangunan*/
             $kondisi = htmlspecialchars($json[0]->kondisi_eksisting);
             $detail_kondisi_input = htmlspecialchars($json[0]->detail_kondisi_input);
@@ -139,8 +139,8 @@ class ValidasiController extends CI_Controller {
             $status_pbb = htmlspecialchars($json[0]->status_pbb);
 
             $spasial = $this->us->cekSpasial($sublock);
+            $row = $spasial->row();
             if ($spasial->num_rows() > 0) {
-                $row = $spasial->row();
                 $id_tata = $row->id;
             }else{
                 $id_tata = 1;
@@ -201,8 +201,16 @@ class ValidasiController extends CI_Controller {
             }else if(empty($status_npwp) OR $status_npwp=='-' OR $status_npwp=='0'){
                 echo json_encode($this->returnResultCustom(false,"Harus Melakukan Verifikasi NIK dan PBB"));
                 return;
+            }else if(empty($status_npwp) OR $status_npwp=='-' OR $status_npwp=='0'){
+                echo json_encode($this->returnResultCustom(false,"Harus Melakukan Verifikasi NIK dan PBB"));
+                return;
+            }else if ($row->kode_subzona == 'H.2') {
+                echo json_encode($this->returnResultCustom(false,"Tidak Boleh di Zona Hijau"));
+                return;
+            }elseif (empty($sublock) OR $sublock=='-') {
+                echo json_encode($this->returnResultCustom(false,"Mohon Pilih lokasi maps dekat dengan layar yang berwarna "));
+                return;
             }
-
             // Administrasi
             if ($kondisi == '1') {
             	$skor = 0;
@@ -589,7 +597,7 @@ class ValidasiController extends CI_Controller {
         }
        echo json_encode($json);
 	}
-    function saveKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$volume,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$sublock,$status_pbb,$status_npwp)
+    function saveKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$jumlah_atm,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$volume,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$sublock,$status_pbb,$status_npwp)
     {
         $cek = $this->us->cekKondisi($bangunan);
         $spasial = $this->us->cekSpasial($sublock);
