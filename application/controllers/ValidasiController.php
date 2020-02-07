@@ -204,11 +204,11 @@ class ValidasiController extends CI_Controller {
             }else if(empty($status_npwp) OR $status_npwp=='-' OR $status_npwp=='0'){
                 echo json_encode($this->returnResultCustom(false,"Harus Melakukan Verifikasi NIK dan PBB"));
                 return;
-            }else if ($row->kode_subzona == 'H.2') {
-                echo json_encode($this->returnResultCustom(false,"Tidak Boleh di Zona Hijau"));
-                return;
             }elseif (empty($sublock) OR $sublock=='-') {
                 echo json_encode($this->returnResultCustom(false,"Mohon Pilih lokasi maps dekat dengan layar yang berwarna "));
+                return;
+            }else if ($row->kode_subzona == 'H.2') {
+                echo json_encode($this->returnResultCustom(false,"Tidak Boleh di Zona Hijau"));
                 return;
             }
             // Administrasi
