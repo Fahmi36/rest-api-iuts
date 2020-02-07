@@ -212,6 +212,8 @@ class ValidasiController extends CI_Controller {
                 echo json_encode($this->returnResultCustom(false,"Tidak Boleh di Zona Hijau"));
                 return;
             }
+            echo json_encode($this->returnResultCustom(false,$id_tata));
+            return;
             // Administrasi
             if ($kondisi == '1') {
             	$skor = 0;
