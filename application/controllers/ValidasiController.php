@@ -631,7 +631,7 @@ class ValidasiController extends CI_Controller {
             );
         $q = $this->db->update('kondisi_bangunan',$array,$where);
         }else{
-            $q = $this->us->InsertKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$rek_umkm,$id_tata,$kajian,$imb,$slf,$volume,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$status_pbb,$status_npwp);
+            $q = $this->us->InsertKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$status_pbb,$status_npwp,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$rek_umkm,$id_tata,$kajian,$imb,$slf,$volume,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir);
         }
         return $q;
     }
