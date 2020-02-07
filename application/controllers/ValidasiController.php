@@ -470,7 +470,7 @@ class ValidasiController extends CI_Controller {
 		$no_telp = htmlspecialchars($data[0]->no_telp);
         $email = htmlspecialchars($data[0]->emailAktif);
 
-		$cek = $this->us->cekPemohon($nik);
+		$cek = $this->us->cekPemohon($email);
 		$idpemohon = $cek->row();
 		$token = $this->incrementalHash(8);
 		if ($cek->num_rows() > 0) {

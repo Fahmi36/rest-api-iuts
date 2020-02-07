@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 date_default_timezone_set('Asia/Jakarta');
 class UserModel extends CI_Model {
 
-	function cekPemohon($nik='')
+	function cekPemohon($email='')
     {
-        if($nik){
-            $this->db->where('nik',$nik);
+        if($email){
+            $this->db->where('email',$email);
         }
         $q = $this->db->get('pemohon_iuts');
         return $q;
