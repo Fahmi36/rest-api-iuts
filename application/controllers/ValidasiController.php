@@ -143,7 +143,7 @@ class ValidasiController extends CI_Controller {
                 $row = $spasial->row();
                 $id_tata = $row->id;
             }else{
-                $id_tata = 1;
+                $id_tata = '1';
             }
 
             // return var_dump($json);
@@ -204,7 +204,7 @@ class ValidasiController extends CI_Controller {
             }else if(empty($status_npwp) OR $status_npwp=='-' OR $status_npwp=='0'){
                 echo json_encode($this->returnResultCustom(false,"Harus Melakukan Verifikasi NIK dan PBB"));
                 return;
-            }elseif (empty($sublock) OR $sublock=='-') {
+            }else if (empty($sublock) OR $sublock=='-') {
                 echo json_encode($this->returnResultCustom(false,"Mohon Pilih lokasi maps dekat dengan layar yang berwarna "));
                 return;
             }else if ($sublock == 'H.2') {
