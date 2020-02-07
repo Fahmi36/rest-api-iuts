@@ -207,8 +207,12 @@ class ValidasiController extends CI_Controller {
             $spasial = $this->us->cekSpasial($sublock);
             if ($spasial->num_rows() > 0) {
                 $row = $spasial->row();
+                echo json_encode($this->returnResultCustom(false,$row->id));
+                return;
                 $id_tata = $row->id;
             }else{
+                echo json_encode($this->returnResultCustom(false,'1'));
+                return;
                 $id_tata = '1';
             }
 
