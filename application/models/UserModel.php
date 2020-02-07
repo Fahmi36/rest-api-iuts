@@ -48,8 +48,9 @@ class UserModel extends CI_Model {
         $this->db->select('tata_ruang.id');
         $this->db->from('spasial');
         $this->db->join('zona_sub', 'zona_sub.id = spasial.id_subzona', 'INNER');
-        $this->db->join('tata_ruang', 'tata_ruang.id = spasial.id_tataruang', 'left');
+        $this->db->join('tata_ruang', 'tata_ruang.id = spasial.id_tataruang', 'INNER');
         $this->db->where('zona_sub.kode_subzona', $id);
+        $this->db->where('ibtx_detail', 'Mini Market');
         $q = $this->db->get();
         return $q;
     }
