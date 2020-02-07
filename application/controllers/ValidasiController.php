@@ -209,9 +209,7 @@ class ValidasiController extends CI_Controller {
                 $row = $spasial->row();
                 $id_tata = $row->id;
             }else{
-                echo json_encode($this->returnResultCustom(false,'1'));
-                return;
-                $id_tata = '1';
+                $id_tata = 1;
             }
 
             // Administrasi
