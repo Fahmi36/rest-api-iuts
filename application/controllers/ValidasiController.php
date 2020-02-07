@@ -433,7 +433,7 @@ class ValidasiController extends CI_Controller {
             if ($savepemohon) {
           	     $bangunan = $this->saveBangunan($savepemohon,$json);
                 if ($bangunan) {
-                    $savekondisi = $this->saveKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$jumlah_atm,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$volume,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$sublock,$status_pbb,$status_npwp);
+                    $savekondisi = $this->saveKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$jumlah_atm,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$volume,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$status_pbb,$status_npwp);
                     if ($savekondisi) {
                         $skor = $this->saveSkor($bangunan,$hasiladmin,$hasilteknis,$hasildampak,$hasiltotal);
                         if ($skor == true) {
@@ -588,7 +588,7 @@ class ValidasiController extends CI_Controller {
         }
        echo json_encode($json);
 	}
-    function saveKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$volume,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$sublock,$status_pbb,$status_npwp)
+    function saveKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$rek_umkm,$kajian,$imb,$slf,$kondisi_sumur,$volume,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$status_pbb,$status_npwp)
     {
         $cek = $this->us->cekKondisi($bangunan);
         $spasial = $this->us->cekSpasial($sublock);
@@ -631,7 +631,7 @@ class ValidasiController extends CI_Controller {
             );
         $q = $this->db->update('kondisi_bangunan',$array,$where);
         }else{
-            $q = $this->us->InsertKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$rek_umkm,$id_tata,$kajian,$imb,$slf,$volume,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$sublock,$status_pbb,$status_npwp);
+            $q = $this->us->InsertKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$rek_umkm,$id_tata,$kajian,$imb,$slf,$volume,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir,$status_pbb,$status_npwp);
         }
         return $q;
     }
