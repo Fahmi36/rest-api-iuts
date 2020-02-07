@@ -139,8 +139,9 @@ class ValidasiController extends CI_Controller {
             $status_pbb = htmlspecialchars($json[0]->status_pbb);
 
             $spasial = $this->us->cekSpasial($sublock);
-            $row = $spasial->row();
+            $rowtata = $spasial->row();
             if ($spasial->num_rows() > 0) {
+                $row = $spasial->row();
                 $id_tata = $row->id;
             }else{
                 $id_tata = 1;
@@ -207,7 +208,7 @@ class ValidasiController extends CI_Controller {
             }elseif (empty($sublock) OR $sublock=='-') {
                 echo json_encode($this->returnResultCustom(false,"Mohon Pilih lokasi maps dekat dengan layar yang berwarna "));
                 return;
-            }else if ($row->kode_subzona == 'H.2') {
+            }else if ($rowtata->kode_subzona == 'H.2') {
                 echo json_encode($this->returnResultCustom(false,"Tidak Boleh di Zona Hijau"));
                 return;
             }
