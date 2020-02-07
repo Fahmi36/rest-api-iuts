@@ -45,7 +45,7 @@ class UserModel extends CI_Model {
     }
     function cekSpasial($id)
     {
-        $this->db->select('tata_ruang.id,zona_sub.kode_subzona');
+        $this->db->select('tata_ruang.id');
         $this->db->from('spasial');
         $this->db->join('zona_sub', 'zona_sub.id = spasial.id_subzona', 'INNER');
         $this->db->join('tata_ruang', 'tata_ruang.id = spasial.id_tataruang', 'left');
