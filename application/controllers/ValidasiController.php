@@ -103,6 +103,7 @@ class ValidasiController extends CI_Controller {
             $json = json_decode($this->input->post('dataRegist'));
 
             $nik = htmlspecialchars($json[0]->nomorInKepen);
+        $email = htmlspecialchars($json[0]->emailAktif);
             /*Administrasi Bangunan*/
             $kondisi = htmlspecialchars($json[0]->kondisi_eksisting);
             $detail_kondisi_input = htmlspecialchars($json[0]->detail_kondisi_input);
@@ -438,7 +439,7 @@ class ValidasiController extends CI_Controller {
                         $skor = $this->saveSkor($bangunan,$hasiladmin,$hasilteknis,$hasildampak,$hasiltotal);
                         if ($skor == true) {
                             $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
-                            $this->sendmail($nik);
+                            $this->sendmail($email);
                         }else{
                             $json = $this->returnResultErrorDB();
                         }
