@@ -203,6 +203,15 @@ class ValidasiController extends CI_Controller {
                 echo json_encode($this->returnResultCustom(false,"Tidak Boleh di Zona Hijau"));
                 return;
             }
+
+            $spasial = $this->us->cekSpasial($sublock);
+            if ($spasial->num_rows() > 0) {
+                $row = $spasial->row();
+                $id_tata = $row->id;
+            }else{
+                $id_tata = '1';
+            }
+
             // Administrasi
             if ($kondisi == '1') {
             	$skor = 0;
@@ -428,15 +437,6 @@ class ValidasiController extends CI_Controller {
            	$hasildampak = ($skordampak + $skordampak1 + $skordampak2 + $skordampak3 + $skordampak4 + $skordampak5 + $skordampak6 + $skordampak7 + $skordampak8 + $skordampak9 + $skordampak10) / 11;
 
           	$rarata = ($hasiladmin + $hasildampak + $hasilteknis) / 3;
-            
-            $spasial = $this->us->cekSpasial($sublock);
-            if ($spasial->num_rows() > 0) {
-                $row = $spasial->row();
-                $id_tata = $row->id;
-            }else{
-                $id_tata = '1';
-            }
-
 
             $hasiltotal = round($rarata,1);
           	$savepemohon = $this->savePemohon($json);
