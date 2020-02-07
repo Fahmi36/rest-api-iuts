@@ -138,14 +138,6 @@ class ValidasiController extends CI_Controller {
             $status_npwp = htmlspecialchars($json[0]->status_npwp);
             $status_pbb = htmlspecialchars($json[0]->status_pbb);
 
-            $spasial = $this->us->cekSpasial($sublock);
-            if ($spasial->num_rows() > 0) {
-                $row = $spasial->row();
-                $id_tata = $row->id;
-            }else{
-                $id_tata = '1';
-            }
-
             // return var_dump($json);
             if(empty($kondisi) OR $kondisi == '-'){
                 echo json_encode($this->returnResultCustom(false,"Kondisi Eksisting Tidak Boleh Kosong"));
@@ -437,6 +429,15 @@ class ValidasiController extends CI_Controller {
 
           	$rarata = ($hasiladmin + $hasildampak + $hasilteknis) / 3;
             
+            $spasial = $this->us->cekSpasial($sublock);
+            if ($spasial->num_rows() > 0) {
+                $row = $spasial->row();
+                $id_tata = $row->id;
+            }else{
+                $id_tata = '1';
+            }
+
+
             $hasiltotal = round($rarata,1);
           	$savepemohon = $this->savePemohon($json);
             if ($savepemohon) {
