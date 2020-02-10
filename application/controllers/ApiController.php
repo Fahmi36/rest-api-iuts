@@ -47,6 +47,9 @@ class ApiController extends CI_Controller {
 
 			$data = json_decode($response);
 			foreach ($data as $key => $value) {
+				var_dump($key);
+				var_dump($value);
+				return;
 				if ($key == $value) {
 					$json = json_encode(array('success'=>false,'msg'=>$value));
 				}else{
