@@ -292,7 +292,7 @@ class ValidasiController extends CI_Controller {
                                 if ($kondisiiuts) {
                                     $skor = $this->saveSkor($slf,$hasiladmin,$hasilteknis,$hasildampak,$hasiltotal);
                                     if ($skor) {
-                                        $tax = $this->saveTaxClear($slf,$status_npwp,$status_pbb)
+                                        $tax = $this->saveTaxClear($slf,$status_npwp,$status_pbb);
                                         if ($tax) {
                                             $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
                                             $this->sendmail($email);
