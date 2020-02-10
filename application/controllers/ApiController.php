@@ -68,7 +68,7 @@ class ApiController extends CI_Controller {
                 			$json = json_encode(array('success'=>false,'msg'=>'Maaf NIK Anda Tidak Mempunyai Pajak PBB Cek Jenis pajak'));
                 		}
                 	}else{
-                		if (@$key->JNS_PAJAK != 'PBB') {
+                		if (@$key->JNS_PAJAK == "PBB") {
                 			if (@$key->NOPD == $nopd) {
                 				if (@$key->status == "TIDAK TERDAPAT TUNGGAKAN") {
                 					$json = json_encode(array('success'=>true,'msg'=>'Silakan Tunggu'));
