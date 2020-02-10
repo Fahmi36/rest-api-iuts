@@ -541,14 +541,14 @@ class ValidasiController extends CI_Controller {
                 'id_limbah' => $limbah,
                 'id_sampah' => $sampah,
                 'id_listrik' => $listrik,
-                'id_toilet' => $sampah,
-                'id_parkir' => $toilet,
+                'id_toilet' => $toilet,
+                'id_parkir' => $parkir,
                 'created_at' => $getdata->created_at,
                 'updated_at' => date('Y-m-d H:i:s'),
             );
         $q = $this->db->update('kondisi_slf',$array,$where);
         }else{
-            $q = $this->us->InsertKondisiSlf($slf,$kdh_zonasi,$kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$rek_slf,$damkar,$tenaga_kerja,$imb,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$sampah,$toilet);
+            $q = $this->us->InsertKondisiSlf($slf,$kdh_zonasi,$kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$rek_slf,$damkar,$tenaga_kerja,$imb,$fasilitas,$asuransi,$kelayakan,$air,$limbah,$sampah,$listrik,$toilet,$parkir);
         }
         return $q;
     }
