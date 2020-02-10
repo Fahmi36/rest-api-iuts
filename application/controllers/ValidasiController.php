@@ -234,7 +234,7 @@ class ValidasiController extends CI_Controller {
             }else if(empty($keterlibatan_umkm_input) OR $keterlibatan_umkm_input =='-' ){
             	echo json_encode($this->returnResultCustom(false,"Detail Keterlibatan UMKM Tidak Boleh Kosong"));
                 return;
-            }else if(empty($asal_karyawan) OR $asal_karyawan'-' ){
+            }else if(empty($asal_karyawan) OR $asal_karyawan=='-' ){
             	echo json_encode($this->returnResultCustom(false,"Asal Karyawan Tidak Boleh Kosong"));
                 return;
             }else if(empty($jumlah_atm)){
@@ -243,13 +243,13 @@ class ValidasiController extends CI_Controller {
             }else if(empty($jumlah_pengunjung)){
                 echo json_encode($this->returnResultCustom(false,"Jumlah Pengunjung Tidak Boleh Kosong"));
                 return;
-            }else if(empty($peng_lahan) OR $peng_lahan'-' ){
+            }else if(empty($peng_lahan) OR $peng_lahan=='-' ){
                 echo json_encode($this->returnResultCustom(false,"Pengelolaan Lahan Tidak Boleh Kosong"));
                 return;
-            }else if(empty($rek_umkm) OR $rek_umkm'-' ){
+            }else if(empty($rek_umkm) OR $rek_umkm=='-' ){
                 echo json_encode($this->returnResultCustom(false,"Rekomendasi UMKM Tidak Boleh Kosong"));
                 return;
-            }else if(empty($kajian) OR $kajian'-' ){
+            }else if(empty($kajian) OR $kajian=='-' ){
                 echo json_encode($this->returnResultCustom(false,"Kajian Sosek Tidak Boleh Kosong"));
                 return;
             }else if(empty($jumlah_karyawan)){
