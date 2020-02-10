@@ -46,7 +46,8 @@ class ApiController extends CI_Controller {
 		} else {
 			$data = json_decode($response);
 			foreach ($data as $key) {
-				return var_dump($data);
+				return var_dump($data['pesan']);
+				return var_dump($response);
 				if ($key->pesan == 'Data Tidak ditemukan') {
 					$json = json_encode(array('success'=>false,'msg'=>'Tidak ada Data'));
 				}else if ($key->pesan == 'Panjang Karakter Kurang dari 15') {
