@@ -3,10 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 date_default_timezone_set('Asia/Jakarta');
 class UserModel extends CI_Model {
 
-	function cekPemohon($email='')
+	function cekPemohon($nik='',$id='')
     {
-        if($email){
-            $this->db->where('email',$email);
+        if($nik){
+            $this->db->where('nik',$nik);
+            $this->db->where('jenis_pemohon', $id);
         }
         $q = $this->db->get('pemohon_iuts');
         return $q;
@@ -26,6 +27,47 @@ class UserModel extends CI_Model {
         }
         $q = $this->db->get('skor_bangunan');
         return $q;
+    }
+    function SkoringWeb($slf)
+    {
+        $this->db->select_avg('kdh_minimum.skor +  kondisi_kdh.skor + volume_sumur.skor + kondisi_pertandaan.skor + kondisi_sumur
+.skor + kondisi_drainase.skor + rekomendasi_slf.skor + izin_damkar.skor + izin_tenaga_kerja.skor + izin_imb.skor + fasilitas_damkar.skor + asuransi_toko.skor + kelayakan_gedung.skor + ketersedian_air.skor + pengelola_limbah.skor + pengelola_sampah.skor + ketersedian_listrik.skor + ketersedian_toilet.skor + kondisi_parkir as skorslf');
+        $this->db->select_avg('pemutakhiran_pbb.skor + keterlibatan_umkm.skor + rekomen_umkm.skor + tata_ruang.skor + kajian_sostek as skoriuts');
+        $this->db->select('taxclear.status_pbb,taxclear.status_npwp');
+        $this->db->from('kondisi_slf');
+        $this->db->join('kondisi_iuts', 'kondisi_iuts.id_slf = kondisi_slf.id_slf', 'INNER');
+        $this->db->join('taxclear', 'taxclear.id_slf = kondisi_slf.id_slf', 'INNER');
+
+        $this->db->join('kdh_minimum', 'kdh_minimum.id = kondisi_slf.id_kdh_minimum', 'left');
+        $this->db->join('kondisi_kdh', 'kondisi_kdh.id = kondisi_slf.id_kondisi_kdh', 'left');
+        $this->db->join('volume_sumur', 'volume_sumur.id = kondisi_slf.id_volume_sumur', 'left');
+        $this->db->join('kondisi_pertandaan', 'kondisi_pertandaan.id = kondisi_slf.id_pertandaan_toko', 'left');
+        $this->db->join('kondisi_sumur', 'kondisi_sumur.id = kondisi_slf.id_kondisi_sumur', 'left');
+        $this->db->join('kondisi_drainase', 'kondisi_drainase.id = kondisi_slf.id_drainase', 'left');
+        $this->db->join('rekomendasi_slf', 'rekomendasi_slf.id = kondisi_slf.id_rek_slf', 'left');
+        $this->db->join('izin_damkar', 'izin_damkar.id = kondisi_slf.id_izin_damkar', 'left');
+        $this->db->join('izin_tenaga_kerja', 'izin_tenaga_kerja.id = kondisi_slf.id_tenaga_kerja', 'left');
+        $this->db->join('izin_imb', 'izin_imb.id = kondisi_slf.id_imb', 'left');
+        $this->db->join('fasilitas_damkar', 'fasilitas_damkar.id = kondisi_slf.id_penanggulangan_kebakaran', 'left');
+        $this->db->join('asuransi_toko', 'asuransi_toko.id = kondisi_slf.id_asuransi', 'left');
+        $this->db->join('kelayakan_gedung', 'kelayakan_gedung.id = kondisi_slf.id_renovasi', 'left');
+        $this->db->join('ketersedian_air', 'ketersedian_air.id = kondisi_slf.id_bersih', 'left');
+        $this->db->join('pengelola_limbah', 'pengelola_limbah.id = kondisi_slf.id_limbah', 'left');
+        $this->db->join('pengelola_sampah', 'pengelola_sampah.id = kondisi_slf.id_sampah', 'left');
+        $this->db->join('ketersedian_listrik', 'ketersedian_listrik.id = kondisi_slf.id_listrik', 'left');
+        $this->db->join('ketersedian_toilet', 'ketersedian_toilet.id = kondisi_slf.id_toilet', 'left');
+        $this->db->join('kondisi_parkir', 'kondisi_parkir.id = kondisi_slf.id_parkir', 'left');
+
+        $this->db->join('pemutakhiran_pbb', 'pemutakhiran_pbb.id = kondisi_iuts.id_pem_pbb', 'left');
+        $this->db->join('keterlibatan_umkm', 'keterlibatan_umkm.id = kondisi_iuts.id_umkm', 'left');
+        $this->db->join('rekomen_umkm', 'rekomen_umkm.id = kondisi_iuts.id_rek_umkm', 'left');
+        $this->db->join('tata_ruang', 'tata_ruang.id = kondisi_iuts.id_tata_ruang', 'left');
+        $this->db->join('kajian_sostek', 'kajian_sostek.id = kondisi_iuts.id_kasostek', 'left');
+
+        $this->db->join('Table', 'table.column = table.column', 'left');
+        $this->db->where('kondisi_slf.id_slf', $slf);
+        $query = $this->db->get();
+        return $query;
     }
     function cekKondisi($id)
     {
@@ -89,21 +131,19 @@ class UserModel extends CI_Model {
         $q = $this->db->insert('bangunan_iuts',$arrayPermohonan);
         return $q;
 	}
-	function InsertPemohon($id,$nama,$nik,$nib,$jabatan,$npwp,$npwp_perusahaan,$alamat_perusahaan,$njop,$barang_jasa,$no_telp,$email,$token)
+	function InsertPemohon($id,$namaLengkap,$jabatan,$nomorInKepen,$nomorInBeru,$npwp,$alamat_perusahaan,$no_telp,$emailAktif,$status_pemohon,$token)
 	{
 		$array = array(
             'id_pemohon'=>$id,
-			'nama'=>$nama,
-            'nik'=>$nik,
-            'nib'=>$nib,
+			'nama'=>$namaLengkap,
             'jabatan'=>$jabatan,
+            'nik'=>$nomorInKepen,
+            'nib'=>$nomorInBeru,
             'npwp'=>$npwp,
-            'npwp_usaha'=>$npwp_perusahaan,
             'alamat_perusahaan'=>$alamat_perusahaan,
-            'njop'=>$njop,
-            'barang_jasa'=>$barang_jasa,
             'no_hp'=>$no_telp,
-            'email'=>$email,
+            'email'=>$emailAktif,
+            'jenis_pemohon'=>$status_pemohon,
             'password'=>password_hash($token, PASSWORD_DEFAULT),
             'token'=>$token,
             'created_at' => date('Y-m-d H:i:s'),
@@ -111,6 +151,57 @@ class UserModel extends CI_Model {
         $q = $this->db->insert('pemohon_iuts',$array);
         return $q;
 	}
+    function InsertKondisiSlf($slf,$kdh_zonasi,$kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$rek_slf,$damkar,$tenaga_kerja,$imb,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$sampah,$toilet)
+    {
+        $array = array(
+            'id_slf'=>$slf,
+            'kdh_zonasi' => $kdh_zonasi,
+            'id_kdh_minimum' => $kdh_minimum,
+            'id_kondisi_kdh' => $kondisi_kdh,
+            'id_volume_sumur' => $volume,
+            'id_pertandaan_toko' => $kondisipertandaan,
+            'id_kondisi_sumur' => $kondisi_sumur,
+            'id_drainase' => $drainase,
+            'id_rek_slf' => $rek_slf,
+            'id_izin_damkar' => $damkar,
+            'id_tenaga_kerja' => $tenaga_kerja, // baru
+            'id_imb' => $imb,
+            'id_penanggulangan_kebakaran' => $fasilitas,
+            'id_asuransi' => $asuransi,
+            'id_renovasi' => $kelayakan,
+            'id_bersih' => $air,
+            'sumber_air' => $sumber_air,
+            'id_limbah' => $limbah,
+            'id_sampah' => $sampah,
+            'id_listrik' => $listrik,
+            'id_toilet' => $sampah,
+            'id_parkir' => $toilet,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        );
+        $q = $this->db->insert('kondisi_slf',$array);
+        return $q;
+    }
+    function InsertKondisiIuts($idiuts,$pbb,$umkm,$keterlibatan_umkm_input,$jumlah_karyawan,$asal_karyawan,$jumlah_atm,$jumlah_pengunjung,$rek_umkm,$id_tata,$kajian)
+    {
+        $array = array(
+            'id_iuts'=>$idiuts,
+            'id_pem_pbb' => $pbb,
+            'id_umkm' => $umkm,
+            'keterlibatan_umkm' => $keterlibatan_umkm_input,
+            'jml_karyawan' => $jumlah_karyawan,
+            'asal_karyawan' => $asal_karyawan,
+            'jml_atm' => $jumlah_atm,
+            'jml_pengunjung' => $jumlah_pengunjung,
+            'id_rek_umkm' => $rek_umkm,
+            'id_tata_ruang' => $id_tata,
+            'id_kasostek' => $kajian,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        );
+        $q = $this->db->insert('kondisi_iuts',$array);
+        return $q;
+    }
     function InsertKondisi($bangunan,$kondisi,$detail_kondisi_input,$pbb,$status_pbb,$status_npwp,$umkm,$keterlibatan_umkm_input,$sewa,$janji_sewa_input,$warga,$rek_umkm,$id_tata,$kajian,$imb,$slf,$volume,$kondisi_sumur,$drainase,$kdh_minimum,$kondisi_kdh,$sampah,$parkir)
     {
         $array = array(
@@ -144,22 +235,14 @@ class UserModel extends CI_Model {
     }
 	function InsertSkor($bangunan,$hasil,$teknis,$dampak,$rata)
 	{
-
-		if ($rata <= 1.5) {
-			$status = '2';
-		}else if($rata >= 1.5 ){
-			$status = '0';
-		}else if ($rata >= 2.5) {
-			$status = '1';
-		}
 		$array = array(
-            'id_bangunan' => $bangunan,
-            'total_admin' => $hasil,
-            'total_teknis' => $teknis,
-            'total_dampak' => $dampak,
+            'total_slf' => $rata,
+            'total_iuts' => $iuts,
             'rata-rata' => $rata,
-            'status' => $status,
+            'status_iuts' => $status_iuts,
+            'status_slf' => $status,
             'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
         );
         $q = $this->db->insert('skor_bangunan',$array);
         return $q;
