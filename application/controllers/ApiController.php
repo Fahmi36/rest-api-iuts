@@ -46,7 +46,6 @@ class ApiController extends CI_Controller {
 		} else {
 			$data = json_decode($response);
 			foreach ($data as $key) {
-				return var_dump($key->JNS_PAJAK);
 				if ($key->pesan == 'Data Tidak ditemukan') {
 					$json = json_encode(array('success'=>false,'msg'=>'Tidak ada Data'));
 				}else if ($key->pesan == 'Panjang Karakter Kurang dari 15') {
@@ -84,8 +83,8 @@ class ApiController extends CI_Controller {
                 		}
                 	}
                 }
-			}
 			echo $json;
+			}
 		}
 	}
 }
