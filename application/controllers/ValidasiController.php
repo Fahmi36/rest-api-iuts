@@ -679,7 +679,68 @@ class ValidasiController extends CI_Controller {
 
         echo json_encode($res);
     }
+    function uploadFotoLuar($param)
+    {
+        $this->load->library('upload');
+        $config['upload_path'] = './assets/fotoluar/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['encrypt_name']         = TRUE;
+        $config['remove_spaces']        = TRUE;
 
+        $gl = "";
+        $this->upload->initialize($config);
+        if ($this->upload->do_upload($params)) {
+            $s = $this->upload->data();
+            if (count($s) != 14) {
+                for ($i=0; $i < count($s); $i++) {
+                    $abc = $s[$i]['file_name'].',';
+                    $gl .= $abc;
+                }
+                $newfileluar = substr($gl, 0, -1);
+            }else{
+                $newfileluar = $s['file_name'];
+            }
+        }else{
+        $s = $this->input->post($params);
+            for ($i=0; $i < count($s); $i++) {
+                $abc = $s[$i].',';
+                $gl .= $abc;
+            }
+            $newfileluar = substr($se, 0, -1);
+        }
+        return $newfileluar;
+    }
+    function uploadFotoDalam($param)
+    {
+        $this->load->library('upload');
+        $config['upload_path'] = './assets/fotodalam/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['encrypt_name']         = TRUE;
+        $config['remove_spaces']        = TRUE;
+
+        $ga = "";
+        $this->upload->initialize($config);
+        if ($this->upload->do_upload($params)) {
+            $s = $this->upload->data();
+            if (count($s) != 14) {
+                for ($i=0; $i < count($s); $i++) {
+                    $abc = $s[$i]['file_name'].',';
+                    $ga .= $abc;
+                }
+                $newfiledalam = substr($ga, 0, -1);
+            }else{
+                $newfiledalam = $s['file_name'];
+            }
+        }else{
+        $s = $this->input->post($params);
+            for ($i=0; $i < count($s); $i++) {
+                $abc = $s[$i].',';
+                $ga .= $abc;
+            }
+            $newfiledalam = substr($se, 0, -1);
+        }
+        return $newfiledalam;
+    }
 	function sendmail($nik)
 	{
         $dPemohon = $this->us->cekPemohon($nik);
