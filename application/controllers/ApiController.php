@@ -44,47 +44,7 @@ class ApiController extends CI_Controller {
 		if ($err) {
 			echo json_encode(array('success'=>false,'msg'=>'Server Sedang Bermasasalah'));
 		} else {
-			$data = json_decode($response);
-			foreach ($data as $key) {
-				if (@$key->pesan == 'Data Tidak ditemukan') {
-					$json = json_encode(array('success'=>false,'msg'=>'Tidak ada Data'));
-				}else if (@$key->pesan == 'Panjang Karakter Kurang dari 15') {
-					$json = json_encode(array('success'=>false,'msg'=>'Maaf Panjang Angka NIK Kurang dari 15 Angka'));
-                }else if (@$key->errorCode == '32') {
-                    $json = json_encode(array('success'=>false,'msg'=>'Server Pajak Sedang Sibuk, Silakan Kirim Ulang'));
-                }else if (@$key->errorCode == '99') {
-                    $json = json_encode(array('success'=>false,'msg'=>'Server Pajak Sedang Sibuk, Silakan Kirim Ulang'));
-                }else if (@$key->errorCode == '4') {
-                    $json = json_encode(array('success'=>false,'msg'=>'Angka NIK / NPWP Kurang Dari 15'));
-                }else{
-                	if ($jns_pajak != null AND $jns_pajak != '') {
-                		if (@$key->JNS_PAJAK == $jns_pajak) {
-                			if (@$key->status == "TIDAK TERDAPAT TUNGGAKAN") {
-                				$json = json_encode(array('success'=>true,'msg'=>'Silakan Tunggu'));
-                			}else{
-                				$json = json_encode(array('success'=>false,'msg'=>'Silakan Melunasi Pajak PBB Anda'));
-                			}
-                		}else{
-                			$json = json_encode(array('success'=>false,'msg'=>'Maaf NIK Anda Tidak Mempunyai Pajak PBB Cek Jenis pajak'));
-                		}
-                	}else{
-                		if (@$key->JNS_PAJAK != 'PBB') {
-                			if (@$key->NOPD != $nopd) {
-                				if (@$key->status != "TIDAK TERDAPAT TUNGGAKAN") {
-                					$json = json_encode(array('success'=>true,'msg'=>'Silakan Tunggu'));
-                				}else{
-                					$json = json_encode(array('success'=>false,'msg'=>'Silakan Melunasi Pajak PBB Anda'));
-                				}
-                			}else{
-                				$json = json_encode(array('success'=>false,'msg'=>'Nomor Objek Pajak Daerah Tidak Sama'));
-                			}
-                		}else{
-                			$json = json_encode(array('success'=>false,'msg'=>'Maaf NIK Anda Tidak Mempunyai Pajak PBB'));
-                		}
-                	}
-                }
-			}
-			echo $json;
+			echo $response;
 		}
 	}
 }
