@@ -44,7 +44,7 @@ class ApiController extends CI_Controller {
 		if ($err) {
 			echo json_encode(array('success'=>false,'msg'=>'Server Sedang Bermasasalah'));
 		} else {
-			$data = json_decode($response,TRUE);
+			$data = json_decode($response);
 			foreach ($data as $key) {
 				if (count($key->pesan) == 0) {
 					if ($key->pesan == 'Data Tidak ditemukan') {
