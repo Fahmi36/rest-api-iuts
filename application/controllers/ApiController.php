@@ -46,19 +46,8 @@ class ApiController extends CI_Controller {
 		} else {
 			$data = json_decode($response);
 			foreach ($data as $key) {
-				return var_dump(count($key->pesan));
-				return var_dump($response);
-				if ($key->pesan == 'Data Tidak ditemukan') {
-					$json = json_encode(array('success'=>false,'msg'=>'Tidak ada Data'));
-				}else if ($key->pesan == 'Panjang Karakter Kurang dari 15') {
-					$json = json_encode(array('success'=>false,'msg'=>'Maaf Panjang Angka NIK Kurang dari 15 Angka'));
-                }else if ($key->errorCode == '32') {
-                    $json = json_encode(array('success'=>false,'msg'=>'Server Pajak Sedang Sibuk, Silakan Kirim Ulang'));
-                }else if ($key->errorCode == '99') {
-                    $json = json_encode(array('success'=>false,'msg'=>'Server Pajak Sedang Sibuk, Silakan Kirim Ulang'));
-                }else if ($key->errorCode == '4') {
-                    $json = json_encode(array('success'=>false,'msg'=>'Angka NIK / NPWP Kurang Dari 15'));
-                }else{
+				// return var_dump(count($key->pesan));
+				// return var_dump($response);
                 	if ($jns_pajak != null OR $jns_pajak != '') {
                 		if ($key->JNS_PAJAK == $jns_pajak) {
                 			if ($key->status == "TIDAK TERDAPAT TUNGGAKAN") {
@@ -68,6 +57,17 @@ class ApiController extends CI_Controller {
                 			}
                 		}else{
                 			$json = json_encode(array('success'=>false,'msg'=>'Maaf NIK Anda Tidak Mempunyai Pajak PBB'));
+                		}
+                		if ($key->pesan == 'Data Tidak ditemukan') {
+                			$json = json_encode(array('success'=>false,'msg'=>'Tidak ada Data'));
+                		}else if ($key->pesan == 'Panjang Karakter Kurang dari 15') {
+                			$json = json_encode(array('success'=>false,'msg'=>'Maaf Panjang Angka NIK Kurang dari 15 Angka'));
+                		}else if ($key->errorCode == '32') {
+                			$json = json_encode(array('success'=>false,'msg'=>'Server Pajak Sedang Sibuk, Silakan Kirim Ulang'));
+                		}else if ($key->errorCode == '99') {
+                			$json = json_encode(array('success'=>false,'msg'=>'Server Pajak Sedang Sibuk, Silakan Kirim Ulang'));
+                		}else if ($key->errorCode == '4') {
+                			$json = json_encode(array('success'=>false,'msg'=>'Angka NIK / NPWP Kurang Dari 15'));
                 		}
                 	}else{
                 		if ($key->JNS_PAJAK == 'PBB') {
@@ -83,13 +83,24 @@ class ApiController extends CI_Controller {
                 		}else{
                 			$json = json_encode(array('success'=>false,'msg'=>'Maaf NIK Anda Tidak Mempunyai Pajak PBB'));
                 		}
+
+                		if ($key->pesan == 'Data Tidak ditemukan') {
+                			$json = json_encode(array('success'=>false,'msg'=>'Tidak ada Data'));
+                		}else if ($key->pesan == 'Panjang Karakter Kurang dari 15') {
+                			$json = json_encode(array('success'=>false,'msg'=>'Maaf Panjang Angka NIK Kurang dari 15 Angka'));
+                		}else if ($key->errorCode == '32') {
+                			$json = json_encode(array('success'=>false,'msg'=>'Server Pajak Sedang Sibuk, Silakan Kirim Ulang'));
+                		}else if ($key->errorCode == '99') {
+                			$json = json_encode(array('success'=>false,'msg'=>'Server Pajak Sedang Sibuk, Silakan Kirim Ulang'));
+                		}else if ($key->errorCode == '4') {
+                			$json = json_encode(array('success'=>false,'msg'=>'Angka NIK / NPWP Kurang Dari 15'));
+                		}
                 	}
-                }
+				}
+				echo $json;
 			}
-			echo $json;
 		}
 	}
-}
 
 /* End of file ApiController.php */
 /* Location: ./application/controllers/ApiController.php */
