@@ -47,10 +47,9 @@ class ApiController extends CI_Controller {
 
 			$data = json_decode($response);
 			foreach ($data as $key => $value) {
-				var_dump($key->pesan);
-				var_dump($value);
-				return;
-				if ($key == $value) {
+				if (@$key->pesan != null) {
+					$json = json_encode(array('success'=>false,'msg'=>$value));
+				}else if (@$key->errorCode != null) {
 					$json = json_encode(array('success'=>false,'msg'=>$value));
 				}else{
                 	if ($jns_pajak != null OR $jns_pajak != '') {
