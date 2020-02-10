@@ -57,7 +57,7 @@ class ApiController extends CI_Controller {
                 }else if (@$key->errorCode == '4') {
                     $json = json_encode(array('success'=>false,'msg'=>'Angka NIK / NPWP Kurang Dari 15'));
                 }else{
-                	if ($jns_pajak != null OR $jns_pajak != '') {
+                	if ($jns_pajak != null AND $jns_pajak != '') {
                 		if (@$key->JNS_PAJAK == $jns_pajak) {
                 			if (@$key->status == "TIDAK TERDAPAT TUNGGAKAN") {
                 				$json = json_encode(array('success'=>true,'msg'=>'Silakan Tunggu'));
@@ -65,7 +65,7 @@ class ApiController extends CI_Controller {
                 				$json = json_encode(array('success'=>false,'msg'=>'Silakan Melunasi Pajak PBB Anda'));
                 			}
                 		}else{
-                			$json = json_encode(array('success'=>false,'msg'=>'Maaf NIK Anda Tidak Mempunyai Pajak PBB'));
+                			$json = json_encode(array('success'=>false,'msg'=>'Maaf NIK Anda Tidak Mempunyai Pajak PBB Cek Jenis pajak'));
                 		}
                 	}else{
                 		if (@$key->JNS_PAJAK == 'PBB') {
