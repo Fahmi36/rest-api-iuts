@@ -248,8 +248,8 @@ class OfficeModel extends CI_Model {
     function DetailBangunan($code)
     {
     	$this->db->select('*');
-        $this->db->from('bangunan_iuts');
-        $this->db->where('id_bangunan', $code);
+        $this->db->from('data_slf');
+        $this->db->where('id_slf', $code);
         $q = $this->db->get();
         return $q;
     }
