@@ -89,7 +89,7 @@ class OfficeModel extends CI_Model {
 	function InsertAdminTeknis($id_bangunan,$admin,$lahansekitar,$rencanajalan,$eksitingjalan,$statususaha,$statuspasar,$keterangan,$skor)
 	{
 		$arrayPermohonan = array(
-			'id_slf' => $id_bangunan,
+			'id_bangunan' => $id_bangunan,
             'id_admin'=>$admin,
             'id_pasar' => $statuspasar,
             'id_rencana' => $rencanajalan,
