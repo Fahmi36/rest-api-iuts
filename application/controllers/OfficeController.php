@@ -173,7 +173,7 @@ class OfficeController extends CI_Controller {
 		}
 		if ($q == true) {
 			$wherebangun = array(
-                'id_bangunan' => $id_bangunan,
+                'id_slf' => $id_bangunan,
             );
 			$data = array(
 				'status_jalan'=>1,
