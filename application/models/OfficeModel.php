@@ -16,10 +16,13 @@ class OfficeModel extends CI_Model {
 	}
     function cekPemohon($idbangun)
     {
-        $this->db->select('pemohon_iuts.nama,pemohon_iuts.email,pemohon_iuts.no_hp,pemohon_iuts.nib,pemohon_iuts.npwp,pemohon_iuts.barang_jasa,bangunan_iuts.nama_usaha,bangunan_iuts.nama_badan_usaha,bangunan_iuts.code,bangunan_iuts.nop,bangunan_iuts.alamat_lengkap as alamat,pemohon_iuts.alamat_perusahaan,bangunan_iuts.luas_lantai,bangunan_iuts.status,bangunan_iuts.created_at,bangunan_iuts.zona,bangunan_iuts.kode_sublok,bangunan_iuts.lat,bangunan_iuts.lon,bangunan_iuts.kecamatan');
-        $this->db->from('bangunan_iuts');
-        $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = bangunan_iuts.id_pemohon', 'INNER');
-        $this->db->where('id_bangunan', $idbangun);
+        $this->db->select('*');
+        $this->db->from('data_slf');
+        $this->db->join('data_iuts', 'data_iuts.id_slf = data_slf.id_slf', 'INNER');
+        $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = data_slf.id_pemohon', 'INNER');
+        $this->db->join('kondisi_slf', 'kondisi_slf.id_slf = data_slf.id_slf', 'INNER');
+        $this->db->join('kondisi_iuts', 'kondisi_iuts.id_iuts = data_iuts.id_iuts', 'INNER');
+        $this->db->where('data_slf.id_slf', $idbangun);
         $this->db->group_by('pemohon_iuts.id_pemohon');
         $q = $this->db->get();
         return $q;
