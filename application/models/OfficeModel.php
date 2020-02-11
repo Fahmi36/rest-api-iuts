@@ -199,8 +199,8 @@ class OfficeModel extends CI_Model {
         $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = data_slf.id_pemohon', 'left');
         $this->db->join('data_iuts', 'data_slf.id_slf = data_iuts.id_slf', 'left');
         $this->db->join('kondisi_iuts', 'kondisi_iuts.id_iuts = data_iuts.id_iuts', 'INNER');
-        $this->db->join('taxclear', 'taxclear.id_slf = kondisi_slf.id_slf', 'INNER');
-        $this->db->join('admin_teknis', 'admin_teknis.id_slf = kondisi_slf.id_slf', 'INNER');
+        $this->db->join('taxclear', 'taxclear.id_slf = data_slf.id_slf', 'INNER');
+        $this->db->join('admin_teknis', 'admin_teknis.id_bangunan = data_slf.id_slf', 'INNER');
 
         $this->db->join('kdh_minimum', 'kdh_minimum.id = kondisi_slf.id_kdh_minimum', 'left');
         $this->db->join('kondisi_kdh', 'kondisi_kdh.id = kondisi_slf.id_kondisi_kdh', 'left');
