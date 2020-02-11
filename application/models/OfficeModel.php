@@ -295,9 +295,9 @@ class OfficeModel extends CI_Model {
     }
     function getdatatable()
 	{
-		$this->db->select('pemohon_iuts.id_pemohon as id ,bangunan_iuts.id_bangunan as idbangunan,pemohon_iuts.nama,pemohon_iuts.npwp,bangunan_iuts.code,pemohon_iuts.email,pemohon_iuts.created_at,bangunan_iuts.updated_at,bangunan_iuts.status');
+		$this->db->select('pemohon_iuts.id_pemohon as id ,data_slf.id_slf as idbangunan,pemohon_iuts.nama,pemohon_iuts.npwp,data_slf.code,pemohon_iuts.email,pemohon_iuts.created_at,data_slf.updated_at,data_slf.status');
 		$this->db->from('pemohon_iuts');
-		$this->db->join('bangunan_iuts', 'bangunan_iuts.id_pemohon = pemohon_iuts.id_pemohon', 'INNER');
+		$this->db->join('data_slf', 'data_slf.id_pemohon = pemohon_iuts.id_pemohon', 'INNER');
 
         foreach ($this->column_search as $item) // loop column 
         {
@@ -349,7 +349,7 @@ class OfficeModel extends CI_Model {
     			'no' => $no++,
     			'code' => $key->code,
     			'id_pemohon' => $key->id,
-    			'id_bangunan' => $key->idbangunan,
+    			'id_slf' => $key->idbangunan,
     			'npwp' => $key->npwp,
     			'tanggal' => date('d F, Y',strtotime($key->created_at)),
                 'update' => date('d F, Y',strtotime($key->updated_at)),
@@ -401,7 +401,7 @@ class OfficeModel extends CI_Model {
     			'no' => $no++,
     			'code' => $key->code,
     			'id_pemohon' => $key->id,
-    			'id_bangunan' => $key->idbangunan,
+    			'id_slf' => $key->idbangunan,
     			'npwp' => $key->npwp,
     			'tanggal' => date('d F, Y',strtotime($key->created_at)),
                 'update' => date('d F, Y',strtotime($key->updated_at)),
