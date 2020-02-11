@@ -155,12 +155,12 @@ class UserController extends CI_Controller {
 	{
 		$id = $this->input->post('id');
 
-		$expired = $this->db->get_where('bangunan_iuts',array('status'=>'3','id_pemohon'=>$id))->num_rows();
-		$pending = $this->db->get_where('bangunan_iuts',array('status'=>'0','id_pemohon'=>$id))->num_rows();
+		$expired = $this->db->get_where('data_slf',array('status'=>'3','id_pemohon'=>$id))->num_rows();
+		$pending = $this->db->get_where('data_slf',array('status'=>'0','id_pemohon'=>$id))->num_rows();
 
 		$this->db->select('*');
-		$this->db->from('bangunan_iuts');
-		$this->db->where('bangunan_iuts.id_pemohon', $id);
+		$this->db->from('data_slf');
+		$this->db->where('data_slf.id_pemohon', $id);
 		$this->db->where_in('status',[1,2]);
 		$selesai = $this->db->get();
 		$hasilselesai = $selesai->num_rows();
@@ -215,9 +215,9 @@ class UserController extends CI_Controller {
 				'status_jalan'=>6,
 			);
 			$where = array(
-				'id_bangunan'=>$id
+				'id_slf'=>$id
 			);
-			$update = $this->db->update('bangunan_iuts', $data,$where);
+			$update = $this->db->update('data_slf', $data,$where);
 			if ($skor == true) {
 				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
 			}else{

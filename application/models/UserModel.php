@@ -17,7 +17,7 @@ class UserModel extends CI_Model {
         if($data){
             $this->db->where('nop',$data);
         }
-        $q = $this->db->get('bangunan_iuts');
+        $q = $this->db->get('data_iuts');
         return $q;
     }
     function cekSkor($id)
@@ -64,7 +64,6 @@ class UserModel extends CI_Model {
         $this->db->join('tata_ruang', 'tata_ruang.id = kondisi_iuts.id_tata_ruang', 'left');
         $this->db->join('kajian_sostek', 'kajian_sostek.id = kondisi_iuts.id_kasostek', 'left');
 
-        $this->db->join('Table', 'table.column = table.column', 'left');
         $this->db->where('kondisi_slf.id_slf', $slf);
         $query = $this->db->get();
         return $query;
@@ -82,7 +81,7 @@ class UserModel extends CI_Model {
         if($id){
             $this->db->where('id_bangunan',$id);
         }
-        $q = $this->db->get('bangunan_iuts');
+        $q = $this->db->get('data_slf');
         return $q;
     }
     function cekSpasial($id)
@@ -128,7 +127,7 @@ class UserModel extends CI_Model {
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             );
-        $q = $this->db->insert('bangunan_iuts',$arrayPermohonan);
+        $q = $this->db->insert('data_slf',$arrayPermohonan);
         return $q;
 	}
 	function InsertPemohon($id,$namaLengkap,$jabatan,$nomorInKepen,$nomorInBeru,$npwp,$alamat_perusahaan,$no_telp,$emailAktif,$status_pemohon,$token)
@@ -304,17 +303,17 @@ class UserModel extends CI_Model {
     }
     function listPermohonan($id,$status='',$awal,$akhir)
     {
-        $this->db->select('bangunan_iuts.id_bangunan,bangunan_iuts.code,bangunan_iuts.status,bangunan_iuts.created_at,pemohon_iuts.nama');
-        $this->db->from('bangunan_iuts');
-        $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = bangunan_iuts.id_pemohon', 'INNER');
+        $this->db->select('data_slf.id_bangunan,data_slf.code,data_slf.status,data_slf.created_at,pemohon_iuts.nama');
+        $this->db->from('data_slf');
+        $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = data_slf.id_pemohon', 'INNER');
         if ($status != '') {
             if ($status == '1') {
-                $this->db->where_in('bangunan_iuts.status', [1,2]);
+                $this->db->where_in('data_slf.status', [1,2]);
             }else{
-                $this->db->where('bangunan_iuts.status', $status);
+                $this->db->where('data_slf.status', $status);
             }
         }
-        $this->db->where('bangunan_iuts.id_pemohon', $id);
+        $this->db->where('data_slf.id_pemohon', $id);
         $q = $this->db->get();
         // $this->db->last_query();
         return $q;
@@ -322,12 +321,12 @@ class UserModel extends CI_Model {
     function detailPermohonan($id,$id_bangunan,$code)
     {
         $this->db->select('*');
-        $this->db->from('bangunan_iuts');
-        $this->db->join('administrasi', 'administrasi.id_bangunan = bangunan_iuts.id_bangunan', 'left');
-        $this->db->join('admin_teknis', 'admin_teknis.id_bangunan = bangunan_iuts.id_bangunan', 'left');
-        $this->db->join('admindinas', 'admindinas.id_bangunan = bangunan_iuts.id_bangunan', 'left');
-        $this->db->where('bangunan_iuts.id_bangunan', $id_bangunan);
-        $this->db->where('bangunan_iuts.id_pemohon', $id);
+        $this->db->from('data_slf');
+        $this->db->join('administrasi', 'administrasi.id_bangunan = data_slf.id_bangunan', 'left');
+        $this->db->join('admin_teknis', 'admin_teknis.id_bangunan = data_slf.id_bangunan', 'left');
+        $this->db->join('admindinas', 'admindinas.id_bangunan = data_slf.id_bangunan', 'left');
+        $this->db->where('data_slf.id_bangunan', $id_bangunan);
+        $this->db->where('data_slf.id_pemohon', $id);
         $q = $this->db->get();
         return $q;
     }
@@ -366,16 +365,16 @@ class UserModel extends CI_Model {
     function detailPemohonAdministrasi($id_bangunan,$id)
     {
         $this->db->select('kelengkapan_admin.skor as skorlengkap, lama_izin.skor as skorwaktu, status_pbb.skor as skorpbb, status_npwp.skor as skornpwp, SUM(kelengkapan_admin.skor + lama_izin.skor) as skoradministrasi');
-        $this->db->from('bangunan_iuts');
-        $this->db->join('administrasi', 'administrasi.id_bangunan = bangunan_iuts.id_bangunan', 'INNER');
+        $this->db->from('data_slf');
+        $this->db->join('administrasi', 'administrasi.id_bangunan = data_slf.id_bangunan', 'INNER');
         $this->db->join('kelengkapan_admin', 'kelengkapan_admin.id = administrasi.kelengkapan', 'INNER');
         $this->db->join('lama_izin', 'lama_izin.id = administrasi.lama_waktu', 'INNER');
         $this->db->join('status_pbb', 'status_pbb.id = administrasi.status_pbb', 'INNER');
         $this->db->join('status_npwp', 'status_npwp.id = administrasi.status_npwp', 'INNER');
 
-        $this->db->where('bangunan_iuts.id_bangunan', $id_bangunan);
-        $this->db->where('bangunan_iuts.id_pemohon', $id);
-        $this->db->group_by('bangunan_iuts.id_bangunan');
+        $this->db->where('data_slf.id_bangunan', $id_bangunan);
+        $this->db->where('data_slf.id_pemohon', $id);
+        $this->db->group_by('data_slf.id_bangunan');
         $q = $this->db->get();
         return $q;
         // return var_dump($this->db->last_query());
@@ -384,9 +383,9 @@ class UserModel extends CI_Model {
     function detailPemohonteknis($id_bangunan,$id)
     {
         $this->db->select('jarak_pasar.skor as skorjarakpasar, rencana_jalan.skor as skorrenjalan, jalan_eksisting.skor as skorjalaneksis, tata_ruang.skor as skortataruang, jarak_usaha.skor as skorjarakusaha, penggunaan_lahan.skor as skorpenglahan, ROUND(AVG(jarak_pasar.skor + rencana_jalan.skor + jalan_eksisting.skor + tata_ruang.skor + jarak_usaha.skor + penggunaan_lahan.skor),1) as skormanfaat ');
-        $this->db->from('bangunan_iuts');
-        $this->db->join('kondisi_bangunan', 'kondisi_bangunan.id_bangunan = bangunan_iuts.id_bangunan', 'INNER');
-        $this->db->join('admin_teknis', 'admin_teknis.id_bangunan = bangunan_iuts.id_bangunan', 'INNER');
+        $this->db->from('data_slf');
+        $this->db->join('kondisi_bangunan', 'kondisi_bangunan.id_bangunan = data_slf.id_bangunan', 'INNER');
+        $this->db->join('admin_teknis', 'admin_teknis.id_bangunan = data_slf.id_bangunan', 'INNER');
 
         $this->db->join('jarak_pasar', 'jarak_pasar.id = admin_teknis.id_pasar', 'INNER');
         $this->db->join('rencana_jalan', 'rencana_jalan.id = admin_teknis.id_rencana', 'INNER');
@@ -394,9 +393,9 @@ class UserModel extends CI_Model {
         $this->db->join('tata_ruang', 'tata_ruang.id = kondisi_bangunan.id_tata_ruang', 'INNER');
         $this->db->join('jarak_usaha', 'jarak_usaha.id = admin_teknis.id_jarak', 'INNER');
         $this->db->join('penggunaan_lahan', 'penggunaan_lahan.id = admin_teknis.id_lahan', 'INNER');
-        $this->db->where('bangunan_iuts.id_bangunan', $id_bangunan);
-        $this->db->where('bangunan_iuts.id_pemohon', $id);
-        $this->db->group_by('bangunan_iuts.id_bangunan');
+        $this->db->where('data_slf.id_bangunan', $id_bangunan);
+        $this->db->where('data_slf.id_pemohon', $id);
+        $this->db->group_by('data_slf.id_bangunan');
         $q = $this->db->get();
         return $q;
         // return var_dump($this->db->last_query());
@@ -404,12 +403,12 @@ class UserModel extends CI_Model {
     function detailPemohonDinas($id_bangunan,$id)
     {
         $this->db->select('admindinas.skor_akhir, admindinas.status, janjian.tanggal,admindinas.keterangan');
-        $this->db->from('bangunan_iuts');
-        $this->db->join('admindinas', 'admindinas.id_bangunan = bangunan_iuts.id_bangunan', 'INNER');
-        $this->db->join('janjian', 'janjian.id_bangunan = bangunan_iuts.id_bangunan', 'LEFT');
+        $this->db->from('data_slf');
+        $this->db->join('admindinas', 'admindinas.id_bangunan = data_slf.id_bangunan', 'INNER');
+        $this->db->join('janjian', 'janjian.id_bangunan = data_slf.id_bangunan', 'LEFT');
 
-        $this->db->where('bangunan_iuts.id_bangunan', $id_bangunan);
-        $this->db->group_by('bangunan_iuts.id_bangunan');
+        $this->db->where('data_slf.id_bangunan', $id_bangunan);
+        $this->db->group_by('data_slf.id_bangunan');
         $q = $this->db->get();
         return $q;
         // return var_dump($this->db->last_query());

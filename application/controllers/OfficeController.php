@@ -44,102 +44,38 @@ class OfficeController extends CI_Controller {
 			'msg'=>$msg
 		);
 	}
-	function InsertAdministrasi()
+	function CountSideAdmin()
 	{
-		$bangunan = $this->input->post('id_bangunan');
-		// $kelengkapan = $this->input->post('kelengkapan_admin');
-		$lama = $this->input->post('lama_mengajukan');
-		$npwp = $this->input->post('statusNPWP');
-		$pbb = $this->input->post('statusPBB');
-		$keterangan = $this->input->post('keterangan');
-		$id_admin = $this->input->post('admin');
-		$cek = $this->oc->cekAdministrasi($bangunan);
+		$expired = $this->db->get_where('data_slf',array('status'=>3,'id_pemohon'=>$id))->num_rows();
+		$pending = $this->db->get_where('data_slf',array('status'=>0,'id_pemohon'=>$id))->num_rows();
 
-		if ($kelengkapan == '1') {
-			$skorlengkap = 0;
-		}elseif ($kelengkapan == '2') {
-			$skorlengkap = 1;
-		}elseif($kelengkapan == '3'){
-			$skorlengkap = 2;
-		}else if($kelengkapan == '4'){
-			$skorlengkap = 3;
-		}else{
-			$skorlengkap = 0;
+		$this->db->select('*');
+		$this->db->from('data_slf');
+		$this->db->where('data_slf.id_pemohon', $id);
+		$this->db->where_in('status',[1,2]);
+		$selesai = $this->db->get();
+		$hasilselesai = $selesai->num_rows();
+		echo json_encode(array('expired'=>$expired,'pending'=>$pending,'selesai'=>$hasilselesai));
+	}
+	function CountTugasAdmin()
+	{
+		$id = $this->input->post('id');
+		if ($id == '1') {
+			$status = 1;// Dinas
+		}else if ($id == '2') {
+			$status = 0;// Teknis
+		}else if ($id == '3'){
+			$status = 2;// Admin
 		}
-
-		if ($lama == '1') {
-			$skorlama = 0;
-		}elseif ($lama == '2') {
-			$skorlama = 1;
-		}elseif($lama == '3'){
-			$skorlama = 2;
-		}else if($lama == '4'){
-			$skorlama = 3;
-		}else{
-			$skorlama = 0;
-		}
-
-		if ($npwp == '1') {
-			$skornpwp = 0;
-		}elseif ($npwp == '2') {
-			$skornpwp = 1;
-		}elseif($npwp == '3'){
-			$skornpwp = 2;
-		}else if($npwp == '4'){
-			$skornpwp = 3;
-		}else{
-			$skornpwp = 0;
-		}
-		if ($pbb == '1') {
-			$skorpbb = 0;
-		}elseif ($pbb == '2') {
-			$skorpbb = 1;
-		}elseif($pbb == '3'){
-			$skorpbb = 2;
-		}else if($pbb == '4'){
-			$skorpbb = 3;
-		}else{
-			$skorpbb = 0;
-		}
-
-		$skor = ($skorlengkap + $skorlama + $skornpwp + $skorpbb)/4;
-
-		if ($cek->num_rows() > 0) {
-			$getdata = $cek->row();
-			$id = $getdata->id_administrasi;
-            $where = array(
-                'id_administrasi' => $id,
-            );
-            $array = array(
-            // 'kelengkapan' => $kelengkapan,
-            'lama_waktu' => $lama,
-            'status_pbb' => $pbb,
-            'status_npwp' => $npwp,
-            'total_skor' => $skor,
-            'keterangan' => $keterangan,
-            'updated_at' => date('Y-m-d H:i:s'),
-        );
-            $q = $this->db->update('administrasi',$array,$where);
-		}else{
-			$q = $this->oc->InsertAdministrasi($bangunan,$id_admin,$lama,$npwp,$pbb,$skor,$keterangan);
-		}
-        if ($q == true) {
-			$data = array(
-				'status_jalan'=>1,
-			);
-			$where = array(
-                'id_bangunan' => $bangunan,
-            );
-			$update = $this->db->update('bangunan_iuts', $data,$where);
-			if ($update == true) {
-				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
-          	}else{
-          		$json = $this->returnResultErrorDB();
-          	}
-		}else{
-          	$json = $this->returnResultErrorDB();
-		}
-		echo json_encode($json);
+		$expired = $this->db->get_where('data_slf',array('status_jalan'=>$status,'id_pemohon'=>$id))->num_rows();
+		$pending = $this->db->get_where('data_slf',array('status_jalan'=>$status,'id_pemohon'=>$id))->num_rows();
+		$this->db->select('*');
+		$this->db->from('data_slf');
+		$this->db->where('data_slf.id_pemohon', $id);
+		$this->db->where_in('status_jalan',4);
+		$selesai = $this->db->get();
+		$hasilselesai = $selesai->num_rows();
+		echo json_encode(array('expired'=>$expired,'pending'=>$pending,'selesai'=>$hasilselesai));
 	}
 	function InsertAdminTeknis()
 	{
@@ -242,7 +178,7 @@ class OfficeController extends CI_Controller {
 			$data = array(
 				'status_jalan'=>1,
 			);
-			$update = $this->db->update('bangunan_iuts', $data,$wherebangun);
+			$update = $this->db->update('data_slf', $data,$wherebangun);
 			if ($update == true) {
 				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
           	}else{
@@ -294,7 +230,7 @@ class OfficeController extends CI_Controller {
 				'status'=>$statusweb,
 
 			);
-			$update = $this->db->update('bangunan_iuts', $data,$where);
+			$update = $this->db->update('data_slf', $data,$where);
 			if ($update == true) {
         		$this->sendmail($bangunan);
 				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
@@ -365,11 +301,11 @@ class OfficeController extends CI_Controller {
 	}
 	public function countsideoffice()
 	{
-		$expired = $this->db->get_where('bangunan_iuts',array('status'=>'3'))->num_rows();
-		$pending = $this->db->get_where('bangunan_iuts',array('status'=>'0'))->num_rows();
+		$expired = $this->db->get_where('data_slf',array('status'=>'3'))->num_rows();
+		$pending = $this->db->get_where('data_slf',array('status'=>'0'))->num_rows();
 
 		$this->db->select('*');
-		$this->db->from('bangunan_iuts');
+		$this->db->from('data_slf');
 		$this->db->where('status','1');
 		$this->db->or_where('status','2');
 		$selesai = $this->db->get();
