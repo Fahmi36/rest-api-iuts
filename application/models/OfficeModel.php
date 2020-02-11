@@ -372,13 +372,13 @@ class OfficeModel extends CI_Model {
         $level = $this->input->post('level');
         if ($level == 1) {
         	$statusjalan = '1';
-    		$this->db->where('bangunan_iuts.status_jalan', $statusjalan);
+    		$this->db->where('data_slf.status_jalan', $statusjalan);
         }elseif ($level == 2) {
         	$statusjalan = '0';
-    		$this->db->where('bangunan_iuts.status_jalan', $statusjalan);
+    		$this->db->where('data_slf.status_jalan', $statusjalan);
         }elseif ($level == 3) {
         	$statusjalan = '0';
-    		$this->db->where('bangunan_iuts.status_jalan', $statusjalan);
+    		$this->db->where('data_slf.status_jalan', $statusjalan);
         }
     	$this->getdatatable();
     	if($this->input->post('length') != -1)
@@ -423,7 +423,7 @@ class OfficeModel extends CI_Model {
     {
         $this->getdatatable();
         if ($id!=null) {
-    		$this->db->where('bangunan_iuts.status_jalan', $id);
+    		$this->db->where('data_slf.status_jalan', $id);
         }
         $query = $this->db->get();
         return $query->num_rows();
@@ -432,7 +432,7 @@ class OfficeModel extends CI_Model {
     {
         $this->getdatatable();
         if ($id!=null) {
-    		$this->db->where('bangunan_iuts.status_jalan', $id);
+    		$this->db->where('data_slf.status_jalan', $id);
         }
     	return $this->db->count_all_results();
     }
@@ -440,7 +440,7 @@ class OfficeModel extends CI_Model {
     {
         $this->getdatatable();
         if ($id!=null) {
-    		$this->db->where('bangunan_iuts.status', $id);
+    		$this->db->where('data_slf.status', $id);
         }
         $query = $this->db->get();
         return $query->num_rows();
@@ -449,7 +449,7 @@ class OfficeModel extends CI_Model {
     {
         $this->getdatatable();
         if ($id!=null) {
-    		$this->db->where('bangunan_iuts.status', $id);
+    		$this->db->where('data_slf.status', $id);
         }
     	return $this->db->count_all_results();
     }
