@@ -239,7 +239,7 @@ class OfficeModel extends CI_Model {
         $this->db->join('status_pbb', 'status_pbb.id = taxclear.status_pbb', 'left');
         $this->db->join('status_npwp', 'status_npwp.id = taxclear.status_npwp', 'left');
 
-        $this->db->where('kondisi_slf.id_slf', $slf);
+        $this->db->where('kondisi_slf.id_slf', $id_bangunan);
         $this->db->group_by('kondisi_slf.id_slf');
         $query = $this->db->get();
         return $query;
