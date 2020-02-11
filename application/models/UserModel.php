@@ -303,8 +303,9 @@ class UserModel extends CI_Model {
     }
     function listPermohonan($id,$status='',$awal,$akhir)
     {
-        $this->db->select('data_slf.id_bangunan,data_slf.code,data_slf.status,data_slf.created_at,pemohon_iuts.nama');
-        $this->db->from('data_slf');
+        $this->db->select('data_slf.id_slf,data_slf.code,data_slf.status,data_slf.created_at,pemohon_iuts.nama');
+        $this->db->from('data_iuts');
+        $this->db->join('data_slf', 'data_slf.id_slf = data_iuts.id_slf', 'INNER');
         $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = data_slf.id_pemohon', 'INNER');
         if ($status != '') {
             if ($status == '1') {
@@ -315,17 +316,15 @@ class UserModel extends CI_Model {
         }
         $this->db->where('data_slf.id_pemohon', $id);
         $q = $this->db->get();
-        // $this->db->last_query();
         return $q;
     }
     function detailPermohonan($id,$id_bangunan,$code)
     {
         $this->db->select('*');
         $this->db->from('data_slf');
-        $this->db->join('administrasi', 'administrasi.id_bangunan = data_slf.id_bangunan', 'left');
-        $this->db->join('admin_teknis', 'admin_teknis.id_bangunan = data_slf.id_bangunan', 'left');
-        $this->db->join('admindinas', 'admindinas.id_bangunan = data_slf.id_bangunan', 'left');
-        $this->db->where('data_slf.id_bangunan', $id_bangunan);
+        $this->db->join('admin_teknis', 'admin_teknis.id_bangunan = data_slf.id_slf', 'left');
+        $this->db->join('admindinas', 'admindinas.id_bangunan = data_slf.id_slf', 'left');
+        $this->db->where('data_slf.id_slf', $id_bangunan);
         $this->db->where('data_slf.id_pemohon', $id);
         $q = $this->db->get();
         return $q;
