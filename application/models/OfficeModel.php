@@ -31,7 +31,7 @@ class OfficeModel extends CI_Model {
 	function cekAdministrasi($id)
 	{
 		if($id){
-            $this->db->where('id_bangunan',$id);
+            $this->db->where('id_izin',$id);
         }
         $q = $this->db->get('administrasi');
         return $q;
@@ -47,7 +47,7 @@ class OfficeModel extends CI_Model {
 	function cekDinas($id)
 	{
 		if($id){
-            $this->db->where('id_bangunan',$id);
+            $this->db->where('id_izin',$id);
         }
         $q = $this->db->get('admindinas');
         return $q;
@@ -108,7 +108,7 @@ class OfficeModel extends CI_Model {
 	function InsertAdminDinasBaru($bangunan,$admin,$keterangan,$status,$skor)
 	{
 		$arrayPermohonan = array(
-            'id_bangunan'=>$bangunan,
+            'id_izin'=>$bangunan,
 			'id_admin' => $admin,
             'keterangan' => $keterangan,
             'skor_akhir' => $skor,

@@ -173,12 +173,12 @@ class OfficeController extends CI_Controller {
 		}
 		if ($q == true) {
 			$wherebangun = array(
-                'id_slf' => $id_bangunan,
+                'id_izin' => $id_bangunan,
             );
 			$data = array(
 				'status_jalan'=>1,
 			);
-			$update = $this->db->update('data_slf', $data,$wherebangun);
+			$update = $this->db->update('cek_izin', $data,$wherebangun);
 			if ($update == true) {
 				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
           	}else{
