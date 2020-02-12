@@ -401,8 +401,8 @@ class UserModel extends CI_Model {
         $this->db->where('cek_izin.id_pemohon', $id);
         $this->db->group_by('cek_izin.id_izin');
         $q = $this->db->get();
-        return $q;
-        // return var_dump($this->db->last_query());
+        // return $q;
+        return var_dump($this->db->last_query());
     }
     function detailPemohonDinas($id_bangunan,$id)
     {
