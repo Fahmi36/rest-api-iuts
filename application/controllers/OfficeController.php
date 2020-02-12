@@ -446,6 +446,26 @@ class OfficeController extends CI_Controller {
 		}
 		echo json_encode($res);
 	}
+	function getAllFoto()
+	{
+		try {
+			$code= $this->input->post('code');
+			if ($code != null) {
+				$data = $this->oc->cekFotoPemohon($code);
+				if ($data) {
+					$res = $this->returnResult($data);
+				}else{
+					$res = $this->returnResultErrorDB();
+				}
+			}else{
+				$res = $this->returnResultCustom(false,'Tidak ada data');
+			}
+
+		} catch (Exception $e) {
+			throw $e;
+		}
+		echo json_encode($res);
+	}
 	function sendmail($idbangun)
 	{
         $dPemohon = $this->oc->cekPemohon($idbangun);
