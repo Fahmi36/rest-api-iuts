@@ -384,7 +384,7 @@ class UserModel extends CI_Model {
 
     function detailPemohonteknis($id_bangunan,$id)
     {
-        $this->db->select('jarak_pasar.skor as skorjarakpasar, rencana_jalan.skor as skorrenjalan, jalan_eksisting.skor as skorjalaneksis, tata_ruang.skor as skortataruang, jarak_usaha.skor as skorjarakusaha, penggunaan_lahan.skor as skorpenglahan, ROUND(AVG(jarak_pasar.skor + rencana_jalan.skor + jalan_eksisting.skor + tata_ruang.skor + jarak_usaha.skor + penggunaan_lahan.skor),1) as skormanfaat ');
+        $this->db->select('jarak_pasar.skor as skorjarakpasar, rencana_jalan.skor as skorrenjalan, jalan_eksisting.skor as skorjalaneksis, jarak_usaha.skor as skorjarakusaha, penggunaan_lahan.skor as skorpenglahan, ROUND(AVG(jarak_pasar.skor + rencana_jalan.skor + jalan_eksisting.skor + tata_ruang.skor + jarak_usaha.skor + penggunaan_lahan.skor),1) as skormanfaat ');
         $this->db->from('cek_izin');
         $this->db->join('data_slf', 'cek_izin.id_slf = data_slf.id_slf', 'left');
         $this->db->join('data_iuts', 'data_iuts.id_iuts = cek_izin.id_iuts', 'left');
