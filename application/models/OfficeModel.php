@@ -37,7 +37,7 @@ class OfficeModel extends CI_Model {
         $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = cek_izin.id_pemohon', 'INNER');
         $this->db->join('foto_slf', 'foto_slf.id_slf = data_slf.id_slf', 'LEFT');
         $this->db->join('foto_iuts', 'foto_iuts.id_iuts = data_iuts.id_iuts', 'LEFT');
-        $this->db->where('cek_izin.id_izin', $idbangun);
+        $this->db->where('cek_izin.id_izin', $idizin);
         $this->db->group_by('cek_izin.code');
         $q = $this->db->get();
     }
