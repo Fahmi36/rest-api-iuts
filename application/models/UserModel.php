@@ -79,8 +79,7 @@ class UserModel extends CI_Model {
     function cekCodeBangunan($id)
     {
         if($id){
-            $this->db->where('id_iuts',$id);
-            $this->db->or_where('id_slf',$id);
+            $this->db->where('id_bangunan',$id);
         }
         $q = $this->db->get('cek_izin');
         return $q;
@@ -304,7 +303,7 @@ class UserModel extends CI_Model {
     }
     function listPermohonan($id,$status='',$awal,$akhir)
     {
-        $this->db->select('cek_izin.id_slf,cek_izin.id_iuts,cek_izin.code,cek_izin.status,cek_izin.created_at,pemohon_iuts.nama,jenis_izin.nama as jenis');
+        $this->db->select('cek_izin.id_bangunan,cek_izin.id_slf,cek_izin.id_iuts,cek_izin.code,cek_izin.status,cek_izin.created_at,pemohon_iuts.nama,jenis_izin.nama as jenis');
         $this->db->from('cek_izin');
         $this->db->join('data_slf', 'data_slf.id_slf = cek_izin.id_slf', 'LEFT');
         $this->db->join('data_iuts', 'data_iuts.id_iuts = cek_izin.id_iuts', 'LEFT');

@@ -16,34 +16,15 @@ class OfficeModel extends CI_Model {
 	}
     function cekPemohon($idbangun)
     {
-        
-        $cek = $this->db->get('cek_izin', array('id_slf'=>$id));
-        foreach ($cek->result() as $key) {
-            if ($key->id_jenis == '1') {
-                $this->db->select('*');
-                $this->db->from('data_iuts');
-                $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = data_slf.id_pemohon', 'INNER');
-                $this->db->join('kondisi_iuts', 'kondisi_iuts.id_iuts = data_iuts.id_iuts', 'INNER');
-                $this->db->where('data_iuts.id_iuts', $idbangun);
-                $this->db->group_by('data_iuts.code'); 
-            }else if ($key->id_jenis == '2') {
-                $this->db->select('*');
-                $this->db->from('data_slf');
-                $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = data_slf.id_pemohon', 'INNER');
-                $this->db->join('kondisi_slf', 'kondisi_slf.id_slf = data_slf.id_slf', 'INNER');
-                $this->db->where('data_slf.id_slf', $idbangun);
-                $this->db->group_by('data_slf.code');
-            }else if($row->id_jenis == '3'){
-                $this->db->select('*');
-                $this->db->from('data_slf');
-                $this->db->join('data_iuts', 'data_iuts.id_slf = data_slf.id_slf', 'INNER');
-                $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = data_slf.id_pemohon', 'INNER');
-                $this->db->join('kondisi_slf', 'kondisi_slf.id_slf = data_slf.id_slf', 'INNER');
-                $this->db->join('kondisi_iuts', 'kondisi_iuts.id_iuts = data_iuts.id_iuts', 'INNER');
-                $this->db->where('data_slf.id_slf', $idbangun);
-                $this->db->group_by('data_slf.code');
-            }
-        }
+        $this->db->select('*');
+        $this->db->from('cek_izin');
+        $this->db->join('data_iuts', 'data_iuts.id_iuts = cek_izin.id_iuts', 'LEFT');
+        $this->db->join('data_slf', 'data_slf.id_slf = cek_izin.id_slf', 'LEFT');
+        $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = cek_izin.id_pemohon', 'INNER');
+        $this->db->join('kondisi_slf', 'kondisi_slf.id_slf = data_slf.id_slf', 'INNER');
+        $this->db->join('kondisi_iuts', 'kondisi_iuts.id_iuts = data_iuts.id_iuts', 'INNER');
+        $this->db->where('cek_izin.id_izin', $idbangun);
+        $this->db->group_by('data_slf.code');
         $q = $this->db->get();
         return $q;
     }
