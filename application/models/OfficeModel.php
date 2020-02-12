@@ -40,6 +40,7 @@ class OfficeModel extends CI_Model {
         $this->db->where('cek_izin.id_izin', $idizin);
         $this->db->group_by('cek_izin.code');
         $q = $this->db->get();
+        return $q;
     }
 	function cekAdministrasi($id)
 	{
