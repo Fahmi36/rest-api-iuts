@@ -397,9 +397,10 @@ class UserModel extends CI_Model {
         $this->db->join('jalan_eksisting', 'jalan_eksisting.id = admin_teknis.id_rencana_eksisting', 'INNER');
         $this->db->join('tata_ruang', 'tata_ruang.id = kondisi_iuts.id_tata_ruang', 'INNER');
         $this->db->join('penggunaan_lahan', 'penggunaan_lahan.id = admin_teknis.id_lahan', 'INNER');
-        $this->db->where('data_slf.id_slf', $id_bangunan);
-        $this->db->where('data_slf.id_pemohon', $id);
-        $this->db->group_by('data_slf.id_slf');
+        $this->db->join('jarak_usaha', 'jarak_usaha.id = admin_teknis.id_jarak', 'INNER');
+        $this->db->where('cek_izin.id_izin', $id_bangunan);
+        $this->db->where('cek_izin.id_pemohon', $id);
+        $this->db->group_by('cek_izin.id_izin');
         $q = $this->db->get();
         return $q;
         // return var_dump($this->db->last_query());
