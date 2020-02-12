@@ -317,7 +317,8 @@ class UserModel extends CI_Model {
                     $this->db->select('data_iuts.id_iuts as id_slf,data_iuts.code,data_iuts.status,data_iuts.created_at,pemohon_iuts.nama,jenis_izin.nama');
                     $this->db->from('data_iuts');
                     $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = data_iuts.id_pemohon', 'INNER');
-                    $this->db->join('jenis_izin', 'jenis_izin.id_izin = data_slf.jenis_izin', 'INNER');
+                    $this->db->join('cek_izin', 'cek_izin.id_slf = data_iuts.id_iuts', 'INNER');
+                    $this->db->join('jenis_izin', 'jenis_izin.id_izin = cek_izin.id_jenis', 'INNER');
                     if ($status != '') {
                         if ($status == '1') {
                             $this->db->where_in('data_iuts.status', [1,2]);
@@ -330,7 +331,8 @@ class UserModel extends CI_Model {
                     $this->db->select('data_slf.id_slf,data_slf.code,data_slf.status,data_slf.created_at,pemohon_iuts.nama,jenis_izin.nama');
                     $this->db->from('data_slf');
                     $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = data_slf.id_pemohon', 'INNER');
-                    $this->db->join('jenis_izin', 'jenis_izin.id_izin = data_slf.jenis_izin', 'INNER');
+                    $this->db->join('cek_izin', 'cek_izin.id_slf = data_slf.id_slf', 'INNER');
+                    $this->db->join('jenis_izin', 'jenis_izin.id_izin = cek_izin.id_jenis', 'INNER');
                     $this->db->group_by('data_slf.code');
                     if ($status != '') {
                         if ($status == '1') {
@@ -345,7 +347,8 @@ class UserModel extends CI_Model {
                     $this->db->from('data_slf');
                     $this->db->join('data_iuts', 'data_slf.id_slf = data_iuts.id_slf', 'LEFT');
                     $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = data_slf.id_pemohon', 'INNER');
-                    $this->db->join('jenis_izin', 'jenis_izin.id_izin = data_slf.jenis_izin', 'INNER');
+                    $this->db->join('cek_izin', 'cek_izin.id_slf = data_slf.id_slf', 'INNER');
+                    $this->db->join('jenis_izin', 'jenis_izin.id_izin = cek_izin.id_jenis', 'INNER');
                     $this->db->group_by('data_slf.code');
                     if ($status != '') {
                         if ($status == '1') {
