@@ -208,14 +208,15 @@ class OfficeModel extends CI_Model {
 	function detailPermohonanAdminDinas($id_bangunan)
     {
         
-        $this->db->select('kondisi_kdh.skor as skorkondisikdh,kondisi_pertandaan.skor as skorpetandaan, status_pbb.skor as skorpbb, status_npwp.skor as skornpwp, jarak_pasar.skor as skorjarakpasar, rencana_jalan.skor as skorrenjalan, jalan_eksisting.skor as skorjalaneksis, tata_ruang.skor as skortataruang, jarak_usaha.skor as skorjarakusaha, penggunaan_lahan.skor as skorpenglahan, pemutakhiran_pbb.skor as skotpempbb, keterlibatan_umkm.skor as skorketumkm, rekomen_umkm.skor as skorrekumkm, izin_imb.skor as skorimb, kajian_sostek.skor as skorkajian, volume_sumur.skor as skorvolsumur, kondisi_drainase.skor as skordrainase, kondisi_sumur.skor as skorkondisisumur, kdh_minimum.skor as skorkdhmini, data_slf.code, pemohon_iuts.nama, pemohon_iuts.nib, pemohon_iuts.npwp,data_iuts.zona,data_iuts.kode_sublok, data_iuts.created_at as tgl, data_iuts.alamat_usaha, admin_teknis.keterangan as ketteknis,rekomendasi_slf.skor as rekskor,izin_damkar.skor as skordamkar,izin_tenaga_kerja.skor as skortkt,fasilitas_damkar.skor as skorfdamkar,asuransi_toko.skor as skorasuransi,kelayakan_gedung.skor as skorlayak,ketersedian_air.skor as skorketersediaan,pengelola_limbah.skor as skorlimbah,pengelola_sampah.skor as skorsampah,ketersedian_listrik.skor as skorlistrik,ketersedian_toilet.skor as skortoilet,kondisi_parkir.skor as skorparkir,ROUND(AVG(kdh_minimum.skor + kondisi_kdh.skor + volume_sumur.skor + kondisi_pertandaan.skor + kondisi_sumur.skor + kondisi_drainase.skor + rekomendasi_slf.skor + izin_damkar.skor + izin_tenaga_kerja.skor + izin_imb.skor + fasilitas_damkar.skor + asuransi_toko.skor + kelayakan_gedung.skor + ketersedian_air.skor + pengelola_limbah.skor + pengelola_sampah.skor + ketersedian_listrik.skor + ketersedian_toilet.skor + kondisi_parkir.skor)/19,1) as skorslf, ROUND(AVG(pemutakhiran_pbb.skor + keterlibatan_umkm.skor + rekomen_umkm.skor + tata_ruang.skor + kajian_sostek.skor + penggunaan_lahan.skor + jalan_eksisting.skor + jarak_usaha.skor + jarak_pasar.skor + rencana_jalan.skor)/10,1) as skoriuts');
-        $this->db->from('data_slf');
-        $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = data_slf.id_pemohon', 'left');
-        $this->db->join('data_iuts', 'data_slf.id_slf = data_iuts.id_slf', 'left');
+        $this->db->select('kondisi_kdh.skor as skorkondisikdh,kondisi_pertandaan.skor as skorpetandaan, status_pbb.skor as skorpbb, status_npwp.skor as skornpwp, jarak_pasar.skor as skorjarakpasar, rencana_jalan.skor as skorrenjalan, jalan_eksisting.skor as skorjalaneksis, tata_ruang.skor as skortataruang, jarak_usaha.skor as skorjarakusaha, penggunaan_lahan.skor as skorpenglahan, pemutakhiran_pbb.skor as skotpempbb, keterlibatan_umkm.skor as skorketumkm, rekomen_umkm.skor as skorrekumkm, izin_imb.skor as skorimb, kajian_sostek.skor as skorkajian, volume_sumur.skor as skorvolsumur, kondisi_drainase.skor as skordrainase, kondisi_sumur.skor as skorkondisisumur, kdh_minimum.skor as skorkdhmini, cek_izin.code, pemohon_iuts.nama, pemohon_iuts.nib, pemohon_iuts.npwp,cek_izin.zona,cek_izin.kode_sublok, cek_izin.created_at as tgl, cek_izin.alamat_usaha, admin_teknis.keterangan as ketteknis,rekomendasi_slf.skor as rekskor,izin_damkar.skor as skordamkar,izin_tenaga_kerja.skor as skortkt,fasilitas_damkar.skor as skorfdamkar,asuransi_toko.skor as skorasuransi,kelayakan_gedung.skor as skorlayak,ketersedian_air.skor as skorketersediaan,pengelola_limbah.skor as skorlimbah,pengelola_sampah.skor as skorsampah,ketersedian_listrik.skor as skorlistrik,ketersedian_toilet.skor as skortoilet,kondisi_parkir.skor as skorparkir,ROUND(AVG(kdh_minimum.skor + kondisi_kdh.skor + volume_sumur.skor + kondisi_pertandaan.skor + kondisi_sumur.skor + kondisi_drainase.skor + rekomendasi_slf.skor + izin_damkar.skor + izin_tenaga_kerja.skor + izin_imb.skor + fasilitas_damkar.skor + asuransi_toko.skor + kelayakan_gedung.skor + ketersedian_air.skor + pengelola_limbah.skor + pengelola_sampah.skor + ketersedian_listrik.skor + ketersedian_toilet.skor + kondisi_parkir.skor)/19,1) as skorslf, ROUND(AVG(pemutakhiran_pbb.skor + keterlibatan_umkm.skor + rekomen_umkm.skor + tata_ruang.skor + kajian_sostek.skor + penggunaan_lahan.skor + jalan_eksisting.skor + jarak_usaha.skor + jarak_pasar.skor + rencana_jalan.skor)/10,1) as skoriuts');
+        $this->db->from('cek_izin');
+        $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = cek_izin.id_pemohon', 'INNER');
+        $this->db->join('data_iuts', 'cek_izin.id_slf = data_iuts.id_slf', 'left');
+        $this->db->join('data_slf', 'data_slf.id_slf = cek_izin.id_slf', 'left');
         $this->db->join('kondisi_iuts', 'kondisi_iuts.id_iuts = data_iuts.id_iuts', 'left');
         $this->db->join('kondisi_slf', 'data_slf.id_slf = kondisi_slf.id_slf', 'left');
         $this->db->join('taxclear', 'taxclear.id_slf = data_slf.id_slf', 'left');
-        $this->db->join('admin_teknis', 'admin_teknis.id_bangunan = data_slf.id_slf', 'left');
+        $this->db->join('admin_teknis', 'admin_teknis.id_izin = cek_izin.id_izin', 'left');
 
         $this->db->join('kdh_minimum', 'kdh_minimum.id = kondisi_slf.id_kdh_minimum', 'left');
         $this->db->join('kondisi_kdh', 'kondisi_kdh.id = kondisi_slf.id_kondisi_kdh', 'left');
@@ -252,8 +253,8 @@ class OfficeModel extends CI_Model {
         $this->db->join('status_pbb', 'status_pbb.id = taxclear.status_pbb', 'left');
         $this->db->join('status_npwp', 'status_npwp.id = taxclear.status_npwp', 'left');
 
-        $this->db->where('kondisi_slf.id_slf', $id_bangunan);
-        $this->db->group_by('kondisi_slf.id_slf');
+        $this->db->where('cek_izin.id_izin', $id_bangunan);
+        $this->db->group_by('cek_izin.id_izin');
         $query = $this->db->get();
         return $query;
         // return var_dump($this->db->last_query());
