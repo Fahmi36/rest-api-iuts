@@ -79,7 +79,7 @@ class UserModel extends CI_Model {
     function cekCodeBangunan($id)
     {
         if($id){
-            $this->db->where('id_bangunan',$id);
+            $this->db->where('id_izin',$id);
         }
         $q = $this->db->get('cek_izin');
         return $q;
