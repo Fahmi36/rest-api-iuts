@@ -82,7 +82,15 @@ class UserModel extends CI_Model {
             $this->db->where('id_slf',$id);
         }
         $q = $this->db->get('data_slf');
-        return $q;
+        if ($q->num_rows() == 0) {
+            if($idiuts){
+                $this->db->where('id_iuts',$idiuts);
+            }
+            $query = $this->db->get('data_iuts');
+        }else{
+            $query = $this->db->get('data_slf');
+        }
+        return $query;
     }
     function cekSpasial($id)
     {
@@ -303,18 +311,36 @@ class UserModel extends CI_Model {
     }
     function listPermohonan($id,$status='',$awal,$akhir)
     {
-        $this->db->select('data_slf.id_slf,data_slf.code,data_slf.status,data_slf.created_at,pemohon_iuts.nama');
-        $this->db->from('data_iuts');
-        $this->db->join('data_slf', 'data_slf.id_slf = data_iuts.id_slf', 'INNER');
-        $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = data_slf.id_pemohon', 'INNER');
-        if ($status != '') {
-            if ($status == '1') {
-                $this->db->where_in('data_slf.status', [1,2]);
-            }else{
-                $this->db->where('data_slf.status', $status);
+        $cek = $this->db->get_where('data_slf', array('id_pemohon'=>$id));
+        if ($cek->num_rows() > 0 ) {
+            $this->db->select('data_slf.id_slf,data_slf.code,data_slf.status,data_slf.created_at,pemohon_iuts.nama,jenis_izin.nama');
+            $this->db->from('data_iuts');
+            $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = data_slf.id_pemohon', 'INNER');
+            $this->db->join('data_slf', 'data_slf.id_slf = data_iuts.id_slf', 'LEFT');
+            $this->db->join('jenis_izin', 'jenis_izin.id_izin = data_slf.jenis_izin', 'INNER');
+            if ($status != '') {
+                if ($status == '1') {
+                    $this->db->where_in('data_slf.status', [1,2]);
+                }else{
+                    $this->db->where('data_slf.status', $status);
+                }
             }
+            $this->db->where('data_slf.id_pemohon', $id);
+        }else{
+            $this->db->select('data_iuts.id_iuts as id_slf,data_iuts.code,data_iuts.status,data_iuts.created_at,pemohon_iuts.nama,jenis_izin.nama');
+            $this->db->from('data_iuts');
+            $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = data_iuts.id_pemohon', 'INNER');
+            $this->db->join('jenis_izin', 'jenis_izin.id_izin = data_slf.jenis_izin', 'INNER');
+            if ($status != '') {
+                if ($status == '1') {
+                    $this->db->where_in('data_iuts.status', [1,2]);
+                }else{
+                    $this->db->where('data_iuts.status', $status);
+                }
+            }
+            $this->db->where('data_iuts.id_pemohon', $id);
         }
-        $this->db->where('data_slf.id_pemohon', $id);
+
         $q = $this->db->get();
         return $q;
     }
