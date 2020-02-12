@@ -9,7 +9,7 @@ class OfficeModel extends CI_Model {
 	function countdata($status)
 	{
 		$this->db->select('count(*) as total');
-        $this->db->from('bangunan_iuts');
+        $this->db->from('cek_izin');
         $this->db->where('status', $status);
         $q = $this->db->get();
         return $q;
@@ -294,9 +294,9 @@ class OfficeModel extends CI_Model {
     }
     function getdatatable()
 	{
-		$this->db->select('pemohon_iuts.id_pemohon as id ,data_slf.id_slf as idbangunan,pemohon_iuts.nama,pemohon_iuts.npwp,data_slf.code,pemohon_iuts.email,pemohon_iuts.created_at,data_slf.updated_at,data_slf.status');
+		$this->db->select('pemohon_iuts.id_pemohon as id, pemohon_iuts.nama,pemohon_iuts.email, pemohon_iuts.npwp,cek_izin.id_izin as idbangunan,cek_izin.code,cek_izin.created_at,cek_izin.updated_at,cek_izin.status');
 		$this->db->from('pemohon_iuts');
-		$this->db->join('data_slf', 'data_slf.id_pemohon = pemohon_iuts.id_pemohon', 'INNER');
+		$this->db->join('cek_izin', 'cek_izin.id_pemohon = pemohon_iuts.id_pemohon', 'INNER');
 
         foreach ($this->column_search as $item) // loop column 
         {
@@ -325,7 +325,7 @@ class OfficeModel extends CI_Model {
         	$statusbangunan = null;
         }else{
         	$statusbangunan = $this->input->post('status');
-    		$this->db->where('bangunan_iuts.status', $statusbangunan);
+    		$this->db->where('cek_izin.status', $statusbangunan);
         }
     	$this->getdatatable();
     	if($this->input->post('length') != -1)
@@ -371,13 +371,13 @@ class OfficeModel extends CI_Model {
         $level = $this->input->post('level');
         if ($level == 1) {
         	$statusjalan = '1';
-    		$this->db->where('data_slf.status_jalan', $statusjalan);
+    		$this->db->where('cek_izin.status_jalan', $statusjalan);
         }elseif ($level == 2) {
         	$statusjalan = '0';
-    		$this->db->where('data_slf.status_jalan', $statusjalan);
+    		$this->db->where('cek_izin.status_jalan', $statusjalan);
         }elseif ($level == 3) {
         	$statusjalan = '0';
-    		$this->db->where('data_slf.status_jalan', $statusjalan);
+    		$this->db->where('cek_izin.status_jalan', $statusjalan);
         }
     	$this->getdatatable();
     	if($this->input->post('length') != -1)
@@ -422,7 +422,7 @@ class OfficeModel extends CI_Model {
     {
         $this->getdatatable();
         if ($id!=null) {
-    		$this->db->where('data_slf.status_jalan', $id);
+    		$this->db->where('cek_izin.status_jalan', $id);
         }
         $query = $this->db->get();
         return $query->num_rows();
@@ -431,7 +431,7 @@ class OfficeModel extends CI_Model {
     {
         $this->getdatatable();
         if ($id!=null) {
-    		$this->db->where('data_slf.status_jalan', $id);
+    		$this->db->where('cek_izin.status_jalan', $id);
         }
     	return $this->db->count_all_results();
     }
@@ -439,7 +439,7 @@ class OfficeModel extends CI_Model {
     {
         $this->getdatatable();
         if ($id!=null) {
-    		$this->db->where('data_slf.status', $id);
+    		$this->db->where('cek_izin.status', $id);
         }
         $query = $this->db->get();
         return $query->num_rows();
@@ -448,7 +448,7 @@ class OfficeModel extends CI_Model {
     {
         $this->getdatatable();
         if ($id!=null) {
-    		$this->db->where('data_slf.status', $id);
+    		$this->db->where('cek_izin.status', $id);
         }
     	return $this->db->count_all_results();
     }
