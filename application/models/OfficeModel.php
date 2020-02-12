@@ -19,7 +19,6 @@ class OfficeModel extends CI_Model {
         $cek = $this->db->get_where('data_slf', array('id_slf'=>$idbangun));
         if ($cek->num_rows() > 0) {
             $row = $cek->row();
-            return var_dump($row->jenis_izin);
             if ($row->jenis_izin == '2') {
                 $this->db->select('*');
                 $this->db->from('data_slf');
@@ -27,7 +26,7 @@ class OfficeModel extends CI_Model {
                 $this->db->join('kondisi_slf', 'kondisi_slf.id_slf = data_slf.id_slf', 'INNER');
                 $this->db->where('data_slf.id_slf', $idbangun);
                 $this->db->group_by('data_slf.code');
-            }else{
+            }else if($row->jenis_izin == '3'){
                 $this->db->select('*');
                 $this->db->from('data_slf');
                 $this->db->join('data_iuts', 'data_iuts.id_slf = data_slf.id_slf', 'INNER');
