@@ -388,14 +388,13 @@ class UserModel extends CI_Model {
         $this->db->from('cek_izin');
         $this->db->join('data_slf', 'cek_izin.id_slf = data_slf.id_slf', 'left');
         $this->db->join('data_iuts', 'data_iuts.id_iuts = cek_izin.id_iuts', 'left');
-        $this->db->join('kondisi_slf', 'kondisi_slf.id_slf = data_slf.id_slf', 'INNER');
-        $this->db->join('kondisi_iuts', 'kondisi_iuts.id_iuts = data_iuts.id_iuts', 'INNER');
+        $this->db->join('kondisi_slf', 'kondisi_slf.id_slf = data_slf.id_slf', 'left');
+        $this->db->join('kondisi_iuts', 'kondisi_iuts.id_iuts = data_iuts.id_iuts', 'left');
         $this->db->join('admin_teknis', 'admin_teknis.id_izin = cek_izin.id_izin', 'INNER');
 
         $this->db->join('jarak_pasar', 'jarak_pasar.id = admin_teknis.id_pasar', 'INNER');
         $this->db->join('rencana_jalan', 'rencana_jalan.id = admin_teknis.id_rencana', 'INNER');
         $this->db->join('jalan_eksisting', 'jalan_eksisting.id = admin_teknis.id_rencana_eksisting', 'INNER');
-        $this->db->join('tata_ruang', 'tata_ruang.id = kondisi_iuts.id_tata_ruang', 'INNER');
         $this->db->join('penggunaan_lahan', 'penggunaan_lahan.id = admin_teknis.id_lahan', 'INNER');
         $this->db->join('jarak_usaha', 'jarak_usaha.id = admin_teknis.id_jarak', 'INNER');
         $this->db->where('cek_izin.id_izin', $id_bangunan);
