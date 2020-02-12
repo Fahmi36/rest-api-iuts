@@ -313,7 +313,7 @@ class UserModel extends CI_Model {
     {
         $cek = $this->db->get_where('data_slf', array('id_pemohon'=>$id));
         if ($cek->num_rows() > 0 ) {
-            $row = $cek->row;
+            $row = $cek->row();
             if ($row->jenis_izin == '2') {
                  $this->db->select('data_slf.id_slf,data_slf.code,data_slf.status,data_slf.created_at,pemohon_iuts.nama,jenis_izin.nama');
                 $this->db->from('data_slf');
