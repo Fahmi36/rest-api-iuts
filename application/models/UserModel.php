@@ -79,17 +79,10 @@ class UserModel extends CI_Model {
     function cekCodeBangunan($id)
     {
         if($id){
-            $this->db->where('id_slf',$id);
+            $this->db->where('id_iuts',$id);
+            $this->db->or_where('id_slf',$id);
         }
-        $q = $this->db->get('data_slf');
-        if ($q->num_rows() == 0) {
-            if($idiuts){
-                $this->db->where('id_iuts',$idiuts);
-            }
-            $query = $this->db->get('data_iuts');
-        }else{
-            $query = $this->db->get('data_slf');
-        }
+        $q = $this->db->get('cek_izin');
         return $query;
     }
     function cekSpasial($id)
@@ -393,17 +386,17 @@ class UserModel extends CI_Model {
     function detailPemohonteknis($id_bangunan,$id)
     {
         $this->db->select('jarak_pasar.skor as skorjarakpasar, rencana_jalan.skor as skorrenjalan, jalan_eksisting.skor as skorjalaneksis, tata_ruang.skor as skortataruang, jarak_usaha.skor as skorjarakusaha, penggunaan_lahan.skor as skorpenglahan, ROUND(AVG(jarak_pasar.skor + rencana_jalan.skor + jalan_eksisting.skor + tata_ruang.skor + jarak_usaha.skor + penggunaan_lahan.skor),1) as skormanfaat ');
-        $this->db->from('data_slf');
+        $this->db->from('cek_izin');
+        $this->db->join('data_slf', 'cek_izin.id_slf = data_slf.id_slf', 'left');
+        $this->db->join('data_iuts', 'data_iuts.id_iuts = cek_izin.id_iuts', 'left');
         $this->db->join('kondisi_slf', 'kondisi_slf.id_slf = data_slf.id_slf', 'INNER');
-        $this->db->join('data_iuts', 'data_iuts.id_slf = data_slf.id_slf', 'left');
         $this->db->join('kondisi_iuts', 'kondisi_iuts.id_iuts = data_iuts.id_iuts', 'INNER');
-        $this->db->join('admin_teknis', 'admin_teknis.id_bangunan = data_slf.id_slf', 'INNER');
+        $this->db->join('admin_teknis', 'admin_teknis.id_izin = cek_izin.id_izin', 'INNER');
 
         $this->db->join('jarak_pasar', 'jarak_pasar.id = admin_teknis.id_pasar', 'INNER');
         $this->db->join('rencana_jalan', 'rencana_jalan.id = admin_teknis.id_rencana', 'INNER');
         $this->db->join('jalan_eksisting', 'jalan_eksisting.id = admin_teknis.id_rencana_eksisting', 'INNER');
         $this->db->join('tata_ruang', 'tata_ruang.id = kondisi_iuts.id_tata_ruang', 'INNER');
-        $this->db->join('jarak_usaha', 'jarak_usaha.id = admin_teknis.id_jarak', 'INNER');
         $this->db->join('penggunaan_lahan', 'penggunaan_lahan.id = admin_teknis.id_lahan', 'INNER');
         $this->db->where('data_slf.id_slf', $id_bangunan);
         $this->db->where('data_slf.id_pemohon', $id);
@@ -415,12 +408,12 @@ class UserModel extends CI_Model {
     function detailPemohonDinas($id_bangunan,$id)
     {
         $this->db->select('admindinas.skor_akhir, admindinas.status, janjian.tanggal,admindinas.keterangan');
-        $this->db->from('data_slf');
-        $this->db->join('admindinas', 'admindinas.id_bangunan = data_slf.id_bangunan', 'INNER');
-        $this->db->join('janjian', 'janjian.id_bangunan = data_slf.id_bangunan', 'LEFT');
+        $this->db->from('cek_izin');
+        $this->db->join('admindinas', 'admindinas.id_izin = cek_izin.id_izin', 'INNER');
+        $this->db->join('janjian', 'janjian.id_izin = cek_izin.id_izin', 'LEFT');
 
-        $this->db->where('data_slf.id_bangunan', $id_bangunan);
-        $this->db->group_by('data_slf.id_bangunan');
+        $this->db->where('cek_izin.id_izin', $id_bangunan);
+        $this->db->group_by('cek_izin.id_izin');
         $q = $this->db->get();
         return $q;
         // return var_dump($this->db->last_query());
@@ -429,8 +422,8 @@ class UserModel extends CI_Model {
     {
         $this->db->select('janjian.tgl_ambil');
         $this->db->from('janjian');
-        $this->db->where('janjian.id_bangunan', $id_bangunan);
-        $this->db->group_by('janjian.id_bangunan');
+        $this->db->where('janjian.id_izin', $id_bangunan);
+        $this->db->group_by('janjian.id_izin');
         $q = $this->db->get();
         return $q;
         // return var_dump($this->db->last_query());

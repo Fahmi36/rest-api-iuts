@@ -155,12 +155,12 @@ class UserController extends CI_Controller {
 	{
 		$id = $this->input->post('id');
 
-		$expired = $this->db->get_where('data_slf',array('status'=>'3','id_pemohon'=>$id))->num_rows();
-		$pending = $this->db->get_where('data_slf',array('status'=>'0','id_pemohon'=>$id))->num_rows();
+		$expired = $this->db->get_where('cek_izin',array('status'=>'3','id_pemohon'=>$id))->num_rows();
+		$pending = $this->db->get_where('cek_izin',array('status'=>'0','id_pemohon'=>$id))->num_rows();
 
 		$this->db->select('*');
-		$this->db->from('data_slf');
-		$this->db->where('data_slf.id_pemohon', $id);
+		$this->db->from('cek_izin');
+		$this->db->where('cek_izin.id_pemohon', $id);
 		$this->db->where_in('status',[1,2]);
 		$selesai = $this->db->get();
 		$hasilselesai = $selesai->num_rows();
