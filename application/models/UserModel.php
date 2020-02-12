@@ -83,7 +83,7 @@ class UserModel extends CI_Model {
             $this->db->or_where('id_slf',$id);
         }
         $q = $this->db->get('cek_izin');
-        return $query;
+        return $q;
     }
     function cekSpasial($id)
     {
