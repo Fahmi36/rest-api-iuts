@@ -39,7 +39,7 @@ class OfficeModel extends CI_Model {
 	function cekTeknis($id)
 	{
 		if($id){
-            $this->db->where('id_bangunan',$id);
+            $this->db->where('id_izin',$id);
         }
         $q = $this->db->get('admin_teknis');
         return $q;
