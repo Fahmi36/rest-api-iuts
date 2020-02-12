@@ -19,6 +19,7 @@ class OfficeModel extends CI_Model {
         $cek = $this->db->get_where('data_slf', array('id_slf'=>$idbangun));
         if ($cek->num_rows() > 0) {
             $row = $cek->row();
+            return var_dump($row->jenis_izin);
             if ($row->jenis_izin == 2) {
                 $this->db->select('*');
                 $this->db->from('data_slf');
