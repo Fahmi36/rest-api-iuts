@@ -24,7 +24,7 @@ class OfficeModel extends CI_Model {
         $this->db->join('kondisi_slf', 'kondisi_slf.id_slf = data_slf.id_slf', 'INNER');
         $this->db->join('kondisi_iuts', 'kondisi_iuts.id_iuts = data_iuts.id_iuts', 'INNER');
         $this->db->where('cek_izin.id_izin', $idbangun);
-        $this->db->group_by('data_slf.code');
+        $this->db->group_by('cek_izin.code');
         $q = $this->db->get();
         return $q;
     }
