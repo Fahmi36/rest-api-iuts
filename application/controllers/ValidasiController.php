@@ -701,9 +701,8 @@ class ValidasiController extends CI_Controller {
         }
         return $q;
     }
-    function saveIzin($idpemohon.$idslf='',$idiuts='',$data)
+    function saveIzin($idpemohon,$idslf='',$idiuts='',$data)
     {
-        
         $lokasi = htmlspecialchars($data[0]->alamat);
 
         $lat = htmlspecialchars($data[0]->lat);
