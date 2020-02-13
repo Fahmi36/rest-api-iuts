@@ -503,35 +503,35 @@ class ValidasiController extends CI_Controller {
         $uuid = $this->uuid->v4();
         $id = str_replace('-', '', $uuid);
 
-        $luas_lahan = htmlspecialchars($data[0]->luas_lahan);
-        $status_milik = htmlspecialchars($data[0]->status_milik);
-        $ltb = htmlspecialchars($data[0]->ltb);
-        $jml_lantai = htmlspecialchars($data[0]->jml_lantai);
-        $luas_bangunan = htmlspecialchars($data[0]->luas_bangunan);
-        $tinggi_bangunan = htmlspecialchars($data[0]->tinggi_bangunan);
-        $peruntukan_bangunan = htmlspecialchars($data[0]->peruntukan_bangunan);
+        // $luas_lahan = htmlspecialchars($data[0]->luas_lahan);
+        // $status_milik = htmlspecialchars($data[0]->status_milik);
+        // $ltb = htmlspecialchars($data[0]->ltb);
+        // $jml_lantai = htmlspecialchars($data[0]->jml_lantai);
+        // $luas_bangunan = htmlspecialchars($data[0]->luas_bangunan);
+        // $tinggi_bangunan = htmlspecialchars($data[0]->tinggi_bangunan);
+        // $peruntukan_bangunan = htmlspecialchars($data[0]->peruntukan_bangunan);
 
-        // Foto Bangunan
-        $foto_luar_bangunan = $data[0]->foto_luar_bangunan;
-        $foto_dalam_bangunan = $data[0]->foto_dalam_bangunan;
+        // // Foto Bangunan
+        // $foto_luar_bangunan = $data[0]->foto_luar_bangunan;
+        // $foto_dalam_bangunan = $data[0]->foto_dalam_bangunan;
         // Foto Bangunan
 
         $uploadfoto1 = $this->uploadFotoLuar($foto_luar_bangunan);
         $uploadfoto2 = $this->uploadFotoDalam($foto_dalam_bangunan);
 
         $arrayPermohonan = array(
-            'id_slf'=>$id,
-            'luas_lahan'=>$luas_lahan,
-            'status_milik'=>$status_milik,
-            'luas_tapak'=>$ltb,
-            'jumlah_lantai'=>$jml_lantai,
-            'luas_total_bangunan'=>$luas_lantai,
-            'tinggi_bangunan'=>$luas_lantai_input,
-            'peruntukan_bangunan'=>$luas_lantai_input,
+            // 'id_slf'=>$id,
+            // 'luas_lahan'=>$luas_lahan,
+            // 'status_milik'=>$status_milik,
+            // 'luas_tapak'=>$ltb,
+            // 'jumlah_lantai'=>$jml_lantai,
+            // 'luas_total_bangunan'=>$luas_lantai,
+            // 'tinggi_bangunan'=>$luas_lantai_input,
+            // 'peruntukan_bangunan'=>$luas_lantai_input,
             'foto_luar'=>$uploadfoto1,
             'foto_dalam'=>$uploadfoto2,
-            'created_at' => date('Y-m-d H:i:s'),
-            'updated_at' => date('Y-m-d H:i:s'),
+            // 'created_at' => date('Y-m-d H:i:s'),
+            // 'updated_at' => date('Y-m-d H:i:s'),
         );
         $q = $this->db->insert('data_slf',$arrayPermohonan);
 
