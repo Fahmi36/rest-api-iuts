@@ -847,7 +847,7 @@ class ValidasiController extends CI_Controller {
         $fb = "";
           $this->upload->initialize($config);
           for ($i=0; $i < sizeof($_FILES[$params]['name']) ; $i++) { 
-                if ($this->upload->do_upload($params)) {
+            $this->upload->do_upload($params)
                     $f = $this->upload->data();
                     if (count($f) != 14) {
                         for ($i=0; $i < count($f); $i++) {
@@ -858,14 +858,6 @@ class ValidasiController extends CI_Controller {
                     }else{
                         $newfotonya = $f['file_name'];
                     }
-                }else{
-            $f = $this->input->post($params);
-            for ($i=0; $i < count($f); $i++) {
-              $abc = $f[$i].',';
-              $fb .= $abc;
-            }
-              $newfotonya = substr($fb, 0, -1);
-          }
         }
           return $newfotonya;
     }
