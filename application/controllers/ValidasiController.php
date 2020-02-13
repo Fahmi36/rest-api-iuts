@@ -868,6 +868,7 @@ class ValidasiController extends CI_Controller {
     function uploadFotoDalam($params)
     {
         $this->load->library('upload');
+        
         $config['upload_path'] = './assets/fotodalam/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['encrypt_name']         = TRUE;
