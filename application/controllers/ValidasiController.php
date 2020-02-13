@@ -374,10 +374,10 @@ class ValidasiController extends CI_Controller {
                                 if ($skor) {
                                     // $tax = $this->saveTaxClear($slf,$status_npwp,$status_pbb);
                                     // if ($tax) {                                            
-                                        $json['idslf'] = $slf;
-                                        $json['idiuts'] = $iuts;
                                         $this->sendmail($email);
                                         $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
+                                        $json['idslf'] = $slf;
+                                        $json['idiuts'] = $iuts;
                                         echo json_encode($json);
                                         return;
                                     // }else{
