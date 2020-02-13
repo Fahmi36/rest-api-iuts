@@ -170,19 +170,20 @@ class ValidasiController extends CI_Controller {
             $id_tata = 1;
         }
 
-        if(empty($status_npwp) OR $status_npwp=='-' OR $status_npwp=='0'){
-            echo json_encode($this->returnResultCustom(false,"Harus Melakukan Verifikasi NIK dan PBB"));
-            return;
-        }else if(empty($status_pbb) OR $status_pbb =='-' OR $status_pbb=='0'){
-            echo json_encode($this->returnResultCustom(false,"Harus Melakukan Verifikasi NIK dan PBB"));
-            return;
-        }else if (empty($sublock) OR $sublock=='-') {
+        if (empty($sublock) OR $sublock=='-') {
             echo json_encode($this->returnResultCustom(false,"Mohon Pilih lokasi maps dekat dengan layar yang berwarna "));
             return;
         }else if ($sublock == 'H.2') {
             echo json_encode($this->returnResultCustom(false,"Tidak Boleh di Zona Hijau"));
             return;
         }
+        // if(empty($status_npwp) OR $status_npwp=='-' OR $status_npwp=='0'){
+        //     echo json_encode($this->returnResultCustom(false,"Harus Melakukan Verifikasi NIK dan PBB"));
+        //     return;
+        // }else if(empty($status_pbb) OR $status_pbb =='-' OR $status_pbb=='0'){
+        //     echo json_encode($this->returnResultCustom(false,"Harus Melakukan Verifikasi NIK dan PBB"));
+        //     return;
+        // }else 
             if ($jenis == '1') { // IUTS
                 if(empty($pbb) OR $pbb =='-' ){
                     echo json_encode($this->returnResultCustom(false,"Pemutakhiran PBB Tidak Boleh Kosong"));
