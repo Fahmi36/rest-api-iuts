@@ -520,7 +520,7 @@ class ValidasiController extends CI_Controller {
         $uploadfoto2 = $this->uploadFotoDalam($foto_dalam_bangunan);
 
         $arrayPermohonan = array(
-            // 'id_slf'=>$id,
+            'id_slf'=>$id,
             // 'luas_lahan'=>$luas_lahan,
             // 'status_milik'=>$status_milik,
             // 'luas_tapak'=>$ltb,
