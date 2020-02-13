@@ -661,7 +661,7 @@ class ValidasiController extends CI_Controller {
             'kelompok_usaha'=>$kelompok,
             'nama_badan_usaha'=>$kelompok,
             'kategori_usaha'=>$kategori_usaha,
-            'omset'=>$omset,
+            'omset'=>$omset_perbulan,
             'peruntukan_imb'=>$untuk_toko,
             'status_bangunan'=>$status_bangunan,
             'created_at' => date('Y-m-d H:i:s'),
@@ -746,7 +746,7 @@ class ValidasiController extends CI_Controller {
             );
             $q = $this->db->update('kondisi_slf',$array,$where);
         }else{
-            $q = $this->us->InsertKondisiSlf($idslf,$kdh_zonasi,$kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$rek_slf,$slf,$damkar,$tenaga_kerja,$imb,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$toilet,$parkir);
+            $q = $this->us->InsertKondisiSlf($idslf,$kdh_zonasi, $kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$rek_slf,$slf,$damkar,$tenaga_kerja,$imb,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$toilet,$parkir);
         }
         return $q;
     }
