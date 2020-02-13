@@ -490,7 +490,7 @@ class ValidasiController extends CI_Controller {
         }
         echo json_encode($json);
     }
-    function saveSlf($f1,$f2)
+    function saveSlf()
     {
 
         $this->load->library('uuid');
@@ -509,7 +509,7 @@ class ValidasiController extends CI_Controller {
         // $foto_luar_bangunan = $this->input->post('');
         // $foto_dalam_bangunan = $this->input->post('');
         // Foto Bangunan
-        
+
         $uploadfoto1 = $this->uploadFotoLuar('fotoluar');
         $uploadfoto2 = $this->uploadFotoDalam('foto_dalam_bangunan');
         $arrayPermohonan = array(
