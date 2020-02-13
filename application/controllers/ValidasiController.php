@@ -514,7 +514,7 @@ class ValidasiController extends CI_Controller {
         echo json_encode($result);
     }
     function updateDataiuts() {
-        $idslf        = $this->input->post('id');
+        $idiuts        = $this->input->post('id');
         $name      = $this->input->post('name');
         $jenis      = $this->input->post('jenis');
 
@@ -522,14 +522,14 @@ class ValidasiController extends CI_Controller {
         $uuid = $this->uuid->v4();
         $id = str_replace('-', '', $uuid);
         $arrUpdate = array(
-            'id_foto'=>$id,
+            'id_fotoi'=>$id,
             'jenis_foto'=>$jenis,
             'foto' => $name,
             'verif_by' => '1',
             'created_at'=>date('Y-m-d H:i:s'),
             'updated_at'=>date('Y-m-d H:i:s'),
             'status'=>'0',
-            'id_iuts'=>$idslf,
+            'id_iuts'=>$idiuts,
         );
         $q = $this->db->insert('foto_iuts', $arrUpdate);
         if ($q) {
