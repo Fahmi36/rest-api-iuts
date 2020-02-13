@@ -837,13 +837,13 @@ class ValidasiController extends CI_Controller {
     function uploadFotoLuar($params)
     {
 
-        $this->load->library('upload');
         $config['upload_path'] = './assets/fotoluar/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['encrypt_name']         = TRUE;
         $config['remove_spaces']        = TRUE;
         // var_dump($params);
         // var_dump($this->upload->do_upload($params));
+        $this->load->library('upload',$config);
         $fb = "";
           $this->upload->initialize($config);
           if ($this->upload->do_upload($params)) {
