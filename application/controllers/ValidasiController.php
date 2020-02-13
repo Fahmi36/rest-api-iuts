@@ -837,14 +837,14 @@ class ValidasiController extends CI_Controller {
     }
     function uploadFotoLuar($params)
     {
-      $config['upload_path']          = './public/images/';
+      $config['upload_path']          = './assets/fotoluar/';
       $config['allowed_types']        = 'gif|jpg|png|jpeg';
       $config['remove_spaces']        = TRUE;
       $config['encrypt_name']        = TRUE;
 
       $this->upload->initialize($config);
         if( ! $this->upload->do_upload($params)){
-            $error = array('error' => $this->upload->display_errors());
+            $newfileluar = array('error' => $this->upload->display_errors());
         }else{
             $this->upload->do_upload($params);
             $f = $this->upload->data();
