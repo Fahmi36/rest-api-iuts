@@ -843,7 +843,7 @@ class ValidasiController extends CI_Controller {
     function saveSkor($slf)
     {
         $skor = $this->us->SkoringWeb($slf)->row();
-        $avg =  $skor->skoriuts * $status_pbb * $status_pbb;
+        $avg =  $skor->skoriuts * 1 * 1;
         $rata = round($skor->skorslf,1);
         $iuts = round($avg,1);
 
