@@ -512,8 +512,8 @@ class ValidasiController extends CI_Controller {
         // $peruntukan_bangunan = htmlspecialchars($data[0]->peruntukan_bangunan);
 
         // // Foto Bangunan
-        // $foto_luar_bangunan = $data[0]->foto_luar_bangunan;
-        // $foto_dalam_bangunan = $data[0]->foto_dalam_bangunan;
+        $foto_luar_bangunan = $data[0]->foto_luar_bangunan;
+        $foto_dalam_bangunan = $data[0]->foto_dalam_bangunan;
         // Foto Bangunan
 
         $uploadfoto1 = $this->uploadFotoLuar($foto_luar_bangunan);
