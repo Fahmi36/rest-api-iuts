@@ -169,7 +169,7 @@ class ValidasiController extends CI_Controller {
         }else{
             $id_tata = 1;
         }
-        $uploadfoto1 = $this->uploadFotoLuar('foto_luar_bangunan');
+        $uploadfoto1 = $this->uploadFotoLuar('foto_luar_bangunan[]');
         $uploadfoto2 = $this->uploadFotoDalam('foto_dalam_bangunan');
 
         $slf = $this->saveSlf($uploadfoto1,$uploadfoto2);
@@ -841,7 +841,8 @@ class ValidasiController extends CI_Controller {
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['encrypt_name']         = TRUE;
         $config['remove_spaces']        = TRUE;
-
+        var_dump($params);
+        var_dump($this->upload->do_upload());
         $gl = "";
         $this->upload->initialize($config);
         if ($this->upload->do_upload($params)) {
