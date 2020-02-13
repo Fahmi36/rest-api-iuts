@@ -100,7 +100,7 @@ class ValidasiController extends CI_Controller {
     function ValidasiIzin()
     {
       try {
-        $json = json_decode($this->input->post('dataRegist'));
+        // $json = json_decode($this->input->post('dataRegist'));
         $email = $this->input->post('emailAktif');
         $jenis = $this->input->post('jenis_izin');
 
@@ -282,10 +282,7 @@ class ValidasiController extends CI_Controller {
             //         return;
             //     }
             // }else if ($jenis == '3'){ //SLF dan IUTS 
-                if(empty($kdh_zonasi) OR $kdh_zonasi == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Silakan Pilih Koefisien Daearh Hijau di Peta"));
-                    return;
-                }else if(empty($kdh_minimum) OR $kdh_minimum == '-'){
+               if(empty($kdh_minimum) OR $kdh_minimum == '-'){
                     echo json_encode($this->returnResultCustom(false,"KDH Eksisting Tidak Boleh Kosong"));
                     return;
                 }else if(empty($kondisi_kdh) OR $kondisi_kdh == '-'){
