@@ -154,7 +154,7 @@ class UserModel extends CI_Model {
         $q = $this->db->insert('pemohon_iuts',$array);
         return $q;
 	}
-    function InsertKondisiSlf($idslf,$kdh_zonasi,$kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$rek_slf,$uploadfoto3,$slf,$uploadfoto4,$damkar,$uploadfoto5,$tenaga_kerja,$uploadfoto6,$imb,$uploadfoto7,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$toilet,$parkir)
+    function InsertKondisiSlf($idslf,$kdh_zonasi,$kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$rek_slf,$slf,$damkar,$tenaga_kerja,$imb,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$toilet,$parkir)
     {
         $array = array(
             'id_slf'=>$slf,
@@ -166,15 +166,10 @@ class UserModel extends CI_Model {
                 'id_kondisi_sumur' => $kondisi_sumur,
                 'id_drainase' => $drainase,
                 'id_rek_slf' => $rek_slf,
-                'rek_slf' => $uploadfoto3,
                 'id_layak' => $slf,
-                'layak_fungsi' => $uploadfoto4,
                 'id_izin_damkar' => $damkar,
-                'izin_damkar' => $uploadfoto5,
                 'id_tenaga_kerja' => $tenaga_kerja, // baru
-                'tenaga_kerja' => $uploadfoto6, // baru
                 'id_imb' => $imb,
-                'foto_imb' => $uploadfoto7,
                 'id_penanggulangan_kebakaran' => $fasilitas,
                 'id_asuransi' => $asuransi,
                 'id_renovasi' => $kelayakan,
