@@ -69,7 +69,7 @@ class OfficeModel extends CI_Model {
     function cekSurat($id)
     {
         if($id){
-            $this->db->where('id_bangunan',$id);
+            $this->db->where('id_izin',$id);
         }
         $q = $this->db->get('janjian');
         return $q;
