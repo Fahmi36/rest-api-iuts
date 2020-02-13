@@ -277,6 +277,7 @@ class UserModel extends CI_Model {
 	function InsertSkor($bangunan,$hasil,$teknis,$dampak,$rata)
 	{
 		$array = array(
+            'id_bangunan'=>$bangunan,
             'total_slf' => $rata,
             'total_iuts' => $iuts,
             'rata-rata' => $rata,

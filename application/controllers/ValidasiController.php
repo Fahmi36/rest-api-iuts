@@ -370,7 +370,7 @@ class ValidasiController extends CI_Controller {
                             $kondisiiuts = $this->saveKondisiIuts($iuts,$id_tata);
                             if ($kondisiiuts) {
                                 $cekizin = $this->saveIzin($savepemohon,$slf,$iuts);
-                                $skor = $this->saveSkor($slf);
+                                $skor = $this->saveSkor($cekizin);
                                 if ($skor) {
                                     $tax = $this->saveTaxClear($slf,$status_npwp,$status_pbb);
                                     if ($tax) {                                            
@@ -881,7 +881,7 @@ class ValidasiController extends CI_Controller {
         );
            $q = $this->db->update('skor_bangunan',$array,$where);
        }else{
-           $q = $this->us->InsertSkor($bangunan,$hasil,$teknis,$dampak,$rata);
+           $q = $this->us->InsertSkor($slf,$hasil,$teknis,$dampak,$rata);
        }
        return $q;
    }
