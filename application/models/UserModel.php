@@ -274,7 +274,7 @@ class UserModel extends CI_Model {
             $q = $this->db->insert('cek_izin',$array);
         return $q;
     }
-	function InsertSkor($bangunan,$hasil,$teknis,$dampak,$rata)
+	function InsertSkor($slf,$rata,$iuts,$rata,$status_iuts,$status)
 	{
 		$array = array(
             'id_bangunan'=>$bangunan,

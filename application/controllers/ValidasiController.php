@@ -881,7 +881,7 @@ class ValidasiController extends CI_Controller {
         );
            $q = $this->db->update('skor_bangunan',$array,$where);
        }else{
-           $q = $this->us->InsertSkor($slf,$hasil,$teknis,$dampak,$rata);
+           $q = $this->us->InsertSkor($slf,$rata,$iuts,$rata,$status_iuts,$status);
        }
        return $q;
    }
