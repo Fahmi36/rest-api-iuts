@@ -837,34 +837,36 @@ class ValidasiController extends CI_Controller {
     function uploadFotoLuar($params)
     {
 
+        $this->load->library('upload');
         $config['upload_path'] = './assets/fotoluar/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['encrypt_name']         = TRUE;
         $config['remove_spaces']        = TRUE;
         // var_dump($params);
         // var_dump($this->upload->do_upload($params));
-        $this->load->library('upload',$config);
         $fb = "";
           $this->upload->initialize($config);
-          if ($this->upload->do_upload($params)) {
-            $f = $this->upload->data();
-            if (count($f) != 14) {
-              for ($i=0; $i < count($f); $i++) {
-                $abc = $f[$i]['file_name'].',';
-                $fb .= $abc;
-              }
-              $newfotonya = substr($fb, 0, -1);
-            }else{
-              $newfotonya = $f['file_name'];
-            }
-          }else{
+          for ($i=0; $i < sizeof($_FILES[$params]['name']) ; $i++) { 
+                if ($this->upload->do_upload($params)) {
+                    $f = $this->upload->data();
+                    if (count($f) != 14) {
+                        for ($i=0; $i < count($f); $i++) {
+                            $abc = $f[$i]['file_name'].',';
+                            $fb .= $abc;
+                        }
+                        $newfotonya = substr($fb, 0, -1);
+                    }else{
+                        $newfotonya = $f['file_name'];
+                    }
+                }else{
             $f = $this->input->post($params);
             for ($i=0; $i < count($f); $i++) {
               $abc = $f[$i].',';
               $fb .= $abc;
             }
-            $newfotonya = substr($fb, 0, -1);
+              $newfotonya = substr($fb, 0, -1);
           }
+        }
           return $newfotonya;
     }
     function uploadFotoDalam($params)
