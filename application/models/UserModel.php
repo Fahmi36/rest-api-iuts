@@ -130,7 +130,7 @@ class UserModel extends CI_Model {
         $q = $this->db->insert('data_slf',$arrayPermohonan);
         return $q;
 	}
-	function InsertPemohon($id,$namaLengkap,$nama_perusahaan,$jabatan,$nomorInKepen,$fotoktp,$nomorInBeru,$npwp,$alamat_perusahaan,$no_telp,$emailAktif,$fotonpwp,$status_pemohon,$token)
+	function InsertPemohon($id,$namaLengkap,$namadirektur,$nama_perusahaan,$jabatan,$nomorInKepen,$fotoktp,$nomorInBeru,$npwp,$alamat_perusahaan,$no_telp,$emailAktif,$fotonpwp,$status_pemohon,$token)
 	{
 		$array = array(
             'id_pemohon'=>$id,
