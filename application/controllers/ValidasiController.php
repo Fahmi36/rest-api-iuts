@@ -840,7 +840,7 @@ class ValidasiController extends CI_Controller {
 
         echo json_encode($res);
     }
-    function uploadFotoLuar($param)
+    function uploadFotoLuar($params)
     {
         $this->load->library('upload');
         $config['upload_path'] = './assets/fotoluar/';
@@ -871,7 +871,7 @@ class ValidasiController extends CI_Controller {
         }
         return $newfileluar;
     }
-    function uploadFotoDalam($param)
+    function uploadFotoDalam($params)
     {
         $this->load->library('upload');
         $config['upload_path'] = './assets/fotodalam/';
