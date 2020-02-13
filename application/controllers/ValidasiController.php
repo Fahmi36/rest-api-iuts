@@ -169,7 +169,7 @@ class ValidasiController extends CI_Controller {
         }else{
             $id_tata = 1;
         }
-        $uploadfoto1 = $this->uploadFotoLuar('foto_luar_bangunan[]');
+        $uploadfoto1 = $this->uploadFotoLuar('foto_luar_bangunan');
         $uploadfoto2 = $this->uploadFotoDalam('foto_dalam_bangunan');
 
         $slf = $this->saveSlf($uploadfoto1,$uploadfoto2);
