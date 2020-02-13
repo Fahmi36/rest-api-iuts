@@ -841,7 +841,7 @@ class ValidasiController extends CI_Controller {
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['encrypt_name']         = TRUE;
         $config['remove_spaces']        = TRUE;
-        var_dump($this->upload->do_upload($params))
+        // var_dump($this->upload->do_upload($params))
         return var_dump($params);
         $gl = "";
         $this->upload->initialize($config);
