@@ -306,12 +306,6 @@ class ValidasiController extends CI_Controller {
                 }else if(empty($rek_slf) OR $rek_slf == '-'){
                     echo json_encode($this->returnResultCustom(false,"Rekomendasi SLF Tidak Boleh Kosong"));
                     return;
-                }else if(empty($damkar) OR $damkar == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Izin Dinas Penganggulangan Kebakaran dan Penyelamatan Harus Di Isi"));
-                    return;
-                }else if(empty($tenaga_kerja) OR $tenaga_kerja == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Izin Dinas Tenaga Kerja dan Transmigrasi Harus Di Isi"));
-                    return;
                 }else if(empty($imb) OR $imb == '-'){
                     echo json_encode($this->returnResultCustom(false,"IMB Tidak Boleh Kosong"));
                     return;
