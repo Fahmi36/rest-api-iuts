@@ -862,7 +862,7 @@ class ValidasiController extends CI_Controller {
         }else if ($iuts > 2.5) {
             $status_iuts = '1';
         }
-        $totalslf = $skor->skorslf();
+        $totalslf = $skor->skorslf;
         $cek = $this->us->cekSkor($slf);
         if ($cek->num_rows() > 0) {
            $getdata = $cek->row();
