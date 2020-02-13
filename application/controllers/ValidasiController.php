@@ -492,8 +492,6 @@ class ValidasiController extends CI_Controller {
     function saveSlf()
     {
 
-        $this->load->library('upload');
-
         $this->load->library('uuid');
         $uuid = $this->uuid->v4();
         $id = str_replace('-', '', $uuid);
@@ -838,39 +836,39 @@ class ValidasiController extends CI_Controller {
     }
     function uploadFotoLuar($params)
     {
-        $config = array();
+        $this->load->library('upload');
         $config['upload_path'] = './assets/fotoluar/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['encrypt_name']         = TRUE;
         $config['remove_spaces']        = TRUE;
-        // // var_dump($this->upload->do_upload($params))
-        // return var_dump($params);
-         $fb = "";
-         $this->upload->initialize($config);
-         if ($this->upload->do_upload($params)) {
-            $f = $this->upload->data();
-            if (count($f) != 14) {
-              for ($i=0; $i < count($f); $i++) {
-                $abc = $f[$i]['file_name'].',';
-                $fb .= $abc;
+
+        $gl = "";
+        $this->upload->initialize($config);
+        if ($this->upload->do_upload($params)) {
+            $s = $this->upload->data();
+            if (count($s) != 14) {
+                for ($i=0; $i < count($s); $i++) {
+                    $abc = $s[$i]['file_name'].',';
+                    $gl .= $abc;
+                }
+                $newfileluar = substr($gl, 0, -1);
+            }else{
+                $newfileluar = $s['file_name'];
             }
-            $newfotonya = substr($fb, 0, -1);
         }else{
-          $newfotonya = $f['file_name'];
-      }
-  }else{
-    $f = $this->input->post($params);
-    for ($i=0; $i < count($f); $i++) {
-      $abc = $f[$i].',';
-      $fb .= $abc;
-  }
-  $newfotonya = substr($fb, 0, -1);
-}
-return $newfotonya;
+            $s = $this->input->post($params);
+            for ($i=0; $i < count($s); $i++) {
+                $abc = $s[$i].',';
+                $gl .= $abc;
+            }
+            $newfileluar = substr($s, 0, -1);
+        }
+        return $newfileluar;
     }
     function uploadFotoDalam($params)
     {
-
+        $this->load->library('upload');
+        
         $config['upload_path'] = './assets/fotodalam/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['encrypt_name']         = TRUE;
