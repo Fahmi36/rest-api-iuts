@@ -492,6 +492,8 @@ class ValidasiController extends CI_Controller {
     function saveSlf()
     {
 
+        $this->load->library('upload');
+        
         $this->load->library('uuid');
         $uuid = $this->uuid->v4();
         $id = str_replace('-', '', $uuid);
