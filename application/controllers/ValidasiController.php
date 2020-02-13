@@ -309,9 +309,6 @@ class ValidasiController extends CI_Controller {
                 }else if(empty($imb) OR $imb == '-'){
                     echo json_encode($this->returnResultCustom(false,"IMB Tidak Boleh Kosong"));
                     return;
-                }else if(empty($fasilitas) OR $fasilitas == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Fasilitas Penganggulangan Kebakaran Tidak Boleh Kosong"));
-                    return;
                 }else if(empty($asuransi) OR $asuransi == '-'){
                     echo json_encode($this->returnResultCustom(false,"Asuransi Toko Tidak Boleh Kosong"));
                     return;
