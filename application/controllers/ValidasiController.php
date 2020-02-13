@@ -101,67 +101,67 @@ class ValidasiController extends CI_Controller {
     {
       try {
         $json = json_decode($this->input->post('dataRegist'));
-        $email = htmlspecialchars($json[0]->emailAktif);
-        $jenis = htmlspecialchars($json[0]->jenis_izin);
+        // $email = htmlspecialchars($json[0]->emailAktif);
+        // $jenis = htmlspecialchars($json[0]->jenis_izin);
 
-            //SLF
-        $kdh_zonasi = htmlspecialchars($json[0]->kdh_zonasi);
-        $kdh_minimum = htmlspecialchars($json[0]->kdh_minimum);
-        $kondisi_kdh = htmlspecialchars($json[0]->kondisi_kdh);
-        $volume = htmlspecialchars($json[0]->volumeSumur);
-        $kondisipertandaan = htmlspecialchars($json[0]->kondisi_pertandaan_toko);
-        $kondisi_sumur = htmlspecialchars($json[0]->kondisi_sumur_r);
-        $drainase = htmlspecialchars($json[0]->drainase_disekeliling);
+        //     //SLF
+        // $kdh_zonasi = htmlspecialchars($json[0]->kdh_zonasi);
+        // $kdh_minimum = htmlspecialchars($json[0]->kdh_minimum);
+        // $kondisi_kdh = htmlspecialchars($json[0]->kondisi_kdh);
+        // $volume = htmlspecialchars($json[0]->volumeSumur);
+        // $kondisipertandaan = htmlspecialchars($json[0]->kondisi_pertandaan_toko);
+        // $kondisi_sumur = htmlspecialchars($json[0]->kondisi_sumur_r);
+        // $drainase = htmlspecialchars($json[0]->drainase_disekeliling);
 
-        $rek_slf = htmlspecialchars($json[0]->rekomendasi_slf);
-        $damkar = htmlspecialchars($json[0]->izin_dinas_pkp);
-        $tenaga_kerja = htmlspecialchars($json[0]->izin_dinas_tkt);
-        $imb = htmlspecialchars($json[0]->imb);
+        // $rek_slf = htmlspecialchars($json[0]->rekomendasi_slf);
+        // $damkar = htmlspecialchars($json[0]->izin_dinas_pkp);
+        // $tenaga_kerja = htmlspecialchars($json[0]->izin_dinas_tkt);
+        // $imb = htmlspecialchars($json[0]->imb);
 
-        $fasilitas = htmlspecialchars($json[0]->fasilitas_penang_kebakaran);
-        $asuransi = htmlspecialchars($json[0]->ketersediaan_asuransi_toko);
-        $kelayakan = htmlspecialchars($json[0]->waktu_pembaruan_k_g);
-        $air = htmlspecialchars($json[0]->air_bersih);
-        $sumber_air = htmlspecialchars($json[0]->sumber_air_bersih);
-        $limbah = htmlspecialchars($json[0]->pengelolaan_air_kotor);
-        $sampah = htmlspecialchars($json[0]->pengelolaan_sampah);
-        $listrik = htmlspecialchars($json[0]->ketersediaan_listrik);
-        $toilet = htmlspecialchars($json[0]->ketersediaan_toilet);
-        $parkir = htmlspecialchars($json[0]->kondisi_parkir);
+        // $fasilitas = htmlspecialchars($json[0]->fasilitas_penang_kebakaran);
+        // $asuransi = htmlspecialchars($json[0]->ketersediaan_asuransi_toko);
+        // $kelayakan = htmlspecialchars($json[0]->waktu_pembaruan_k_g);
+        // $air = htmlspecialchars($json[0]->air_bersih);
+        // $sumber_air = htmlspecialchars($json[0]->sumber_air_bersih);
+        // $limbah = htmlspecialchars($json[0]->pengelolaan_air_kotor);
+        // $sampah = htmlspecialchars($json[0]->pengelolaan_sampah);
+        // $listrik = htmlspecialchars($json[0]->ketersediaan_listrik);
+        // $toilet = htmlspecialchars($json[0]->ketersediaan_toilet);
+        // $parkir = htmlspecialchars($json[0]->kondisi_parkir);
 
-            //END SLF
+        //     //END SLF
 
 
-            // Mulai IUTS
+        //     // Mulai IUTS
 
-        /*Administrasi Bangunan*/
-            // $kondisi = htmlspecialchars($json[0]->kondisi_eksisting);
-            // $detail_kondisi_input = htmlspecialchars($json[0]->detail_kondisi_input);
-        $sublock = htmlspecialchars($json[0]->idsubblok);
-        /*Administrasi Bangunan*/
+        // /*Administrasi Bangunan*/
+        //     // $kondisi = htmlspecialchars($json[0]->kondisi_eksisting);
+        //     // $detail_kondisi_input = htmlspecialchars($json[0]->detail_kondisi_input);
+        // $sublock = htmlspecialchars($json[0]->idsubblok);
+        // /*Administrasi Bangunan*/
 
-        /*Kebermanfaatan Usaha*/
-        $pbb = htmlspecialchars($json[0]->pemutakhiran_pbb);
-        $umkm = htmlspecialchars($json[0]->keterlibatan_umkm);
-        $keterlibatan_umkm_input = htmlspecialchars($json[0]->keterlibatan_umkm_input);
-        $warga = htmlspecialchars($json[0]->persetujuan_warga);
-        $jumlah_karyawan = htmlspecialchars($json[0]->jumlah_karyawan);
-        $asal_karyawan = htmlspecialchars($json[0]->asal_karyawan);
-        $jumlah_atm = htmlspecialchars($json[0]->jumlah_atm);
-        $jumlah_pengunjung = htmlspecialchars($json[0]->jumlah_pengunjung_b);
-        $status_milik_usaha = htmlspecialchars($json[0]->status_milik_usaha);
-        $peng_lahan = htmlspecialchars($json[0]->penggunaan_lahan);
-        /*Kebermanfaatan Usaha*/
+        // /*Kebermanfaatan Usaha*/
+        // $pbb = htmlspecialchars($json[0]->pemutakhiran_pbb);
+        // $umkm = htmlspecialchars($json[0]->keterlibatan_umkm);
+        // $keterlibatan_umkm_input = htmlspecialchars($json[0]->keterlibatan_umkm_input);
+        // $warga = htmlspecialchars($json[0]->persetujuan_warga);
+        // $jumlah_karyawan = htmlspecialchars($json[0]->jumlah_karyawan);
+        // $asal_karyawan = htmlspecialchars($json[0]->asal_karyawan);
+        // $jumlah_atm = htmlspecialchars($json[0]->jumlah_atm);
+        // $jumlah_pengunjung = htmlspecialchars($json[0]->jumlah_pengunjung_b);
+        // $status_milik_usaha = htmlspecialchars($json[0]->status_milik_usaha);
+        // $peng_lahan = htmlspecialchars($json[0]->penggunaan_lahan);
+        // /*Kebermanfaatan Usaha*/
 
-        /*Informasi Antisipasi Dampak/Resiko*/
-        $rek_umkm = htmlspecialchars($json[0]->rekomendasi_umkm);
-        $kajian = htmlspecialchars($json[0]->kajian_sostek);
-        /*Informasi Antisipasi Dampak/Resiko*/
+        // /*Informasi Antisipasi Dampak/Resiko*/
+        // $rek_umkm = htmlspecialchars($json[0]->rekomendasi_umkm);
+        // $kajian = htmlspecialchars($json[0]->kajian_sostek);
+        // /*Informasi Antisipasi Dampak/Resiko*/
 
-        $status_npwp = htmlspecialchars($json[0]->status_npwp);
-        $status_pbb = htmlspecialchars($json[0]->status_pbb);
+        // $status_npwp = htmlspecialchars($json[0]->status_npwp);
+        // $status_pbb = htmlspecialchars($json[0]->status_pbb);
 
-        $spasial = $this->us->cekSpasial($sublock);
+        // $spasial = $this->us->cekSpasial($sublock);
         $slf = $this->saveSlf($json);
         // if ($spasial->num_rows() > 0) {
         //     $row = $spasial->row();
