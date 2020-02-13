@@ -416,6 +416,88 @@ class ValidasiController extends CI_Controller {
         }
         echo json_encode($json);
     }
+    public function doupload()
+    {
+        $desc = $this->input->post('descr');
+        $fname = $this->input->post('files');
+        $config = array(
+            'upload_path' => "./data/helpdesk/".$fname,
+            'allowed_types' => "gif|jpg|png|jpeg",
+            'overwrite' => TRUE,
+            'max_size' => "2048000", 
+            // 'max_height' => "768",
+            // 'max_width' => "1024"
+        ); 
+        $this->load->library('upload', $config);
+        $data = array();
+        if(!$this->upload->do_upload('files'))
+        { 
+            $data['success'] = false;
+            $data['imageError'] =  $this->upload->display_errors();
+            
+        }
+        else
+        {
+            $data['success'] = true;
+            $imageDetailArray = $this->upload->data();
+            $data['image'] =  $imageDetailArray['file_name'];
+            $data['descr'] =  $desc;
+        }
+
+        echo json_encode($data);
+        
+    }
+
+    public function inputHelp()
+    {
+        $iduser = $this->input->post('iduser');
+        $descr = $this->input->post('descr');
+
+        $arr = array(
+            'created_by'=>$iduser,
+            'created_at'=>date('Y-m-d H:i:s'),
+            'descr'=>$descr,
+            'status'=>'1'
+        );
+        $q = $this->db->insert('helpdesk',$arr);
+        $res = array();
+        if($q){
+            $res['success']=true;
+            $res['idhelp']=$this->db->insert_id();
+            $res['msg']="Success add data";
+        }else{
+            $res['success']=false;
+            $res['msg']="Failed add data";
+        }
+        echo json_encode($res);
+    }
+
+    public function addAttachment() {
+        $data       = $this->input->post('data');
+        $fileName   = $this->input->post('name');
+        $serverFile = $fileName;
+
+        list($type, $data) = explode(';', $data);
+        list(, $data) = explode(',', $data);
+        $data       = base64_decode($data);
+        file_put_contents('./data/helpdesk/' . $serverFile, $data);
+        $returnData = array("serverFile" => $serverFile);
+        echo json_encode($returnData);
+    }
+    
+    public function updateData() {
+        $id        = $this->input->post('id');
+        $name      = $this->input->post('name');
+        $arrUpdate = array('file_evidence' => $name);
+        $this->db->where('id', $id);
+        $q         = $this->db->update('helpdesk', $arrUpdate);
+        if ($q) {
+            $result = array('success' => true, 'msg' => 'Success update transaction');
+        } else {
+            $result = array('success' => false, 'msg' => 'Failed update transaction');
+        }
+        echo json_encode($result);
+    }
     function savePemohon()
     {
       $status_pemohon = $this->input->post('status_pemohon');
