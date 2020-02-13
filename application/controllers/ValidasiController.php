@@ -578,7 +578,7 @@ class ValidasiController extends CI_Controller {
         $kdh_zonasi = $this->input->post('kdh_zonasi');
         $kdh_minimum = $this->input->post('kdh_minimum');
         $kondisi_kdh = $this->input->post('kondisi_kdh');
-        $volume = $this->input->post('volumeSumur');
+        $volume = $this->input->post('volume_sumur_r');
         $kondisipertandaan = $this->input->post('kondisi_pertandaan_toko');
         $kondisi_sumur = $this->input->post('kondisi_sumur_r');
         $drainase = $this->input->post('drainase_disekeliling');
