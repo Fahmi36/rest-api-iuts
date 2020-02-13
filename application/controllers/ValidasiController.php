@@ -496,7 +496,7 @@ class ValidasiController extends CI_Controller {
         }
         echo json_encode($json);
     }
-    function saveSlf($idpemohon,$data)
+    function saveSlf($data)
     {
 
         $this->load->library('uuid');
