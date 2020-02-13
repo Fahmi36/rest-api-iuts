@@ -169,10 +169,8 @@ class ValidasiController extends CI_Controller {
         }else{
             $id_tata = 1;
         }
-        $uploadfoto1 = $this->uploadFotoLuar('fotoluar');
-        $uploadfoto2 = $this->uploadFotoDalam('foto_dalam_bangunan');
 
-        $slf = $this->saveSlf($uploadfoto1,$uploadfoto2);
+        $slf = $this->saveSlf();
         // if(empty($status_npwp) OR $status_npwp=='-' OR $status_npwp=='0'){
         //     echo json_encode($this->returnResultCustom(false,"Harus Melakukan Verifikasi NIK dan PBB"));
         //     return;
@@ -511,7 +509,9 @@ class ValidasiController extends CI_Controller {
         // $foto_luar_bangunan = $this->input->post('');
         // $foto_dalam_bangunan = $this->input->post('');
         // Foto Bangunan
-
+        
+        $uploadfoto1 = $this->uploadFotoLuar('fotoluar');
+        $uploadfoto2 = $this->uploadFotoDalam('foto_dalam_bangunan');
         $arrayPermohonan = array(
             'id_slf'=>$id,
             // 'luas_lahan'=>$luas_lahan,
@@ -521,8 +521,8 @@ class ValidasiController extends CI_Controller {
             // 'luas_total_bangunan'=>$luas_lantai,
             // 'tinggi_bangunan'=>$luas_lantai_input,
             // 'peruntukan_bangunan'=>$luas_lantai_input,
-            'foto_luar'=>$f1,
-            'foto_dalam'=>$f2,
+            'foto_luar'=>$uploadfoto1,
+            'foto_dalam'=>$uploadfoto2,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         );
@@ -836,7 +836,7 @@ class ValidasiController extends CI_Controller {
     }
     function uploadFotoLuar($params)
     {
-        
+
         $this->load->library('upload');
         $config['upload_path'] = './assets/fotoluar/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
