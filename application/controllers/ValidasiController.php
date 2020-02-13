@@ -105,7 +105,7 @@ class ValidasiController extends CI_Controller {
         $jenis = $this->input->post('jenis_izin');
 
             //SLF
-        $kdh_zonasi = $this->input->post('kdh_zonasi');
+        $kdh_zonasi = $this->input->post('kdh');
         $kdh_minimum = $this->input->post('kdh_minimum');
         $kondisi_kdh = $this->input->post('kondisi_kdh');
         $volume = $this->input->post('volumeSumur');
