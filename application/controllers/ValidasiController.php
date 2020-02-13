@@ -493,7 +493,7 @@ class ValidasiController extends CI_Controller {
     {
 
         $this->load->library('upload');
-        
+
         $this->load->library('uuid');
         $uuid = $this->uuid->v4();
         $id = str_replace('-', '', $uuid);
@@ -838,6 +838,8 @@ class ValidasiController extends CI_Controller {
     }
     function uploadFotoLuar($params)
     {
+        
+  unset($config);
         $config['upload_path'] = './assets/fotoluar/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['encrypt_name']         = TRUE;
