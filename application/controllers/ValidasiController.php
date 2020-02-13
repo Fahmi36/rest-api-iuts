@@ -867,7 +867,7 @@ class ValidasiController extends CI_Controller {
                 $abc = $s[$i].',';
                 $gl .= $abc;
             }
-            $newfileluar = substr($se, 0, -1);
+            $newfileluar = substr($s, 0, -1);
         }
         return $newfileluar;
     }
@@ -898,11 +898,11 @@ class ValidasiController extends CI_Controller {
                 $abc = $s[$i].',';
                 $ga .= $abc;
             }
-            $newfiledalam = substr($se, 0, -1);
+            $newfiledalam = substr($s, 0, -1);
         }
         return $newfiledalam;
     }
-    function uploadFoto($param)
+    function uploadFoto($params)
     {
         $this->load->library('upload');
         $config['upload_path'] = './assets/fileslf/';
@@ -929,7 +929,7 @@ class ValidasiController extends CI_Controller {
                 $abc = $s[$i].',';
                 $ga .= $abc;
             }
-            $newfiledalam = substr($se, 0, -1);
+            $newfiledalam = substr($s, 0, -1);
         }
         return $newfiledalam;
     }
