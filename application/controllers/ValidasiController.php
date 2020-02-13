@@ -363,9 +363,8 @@ class ValidasiController extends CI_Controller {
                     if ($savepemohon) {
                      $slf = $this->saveSlf();
                      if ($slf) {
-                         $idslf = $this->db->insert_id();
                          $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
-                         $json['idslf'] = $idslf;
+                         $json['idslf'] = $slf;
                          echo json_encode($json);
                          return;
                         $KondisiSlf = $this->saveKondisiSlf($slf);
