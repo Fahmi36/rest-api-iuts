@@ -505,12 +505,12 @@ class ValidasiController extends CI_Controller {
         $peruntukan_bangunan = $this->input->post('peruntukan_bangunan');
 
         // Foto Bangunan
-        $foto_luar_bangunan = $this->input->post('foto_luar_bangunan');
-        $foto_dalam_bangunan = $this->input->post('foto_dalam_bangunan');
+        // $foto_luar_bangunan = $this->input->post('');
+        // $foto_dalam_bangunan = $this->input->post('');
         // Foto Bangunan
 
-        $uploadfoto1 = $this->uploadFotoLuar($foto_luar_bangunan);
-        $uploadfoto2 = $this->uploadFotoDalam($foto_dalam_bangunan);
+        $uploadfoto1 = $this->uploadFotoLuar('foto_luar_bangunan');
+        $uploadfoto2 = $this->uploadFotoDalam('foto_dalam_bangunan');
 
         $arrayPermohonan = array(
             'id_slf'=>$id,
