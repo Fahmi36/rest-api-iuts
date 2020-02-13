@@ -301,13 +301,12 @@ class OfficeController extends CI_Controller {
 	}
 	public function countsideoffice()
 	{
-		$expired = $this->db->get_where('data_slf',array('status'=>'3'))->num_rows();
-		$pending = $this->db->get_where('data_slf',array('status'=>'0'))->num_rows();
+		$expired = $this->db->get_where('cek_izin',array('status'=>'3'))->num_rows();
+		$pending = $this->db->get_where('cek_izin',array('status'=>'0'))->num_rows();
 
 		$this->db->select('*');
-		$this->db->from('data_slf');
-		$this->db->where('status','1');
-		$this->db->or_where('status','2');
+		$this->db->from('cek_izin');
+		$this->db->where_in('status',[1,2]);
 		$selesai = $this->db->get();
 		$hasilselesai = $selesai->num_rows();
 		echo json_encode(array('expired'=>$expired,'pending'=>$pending,'selesai'=>$hasilselesai));
@@ -350,6 +349,21 @@ class OfficeController extends CI_Controller {
 		}
 		echo json_encode($res);
 	}
+	function VerifyFoto()
+	{
+		try {
+			$idfoto = $this->input->post('idfoto');
+			$data = $this->oc->VerifFoto($idfoto);
+			if ($data) {
+				$res = $this->returnResult($data);
+			}else{
+				$res = $this->returnResultErrorDB();
+			}
+		} catch (Exception $e) {
+			$res = $this->returnResultCustom(false,'Tidak ada data');
+		}
+		echo json_encode($res);
+	}
 	function getDetailChat()
 	{
 		try {
@@ -387,21 +401,22 @@ class OfficeController extends CI_Controller {
 				$data['kewajiban'] = $this->oc->detailKewajiban();
 				$data['larangan'] = $this->oc->detailLarangan();
     			$tcpdf->AddPage();
-		        $html = $this->load->view('pages/suratsk',$data, true);
-		        $tcpdf->WriteHTML($html);
-		        $info = array(
+    			$info = array(
 		        	'Name' => 'DPMPTSP DKI JAKARTA',
 		        	'Location' => 'DPMPTSP DKI JAKARTA',
 		        	'Reason' => 'Verified Berkas',
 		        	'ContactInfo' => site_url('/'),
     			);    		
     			$taut='Diisikan dengan informasi yang diinginkan'; 
-				$tcpdf->write2DBarcode($taut, 'QRCODE,H', 20,190,20,20);
-      			$tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info); 
-      			$tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG'); 
-      			$tcpdf->setSignatureAppearance(117, 201, 60, 18); 
+				$data['barcode'] = $tcpdf->write2DBarcode($taut, 'QRCODE,H', 20,190,20,20);
+      			$data['setsignature'] = $tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info); 
+      			$data['image'] = $tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG'); 
+      			$data['setapp'] = $tcpdf->setSignatureAppearance(117, 201, 60, 18); 
+      			return $data;
+		        $html = $this->load->view('pages/suratsk',$data, true);
+		        $tcpdf->WriteHTML($html);
 				$tcpdf->Output($filename, 'D'); 
-				ob_end_clean();
+				// ob_end_clean();
 		    }
 		}
 		

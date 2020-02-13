@@ -130,22 +130,26 @@ class UserModel extends CI_Model {
         $q = $this->db->insert('data_slf',$arrayPermohonan);
         return $q;
 	}
-	function InsertPemohon($id,$namaLengkap,$jabatan,$nomorInKepen,$nomorInBeru,$npwp,$alamat_perusahaan,$no_telp,$emailAktif,$status_pemohon,$token)
+	function InsertPemohon($id,$namaLengkap,$nama_perusahaan,$jabatan,$nomorInKepen,$fotoktp,$nomorInBeru,$npwp,$alamat_perusahaan,$no_telp,$emailAktif,$fotonpwp,$status_pemohon,$token)
 	{
 		$array = array(
             'id_pemohon'=>$id,
 			'nama'=>$namaLengkap,
+            'nama_perusahaan'=>$nama_perusahaan,
             'jabatan'=>$jabatan,
             'nik'=>$nomorInKepen,
+            'foto_ktp'=>$fotoktp,
             'nib'=>$nomorInBeru,
             'npwp'=>$npwp,
             'alamat_perusahaan'=>$alamat_perusahaan,
             'no_hp'=>$no_telp,
             'email'=>$emailAktif,
+            'foto_npwp'=>$fotonpwp,
             'jenis_pemohon'=>$status_pemohon,
             'password'=>password_hash($token, PASSWORD_DEFAULT),
             'token'=>$token,
             'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
         );
         $q = $this->db->insert('pemohon_iuts',$array);
         return $q;
@@ -230,6 +234,31 @@ class UserModel extends CI_Model {
             'created_at' => date('Y-m-d H:i:s'),
         );
         $q = $this->db->insert('kondisi_bangunan',$array);
+        return $q;
+    }
+    function InsertIzin($id,$idpemohon,$idslf,$idiuts,$lokasi,$alamatpemohon,$lat,$lng,$kecamatan,$kelurahan,$zona,$sublock,$kode,$jenis)
+    {
+        $array = array(
+            'id_izin'=>$id,
+            'id_pemohon' => $idpemohon,
+            'id_slf' => $idslf,
+            'id_iuts' => $idiuts,
+            'alamat_usaha' => $lokasi,
+            'alamat_maps' => $alamatpemohon,
+            'lat' => $lat,
+            'lon' => $lng,
+            'kecamatan' => $kecamatan,
+            'kelurahan' => $kelurahan,
+            'zona' => $zona,
+            'kode_sublok' => $sublock,
+            'code' => $kode,
+            'status' => 0,
+            'status_jalan' => 0,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+            'id_jenis' => $jenis,
+            );
+            $q = $this->db->insert('cek_izin',$array);
         return $q;
     }
 	function InsertSkor($bangunan,$hasil,$teknis,$dampak,$rata)
