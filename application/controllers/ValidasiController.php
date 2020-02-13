@@ -838,8 +838,7 @@ class ValidasiController extends CI_Controller {
     }
     function uploadFotoLuar($params)
     {
-        
-  unset($config);
+        $config = array();
         $config['upload_path'] = './assets/fotoluar/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['encrypt_name']         = TRUE;
