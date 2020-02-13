@@ -429,6 +429,8 @@ class ValidasiController extends CI_Controller {
       $no_telp = $this->input->post('no_telp');
       $emailAktif = $this->input->post('emailAktif');
 
+        $fotoktp = $this->uploadFoto('foto_ktp');
+        $fotonpwp = $this->uploadFoto('foto_npwp');
       $cek = $this->us->cekPemohon($nomorInKepen,$status_pemohon);
 
       $idpemohon = $cek->row();
