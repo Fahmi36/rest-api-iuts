@@ -711,7 +711,7 @@ class ValidasiController extends CI_Controller {
         // $uploadfoto6 = $this->uploadFoto('fileTKT');
         // $uploadfoto7 = $this->uploadFoto('fileIMB');
 
-        $cek = $this->us->cekKondisi($idslf);
+        $cek = $this->us->cekKondisislf($idslf);
         if ($cek->num_rows() > 0) {
             $getdata = $cek->row();
             $id = $getdata->id;

@@ -76,6 +76,15 @@ class UserModel extends CI_Model {
         $q = $this->db->get('kondisi_iuts');
         return $q;
     }
+    function cekKondisislf($id)
+    {
+        if($id){
+            $this->db->where('id_slf',$id);
+        }
+        $q = $this->db->get('kondisi_slf');
+        return $q;
+    }
+    
     function cekCodeBangunan($id)
     {
         if($id){
