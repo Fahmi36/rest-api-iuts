@@ -845,7 +845,7 @@ class ValidasiController extends CI_Controller {
         // var_dump($this->upload->do_upload($params));
         $gl = "";
         $this->upload->initialize($config);
-        if ($this->upload->do_upload($params)) {
+        if ($this->upload->do_upload()) {
             $s = $this->upload->data();
             if (count($s) != 14) {
                 for ($i=0; $i < count($s); $i++) {
