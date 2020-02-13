@@ -154,7 +154,7 @@ class UserModel extends CI_Model {
         $q = $this->db->insert('pemohon_iuts',$array);
         return $q;
 	}
-    function InsertKondisiSlf($slf,$kdh_zonasi,$kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$rek_slf,$damkar,$tenaga_kerja,$imb,$fasilitas,$asuransi,$kelayakan,$air,$limbah,$sampah,$listrik,$toilet,$parkir)
+    function InsertKondisiSlf($slf,$kdh_zonasi,$kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$rek_slf,$uploadfoto3,$slf,$uploadfoto4,$damkar,$uploadfoto5,$tenaga_kerja,$uploadfoto6,$imb,$uploadfoto7,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$toilet,$parkir)
     {
         $array = array(
             'id_slf'=>$slf,
