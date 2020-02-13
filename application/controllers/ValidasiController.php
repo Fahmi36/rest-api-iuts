@@ -508,7 +508,7 @@ class ValidasiController extends CI_Controller {
         // $foto_luar_bangunan = $this->input->post('');
         // $foto_dalam_bangunan = $this->input->post('');
         // Foto Bangunan
-        
+
         $this->load->library('upload');
         $uploadfoto1 = $this->uploadFotoLuar('foto_luar_bangunan');
         $uploadfoto2 = $this->uploadFotoDalam('foto_dalam_bangunan');
@@ -837,32 +837,27 @@ class ValidasiController extends CI_Controller {
     }
     function uploadFotoLuar($params)
     {
-        $config['upload_path'] = './assets/fotoluar/';
-        $config['allowed_types'] = 'gif|jpg|png|jpeg';
-        $config['encrypt_name']         = TRUE;
-        $config['remove_spaces']        = TRUE;
-        // // var_dump($this->upload->do_upload($params))
-        // return var_dump($params);
-        $gl = "";
-        $this->upload->initialize($config);
-        if ($this->upload->do_upload($params)) {
-            $s = $this->upload->data();
-            if (count($s) != 14) {
-                for ($i=0; $i < count($s); $i++) {
-                    $abc = $s[$i]['file_name'].',';
-                    $gl .= $abc;
-                }
-                $newfileluar = substr($gl, 0, -1);
-            }else{
-                $newfileluar = $s['file_name'];
-            }
+      $config['upload_path']          = './public/images/';
+      $config['allowed_types']        = 'gif|jpg|png|jpeg';
+      $config['remove_spaces']        = TRUE;
+      $config['encrypt_name']        = TRUE;
+
+      $this->upload->initialize($config);
+        if( ! $this->upload->do_upload($params)){
+            $error = array('error' => $this->upload->display_errors());
         }else{
-            $s = $this->input->post($params);
-            for ($i=0; $i < count($s); $i++) {
-                $abc = $s[$i].',';
-                $gl .= $abc;
+            $this->upload->do_upload($params);
+            $f = $this->upload->data();
+            $fb = "";
+            if (count($f) != 14) {
+                for ($i=0; $i < count($f); $i++) {
+                    $abc = $f[$i]['file_name'].',';
+                    $fb .= $abc;
+                }
+                $newfileluar = substr($fb, 0, -1);
+            }else{
+                $newfileluar = $f['file_name'];
             }
-            $newfileluar = substr($s, 0, -1);
         }
         return $newfileluar;
     }
