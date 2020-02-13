@@ -765,7 +765,7 @@ class ValidasiController extends CI_Controller {
 
         $rek_umkm = $this->input->post('rekomendasi_umkm');
         $kajian = $this->input->post('kajian_sostek');
-        $cek = $this->us->cekKondisi($slf);
+        $cek = $this->us->cekKondisiiuts($idiuts);
         if ($cek->num_rows() > 0) {
             $getdata = $cek->row();
             $id = $getdata->id;

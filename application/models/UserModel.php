@@ -68,12 +68,12 @@ class UserModel extends CI_Model {
         $query = $this->db->get();
         return $query;
     }
-    function cekKondisi($id)
+    function cekKondisiiuts($id)
     {
         if($id){
-            $this->db->where('id_bangunan',$id);
+            $this->db->where('id_iuts',$id);
         }
-        $q = $this->db->get('kondisi_bangunan');
+        $q = $this->db->get('kondisi_iuts');
         return $q;
     }
     function cekCodeBangunan($id)
