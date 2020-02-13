@@ -641,7 +641,7 @@ class ValidasiController extends CI_Controller {
         $nop = $this->input->post('nop');
         $njop = $this->input->post('njop');
         $nama_toko = $this->input->post('nama_toko');
-        $kelompok = $this->input->post('kelompok');
+        $kelompok = $this->input->post('kelompok_usaha');
         $nama_badan_usaha = $this->input->post('nama_badan_usaha');
         $kategori_usaha = $this->input->post('kategori_usaha');
         $omset_perbulan = $this->input->post('omset_perbulan');
