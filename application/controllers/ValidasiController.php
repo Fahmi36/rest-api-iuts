@@ -372,17 +372,17 @@ class ValidasiController extends CI_Controller {
                                 $cekizin = $this->saveIzin($savepemohon,$slf,$iuts);
                                 $skor = $this->saveSkor($cekizin);
                                 if ($skor) {
-                                    $tax = $this->saveTaxClear($slf,$status_npwp,$status_pbb);
-                                    if ($tax) {                                            
+                                    // $tax = $this->saveTaxClear($slf,$status_npwp,$status_pbb);
+                                    // if ($tax) {                                            
                                         $json['idslf'] = $slf;
                                         $json['idiuts'] = $iuts;
                                         $this->sendmail($email);
                                         $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
                                         echo json_encode($json);
                                         return;
-                                    }else{
-                                        $json = $this->returnResultCustom(false,'Gagal Masukan Foto IUTS');
-                                    }
+                                    // }else{
+                                    //     $json = $this->returnResultCustom(false,'Gagal Masukan Foto IUTS');
+                                    // }
                                 }else{
                                     $json = $this->returnResultCustom(false,'Gagal Masukan Foto SLF');
                                 }
