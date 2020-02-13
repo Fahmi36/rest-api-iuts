@@ -427,7 +427,7 @@ class ValidasiController extends CI_Controller {
       $npwp = $this->input->post('npwp');
       $alamat_perusahaan = $this->input->post('alamat_perusahaan');
       $no_telp = $this->input->post('no_telp');
-      $emailAktif = $this->input->post('emailAktif');
+      $emailAktif = $this->input->post('email');
 
         $fotoktp = $this->uploadFoto('foto_ktp');
         $fotonpwp = $this->uploadFoto('foto_npwp');
