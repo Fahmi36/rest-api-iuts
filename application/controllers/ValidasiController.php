@@ -838,7 +838,7 @@ class ValidasiController extends CI_Controller {
         $fb = "";
           $this->upload->initialize($config);
           for ($i=0; $i < sizeof($_FILES[$params]['name']) ; $i++) { 
-            $this->upload->do_upload($params)
+                  $this->upload->do_upload($params);
                     $f = $this->upload->data();
                     if (count($f) != 14) {
                         for ($i=0; $i < count($f); $i++) {
