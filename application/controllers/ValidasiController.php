@@ -348,9 +348,6 @@ class ValidasiController extends CI_Controller {
                 }else if(empty($jumlah_pengunjung)){
                     echo json_encode($this->returnResultCustom(false,"Jumlah Pengunjung Tidak Boleh Kosong"));
                     return;
-                }else if(empty($peng_lahan) OR $peng_lahan=='-' ){
-                    echo json_encode($this->returnResultCustom(false,"Pengelolaan Lahan Tidak Boleh Kosong"));
-                    return;
                 }else if(empty($rek_umkm) OR $rek_umkm=='-' ){
                     echo json_encode($this->returnResultCustom(false,"Rekomendasi UMKM Tidak Boleh Kosong"));
                     return;
