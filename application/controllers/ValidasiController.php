@@ -419,7 +419,7 @@ class ValidasiController extends CI_Controller {
     function savePemohon()
     {
       $status_pemohon = $this->input->post('status_pemohon');
-      $namaLengkap = $this->input->post('namaLengkap');
+      $namaLengkap = $this->input->post('nama_lengkap');
       $nama_perusahaan = $this->input->post('nama_perusahaan');
       $jabatan = $this->input->post('jabatan');
       $nomorInKepen = $this->input->post('nomorInKepen');
