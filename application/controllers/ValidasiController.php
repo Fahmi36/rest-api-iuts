@@ -162,271 +162,271 @@ class ValidasiController extends CI_Controller {
         $status_pbb = htmlspecialchars($json[0]->status_pbb);
 
         $spasial = $this->us->cekSpasial($sublock);
+        $slf = $this->saveSlf($json);
+        // if ($spasial->num_rows() > 0) {
+        //     $row = $spasial->row();
+        //     $id_tata = $row->id;
+        // }else{
+        //     $id_tata = 1;
+        // }
+        // if(empty($status_npwp) OR $status_npwp=='-' OR $status_npwp=='0'){
+        //     echo json_encode($this->returnResultCustom(false,"Harus Melakukan Verifikasi NIK dan PBB"));
+        //     return;
+        // }else if(empty($status_pbb) OR $status_pbb =='-' OR $status_pbb=='0'){
+        //     echo json_encode($this->returnResultCustom(false,"Harus Melakukan Verifikasi NIK dan PBB"));
+        //     return;
+        // }else if (empty($sublock) OR $sublock=='-') {
+        //     echo json_encode($this->returnResultCustom(false,"Mohon Pilih lokasi maps dekat dengan layar yang berwarna "));
+        //     return;
+        // }else if ($sublock == 'H.2') {
+        //     echo json_encode($this->returnResultCustom(false,"Tidak Boleh di Zona Hijau"));
+        //     return;
+        // }
+        //     if ($jenis == '1') { // IUTS
+        //         if(empty($pbb) OR $pbb =='-' ){
+        //             echo json_encode($this->returnResultCustom(false,"Pemutakhiran PBB Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($umkm) OR $umkm =='-' ){
+        //             echo json_encode($this->returnResultCustom(false,"Keterlibatan UMKM Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($warga) OR $warga =='-' ){
+        //             echo json_encode($this->returnResultCustom(false,"Persetujuan Warga Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($keterlibatan_umkm_input) OR $keterlibatan_umkm_input =='-' ){
+        //             echo json_encode($this->returnResultCustom(false,"Detail Keterlibatan UMKM Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($asal_karyawan) OR $asal_karyawan=='-' ){
+        //             echo json_encode($this->returnResultCustom(false,"Asal Karyawan Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($jumlah_atm)){
+        //             echo json_encode($this->returnResultCustom(false,"Jumlah Karyawan Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($jumlah_pengunjung)){
+        //             echo json_encode($this->returnResultCustom(false,"Jumlah Pengunjung Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($peng_lahan) OR $peng_lahan=='-' ){
+        //             echo json_encode($this->returnResultCustom(false,"Pengelolaan Lahan Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($rek_umkm) OR $rek_umkm=='-' ){
+        //             echo json_encode($this->returnResultCustom(false,"Rekomendasi UMKM Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($kajian) OR $kajian=='-' ){
+        //             echo json_encode($this->returnResultCustom(false,"Kajian Sosek Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($jumlah_karyawan)){
+        //             echo json_encode($this->returnResultCustom(false,"Jumlah Karyawan Tidak Boleh Kosong"));
+        //             return;
+        //         }
+        //     }else if ($jenis == '2') { // SLF
+        //         if(empty($kdh_zonasi) OR $kdh_zonasi == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Silakan Pilih Koefisien Daearh Hijau di Peta"));
+        //             return;
+        //         }else if(empty($kdh_minimum) OR $kdh_minimum == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"KDH Eksisting Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($kondisi_kdh) OR $kondisi_kdh == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Kondisi KDH Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($volume) OR $volume == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Volume Sumur Resapan Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($kondisipertandaan) OR $kondisipertandaan == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Kondisi Pertandaan Toko Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($kondisi_sumur) OR $kondisi_sumur == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Kondisi Sumur Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($drainase) OR $drainase == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Drainase Sekeliling Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($rek_slf) OR $rek_slf == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Rekomendasi SLF Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($damkar) OR $damkar == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Izin Dinas Penganggulangan Kebakaran dan Penyelamatan Harus Di Isi"));
+        //             return;
+        //         }else if(empty($tenaga_kerja) OR $tenaga_kerja == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Izin Dinas Tenaga Kerja dan Transmigrasi Harus Di Isi"));
+        //             return;
+        //         }else if(empty($imb) OR $imb == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"IMB Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($fasilitas) OR $fasilitas == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Fasilitas Penganggulangan Kebakaran Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($asuransi) OR $asuransi == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Asuransi Toko Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($kelayakan) OR $kelayakan == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Waktu Pembaharuan Terakhir Kelayakan Gedung Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($ket_air) OR $ket_air == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Ketersediaan Air Bersih Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($limbah) OR $limbah == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Pengelolaan Air Kotor / Limbah Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($sampah) OR $sampah == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Pengelolaan Sampah Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($listrik) OR $listrik == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Ketersediaan Listrik Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($toilet) OR $toilet == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Ketersediaan Toilet Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($parkir) OR $parkir == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Kondisi Parkir Tidak Boleh Kosong"));
+        //             return;
+        //         }
+        //     }else if ($jenis == '3'){ //SLF dan IUTS 
+        //         if(empty($kdh_zonasi) OR $kdh_zonasi == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Silakan Pilih Koefisien Daearh Hijau di Peta"));
+        //             return;
+        //         }else if(empty($kdh_minimum) OR $kdh_minimum == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"KDH Eksisting Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($kondisi_kdh) OR $kondisi_kdh == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Kondisi KDH Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($volume) OR $volume == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Volume Sumur Resapan Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($kondisipertandaan) OR $kondisipertandaan == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Kondisi Pertandaan Toko Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($kondisi_sumur) OR $kondisi_sumur == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Kondisi Sumur Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($drainase) OR $drainase == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Drainase Sekeliling Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($rek_slf) OR $rek_slf == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Rekomendasi SLF Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($damkar) OR $damkar == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Izin Dinas Penganggulangan Kebakaran dan Penyelamatan Harus Di Isi"));
+        //             return;
+        //         }else if(empty($tenaga_kerja) OR $tenaga_kerja == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Izin Dinas Tenaga Kerja dan Transmigrasi Harus Di Isi"));
+        //             return;
+        //         }else if(empty($imb) OR $imb == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"IMB Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($fasilitas) OR $fasilitas == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Fasilitas Penganggulangan Kebakaran Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($asuransi) OR $asuransi == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Asuransi Toko Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($kelayakan) OR $kelayakan == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Waktu Pembaharuan Terakhir Kelayakan Gedung Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($ket_air) OR $ket_air == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Ketersediaan Air Bersih Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($limbah) OR $limbah == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Pengelolaan Air Kotor / Limbah Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($sampah) OR $sampah == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Pengelolaan Sampah Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($listrik) OR $listrik == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Ketersediaan Listrik Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($toilet) OR $toilet == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Ketersediaan Toilet Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($parkir) OR $parkir == '-'){
+        //             echo json_encode($this->returnResultCustom(false,"Kondisi Parkir Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($pbb) OR $pbb =='-' ){
+        //             echo json_encode($this->returnResultCustom(false,"Pemutakhiran PBB Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($umkm) OR $umkm =='-' ){
+        //             echo json_encode($this->returnResultCustom(false,"Keterlibatan UMKM Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($warga) OR $warga =='-' ){
+        //             echo json_encode($this->returnResultCustom(false,"Persetujuan Warga Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($keterlibatan_umkm_input) OR $keterlibatan_umkm_input =='-' ){
+        //             echo json_encode($this->returnResultCustom(false,"Detail Keterlibatan UMKM Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($asal_karyawan) OR $asal_karyawan=='-' ){
+        //             echo json_encode($this->returnResultCustom(false,"Asal Karyawan Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($jumlah_atm)){
+        //             echo json_encode($this->returnResultCustom(false,"Jumlah Karyawan Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($jumlah_pengunjung)){
+        //             echo json_encode($this->returnResultCustom(false,"Jumlah Pengunjung Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($peng_lahan) OR $peng_lahan=='-' ){
+        //             echo json_encode($this->returnResultCustom(false,"Pengelolaan Lahan Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($rek_umkm) OR $rek_umkm=='-' ){
+        //             echo json_encode($this->returnResultCustom(false,"Rekomendasi UMKM Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($kajian) OR $kajian=='-' ){
+        //             echo json_encode($this->returnResultCustom(false,"Kajian Sosek Tidak Boleh Kosong"));
+        //             return;
+        //         }else if(empty($jumlah_karyawan)){
+        //             echo json_encode($this->returnResultCustom(false,"Jumlah Karyawan Tidak Boleh Kosong"));
+        //             return;
+        //         }
+            //         $savepemohon = $this->savePemohon($json);
+            //         if ($savepemohon) {
+            //          $slf = $this->saveSlf($json);
+            //          if ($slf) {
+            //             $KondisiSlf = $this->saveKondisiSlf($slf,$json);
+            //             if ($KondisiSlf) {
+            //                 $iuts = $this->saveIuts($json);
+            //                 if ($iuts) {
+            //                     $kondisiiuts = $this->saveKondisiIuts($iuts,$json,$id_tata);
+            //                     if ($kondisiiuts) {
+            //                         $cekizin = $this->saveIzin($savepemohon,$slf,$iuts,$json);
+            //                         $skor = $this->saveSkor($slf);
+            //                         if ($skor) {
+            //                             $tax = $this->saveTaxClear($slf,$status_npwp,$status_pbb);
+            //                             if ($tax) {                                            
+            //                                 $foto_slf = $this->saveFotoslf();
+            //                                 if ($foto_slf) {
+            //                                     $fotoiuts = $this->saveFotoIuts();
+            //                                     if ($fotoiuts) {
+            //                                         $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
+            //                                         $this->sendmail($email);
+            //                                     }else{
+            //                                         $json = $this->returnResultCustom(false,'Gagal Masukan Foto IUTS');
+            //                                     }
+            //                                 }else{
+            //                                     $json = $this->returnResultCustom(false,'Gagal Masukan Foto SLF');
+            //                                 }
+            //                             }else{
+            //                                 $json = $this->returnResultCustom(false,'Gagal Masukan Tax Clear');
+            //                             }
+            //                         }else{
+            //                             $json = $this->returnResultCustom(false,'Gagal Masukan Data Skor');
+            //                         }
 
-        if ($spasial->num_rows() > 0) {
-            $row = $spasial->row();
-            $id_tata = $row->id;
-        }else{
-            $id_tata = 1;
-        }
-        if(empty($status_npwp) OR $status_npwp=='-' OR $status_npwp=='0'){
-            echo json_encode($this->returnResultCustom(false,"Harus Melakukan Verifikasi NIK dan PBB"));
-            return;
-        }else if(empty($status_pbb) OR $status_pbb =='-' OR $status_pbb=='0'){
-            echo json_encode($this->returnResultCustom(false,"Harus Melakukan Verifikasi NIK dan PBB"));
-            return;
-        }else if (empty($sublock) OR $sublock=='-') {
-            echo json_encode($this->returnResultCustom(false,"Mohon Pilih lokasi maps dekat dengan layar yang berwarna "));
-            return;
-        }else if ($sublock == 'H.2') {
-            echo json_encode($this->returnResultCustom(false,"Tidak Boleh di Zona Hijau"));
-            return;
-        }
-            if ($jenis == '1') { // IUTS
-                if(empty($pbb) OR $pbb =='-' ){
-                    echo json_encode($this->returnResultCustom(false,"Pemutakhiran PBB Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($umkm) OR $umkm =='-' ){
-                    echo json_encode($this->returnResultCustom(false,"Keterlibatan UMKM Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($warga) OR $warga =='-' ){
-                    echo json_encode($this->returnResultCustom(false,"Persetujuan Warga Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($keterlibatan_umkm_input) OR $keterlibatan_umkm_input =='-' ){
-                    echo json_encode($this->returnResultCustom(false,"Detail Keterlibatan UMKM Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($asal_karyawan) OR $asal_karyawan=='-' ){
-                    echo json_encode($this->returnResultCustom(false,"Asal Karyawan Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($jumlah_atm)){
-                    echo json_encode($this->returnResultCustom(false,"Jumlah Karyawan Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($jumlah_pengunjung)){
-                    echo json_encode($this->returnResultCustom(false,"Jumlah Pengunjung Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($peng_lahan) OR $peng_lahan=='-' ){
-                    echo json_encode($this->returnResultCustom(false,"Pengelolaan Lahan Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($rek_umkm) OR $rek_umkm=='-' ){
-                    echo json_encode($this->returnResultCustom(false,"Rekomendasi UMKM Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($kajian) OR $kajian=='-' ){
-                    echo json_encode($this->returnResultCustom(false,"Kajian Sosek Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($jumlah_karyawan)){
-                    echo json_encode($this->returnResultCustom(false,"Jumlah Karyawan Tidak Boleh Kosong"));
-                    return;
-                }
-            }else if ($jenis == '2') { // SLF
-                if(empty($kdh_zonasi) OR $kdh_zonasi == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Silakan Pilih Koefisien Daearh Hijau di Peta"));
-                    return;
-                }else if(empty($kdh_minimum) OR $kdh_minimum == '-'){
-                    echo json_encode($this->returnResultCustom(false,"KDH Eksisting Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($kondisi_kdh) OR $kondisi_kdh == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Kondisi KDH Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($volume) OR $volume == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Volume Sumur Resapan Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($kondisipertandaan) OR $kondisipertandaan == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Kondisi Pertandaan Toko Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($kondisi_sumur) OR $kondisi_sumur == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Kondisi Sumur Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($drainase) OR $drainase == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Drainase Sekeliling Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($rek_slf) OR $rek_slf == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Rekomendasi SLF Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($damkar) OR $damkar == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Izin Dinas Penganggulangan Kebakaran dan Penyelamatan Harus Di Isi"));
-                    return;
-                }else if(empty($tenaga_kerja) OR $tenaga_kerja == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Izin Dinas Tenaga Kerja dan Transmigrasi Harus Di Isi"));
-                    return;
-                }else if(empty($imb) OR $imb == '-'){
-                    echo json_encode($this->returnResultCustom(false,"IMB Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($fasilitas) OR $fasilitas == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Fasilitas Penganggulangan Kebakaran Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($asuransi) OR $asuransi == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Asuransi Toko Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($kelayakan) OR $kelayakan == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Waktu Pembaharuan Terakhir Kelayakan Gedung Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($ket_air) OR $ket_air == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Ketersediaan Air Bersih Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($limbah) OR $limbah == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Pengelolaan Air Kotor / Limbah Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($sampah) OR $sampah == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Pengelolaan Sampah Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($listrik) OR $listrik == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Ketersediaan Listrik Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($toilet) OR $toilet == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Ketersediaan Toilet Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($parkir) OR $parkir == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Kondisi Parkir Tidak Boleh Kosong"));
-                    return;
-                }
-            }else if ($jenis == '3'){ //SLF dan IUTS 
-                if(empty($kdh_zonasi) OR $kdh_zonasi == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Silakan Pilih Koefisien Daearh Hijau di Peta"));
-                    return;
-                }else if(empty($kdh_minimum) OR $kdh_minimum == '-'){
-                    echo json_encode($this->returnResultCustom(false,"KDH Eksisting Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($kondisi_kdh) OR $kondisi_kdh == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Kondisi KDH Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($volume) OR $volume == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Volume Sumur Resapan Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($kondisipertandaan) OR $kondisipertandaan == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Kondisi Pertandaan Toko Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($kondisi_sumur) OR $kondisi_sumur == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Kondisi Sumur Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($drainase) OR $drainase == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Drainase Sekeliling Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($rek_slf) OR $rek_slf == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Rekomendasi SLF Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($damkar) OR $damkar == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Izin Dinas Penganggulangan Kebakaran dan Penyelamatan Harus Di Isi"));
-                    return;
-                }else if(empty($tenaga_kerja) OR $tenaga_kerja == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Izin Dinas Tenaga Kerja dan Transmigrasi Harus Di Isi"));
-                    return;
-                }else if(empty($imb) OR $imb == '-'){
-                    echo json_encode($this->returnResultCustom(false,"IMB Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($fasilitas) OR $fasilitas == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Fasilitas Penganggulangan Kebakaran Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($asuransi) OR $asuransi == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Asuransi Toko Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($kelayakan) OR $kelayakan == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Waktu Pembaharuan Terakhir Kelayakan Gedung Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($ket_air) OR $ket_air == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Ketersediaan Air Bersih Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($limbah) OR $limbah == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Pengelolaan Air Kotor / Limbah Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($sampah) OR $sampah == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Pengelolaan Sampah Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($listrik) OR $listrik == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Ketersediaan Listrik Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($toilet) OR $toilet == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Ketersediaan Toilet Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($parkir) OR $parkir == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Kondisi Parkir Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($pbb) OR $pbb =='-' ){
-                    echo json_encode($this->returnResultCustom(false,"Pemutakhiran PBB Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($umkm) OR $umkm =='-' ){
-                    echo json_encode($this->returnResultCustom(false,"Keterlibatan UMKM Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($warga) OR $warga =='-' ){
-                    echo json_encode($this->returnResultCustom(false,"Persetujuan Warga Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($keterlibatan_umkm_input) OR $keterlibatan_umkm_input =='-' ){
-                    echo json_encode($this->returnResultCustom(false,"Detail Keterlibatan UMKM Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($asal_karyawan) OR $asal_karyawan=='-' ){
-                    echo json_encode($this->returnResultCustom(false,"Asal Karyawan Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($jumlah_atm)){
-                    echo json_encode($this->returnResultCustom(false,"Jumlah Karyawan Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($jumlah_pengunjung)){
-                    echo json_encode($this->returnResultCustom(false,"Jumlah Pengunjung Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($peng_lahan) OR $peng_lahan=='-' ){
-                    echo json_encode($this->returnResultCustom(false,"Pengelolaan Lahan Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($rek_umkm) OR $rek_umkm=='-' ){
-                    echo json_encode($this->returnResultCustom(false,"Rekomendasi UMKM Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($kajian) OR $kajian=='-' ){
-                    echo json_encode($this->returnResultCustom(false,"Kajian Sosek Tidak Boleh Kosong"));
-                    return;
-                }else if(empty($jumlah_karyawan)){
-                    echo json_encode($this->returnResultCustom(false,"Jumlah Karyawan Tidak Boleh Kosong"));
-                    return;
-                }
-                    $savepemohon = $this->savePemohon($json);
-                    if ($savepemohon) {
-                     $slf = $this->saveSlf($json);
-                     if ($slf) {
-                        $KondisiSlf = $this->saveKondisiSlf($slf,$json);
-                        if ($KondisiSlf) {
-                            $iuts = $this->saveIuts($json);
-                            if ($iuts) {
-                                $kondisiiuts = $this->saveKondisiIuts($iuts,$json,$id_tata);
-                                if ($kondisiiuts) {
-                                    $cekizin = $this->saveIzin($savepemohon,$slf,$iuts,$json);
-                                    $skor = $this->saveSkor($slf);
-                                    if ($skor) {
-                                        $tax = $this->saveTaxClear($slf,$status_npwp,$status_pbb);
-                                        if ($tax) {                                            
-                                            $foto_slf = $this->saveFotoslf();
-                                            if ($foto_slf) {
-                                                $fotoiuts = $this->saveFotoIuts();
-                                                if ($fotoiuts) {
-                                                    $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
-                                                    $this->sendmail($email);
-                                                }else{
-                                                    $json = $this->returnResultCustom(false,'Gagal Masukan Foto IUTS');
-                                                }
-                                            }else{
-                                                $json = $this->returnResultCustom(false,'Gagal Masukan Foto SLF');
-                                            }
-                                        }else{
-                                            $json = $this->returnResultCustom(false,'Gagal Masukan Tax Clear');
-                                        }
-                                    }else{
-                                        $json = $this->returnResultCustom(false,'Gagal Masukan Data Skor');
-                                    }
-
-                                }else{
-                                    $json = $this->returnResultCustom(false,'Gagal Masukan Data Kondisi IUTS');
-                                }
-                            }else{
-                                $json = $this->returnResultCustom(false,'Gagal Masukan Data IUTS');
-                            }
-                        }else{
-                            $json = $this->returnResultCustom(false,'Gagal Masukan Data Kondisi Slf');
-                        }
-                    }else{
-                        $json = $this->returnResultCustom(false,'Gagal Masukan Data Data Slf');
-                    }
-                }else{
-                    $json = $this->returnResultCustom(false,'Gagal Masukan Data Pemohon');
-                }
-            }else{
-                echo json_encode($this->returnResultCustom(false,"Silakan Pilih Izin Di Awal"));
-                return;
-            }
+            //                     }else{
+            //                         $json = $this->returnResultCustom(false,'Gagal Masukan Data Kondisi IUTS');
+            //                     }
+            //                 }else{
+            //                     $json = $this->returnResultCustom(false,'Gagal Masukan Data IUTS');
+            //                 }
+            //             }else{
+            //                 $json = $this->returnResultCustom(false,'Gagal Masukan Data Kondisi Slf');
+            //             }
+            //         }else{
+            //             $json = $this->returnResultCustom(false,'Gagal Masukan Data Data Slf');
+            //         }
+            //     }else{
+            //         $json = $this->returnResultCustom(false,'Gagal Masukan Data Pemohon');
+            //     }
+            // }else{
+            //     echo json_encode($this->returnResultCustom(false,"Silakan Pilih Izin Di Awal"));
+            //     return;
+            // }
         } catch (Exception $e) {
             $json = $this->returnResultCustom(false,'Throws');
         }
@@ -444,8 +444,16 @@ class ValidasiController extends CI_Controller {
       $alamat_perusahaan = htmlspecialchars($data[0]->alamat_perusahaan);
       $no_telp = htmlspecialchars($data[0]->no_telp);
       $emailAktif = htmlspecialchars($data[0]->emailAktif);
+      // Foto Bangunan
+        $foto_luar_bangunan = $data[0]->foto_luar_bangunan;
+        $foto_dalam_bangunan = $data[0]->foto_dalam_bangunan;
+        // Foto Bangunan
+
+        $uploadfoto1 = $this->uploadFotoLuar($foto_luar_bangunan);
+        $uploadfoto2 = $this->uploadFotoDalam($foto_dalam_bangunan);
 
       $cek = $this->us->cekPemohon($nomorInKepen,$status_pemohon);
+
 
       $idpemohon = $cek->row();
       $token = $this->incrementalHash(8);
