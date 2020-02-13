@@ -141,7 +141,7 @@ class ValidasiController extends CI_Controller {
         /*Administrasi Bangunan*/
 
         /*Kebermanfaatan Usaha*/
-        $pbb = $this->input->post('pemutakhiran_pbb');
+        $pbb = $this->input->post('pemutahiran_pbb');
         $umkm = $this->input->post('keterlibatan_umkm');
         $keterlibatan_umkm_input = $this->input->post('keterlibatan_umkm_input');
         $warga = $this->input->post('persetujuan_warga');
@@ -642,7 +642,7 @@ class ValidasiController extends CI_Controller {
     }
     function saveKondisiIuts($idiuts,$id_tata)
     {
-        $pbb = $this->input->post('pemutakhiran_pbb');
+        $pbb = $this->input->post('pemutahiran_pbb');
         $umkm = $this->input->post('keterlibatan_umkm');
         $keterlibatan_umkm_input = $this->input->post('keterlibatan_umkm_input');
         $warga = $this->input->post('persetujuan_warga');
