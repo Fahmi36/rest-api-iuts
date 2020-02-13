@@ -339,9 +339,6 @@ class ValidasiController extends CI_Controller {
                 }else if(empty($warga) OR $warga =='-' ){
                     echo json_encode($this->returnResultCustom(false,"Persetujuan Warga Tidak Boleh Kosong"));
                     return;
-                }else if(empty($keterlibatan_umkm_input) OR $keterlibatan_umkm_input =='-' ){
-                    echo json_encode($this->returnResultCustom(false,"Detail Keterlibatan UMKM Tidak Boleh Kosong"));
-                    return;
                 }else if(empty($asal_karyawan) OR $asal_karyawan=='-' ){
                     echo json_encode($this->returnResultCustom(false,"Asal Karyawan Tidak Boleh Kosong"));
                     return;
