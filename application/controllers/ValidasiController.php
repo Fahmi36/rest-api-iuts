@@ -369,7 +369,7 @@ class ValidasiController extends CI_Controller {
                         if ($iuts) {
                             $kondisiiuts = $this->saveKondisiIuts($iuts,$id_tata);
                             if ($kondisiiuts) {
-                                $cekizin = $this->saveIzin($savepemohon,$slf,$iuts,$json);
+                                $cekizin = $this->saveIzin($savepemohon,$slf,$iuts);
                                 $skor = $this->saveSkor($slf);
                                 if ($skor) {
                                     $tax = $this->saveTaxClear($slf,$status_npwp,$status_pbb);
