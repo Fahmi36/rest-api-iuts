@@ -500,7 +500,7 @@ class ValidasiController extends CI_Controller {
             'status_milik'=>$status_milik,
             'luas_tapak'=>$ltb,
             'jumlah_lantai'=>$jml_lantai,
-            'luas_total_bangunan'=>$luas_lantai,
+            'luas_total_bangunan'=>$luas_bangunan,
             'tinggi_bangunan'=>$luas_lantai_input,
             'peruntukan_bangunan'=>$luas_lantai_input,
             'foto_luar'=>$uploadfoto1,
