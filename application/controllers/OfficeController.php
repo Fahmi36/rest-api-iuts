@@ -412,7 +412,7 @@ class OfficeController extends CI_Controller {
       			$data['setsignature'] = $tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info); 
       			$data['image'] = $tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG'); 
       			$data['setapp'] = $tcpdf->setSignatureAppearance(117, 201, 60, 18); 
-      			return $data;
+      			return var_dump($data);
 		        $html = $this->load->view('pages/suratsk',$data, true);
 		        $tcpdf->WriteHTML($html);
 				$tcpdf->Output($filename, 'D'); 
