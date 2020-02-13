@@ -419,7 +419,8 @@ class ValidasiController extends CI_Controller {
     function savePemohon()
     {
       $status_pemohon = $this->input->post('status_pemohon');
-      $namaLengkap = $this->input->post('nama_lengkap');
+      $namaLengkap = $this->input->post('nama_lengkap_jawab');
+      $namadirektur = $this->input->post('nama_direktur');
       $nama_perusahaan = $this->input->post('nama_perusahaan');
       $jabatan = $this->input->post('jabatan');
       $nomorInKepen = $this->input->post('nomor_induk');
@@ -465,7 +466,7 @@ class ValidasiController extends CI_Controller {
          $this->load->library('uuid');
          $uuid = $this->uuid->v4();
          $id = str_replace('-', '', $uuid);
-         $q = $this->us->InsertPemohon($id,$namaLengkap,$nama_perusahaan,$jabatan,$nomorInKepen,$fotoktp,$nomorInBeru,$npwp,$alamat_perusahaan,$no_telp,$emailAktif,$fotonpwp,$status_pemohon,$token);
+         $q = $this->us->InsertPemohon($id,$namaLengkap,$namadirektur,$nama_perusahaan,$jabatan,$nomorInKepen,$fotoktp,$nomorInBeru,$npwp,$alamat_perusahaan,$no_telp,$emailAktif,$fotonpwp,$status_pemohon,$token);
      // }
 
         if ($q) {
