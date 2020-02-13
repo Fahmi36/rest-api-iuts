@@ -667,7 +667,7 @@ class ValidasiController extends CI_Controller {
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         );
-        $q = $this->db->insert('bangunan_iuts',$arrayPermohonan);
+        $q = $this->db->insert('data_iuts',$arrayPermohonan);
         if ($q) {
             return $id;
         }else{
