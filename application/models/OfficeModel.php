@@ -248,7 +248,7 @@ class OfficeModel extends CI_Model {
         $this->db->join('rencana_jalan', 'rencana_jalan.id = admin_teknis.id_rencana', 'INNER');
         $this->db->join('jalan_eksisting', 'jalan_eksisting.id = admin_teknis.id_rencana_eksisting', 'INNER');
         $this->db->join('jarak_usaha', 'jarak_usaha.id = admin_teknis.id_jarak', 'INNER');
-        // $this->db->join('penggunaan_lahan', 'penggunaan_lahan.id = admin_teknis.id_lahan', 'INNER');
+        $this->db->join('penggunaan_lahan', 'penggunaan_lahan.id = admin_teknis.id_lahan', 'LEFT');
 
         $this->db->join('status_pbb', 'status_pbb.id = taxclear.status_pbb', 'left');
         $this->db->join('status_npwp', 'status_npwp.id = taxclear.status_npwp', 'left');
