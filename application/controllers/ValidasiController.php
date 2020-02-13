@@ -510,9 +510,30 @@ class ValidasiController extends CI_Controller {
         // Foto Bangunan
 
         $this->load->library('upload');
-        $uploadfoto1 = $this->uploadFotoLuar('foto_luar_bangunan');
-        $uploadfoto2 = $this->uploadFotoDalam('foto_dalam_bangunan');
 
+        // $uploadfoto2 = $this->uploadFotoDalam('foto_dalam_bangunan');
+        $config['upload_path']          = './assets/fotoluar/';
+        $config['allowed_types']        = 'gif|jpg|png|jpeg';
+        $config['remove_spaces']        = TRUE;
+        $config['encrypt_name']        = TRUE;
+
+        $this->upload->initialize($config);
+        if( ! $this->upload->do_upload('foto_luar_bangunan')){
+            $newfileluar = array('error' => $this->upload->display_errors());
+        }else{
+            $this->upload->do_upload('foto_luar_bangunan');
+            $f = $this->upload->data();
+            $fb = "";
+            if (count($f) != 14) {
+                for ($i=0; $i < count($f); $i++) {
+                    $abc = $f[$i]['file_name'].',';
+                    $fb .= $abc;
+                }
+                $newfileluar = substr($fb, 0, -1);
+            }else{
+                $newfileluar = $f['file_name'];
+            }
+        }
         $arrayPermohonan = array(
             'id_slf'=>$id,
             // 'luas_lahan'=>$luas_lahan,
@@ -522,8 +543,8 @@ class ValidasiController extends CI_Controller {
             // 'luas_total_bangunan'=>$luas_lantai,
             // 'tinggi_bangunan'=>$luas_lantai_input,
             // 'peruntukan_bangunan'=>$luas_lantai_input,
-            'foto_luar'=>$uploadfoto1,
-            'foto_dalam'=>$uploadfoto2,
+            'foto_luar'=>$newfileluar,
+            'foto_dalam'=>$newfileluar,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         );
@@ -834,32 +855,6 @@ class ValidasiController extends CI_Controller {
         }
 
         echo json_encode($res);
-    }
-    function uploadFotoLuar($params)
-    {
-      $config['upload_path']          = './assets/fotoluar/';
-      $config['allowed_types']        = 'gif|jpg|png|jpeg';
-      $config['remove_spaces']        = TRUE;
-      $config['encrypt_name']        = TRUE;
-
-      $this->upload->initialize($config);
-        if( ! $this->upload->do_upload($params)){
-            $newfileluar = array('error' => $this->upload->display_errors());
-        }else{
-            $this->upload->do_upload($params);
-            $f = $this->upload->data();
-            $fb = "";
-            if (count($f) != 14) {
-                for ($i=0; $i < count($f); $i++) {
-                    $abc = $f[$i]['file_name'].',';
-                    $fb .= $abc;
-                }
-                $newfileluar = substr($fb, 0, -1);
-            }else{
-                $newfileluar = $f['file_name'];
-            }
-        }
-        return $newfileluar;
     }
     function uploadFotoDalam($params)
     {
