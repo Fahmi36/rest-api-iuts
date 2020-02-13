@@ -170,13 +170,13 @@ class ValidasiController extends CI_Controller {
             $id_tata = 1;
         }
 
-        if (empty($sublock) OR $sublock=='-') {
-            echo json_encode($this->returnResultCustom(false,"Mohon Pilih lokasi maps dekat dengan layar yang berwarna "));
-            return;
-        }else if ($sublock == 'H.2') {
-            echo json_encode($this->returnResultCustom(false,"Tidak Boleh di Zona Hijau"));
-            return;
-        }
+        // if (empty($sublock) OR $sublock=='-') {
+        //     echo json_encode($this->returnResultCustom(false,"Mohon Pilih lokasi maps dekat dengan layar yang berwarna "));
+        //     return;
+        // }else if ($sublock == 'H.2') {
+        //     echo json_encode($this->returnResultCustom(false,"Tidak Boleh di Zona Hijau"));
+        //     return;
+        // }
         // if(empty($status_npwp) OR $status_npwp=='-' OR $status_npwp=='0'){
         //     echo json_encode($this->returnResultCustom(false,"Harus Melakukan Verifikasi NIK dan PBB"));
         //     return;
