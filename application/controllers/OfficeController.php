@@ -395,7 +395,7 @@ class OfficeController extends CI_Controller {
 		}else{
 		$newP12 = openssl_pkcs12_read(file_get_contents(site_url('assets/sertifikat/JAKEVO.p12')), $results, "AJ102938++!");
 	    	if ($newP12){
-	    		$filename = str_replace(' ','','Surat' . date('YmdHis') . '.pdf'); 
+	    		$filename = str_replace(' ','','SuratSKIUTS' . date('YmdHis') . '.pdf'); 
 				$data['datauser'] = $this->oc->cekPemohon($id);
 				$data['janji'] = $this->oc->cekSurat($id);
 				$data['kewajiban'] = $this->oc->detailKewajiban();
@@ -416,7 +416,7 @@ class OfficeController extends CI_Controller {
 		        $html = $this->load->view('pages/suratsk',$data, true);
 		        $tcpdf->WriteHTML($html);
 				$tcpdf->Output($filename, 'D'); 
-				// ob_end_clean();
+				ob_end_clean();
 		    }
 		}
 		
