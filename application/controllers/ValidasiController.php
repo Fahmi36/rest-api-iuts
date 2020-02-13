@@ -113,7 +113,7 @@ class ValidasiController extends CI_Controller {
         $kondisi_sumur = $this->input->post('kondisi_sumur_r');
         $drainase = $this->input->post('drainase_disekeliling');
 
-        $rek_slf = $this->input->post('rekomendasi_slf');
+        $rek_slf = $this->input->post('slf');
         $damkar = $this->input->post('izin_dinas_pkp');
         $tenaga_kerja = $this->input->post('izin_dinas_tkt');
         $imb = $this->input->post('imb');
@@ -583,7 +583,7 @@ class ValidasiController extends CI_Controller {
         $kondisi_sumur = $this->input->post('kondisi_sumur_r');
         $drainase = $this->input->post('drainase_disekeliling');
 
-        $rek_slf = $this->input->post('rekomendasi_slf');
+        $rek_slf = $this->input->post('slf');
         $slf = $this->input->post('slf');
         $damkar = $this->input->post('izin_dinas_pkp');
         $tenaga_kerja = $this->input->post('izin_dinas_tkt');
