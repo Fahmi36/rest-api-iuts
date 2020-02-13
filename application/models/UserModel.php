@@ -132,9 +132,14 @@ class UserModel extends CI_Model {
 	}
 	function InsertPemohon($id,$namaLengkap,$namadirektur,$nama_perusahaan,$jabatan,$nomorInKepen,$fotoktp,$nomorInBeru,$npwp,$alamat_perusahaan,$no_telp,$emailAktif,$fotonpwp,$status_pemohon,$token)
 	{
+        if ($namaLengkap == null) {
+            $nama = $namadirektur;
+        }else{
+            $nama = $namaLengkap;
+        }
 		$array = array(
             'id_pemohon'=>$id,
-			'nama'=>$namaLengkap,
+			'nama'=>$nama,
             'nama_perusahaan'=>$nama_perusahaan,
             'jabatan'=>$jabatan,
             'nik'=>$nomorInKepen,
