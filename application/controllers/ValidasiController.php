@@ -530,8 +530,8 @@ class ValidasiController extends CI_Controller {
             // 'peruntukan_bangunan'=>$luas_lantai_input,
             'foto_luar'=>$uploadfoto1,
             'foto_dalam'=>$uploadfoto2,
-            // 'created_at' => date('Y-m-d H:i:s'),
-            // 'updated_at' => date('Y-m-d H:i:s'),
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
         );
         $q = $this->db->insert('data_slf',$arrayPermohonan);
 
