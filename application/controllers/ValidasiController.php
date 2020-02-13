@@ -826,7 +826,7 @@ class ValidasiController extends CI_Controller {
             'code' => $kode,
             'status' => 0,
             'status_jalan' => 0,
-            'created_at' => $getdata->created_at,
+            'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             'id_jenis' => $jenis,
         );
