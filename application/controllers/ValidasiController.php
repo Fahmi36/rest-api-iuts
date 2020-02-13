@@ -802,6 +802,7 @@ class ValidasiController extends CI_Controller {
         $zona = $this->input->post('subzona');
         $sublock = $this->input->post('idsubblok');
         $alamatpemohon = $this->input->post('lokasi_pemohon');
+        $alamatmaps = $this->input->post('lokasi_maps');
         $kecamatan = $this->input->post('kecamatan');
         $kelurahan = $this->input->post('kelurahan');
         $jenis = $this->input->post('jenis_izin');
@@ -815,8 +816,8 @@ class ValidasiController extends CI_Controller {
             'id_pemohon' => $idpemohon,
             'id_slf' => $idslf,
             'id_iuts' => $idiuts,
-            'alamat_usaha' => $lokasi,
-            'alamat_maps' => $alamatpemohon,
+            'alamat_usaha' => $alamatpemohon,
+            'alamat_maps' => $alamatmaps,
             'lat' => $lat,
             'lon' => $lng,
             'kecamatan' => $kecamatan,
