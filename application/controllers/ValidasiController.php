@@ -501,10 +501,8 @@ class ValidasiController extends CI_Controller {
             'luas_tapak'=>$ltb,
             'jumlah_lantai'=>$jml_lantai,
             'luas_total_bangunan'=>$luas_bangunan,
-            'tinggi_bangunan'=>$luas_lantai_input,
-            'peruntukan_bangunan'=>$luas_lantai_input,
-            'foto_luar'=>$uploadfoto1,
-            'foto_dalam'=>$uploadfoto2,
+            'tinggi_bangunan'=>$tinggi_bangunan,
+            'peruntukan_bangunan'=>$peruntukan_bangunan,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         );
