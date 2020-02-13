@@ -422,8 +422,8 @@ class ValidasiController extends CI_Controller {
       $namaLengkap = $this->input->post('nama_lengkap');
       $nama_perusahaan = $this->input->post('nama_perusahaan');
       $jabatan = $this->input->post('jabatan');
-      $nomorInKepen = $this->input->post('nomorInKepen');
-      $nomorInBeru = $this->input->post('nomorInBeru');
+      $nomorInKepen = $this->input->post('nomor_induk');
+      $nomorInBeru = $this->input->post('nomor_induk_b');
       $npwp = $this->input->post('npwp');
       $alamat_perusahaan = $this->input->post('alamat_perusahaan');
       $no_telp = $this->input->post('no_telp');
@@ -431,6 +431,7 @@ class ValidasiController extends CI_Controller {
 
         $fotoktp = $this->uploadFoto('foto_ktp');
         $fotonpwp = $this->uploadFoto('foto_npwp');
+        $fotoakta = $this->uploadFoto('aktePerusahaan');
       $cek = $this->us->cekPemohon($nomorInKepen,$status_pemohon);
 
       $idpemohon = $cek->row();
