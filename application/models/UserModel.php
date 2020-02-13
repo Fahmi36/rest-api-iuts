@@ -274,11 +274,11 @@ class UserModel extends CI_Model {
             $q = $this->db->insert('cek_izin',$array);
         return $q;
     }
-	function InsertSkor($slf,$rata,$iuts,$rata,$status_iuts,$status)
+	function InsertSkor($slf,$totalslf,$iuts,$rata,$status_iuts,$status)
 	{
 		$array = array(
             'id_bangunan'=>$bangunan,
-            'total_slf' => $rata,
+            'total_slf' => $totalslf,
             'total_iuts' => $iuts,
             'rata-rata' => $rata,
             'status_iuts' => $status_iuts,

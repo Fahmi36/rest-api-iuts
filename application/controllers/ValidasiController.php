@@ -862,7 +862,7 @@ class ValidasiController extends CI_Controller {
         }else if ($iuts > 2.5) {
             $status_iuts = '1';
         }
-
+        $totalslf = $skor->skorslf();
         $cek = $this->us->cekSkor($slf);
         if ($cek->num_rows() > 0) {
            $getdata = $cek->row();
@@ -871,7 +871,7 @@ class ValidasiController extends CI_Controller {
             'id_bangunan' => $slf,
         );
            $array = array(
-            'total_slf' => $rata,
+            'total_slf' => $totalslf,
             'total_iuts' => $iuts,
             'rata-rata' => $rata,
             'status_iuts' => $status_iuts,
@@ -881,7 +881,7 @@ class ValidasiController extends CI_Controller {
         );
            $q = $this->db->update('skor_bangunan',$array,$where);
        }else{
-           $q = $this->us->InsertSkor($slf,$rata,$iuts,$rata,$status_iuts,$status);
+           $q = $this->us->InsertSkor($slf,$totalslf,$iuts,$rata,$status_iuts,$status);
        }
        return $q;
    }
