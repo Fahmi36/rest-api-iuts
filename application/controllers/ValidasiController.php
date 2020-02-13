@@ -868,7 +868,7 @@ class ValidasiController extends CI_Controller {
            $getdata = $cek->row();
            $id = $getdata->id;
            $where = array(
-            'id_bangunan' => $slf,
+            'id_bangunan' => $id,
         );
            $array = array(
             'total_slf' => $totalslf,
