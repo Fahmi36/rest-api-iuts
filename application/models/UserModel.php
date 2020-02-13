@@ -34,7 +34,7 @@ class UserModel extends CI_Model {
         $this->db->from('cek_izin');
         $this->db->join('kondisi_slf', 'kondisi_slf.id_slf = cek_izin.id_slf', 'INNER');
         $this->db->join('kondisi_iuts', 'kondisi_iuts.id_iuts = cek_izin.id_iuts', 'INNER');
-        $this->db->join('taxclear', 'taxclear.id_slf = kondisi_slf.id_slf', 'INNER');
+        $this->db->join('taxclear', 'taxclear.id_slf = kondisi_slf.id_slf', 'LEFT');
 
         $this->db->join('kdh_minimum', 'kdh_minimum.id = kondisi_slf.id_kdh_minimum', 'left');
         $this->db->join('kondisi_kdh', 'kondisi_kdh.id = kondisi_slf.id_kondisi_kdh', 'left');
