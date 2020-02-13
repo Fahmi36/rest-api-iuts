@@ -572,7 +572,7 @@ class ValidasiController extends CI_Controller {
         echo json_encode($json);
 
     }
-    function saveKondisiSlf($slf)
+    function saveKondisiSlf($idslf)
     {
         $kdh_zonasi = $this->input->post('kdh_zonasi');
         $kdh_minimum = $this->input->post('kdh_minimum');
@@ -607,12 +607,12 @@ class ValidasiController extends CI_Controller {
         $uploadfoto6 = $this->uploadFoto('fileTKT');
         $uploadfoto7 = $this->uploadFoto('fileIMB');
 
-        $cek = $this->us->cekKondisi($slf);
+        $cek = $this->us->cekKondisi($idslf);
         if ($cek->num_rows() > 0) {
             $getdata = $cek->row();
             $id = $getdata->id;
             $where = array(
-                'id_slf' => $slf,
+                'id_slf' => $idslf,
             );
             $array = array(
                 'kdh_zonasi' => $kdh_zonasi,
@@ -647,7 +647,7 @@ class ValidasiController extends CI_Controller {
             );
             $q = $this->db->update('kondisi_slf',$array,$where);
         }else{
-            $q = $this->us->InsertKondisiSlf($slf,$kdh_zonasi,$kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$rek_slf,$uploadfoto3,$slf,$uploadfoto4,$damkar,$uploadfoto5,$tenaga_kerja,$uploadfoto6,$imb,$uploadfoto7,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$toilet,$parkir);
+            $q = $this->us->InsertKondisiSlf($idslf,$kdh_zonasi,$kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$rek_slf,$uploadfoto3,$slf,$uploadfoto4,$damkar,$uploadfoto5,$tenaga_kerja,$uploadfoto6,$imb,$uploadfoto7,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$toilet,$parkir);
         }
         return $q;
     }
