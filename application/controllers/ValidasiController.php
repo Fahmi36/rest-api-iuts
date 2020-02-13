@@ -315,9 +315,6 @@ class ValidasiController extends CI_Controller {
                 }else if(empty($kelayakan) OR $kelayakan == '-'){
                     echo json_encode($this->returnResultCustom(false,"Waktu Pembaharuan Terakhir Kelayakan Gedung Tidak Boleh Kosong"));
                     return;
-                }else if(empty($ket_air) OR $ket_air == '-'){
-                    echo json_encode($this->returnResultCustom(false,"Ketersediaan Air Bersih Tidak Boleh Kosong"));
-                    return;
                 }else if(empty($limbah) OR $limbah == '-'){
                     echo json_encode($this->returnResultCustom(false,"Pengelolaan Air Kotor / Limbah Tidak Boleh Kosong"));
                     return;
