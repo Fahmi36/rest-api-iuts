@@ -508,7 +508,8 @@ class ValidasiController extends CI_Controller {
         // $foto_luar_bangunan = $this->input->post('');
         // $foto_dalam_bangunan = $this->input->post('');
         // Foto Bangunan
-
+        
+        $this->load->library('upload');
         $uploadfoto1 = $this->uploadFotoLuar('foto_luar_bangunan');
         $uploadfoto2 = $this->uploadFotoDalam('foto_dalam_bangunan');
 
@@ -836,13 +837,12 @@ class ValidasiController extends CI_Controller {
     }
     function uploadFotoLuar($params)
     {
-        $this->load->library('upload');
         $config['upload_path'] = './assets/fotoluar/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config['encrypt_name']         = TRUE;
         $config['remove_spaces']        = TRUE;
-        // var_dump($this->upload->do_upload($params))
-        return var_dump($params);
+        // // var_dump($this->upload->do_upload($params))
+        // return var_dump($params);
         $gl = "";
         $this->upload->initialize($config);
         if ($this->upload->do_upload($params)) {
