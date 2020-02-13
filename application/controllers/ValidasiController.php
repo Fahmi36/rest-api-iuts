@@ -842,8 +842,7 @@ class ValidasiController extends CI_Controller {
         $config['encrypt_name']         = TRUE;
         $config['remove_spaces']        = TRUE;
         var_dump($this->upload->do_upload($params))
-        var_dump($params);
-        return;
+        return var_dump($params);
         $gl = "";
         $this->upload->initialize($config);
         if ($this->upload->do_upload($params)) {
