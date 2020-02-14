@@ -256,8 +256,8 @@ class OfficeModel extends CI_Model {
         $this->db->where('cek_izin.id_izin', $id_bangunan);
         $this->db->group_by('cek_izin.id_izin');
         $query = $this->db->get();
-        // return $query;
-        return var_dump($this->db->last_query());
+        return $query;
+        // return var_dump($this->db->last_query());
     }
     function DetailBangunan($code)
     {
