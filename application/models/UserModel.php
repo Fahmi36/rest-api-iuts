@@ -198,7 +198,7 @@ class UserModel extends CI_Model {
         $q = $this->db->insert('kondisi_slf',$array);
         return $q;
     }
-    function InsertKondisiIuts($idiuts,$pbb,$umkm,$keterlibatan_umkm_input,$jumlah_karyawan,$asal_karyawan,$jumlah_atm,$jumlah_pengunjung,$rek_umkm,$id_tata,$kajian)
+    function InsertKondisiIuts($idiuts,$pbb,$umkm,$keterlibatan_umkm_input,$jumlah_karyawan,$asal_karyawan,$jumlah_atm,$jumlah_pengunjung,$rek_umkm,$id_tata,$kajian,$warga)
     {
         $array = array(
             'id_iuts'=>$idiuts,
@@ -212,6 +212,7 @@ class UserModel extends CI_Model {
             'id_rek_umkm' => $rek_umkm,
             'id_tata_ruang' => $id_tata,
             'id_kasostek' => $kajian,
+            'id_warga'=>$warga,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         );

@@ -783,12 +783,13 @@ class ValidasiController extends CI_Controller {
                 'id_rek_umkm' => $rek_umkm,
                 'id_tata_ruang' => $id_tata,
                 'id_kasostek' => $kajian,
+                'id_warga'=>$warga,
                 'created_at' => $getdata->created_at,
                 'updated_at' => date('Y-m-d H:i:s'),
             );
             $q = $this->db->update('kondisi_iuts',$array,$where);
         }else{
-            $q = $this->us->InsertKondisiIuts($idiuts,$pbb,$umkm,$keterlibatan_umkm_input,$jumlah_karyawan,$asal_karyawan,$jumlah_atm,$jumlah_pengunjung,$rek_umkm,$id_tata,$kajian);
+            $q = $this->us->InsertKondisiIuts($idiuts,$pbb,$umkm,$keterlibatan_umkm_input,$jumlah_karyawan,$asal_karyawan,$jumlah_atm,$jumlah_pengunjung,$rek_umkm,$id_tata,$kajian,$warga);
         }
         return $q;
     }
