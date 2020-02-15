@@ -6,7 +6,7 @@ class UserModel extends CI_Model {
 	function cekPemohon($nik='',$id='')
     {
         if($nik){
-            $this->db->where('nik',$nik);
+            $this->db->where('email',$nik);
             $this->db->where('jenis_pemohon', $id);
         }
         $q = $this->db->get('pemohon_iuts');
@@ -26,6 +26,20 @@ class UserModel extends CI_Model {
             $this->db->where('id_bangunan',$id);
         }
         $q = $this->db->get('skor_bangunan');
+        return $q;
+    }
+    function cekFotoIuts($id,$jenis)
+    {
+        $this->db->where('id_iuts', $id);
+        $this->db->where('jenis_foto', $jenis);
+        $q = $this->db->get('foto_iuts');
+        return $q;
+    }
+    function cekFotoSlf($id,$jenis)
+    {
+        $this->db->where('id_slf', $id);
+        $this->db->where('jenis_foto', $jenis);
+        $q = $this->db->get('foto_slf');
         return $q;
     }
     function SkoringWeb($slf)
@@ -137,7 +151,7 @@ class UserModel extends CI_Model {
         $q = $this->db->insert('data_slf',$arrayPermohonan);
         return $q;
 	}
-	function InsertPemohon($id,$namaLengkap,$namadirektur,$nama_perusahaan,$jabatan,$nomorInKepen,$fotoktp,$nomorInBeru,$npwp,$alamat_perusahaan,$no_telp,$emailAktif,$fotonpwp,$status_pemohon,$token)
+	function InsertPemohon($id,$namaLengkap,$namadirektur,$nama_perusahaan,$jabatan,$nomorInKepen,$fotoktp,$nomorInBeru,$npwp,$alamat_perusahaan,$no_telp,$emailAktif,$fotonpwp,$status_pemohon,$token,$fotoakta)
 	{
         if ($namaLengkap == null) {
             $nama = $namadirektur;
@@ -158,6 +172,7 @@ class UserModel extends CI_Model {
             'email'=>$emailAktif,
             'foto_npwp'=>$fotonpwp,
             'jenis_pemohon'=>$status_pemohon,
+            'akta_perusahaan'=>$fotoakta,
             'password'=>password_hash($token, PASSWORD_DEFAULT),
             'token'=>$token,
             'created_at' => date('Y-m-d H:i:s'),
@@ -166,7 +181,7 @@ class UserModel extends CI_Model {
         $q = $this->db->insert('pemohon_iuts',$array);
         return $q;
 	}
-    function InsertKondisiSlf($idslf,$kdh_zonasi,$kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$rek_slf,$slf,$damkar,$tenaga_kerja,$imb,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$toilet,$parkir)
+    function InsertKondisiSlf($idslf,$kdh_zonasi,$kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$slf,$damkar,$tenaga_kerja,$imb,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$toilet,$parkir)
     {
         $array = array(
             'id_slf'=>$slf,
@@ -177,7 +192,6 @@ class UserModel extends CI_Model {
                 'id_pertandaan_toko' => $kondisipertandaan,
                 'id_kondisi_sumur' => $kondisi_sumur,
                 'id_drainase' => $drainase,
-                'id_rek_slf' => $rek_slf,
                 'id_layak' => $slf,
                 'id_izin_damkar' => $damkar,
                 'id_tenaga_kerja' => $tenaga_kerja, // baru
@@ -408,18 +422,16 @@ class UserModel extends CI_Model {
         $q = $this->db->insert('message',$array);
         return $q;
     }
-    function detailPemohonAdministrasi($id_bangunan,$id)
+    function detailPemohonAdministrasi($id_izin)
     {
-        $this->db->select('kelengkapan_admin.skor as skorlengkap, lama_izin.skor as skorwaktu, status_pbb.skor as skorpbb, status_npwp.skor as skornpwp, SUM(kelengkapan_admin.skor + lama_izin.skor) as skoradministrasi');
-        $this->db->from('data_slf');
-        $this->db->join('administrasi', 'administrasi.id_bangunan = data_slf.id_bangunan', 'INNER');
-        $this->db->join('kelengkapan_admin', 'kelengkapan_admin.id = administrasi.kelengkapan', 'INNER');
-        $this->db->join('lama_izin', 'lama_izin.id = administrasi.lama_waktu', 'INNER');
-        $this->db->join('status_pbb', 'status_pbb.id = administrasi.status_pbb', 'INNER');
-        $this->db->join('status_npwp', 'status_npwp.id = administrasi.status_npwp', 'INNER');
+        $this->db->select('foto_iuts.status as statusiuts, foto_iuts.jenis_foto as jenisiuts, foto_slf.status as statusslf, foto_slf.jenis_foto as jenisslf, foto_slf.foto as fotoiuts, foto_iuts.foto as fotoiuts');
+        $this->db->from('cek_izin');
+        $this->db->join('data_iuts', 'cek_izin.id_iuts = data_iuts.id_izin', 'INNER');
+        $this->db->join('data_slf', 'cek_izin.id_slf = data_slf.id_izin', 'INNER');
+        $this->db->join('foto_iuts', 'foto_iuts.id_iuts = data_iuts.id_iuts', 'INNER');
+        $this->db->join('foto_slf', 'foto_slf.id_slf = data_slf.id_slf', 'INNER');
 
-        $this->db->where('data_slf.id_bangunan', $id_bangunan);
-        $this->db->where('data_slf.id_pemohon', $id);
+        $this->db->where('cek_izin.id_izin', $id_izin);
         $this->db->group_by('data_slf.id_bangunan');
         $q = $this->db->get();
         return $q;

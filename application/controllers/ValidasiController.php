@@ -415,7 +415,7 @@ class ValidasiController extends CI_Controller {
             'upload_path' => "./data/helpdesk/".$fname,
             'allowed_types' => "gif|jpg|png|jpeg",
             'overwrite' => TRUE,
-            'max_size' => "2048000", 
+            'max_size' => "204800", 
             // 'max_height' => "768",
             // 'max_width' => "1024"
         ); 
@@ -505,7 +505,15 @@ class ValidasiController extends CI_Controller {
             'status'=>'0',
             'id_slf'=>$idslf,
         );
-        $q = $this->db->insert('foto_slf', $arrUpdate);
+        $cek = $this->us->cekFotoSlf($idiuts,$jenis);
+        if ($cek->num_rows() > 0) {
+            $row = $cek->row();
+            $this->db->set('foto', 'foto,'.$name.'',FALSE);
+            $this->db->where('id_foto', $row->id);
+            $this->db->update('foto_slf');
+        }else{
+            $q = $this->db->insert('foto_slf', $arrUpdate);
+        }
         if ($q) {
             $result = array('success' => true, 'msg' => 'Success update transaction');
         } else {
@@ -531,7 +539,15 @@ class ValidasiController extends CI_Controller {
             'status'=>'0',
             'id_iuts'=>$idiuts,
         );
-        $q = $this->db->insert('foto_iuts', $arrUpdate);
+        $cek = $this->us->cekFotoIuts($idiuts,$jenis);
+        if ($cek->num_rows() > 0) {
+            $row = $cek->row();
+            $this->db->set('foto', 'foto,'.$name.'',FALSE);
+            $this->db->where('id_fotoi', $row->id);
+            $this->db->update('foto_iuts');
+        }else{
+            $q = $this->db->insert('foto_iuts', $arrUpdate);
+        }
         if ($q) {
             $result = array('success' => true, 'msg' => 'Success update transaction');
         } else {
@@ -539,8 +555,8 @@ class ValidasiController extends CI_Controller {
         }
         echo json_encode($result);
     }
-    function savePemohon()
-    {
+    function savePemohon(){
+      
       $status_pemohon = $this->input->post('status_pemohon');
       $namaLengkap = $this->input->post('nama_lengkap_jawab');
       $namadirektur = $this->input->post('nama_direktur');
@@ -553,44 +569,47 @@ class ValidasiController extends CI_Controller {
       $no_telp = $this->input->post('no_telp');
       $emailAktif = $this->input->post('email');
 
-        $fotoktp = $this->uploadFoto('foto_ktp');
-        $fotonpwp = $this->uploadFoto('foto_npwp');
-        $fotoakta = $this->uploadFoto('aktePerusahaan');
-      $cek = $this->us->cekPemohon($nomorInKepen,$status_pemohon);
+      $fotoktp = $this->uploadFoto('foto_ktp');
+      $fotonpwp = $this->uploadFoto('foto_npwp');
+      $fotoakta = $this->uploadFoto('aktePerusahaan');
+      $cek = $this->us->cekPemohon($emailAktif,$status_pemohon);
 
       $idpemohon = $cek->row();
       $token = $this->incrementalHash(8);
-     //  if ($cek->num_rows() > 0) {
-     //     $tgl = $idpemohon->created_at;
-     //     $id = $idpemohon->id_pemohon;
-     //     $where = array(
-     //        'id_pemohon'=>$id
-     //    );
-     //     $arrayPermohonan = array(
-     //        'nama'=>$namaLengkap,
-     //        'nama_perusahaan'=>$nama_perusahaan,
-     //        'jabatan'=>$jabatan,
-     //        'nik'=>$nomorInKepen,
-     //        'foto_ktp'=>$fotoktp,
-     //        'nib'=>$nomorInBeru,
-     //        'npwp'=>$npwp,
-     //        'alamat_perusahaan'=>$alamat_perusahaan,
-     //        'no_hp'=>$no_telp,
-     //        'email'=>$emailAktif,
-     //        'foto_npwp'=>$fotonpwp,
-     //        'jenis_pemohon'=>$status_pemohon,
-     //        'password'=>password_hash($token, PASSWORD_DEFAULT),
-     //        'token'=>$token,
-     //        'created_at' => $tgl,
-     //        'updated_at' => date('Y-m-d H:i:s'),
-     //    );
-     //     $q = $this->db->update('pemohon_iuts',$arrayPermohonan,$where);
-     // }else{
+      if ($cek->num_rows() > 0) {
+         $tgl = $idpemohon->created_at;
+         $id = $idpemohon->id_pemohon;
+         $where = array(
+            'id_pemohon'=>$id
+        );
+        if ($namaLengkap == null) {
+            $nama = $namadirektur;
+        }else{
+            $nama = $namaLengkap;
+        }
+         $arrayPermohonan = array(
+            'nama'=>$nama,
+            'nama_perusahaan'=>$nama_perusahaan,
+            'jabatan'=>$jabatan,
+            'nik'=>$nomorInKepen,
+            'foto_ktp'=>$fotoktp,
+            'nib'=>$nomorInBeru,
+            'npwp'=>$npwp,
+            'alamat_perusahaan'=>$alamat_perusahaan,
+            'no_hp'=>$no_telp,
+            'email'=>$emailAktif,
+            'foto_npwp'=>$fotonpwp,
+            'akta_perusahaan'=>$fotoakta,
+            'created_at' => $tgl,
+            'updated_at' => date('Y-m-d H:i:s'),
+        );
+         $q = $this->db->update('pemohon_iuts',$arrayPermohonan,$where);
+     }else{
          $this->load->library('uuid');
          $uuid = $this->uuid->v4();
          $id = str_replace('-', '', $uuid);
-         $q = $this->us->InsertPemohon($id,$namaLengkap,$namadirektur,$nama_perusahaan,$jabatan,$nomorInKepen,$fotoktp,$nomorInBeru,$npwp,$alamat_perusahaan,$no_telp,$emailAktif,$fotonpwp,$status_pemohon,$token);
-     // }
+         $q = $this->us->InsertPemohon($id,$namaLengkap,$namadirektur,$nama_perusahaan,$jabatan,$nomorInKepen,$fotoktp,$nomorInBeru,$npwp,$alamat_perusahaan,$no_telp,$emailAktif,$fotonpwp,$status_pemohon,$token,$fotoakta);
+     }
 
         if ($q) {
             return $id;
@@ -606,8 +625,9 @@ class ValidasiController extends CI_Controller {
         $uuid = $this->uuid->v4();
         $id = str_replace('-', '', $uuid);
 
+        $nopd_bangunan = $this->input->post('nopd_bangunan');
         $luas_lahan = $this->input->post('luas_lahan');
-        $status_milik = $this->input->post('status_milik');
+        $status_milik = $this->input->post('status_kepem_lahan');
         $ltb = $this->input->post('ltb');
         $jml_lantai = $this->input->post('jml_lantai');
         $luas_bangunan = $this->input->post('luas_bangunan');
@@ -616,6 +636,7 @@ class ValidasiController extends CI_Controller {
 
         $arrayPermohonan = array(
             'id_slf'=>$id,
+            'nopd_bangunan'=>$nopd_bangunan,
             'luas_lahan'=>$luas_lahan,
             'status_milik'=>$status_milik,
             'luas_tapak'=>$ltb,
@@ -647,8 +668,8 @@ class ValidasiController extends CI_Controller {
         $omset_perbulan = $this->input->post('omset_perbulan');
         $untuk_toko = $this->input->post('peruntukan_toko');
         $status_bangunan = $this->input->post('status_bangunan');
+        $lama_sewa = $this->input->post('lama_sewa_input');
 
-        $jumlah_atm = $this->input->post('jumlah_atm');
         $this->load->library('uuid');
         $uuid = $this->uuid->v4();
         $id = str_replace('-', '', $uuid);
@@ -659,11 +680,12 @@ class ValidasiController extends CI_Controller {
             'njop'=>$njop, 
             'nama_toko'=>$nama_toko,
             'kelompok_usaha'=>$kelompok,
-            'nama_badan_usaha'=>$kelompok,
+            'nama_badan_usaha'=>$nama_badan_usaha,
             'kategori_usaha'=>$kategori_usaha,
             'omset'=>$omset_perbulan,
             'peruntukan_imb'=>$untuk_toko,
             'status_bangunan'=>$status_bangunan,
+            'lama_sewa'=>$lama_sewa,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         );
@@ -686,7 +708,6 @@ class ValidasiController extends CI_Controller {
         $kondisi_sumur = $this->input->post('kondisi_sumur_r');
         $drainase = $this->input->post('drainase_disekeliling');
 
-        $rek_slf = $this->input->post('slf');
         $slf = $this->input->post('slf');
         $damkar = $this->input->post('izin_dinas_pkp');
         $tenaga_kerja = $this->input->post('izin_dinas_tkt');
@@ -703,14 +724,6 @@ class ValidasiController extends CI_Controller {
         $toilet = $this->input->post('ketersediaan_toilet');
         $parkir = $this->input->post('kondisi_parkir');
 
-        // $uploadfoto1 = $this->uploadFotoLuar('fotoluar');
-        // $uploadfoto2 = $this->uploadFotoDalam('foto_dalam_bangunan');
-        // $uploadfoto3 = $this->uploadFoto('fileRekomendasiSlf');
-        // $uploadfoto4 = $this->uploadFoto('fileSLF');
-        // $uploadfoto5 = $this->uploadFoto('fileDamkar');
-        // $uploadfoto6 = $this->uploadFoto('fileTKT');
-        // $uploadfoto7 = $this->uploadFoto('fileIMB');
-
         $cek = $this->us->cekKondisislf($idslf);
         if ($cek->num_rows() > 0) {
             $getdata = $cek->row();
@@ -726,7 +739,6 @@ class ValidasiController extends CI_Controller {
                 'id_pertandaan_toko' => $kondisipertandaan,
                 'id_kondisi_sumur' => $kondisi_sumur,
                 'id_drainase' => $drainase,
-                'id_rek_slf' => $rek_slf,
                 'id_layak' => $slf,
                 'id_izin_damkar' => $damkar,
                 'id_tenaga_kerja' => $tenaga_kerja, // baru
@@ -746,7 +758,7 @@ class ValidasiController extends CI_Controller {
             );
             $q = $this->db->update('kondisi_slf',$array,$where);
         }else{
-            $q = $this->us->InsertKondisiSlf($idslf,$kdh_zonasi, $kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$rek_slf,$slf,$damkar,$tenaga_kerja,$imb,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$toilet,$parkir);
+            $q = $this->us->InsertKondisiSlf($idslf,$kdh_zonasi, $kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$slf,$damkar,$tenaga_kerja,$imb,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$toilet,$parkir);
         }
         return $q;
     }
@@ -761,7 +773,6 @@ class ValidasiController extends CI_Controller {
         $jumlah_atm = $this->input->post('jumlah_atm');
         $jumlah_pengunjung = $this->input->post('jumlah_pengunjung_b');
         $status_milik_usaha = $this->input->post('status_milik_usaha');
-        $peng_lahan = $this->input->post('penggunaan_lahan');
 
         $rek_umkm = $this->input->post('rekomendasi_umkm');
         $kajian = $this->input->post('kajian_sostek');
@@ -803,7 +814,7 @@ class ValidasiController extends CI_Controller {
         $zona = $this->input->post('subzona');
         $sublock = $this->input->post('idsubblok');
         $alamatpemohon = $this->input->post('lokasi_pemohon');
-        $alamatmaps = $this->input->post('lokasi_maps');
+        $alamatmaps = $this->input->post('lokasi_map');
         $kecamatan = $this->input->post('kecamatan');
         $kelurahan = $this->input->post('kelurahan');
         $jenis = $this->input->post('jenis_izin');

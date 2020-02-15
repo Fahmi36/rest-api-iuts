@@ -231,9 +231,8 @@ class UserController extends CI_Controller {
 	function detailPemohonAdministrasi()
 	{
 		try {
-			$id = $this->input->post('id');
-			$idbangunan = $this->input->post('idbangunan');
-			$detail = $this->us->detailPemohonAdministrasi($idbangunan,$id);
+			$idbangunan = $this->input->post('idizin');
+			$detail = $this->us->detailPemohonAdministrasi($idbangunan);
 			if ($detail) {
 				$res = $this->returnResult($detail);
 			}
