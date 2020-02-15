@@ -44,7 +44,7 @@ class UserModel extends CI_Model {
     }
     function SkoringWeb($slf)
     {
-        $this->db->select('taxclear.status_pbb,taxclear.status_npwp,AVG(kdh_minimum.skor + kondisi_kdh.skor + volume_sumur.skor + kondisi_pertandaan.skor + kondisi_sumur.skor + kondisi_drainase.skor + rekomendasi_slf.skor + izin_damkar.skor + izin_tenaga_kerja.skor + izin_imb.skor + fasilitas_damkar.skor + asuransi_toko.skor + kelayakan_gedung.skor + ketersedian_air.skor + pengelola_limbah.skor + pengelola_sampah.skor + ketersedian_listrik.skor + ketersedian_toilet.skor + kondisi_parkir.skor)/19 as skorslf,AVG(pemutakhiran_pbb.skor + keterlibatan_umkm.skor + rekomen_umkm.skor + tata_ruang.skor + kajian_sostek.skor)/5 as skoriuts');
+        $this->db->select('taxclear.status_pbb,taxclear.status_npwp,AVG(kdh_minimum.skor + kondisi_kdh.skor + volume_sumur.skor + kondisi_pertandaan.skor + kondisi_sumur.skor + kondisi_drainase.skor + izin_damkar.skor + izin_tenaga_kerja.skor + izin_imb.skor + fasilitas_damkar.skor + asuransi_toko.skor + kelayakan_gedung.skor + ketersedian_air.skor + pengelola_limbah.skor + pengelola_sampah.skor + ketersedian_listrik.skor + ketersedian_toilet.skor + kondisi_parkir.skor)/18 as skorslf,AVG(pemutakhiran_pbb.skor + keterlibatan_umkm.skor + rekomen_umkm.skor + tata_ruang.skor + kajian_sostek.skor)/5 as skoriuts');
         $this->db->from('cek_izin');
         $this->db->join('kondisi_slf', 'kondisi_slf.id_slf = cek_izin.id_slf', 'INNER');
         $this->db->join('kondisi_iuts', 'kondisi_iuts.id_iuts = cek_izin.id_iuts', 'INNER');
@@ -56,7 +56,6 @@ class UserModel extends CI_Model {
         $this->db->join('kondisi_pertandaan', 'kondisi_pertandaan.id = kondisi_slf.id_pertandaan_toko', 'left');
         $this->db->join('kondisi_sumur', 'kondisi_sumur.id = kondisi_slf.id_kondisi_sumur', 'left');
         $this->db->join('kondisi_drainase', 'kondisi_drainase.id = kondisi_slf.id_drainase', 'left');
-        $this->db->join('rekomendasi_slf', 'rekomendasi_slf.id = kondisi_slf.id_rek_slf', 'left');
         $this->db->join('izin_damkar', 'izin_damkar.id = kondisi_slf.id_izin_damkar', 'left');
         $this->db->join('izin_tenaga_kerja', 'izin_tenaga_kerja.id = kondisi_slf.id_tenaga_kerja', 'left');
         $this->db->join('izin_imb', 'izin_imb.id = kondisi_slf.id_imb', 'left');
