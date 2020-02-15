@@ -505,7 +505,7 @@ class ValidasiController extends CI_Controller {
             'status'=>'0',
             'id_slf'=>$idslf,
         );
-        $cek = $this->us->cekFotoSlf($idiuts,$jenis);
+        $cek = $this->us->cekFotoSlf($idslf,$jenis);
         if ($cek->num_rows() > 0) {
             $row = $cek->row();
             $this->db->set('foto', 'foto,'.$name.'',FALSE);
