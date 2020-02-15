@@ -468,9 +468,16 @@ class OfficeModel extends CI_Model {
         }
     	return $this->db->count_all_results();
     }
-    function VerifFoto($idfoto)
+    function VerifFoto($idfoto,$status)
     {
-        $this->db->update('foto_iuts');
+        $where = array(
+            'id_foto'=>$idfoto,
+        );
+        $data = array(
+            'status'=>$status,
+        );
+        $q = $this->db->update('foto_iuts',$data,$where);
+        return $q;
     }
 }
 
