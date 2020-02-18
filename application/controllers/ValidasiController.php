@@ -378,8 +378,8 @@ class ValidasiController extends CI_Controller {
                                         $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
                                         $json['idslf'] = $slf;
                                         $json['idiuts'] = $iuts;
-                                        echo json_encode($json);
-                                        return;
+                                        // echo json_encode($json);
+                                        // return;
                                     // }else{
                                     //     $json = $this->returnResultCustom(false,'Gagal Masukan Foto IUTS');
                                     // }
