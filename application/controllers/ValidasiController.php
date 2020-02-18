@@ -282,7 +282,7 @@ class ValidasiController extends CI_Controller {
             //         return;
             //     }
             // }else if ($jenis == '3'){ //SLF dan IUTS 
-                if(empty($kdh_zonasi) OR $kdh_zonasi == '-'){
+                if(empty($kdh_zonasi)){
                     echo json_encode($this->returnResultCustom(false,"Silakan Pilih Koefisien Daearh Hijau di Peta"));
                     return;
                 }else if(empty($kdh_minimum) OR $kdh_minimum == '-'){
