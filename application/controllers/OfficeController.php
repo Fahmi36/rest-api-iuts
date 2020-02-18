@@ -230,7 +230,7 @@ class OfficeController extends CI_Controller {
 				'status'=>$statusweb,
 
 			);
-			$update = $this->db->update('data_slf', $data,$where);
+			$update = $this->db->update('cek_izin', $data,$where);
 			if ($update == true) {
         		$this->sendmail($bangunan);
 				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
@@ -346,21 +346,6 @@ class OfficeController extends CI_Controller {
 
 		} catch (Exception $e) {
 			throw $e;
-		}
-		echo json_encode($res);
-	}
-	function VerifyFoto()
-	{
-		try {
-			$idfoto = $this->input->post('idfoto');
-			$data = $this->oc->VerifFoto($idfoto);
-			if ($data) {
-				$res = $this->returnResult($data);
-			}else{
-				$res = $this->returnResultErrorDB();
-			}
-		} catch (Exception $e) {
-			$res = $this->returnResultCustom(false,'Tidak ada data');
 		}
 		echo json_encode($res);
 	}
@@ -480,6 +465,25 @@ class OfficeController extends CI_Controller {
 			throw $e;
 		}
 		echo json_encode($res);
+	}
+	function VerifyFoto()
+	{
+		try {
+			$idfoto = $this->input->post('idfoto');
+			$data = $this->oc->VerifFoto($idfoto);
+			if ($data) {
+				$res = $this->returnResult($data);
+			}else{
+				$res = $this->returnResultErrorDB();
+			}
+		} catch (Exception $e) {
+			$res = $this->returnResultCustom(false,'Tidak ada data');
+		}
+		echo json_encode($res);
+	}
+	function Tolak($value='')
+	{
+		# code...
 	}
 	function sendmail($idbangun)
 	{
