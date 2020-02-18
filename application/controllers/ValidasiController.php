@@ -377,8 +377,7 @@ class ValidasiController extends CI_Controller {
                                         $this->sendmail($email);
                                         $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
                                         $json['idslf'] = $slf;
-                                        $json['idiuts'] = $iuts;
-                                    // }else{
+                                        $json['idiuts'] = $iuts;                                    // }else{
                                     //     $json = $this->returnResultCustom(false,'Gagal Masukan Foto IUTS');
                                     // }
                                 }else{
@@ -404,6 +403,7 @@ class ValidasiController extends CI_Controller {
             $json = $this->returnResultCustom(false,'Throws');
         }
         echo json_encode($json);
+        return;
     }
     public function doupload()
     {
