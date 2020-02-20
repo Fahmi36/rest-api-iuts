@@ -103,6 +103,7 @@ class ValidasiController extends CI_Controller {
         // $json = json_decode($this->input->post('dataRegist'));
         $email = $this->input->post('email');
         $jenis = $this->input->post('jenis_izin');
+        $status_pemohon = $this->input->post('status_pemohon');
 
             //SLF
         $kdh_zonasi = $this->input->post('kdh');
@@ -374,7 +375,7 @@ class ValidasiController extends CI_Controller {
                                 if ($skor) {
                                     // $tax = $this->saveTaxClear($slf,$status_npwp,$status_pbb);
                                     // if ($tax) {                                            
-                                        $this->sendmail($email);
+                                        $this->sendmail($email,$status_pemohon);
                                         $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
                                         $json['idslf'] = $slf;
                                         $json['idiuts'] = $iuts;
@@ -1033,9 +1034,9 @@ class ValidasiController extends CI_Controller {
         }
         return $newfiledalam;
     }
-    function sendmail($nik)
+    function sendmail($email,$status_pemohon='')
     {
-        $dPemohon = $this->us->cekPemohon($nik);
+        $dPemohon = $this->us->cekPemohon($email,$status_pemohon);
         $result = $this->returnResult($dPemohon);
         $json = json_encode($result);
         $decoder = json_decode($json);
@@ -1074,7 +1075,7 @@ class ValidasiController extends CI_Controller {
                 $result = $this->returnResultCustom(false,'Failed to send mail '. $this->email->print_debugger());
             }
         }else{
-            $result = $this->returnResultCustom(false,'Tidak ditemukan data dengan nomor token '.$token);
+            $result = $this->returnResultCustom(false,'Tidak ditemukan data dengan nomor token '.$tokenpemohon);
         }
     }
 }
