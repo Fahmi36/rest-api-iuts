@@ -425,7 +425,7 @@ class UserModel extends CI_Model {
         $this->db->select('foto_iuts.status as statusiuts, foto_iuts.jenis_foto as jenisiuts, foto_slf.status as statusslf, foto_slf.jenis_foto as jenisslf, foto_slf.foto as fotoiuts, foto_iuts.foto as fotoiuts');
         $this->db->from('cek_izin');
         $this->db->join('data_iuts', 'cek_izin.id_iuts = data_iuts.id_iuts', 'INNER');
-        $this->db->join('data_slf', 'cek_izin.id_slf = data_slf.id_izin', 'INNER');
+        $this->db->join('data_slf', 'cek_izin.id_slf = data_slf.id_slf', 'INNER');
         $this->db->join('foto_iuts', 'foto_iuts.id_iuts = data_iuts.id_iuts', 'INNER');
         $this->db->join('foto_slf', 'foto_slf.id_slf = data_slf.id_slf', 'INNER');
 
