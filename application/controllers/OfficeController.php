@@ -208,8 +208,8 @@ class OfficeController extends CI_Controller {
             $array = array(
             'keterangan' => $keterangan,
             'status' => $status,
-            'skorslf' => $skorslf,
-            'skoriuts' => $skoriuts,
+            'skorakhirslf' => $skorslf,
+            'skorakhiriuts' => $skoriuts,
             'updated_at' => date('Y-m-d H:i:s'),
         );
             $q = $this->db->update('admindinas',$array,$where);
