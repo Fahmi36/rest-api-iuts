@@ -430,7 +430,7 @@ class UserModel extends CI_Model {
         $this->db->join('foto_slf', 'foto_slf.id_slf = data_slf.id_slf', 'INNER');
 
         $this->db->where('cek_izin.id_izin', $id_izin);
-        $this->db->group_by('data_slf.id_bangunan');
+        $this->db->group_by('cek_izin.id_izin');
         $q = $this->db->get();
         return $q;
         // return var_dump($this->db->last_query());
