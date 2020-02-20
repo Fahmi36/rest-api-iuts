@@ -511,7 +511,7 @@ class ValidasiController extends CI_Controller {
             $row = $cek->row();
             $this->db->set('foto', 'foto,'.$name.'',FALSE);
             $this->db->where('id_foto', $row->id);
-            $this->db->update('foto_slf');
+            $q = $this->db->update('foto_slf');
         }else{
             $q = $this->db->insert('foto_slf', $arrUpdate);
         }
@@ -545,7 +545,7 @@ class ValidasiController extends CI_Controller {
             $row = $cek->row();
             $this->db->set('foto', 'foto,'.$name.'',FALSE);
             $this->db->where('id_fotoi', $row->id);
-            $this->db->update('foto_iuts');
+            $q = $this->db->update('foto_iuts');
         }else{
             $q = $this->db->insert('foto_iuts', $arrUpdate);
         }
