@@ -481,18 +481,29 @@ class UserModel extends CI_Model {
         return $q;
         // return var_dump($this->db->last_query());
     }
-    function KonfirmasiPemohon($idbangunan,$file)
+    function KonfirmasiPemohon($idbangunan)
     {
-        $fileupload = $this->Uploadfoto($file);
+        $fileupload = $this->Uploadfoto('file');
         $where = array(
-            'id_bangunan'=>$idbangunan,
+            'id_izin'=>$idbangunan,
         );
         $data = array(
             'tgl_terima'=>date('Y-m-d'),
             'file'=>$fileupload,
         );
-        $this->db->update('janjian', $data,$where);
+        $q = $this->db->update('janjian', $data,$where);
+        return $q;
     }
+    function FeedBack($idbangunan)
+    {
+        $query = $this->db->insert('feedback', array(
+            'id_izin'=>$idbangunan,
+            'ulasan'=>htmlspecialchars($this->input->post('pesan')),
+            'created_at'=>date('Y-m-d'),
+        ));
+        return $query;
+    }
+    
     public function Uploadfoto($param)
     {
         $this->load->library('upload');

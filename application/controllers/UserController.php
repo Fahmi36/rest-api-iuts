@@ -286,8 +286,20 @@ class UserController extends CI_Controller {
 	{
 		try {
 			$idbangunan = $this->input->post('idbangunan');
-			$file = $this->input->post('file');
-			$detail = $this->us->KonfirmasiPemohon($idbangunan,$file);
+			$detail = $this->us->KonfirmasiPemohon($idbangunan);
+			if ($detail) {
+				$res = $this->returnResult($detail);
+			}
+		} catch (Exception $e) {
+			$res = $this->returnResultCustom(false,$e);
+		}
+		echo json_encode($res);
+	}
+	function KirimFeedBack()
+	{
+		try {
+			$idbangunan = $this->input->post('idbangunan');
+			$detail = $this->us->FeedBack($idbangunan);
 			if ($detail) {
 				$res = $this->returnResult($detail);
 			}
