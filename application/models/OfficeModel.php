@@ -16,13 +16,41 @@ class OfficeModel extends CI_Model {
 	}
     function cekPemohon($idbangun)
     {
-        $this->db->select('*');
+        $this->db->select('cek_izin.alamat_usaha,data_iuts.njop,data_iuts.nama_toko,pemohon_iuts.nama,data_iuts.nopd,,data_slf.luas_lahan,data_slf.nopd_bangunan,data_slf.status_bangunan,data_slf.luas_tapak,data_slf.jumlah_lantai,data_slf.luas_total_bangunan,data_slf.tinggi_bangunan,data_slf.peruntukan_bangunan,pemohon_iuts.nama,pemohon_iuts.nama_perusahaan,pemohon_iuts.nik,pemohon_iuts.email,pemohon_iuts.npwp,pemohon_iuts.jabatan,pemohon_iuts.alamat_perusahaan,pemohon_iuts.jenis_pemohon,pemohon_iuts.no_hp,kdh_minimum.nama as id_kdh_minimum,kondisi_kdh.nama as id_kondisi_kdh,volume_sumur.nama as id_volume_sumur,kondisi_pertandaan.nama as id_pertandaan_toko, kondisi_sumur.nama as id_kondisi_sumur,kondisi_drainase.nama as id_drainase,izin_damkar.nama as id_izin_damkar,izin_tenaga_kerja.nama as id_tenaga_kerja,izin_imb.nama as id_imb,rekomendasi_slf.nama as id_layak,fasilitas_damkar.nama as id_penanggulangan_kebakaran,asuransi_toko.nama as id_asuransi,kelayakan_gedung.nama as id_renovasi,ketersedian_air.nama as id_bersih,pengelola_limbah.nama as id_limbah,pengelola_sampah.nama as id_sampah,ketersedian_listrik.nama as id_listrik,ketersedian_toilet.nama as id_toilet,kondisi_parkir.nama as id_parkir,pemutakhiran_pbb.nama as id_pem_pbb,rekomen_umkm.nama as id_umkm,tata_ruang.nama as id_tata_ruang,kajian_sostek.nama as id_kasostek,asal_karyawan.nama as asal_karyawan,setuju_warga_sekitar.nama as id_warga,keterlibatan_umkm.nama as id_umkm');
         $this->db->from('cek_izin');
         $this->db->join('data_iuts', 'data_iuts.id_iuts = cek_izin.id_iuts', 'LEFT');
         $this->db->join('data_slf', 'data_slf.id_slf = cek_izin.id_slf', 'LEFT');
         $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = cek_izin.id_pemohon', 'INNER');
         $this->db->join('kondisi_slf', 'kondisi_slf.id_slf = data_slf.id_slf', 'LEFT');
         $this->db->join('kondisi_iuts', 'kondisi_iuts.id_iuts = data_iuts.id_iuts', 'LEFT');
+
+        $this->db->join('kdh_minimum', 'kdh_minimum.id = kondisi_slf.id_kdh_minimum', 'left');
+        $this->db->join('kondisi_kdh', 'kondisi_kdh.id = kondisi_slf.id_kondisi_kdh', 'left');
+        $this->db->join('volume_sumur', 'volume_sumur.id = kondisi_slf.id_volume_sumur', 'left');
+        $this->db->join('kondisi_pertandaan', 'kondisi_pertandaan.id = kondisi_slf.id_pertandaan_toko', 'left');
+        $this->db->join('kondisi_sumur', 'kondisi_sumur.id = kondisi_slf.id_kondisi_sumur', 'left');
+        $this->db->join('kondisi_drainase', 'kondisi_drainase.id = kondisi_slf.id_drainase', 'left');
+        $this->db->join('izin_damkar', 'izin_damkar.id = kondisi_slf.id_izin_damkar', 'left');
+        $this->db->join('izin_tenaga_kerja', 'izin_tenaga_kerja.id = kondisi_slf.id_tenaga_kerja', 'left');
+        $this->db->join('izin_imb', 'izin_imb.id = kondisi_slf.id_imb', 'left');
+        $this->db->join('rekomendasi_slf', 'rekomendasi_slf.id = kondisi_slf.id_layak', 'left');
+        $this->db->join('fasilitas_damkar', 'fasilitas_damkar.id = kondisi_slf.id_penanggulangan_kebakaran', 'left');
+        $this->db->join('asuransi_toko', 'asuransi_toko.id = kondisi_slf.id_asuransi', 'left');
+        $this->db->join('kelayakan_gedung', 'kelayakan_gedung.id = kondisi_slf.id_renovasi', 'left');
+        $this->db->join('ketersedian_air', 'ketersedian_air.id = kondisi_slf.id_bersih', 'left');
+        $this->db->join('pengelola_limbah', 'pengelola_limbah.id = kondisi_slf.id_limbah', 'left');
+        $this->db->join('pengelola_sampah', 'pengelola_sampah.id = kondisi_slf.id_sampah', 'left');
+        $this->db->join('ketersedian_listrik', 'ketersedian_listrik.id = kondisi_slf.id_listrik', 'left');
+        $this->db->join('ketersedian_toilet', 'ketersedian_toilet.id = kondisi_slf.id_toilet', 'left');
+        $this->db->join('kondisi_parkir', 'kondisi_parkir.id = kondisi_slf.id_parkir', 'left');
+
+        $this->db->join('pemutakhiran_pbb', 'pemutakhiran_pbb.id = kondisi_iuts.id_pem_pbb', 'left');
+        $this->db->join('keterlibatan_umkm', 'keterlibatan_umkm.id = kondisi_iuts.id_umkm', 'left');
+        $this->db->join('rekomen_umkm', 'rekomen_umkm.id = kondisi_iuts.id_rek_umkm', 'left');
+        $this->db->join('tata_ruang', 'tata_ruang.id = kondisi_iuts.id_tata_ruang', 'left');
+        $this->db->join('kajian_sostek', 'kajian_sostek.id = kondisi_iuts.id_kasostek', 'left');
+        $this->db->join('asal_karyawan', 'asal_karyawan.id = kondisi_iuts.asal_karyawan', 'left');
+        $this->db->join('setuju_warga_sekitar', 'setuju_warga_sekitar.id = kondisi_iuts.id_warga', 'left');
         $this->db->where('cek_izin.id_izin', $idbangun);
         $this->db->group_by('cek_izin.code');
         $q = $this->db->get();
