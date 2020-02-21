@@ -672,7 +672,6 @@ class ValidasiController extends CI_Controller {
         $nama_toko = $this->input->post('nama_toko');
         $kelompok = $this->input->post('kelompok_usaha');
         $nama_badan_usaha = $this->input->post('nama_badan_usaha');
-        $kategori_usaha = $this->input->post('kategori_usaha');
         $omset_perbulan = $this->input->post('omset_perbulan');
         $untuk_toko = $this->input->post('peruntukan_toko');
         $status_bangunan = $this->input->post('status_bangunan');
@@ -689,7 +688,6 @@ class ValidasiController extends CI_Controller {
             'nama_toko'=>$nama_toko,
             'kelompok_usaha'=>$kelompok,
             'nama_badan_usaha'=>$nama_badan_usaha,
-            'kategori_usaha'=>$kategori_usaha,
             'omset'=>$omset_perbulan,
             'peruntukan_imb'=>$untuk_toko,
             'status_bangunan'=>$status_bangunan,
@@ -985,7 +983,7 @@ class ValidasiController extends CI_Controller {
         $this->load->library('upload');
 
         $config['upload_path'] = './assets/fotodalam/';
-        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
         $config['encrypt_name']         = TRUE;
         $config['remove_spaces']        = TRUE;
 
@@ -1016,7 +1014,7 @@ class ValidasiController extends CI_Controller {
     {
         $this->load->library('upload');
         $config['upload_path'] = './assets/fileslf/';
-        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|';
         $config['encrypt_name']         = TRUE;
         $config['remove_spaces']        = TRUE;
 
