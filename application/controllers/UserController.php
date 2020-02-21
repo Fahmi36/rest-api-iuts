@@ -288,7 +288,7 @@ class UserController extends CI_Controller {
 			$idbangunan = $this->input->post('idbangunan');
 			$detail = $this->us->KonfirmasiPemohon($idbangunan);
 			if ($detail) {
-				$res = $this->returnResult($detail);
+				$res = $this->returnResultCustom(true,'Berhasil');
 			}
 		} catch (Exception $e) {
 			$res = $this->returnResultCustom(false,$e);
@@ -301,7 +301,7 @@ class UserController extends CI_Controller {
 			$idbangunan = $this->input->post('idbangunan');
 			$detail = $this->us->FeedBack($idbangunan);
 			if ($detail) {
-				$res = $this->returnResult($detail);
+				$res = $this->returnResultCustom(true,'Terima Kasih');
 			}
 		} catch (Exception $e) {
 			$res = $this->returnResultCustom(false,$e);
