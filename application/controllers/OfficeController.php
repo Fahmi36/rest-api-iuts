@@ -214,7 +214,7 @@ class OfficeController extends CI_Controller {
         );
             $q = $this->db->update('admindinas',$array,$where);
 		}else{
-			$q = $this->oc->InsertAdminDinasBaru($bangunan,$id_admin,$keterangan,$status,$skor);
+			$q = $this->oc->InsertAdminDinasBaru($bangunan,$id_admin,$keterangan,$status,$skorslf,$skoriuts);
 		}
         if ($q == true) {
         	if ($status == 5) {
