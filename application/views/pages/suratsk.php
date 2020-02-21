@@ -69,7 +69,7 @@
 			<br>
 			<br>
 			<br>
-			<tcpdf method="write2DBarcode" params="<?= $data->barcode ?>" />
+			<!-- <tcpdf method="write2DBarcode" params="<?= $data->barcode ?>" /> -->
 			<p style="float: right;">......................</p>
 			<p style="float: right;">NIP. ..................</p>
 			<center><h4><b>KLAUSUL</b></h4></center>
