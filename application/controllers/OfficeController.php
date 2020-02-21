@@ -203,7 +203,7 @@ class OfficeController extends CI_Controller {
 			$getdata = $cek->row();
 			$id = $getdata->id_dinas;
             $where = array(
-                'id_bangunan' => $bangunan,
+                'id_izin' => $bangunan,
             );
             $array = array(
             'keterangan' => $keterangan,
@@ -217,18 +217,20 @@ class OfficeController extends CI_Controller {
 			$q = $this->oc->InsertAdminDinasBaru($bangunan,$id_admin,$keterangan,$status,$skor);
 		}
         if ($q == true) {
-        	if ($status == 1) {
-        		$status_bangun = 4;
+        	if ($status == 5) {
+        		$statusweb = 2;
+        	}elseif ($status == 6) {
+        		$statusweb = 2;
+        	}elseif ($status == 3) {
         		$statusweb = 1;
         	}else{
-        		$status_bangun = 5;
         		$statusweb = 2;
         	}
         	$where = array(
-                'id_bangunan' => $bangunan,
+                'id_izin' => $bangunan,
             );
 			$data = array(
-				'status_jalan'=>$status_bangun,
+				'status_jalan'=>$status,
 				'status'=>$statusweb,
 
 			);
