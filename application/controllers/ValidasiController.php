@@ -507,15 +507,15 @@ class ValidasiController extends CI_Controller {
             'status'=>'0',
             'id_slf'=>$idslf,
         );
-        $cek = $this->us->cekFotoSlf($idslf,$jenis);
-        if ($cek->num_rows() > 0) {
-            $row = $cek->row();
-            $this->db->set('foto', 'foto,'.$name.'',FALSE);
-            $this->db->where('id_foto', $row->id);
-            $q = $this->db->update('foto_slf');
-        }else{
+        // $cek = $this->us->cekFotoSlf($idslf,$jenis);
+        // if ($cek->num_rows() > 0) {
+        //     $row = $cek->row();
+        //     $this->db->set('foto', 'foto,'.$name.'',FALSE);
+        //     $this->db->where('id_foto', $row->id);
+        //     $q = $this->db->update('foto_slf');
+        // }else{
             $q = $this->db->insert('foto_slf', $arrUpdate);
-        }
+        // }
         if ($q) {
             $result = array('success' => true, 'msg' => 'Success update transaction');
         } else {
@@ -541,15 +541,15 @@ class ValidasiController extends CI_Controller {
             'status'=>'0',
             'id_iuts'=>$idiuts,
         );
-        $cek = $this->us->cekFotoIuts($idiuts,$jenis);
-        if ($cek->num_rows() > 0) {
-            $row = $cek->row();
-            $this->db->set('foto', 'foto,'.$name.'',FALSE);
-            $this->db->where('id_fotoi', $row->id);
-            $q = $this->db->update('foto_iuts');
-        }else{
+        // $cek = $this->us->cekFotoIuts($idiuts,$jenis);
+        // if ($cek->num_rows() > 0) {
+        //     $row = $cek->row();
+        //     $this->db->set('foto', 'foto,'.$name.'',FALSE);
+        //     $this->db->where('id_fotoi', $row->id);
+        //     $q = $this->db->update('foto_iuts');
+        // }else{
             $q = $this->db->insert('foto_iuts', $arrUpdate);
-        }
+        // }
         if ($q) {
             $result = array('success' => true, 'msg' => 'Success update transaction');
         } else {
