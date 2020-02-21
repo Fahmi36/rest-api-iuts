@@ -176,7 +176,7 @@ class OfficeController extends CI_Controller {
                 'id_izin' => $id_bangunan,
             );
 			$data = array(
-				'status_jalan'=>1,
+				'status_jalan'=>2,
 			);
 			$update = $this->db->update('cek_izin', $data,$wherebangun);
 			if ($update == true) {
@@ -305,13 +305,26 @@ class OfficeController extends CI_Controller {
 	{
 		$expired = $this->db->get_where('cek_izin',array('status'=>'3'))->num_rows();
 		$pending = $this->db->get_where('cek_izin',array('status'=>'0'))->num_rows();
+		$tolak = $this->db->get_where('cek_izin',array('status_jalan'=>'5'))->num_rows();
+		$all = $this->db->get('cek_izin')->num_rows();
 
 		$this->db->select('*');
 		$this->db->from('cek_izin');
-		$this->db->where_in('status',[1,2]);
+		$this->db->where('status',1);
 		$selesai = $this->db->get();
 		$hasilselesai = $selesai->num_rows();
-		echo json_encode(array('expired'=>$expired,'pending'=>$pending,'selesai'=>$hasilselesai));
+		echo json_encode(array('expired'=>$expired,'pending'=>$pending,'selesai'=>$hasilselesai,'tolak'=>$tolak,'all'=>$all));
+	}
+	public function countsidelevel()
+	{
+		if ($this->input->post('level') == '1') {
+			$hitung = $this->db->get_where('cek_izin',array('status'=>'3'))->num_rows();
+		}elseif ($this->input->post('level') == '2') {
+			$hitung = $this->db->get_where('cek_izin',array('status'=>'3'))->num_rows();
+		}else{
+			$hitung = $this->db->get_where('cek_izin',array('status'=>'3'))->num_rows();
+		}
+		echo json_encode(array('hitung'=>$hitung));
 	}
 	function getDataSemua()
 	{

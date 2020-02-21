@@ -414,10 +414,10 @@ class OfficeModel extends CI_Model {
     {
         $level = $this->input->post('level');
         if ($level == 1) {
-        	$statusjalan = '1';
+        	$statusjalan = '2';
     		$this->db->where('cek_izin.status_jalan', $statusjalan);
         }elseif ($level == 2) {
-        	$statusjalan = '0';
+        	$statusjalan = '1';
     		$this->db->where('cek_izin.status_jalan', $statusjalan);
         }elseif ($level == 3) {
         	$statusjalan = '0';

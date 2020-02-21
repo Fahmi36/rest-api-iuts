@@ -149,7 +149,7 @@ class UserModel extends CI_Model {
         $q = $this->db->insert('data_slf',$arrayPermohonan);
         return $q;
 	}
-	function InsertPemohon($id,$namaLengkap,$namadirektur,$nama_perusahaan,$jabatan,$nomorInKepen,$fotoktp,$nomorInBeru,$npwp,$alamat_perusahaan,$no_telp,$emailAktif,$fotonpwp,$status_pemohon,$token,$fotoakta)
+	function InsertPemohon($id,$namaLengkap,$namadirektur,$nama_perusahaan,$jabatan,$nomorInKepen,$fotoktp,$nomorInBeru,$npwp,$alamat_perusahaan,$no_telp,$emailAktif,$fotonpwp,$status_pemohon,$token,$fotoakta,$sistem_usaha,$status_nib)
 	{
         if ($namaLengkap == null) {
             $nama = $namadirektur;
@@ -170,6 +170,8 @@ class UserModel extends CI_Model {
             'email'=>$emailAktif,
             'foto_npwp'=>$fotonpwp,
             'jenis_pemohon'=>$status_pemohon,
+            'sistem_usaha'=>$sistem_usaha,
+            'status_nib'=>$status_nib,
             'akta_perusahaan'=>$fotoakta,
             'password'=>password_hash($token, PASSWORD_DEFAULT),
             'token'=>$token,

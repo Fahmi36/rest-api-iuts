@@ -569,6 +569,8 @@ class ValidasiController extends CI_Controller {
       $alamat_perusahaan = $this->input->post('alamat_perusahaan');
       $no_telp = $this->input->post('no_telp');
       $emailAktif = $this->input->post('email');
+      $sistem_usaha = $this->input->post('sistem_usaha');
+      $status_nib = $this->input->post('status_nib');
 
       $fotoktp = $this->uploadFoto('foto_ktp');
       $fotonpwp = $this->uploadFoto('foto_npwp');
@@ -599,6 +601,8 @@ class ValidasiController extends CI_Controller {
             'alamat_perusahaan'=>$alamat_perusahaan,
             'no_hp'=>$no_telp,
             'email'=>$emailAktif,
+            'sistem_usaha'=>$sistem_usaha,
+            'status_nib'=>$status_nib,
             'foto_npwp'=>$fotonpwp,
             'akta_perusahaan'=>$fotoakta,
             'created_at' => $tgl,
@@ -609,7 +613,7 @@ class ValidasiController extends CI_Controller {
          $this->load->library('uuid');
          $uuid = $this->uuid->v4();
          $id = str_replace('-', '', $uuid);
-         $q = $this->us->InsertPemohon($id,$namaLengkap,$namadirektur,$nama_perusahaan,$jabatan,$nomorInKepen,$fotoktp,$nomorInBeru,$npwp,$alamat_perusahaan,$no_telp,$emailAktif,$fotonpwp,$status_pemohon,$token,$fotoakta);
+         $q = $this->us->InsertPemohon($id,$namaLengkap,$namadirektur,$nama_perusahaan,$jabatan,$nomorInKepen,$fotoktp,$nomorInBeru,$npwp,$alamat_perusahaan,$no_telp,$emailAktif,$fotonpwp,$status_pemohon,$token,$fotoakta,$sistem_usaha,$status_nib);
      }
 
         if ($q) {
@@ -634,6 +638,7 @@ class ValidasiController extends CI_Controller {
         $luas_bangunan = $this->input->post('luas_bangunan');
         $tinggi_bangunan = $this->input->post('tinggi_bangunan');
         $peruntukan_bangunan = $this->input->post('peruntukan_bangunan');
+        $no_imb = $this->input->post('no_imb');
 
         $arrayPermohonan = array(
             'id_slf'=>$id,
@@ -645,6 +650,7 @@ class ValidasiController extends CI_Controller {
             'luas_total_bangunan'=>$luas_bangunan,
             'tinggi_bangunan'=>$tinggi_bangunan,
             'peruntukan_bangunan'=>$peruntukan_bangunan,
+            'no_imb'=>$no_imb,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         );
