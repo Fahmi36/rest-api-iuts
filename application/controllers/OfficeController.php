@@ -402,8 +402,8 @@ class OfficeController extends CI_Controller {
 				$data['janji'] = $this->oc->cekSurat($id);
 				$data['kewajiban'] = $this->oc->detailKewajiban();
 				$data['larangan'] = $this->oc->detailLarangan();
-		        $html = $this->load->view('pages/suratsk',$data, true);
     			$tcpdf->AddPage();
+		        $html = $this->load->view('pages/suratsk',$data, true);
     			$info = array(
 		        	'Name' => 'DPMPTSP DKI JAKARTA',
 		        	'Location' => 'DPMPTSP DKI JAKARTA',
