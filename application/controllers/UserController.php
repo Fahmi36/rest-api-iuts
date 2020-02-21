@@ -285,7 +285,7 @@ class UserController extends CI_Controller {
 	function KonfirmasiIzin()
 	{
 		try {
-			$idbangunan = $this->input->post('idbangunan');
+			$idbangunan = $this->input->post('id');
 			$detail = $this->us->KonfirmasiPemohon($idbangunan);
 			if ($detail) {
 				$res = $this->returnResultCustom(true,'Berhasil');
@@ -298,7 +298,7 @@ class UserController extends CI_Controller {
 	function KirimFeedBack()
 	{
 		try {
-			$idbangunan = $this->input->post('idbangunan');
+			$idbangunan = $this->input->post('id');
 			$detail = $this->us->FeedBack($idbangunan);
 			if ($detail) {
 				$res = $this->returnResultCustom(true,'Terima Kasih');
