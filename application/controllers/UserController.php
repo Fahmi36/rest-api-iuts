@@ -231,9 +231,8 @@ class UserController extends CI_Controller {
 	function detailPemohonAdministrasi()
 	{
 		try {
-			$id = $this->input->post('id');
-			$idbangunan = $this->input->post('idbangunan');
-			$detail = $this->us->detailPemohonAdministrasi($idbangunan,$id);
+			$idbangunan = $this->input->post('idizin');
+			$detail = $this->us->detailPemohonAdministrasi($idbangunan);
 			if ($detail) {
 				$res = $this->returnResult($detail);
 			}
@@ -286,11 +285,23 @@ class UserController extends CI_Controller {
 	function KonfirmasiIzin()
 	{
 		try {
-			$idbangunan = $this->input->post('idbangunan');
-			$file = $this->input->post('file');
-			$detail = $this->us->KonfirmasiPemohon($idbangunan,$file);
+			$idbangunan = $this->input->post('id');
+			$detail = $this->us->KonfirmasiPemohon($idbangunan);
 			if ($detail) {
-				$res = $this->returnResult($detail);
+				$res = $this->returnResultCustom(true,'Berhasil');
+			}
+		} catch (Exception $e) {
+			$res = $this->returnResultCustom(false,$e);
+		}
+		echo json_encode($res);
+	}
+	function KirimFeedBack()
+	{
+		try {
+			$idbangunan = $this->input->post('id');
+			$detail = $this->us->FeedBack($idbangunan);
+			if ($detail) {
+				$res = $this->returnResultCustom(true,'Terima Kasih');
 			}
 		} catch (Exception $e) {
 			$res = $this->returnResultCustom(false,$e);

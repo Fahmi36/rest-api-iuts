@@ -176,7 +176,7 @@ class OfficeController extends CI_Controller {
                 'id_izin' => $id_bangunan,
             );
 			$data = array(
-				'status_jalan'=>1,
+				'status_jalan'=>2,
 			);
 			$update = $this->db->update('cek_izin', $data,$wherebangun);
 			if ($update == true) {
@@ -195,7 +195,8 @@ class OfficeController extends CI_Controller {
 		$bangunan = $this->input->post('id_bangunan');
 		$id_admin = $this->input->post('admin');
 		$keterangan = $this->input->post('keterangan');
-		$skor = $this->input->post('skor');
+		$skoriuts = $this->input->post('skoriuts');
+		$skorslf = $this->input->post('skorslf');
 		$status = $this->input->post('status');
 		$cek = $this->oc->cekDinas($bangunan);
 		if ($cek->num_rows() > 0) {
@@ -207,7 +208,8 @@ class OfficeController extends CI_Controller {
             $array = array(
             'keterangan' => $keterangan,
             'status' => $status,
-            'skor_akhir' => $skor,
+            'skorakhirslf' => $skorslf,
+            'skorakhiriuts' => $skoriuts,
             'updated_at' => date('Y-m-d H:i:s'),
         );
             $q = $this->db->update('admindinas',$array,$where);
@@ -230,7 +232,7 @@ class OfficeController extends CI_Controller {
 				'status'=>$statusweb,
 
 			);
-			$update = $this->db->update('data_slf', $data,$where);
+			$update = $this->db->update('cek_izin', $data,$where);
 			if ($update == true) {
         		$this->sendmail($bangunan);
 				$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
@@ -303,13 +305,26 @@ class OfficeController extends CI_Controller {
 	{
 		$expired = $this->db->get_where('cek_izin',array('status'=>'3'))->num_rows();
 		$pending = $this->db->get_where('cek_izin',array('status'=>'0'))->num_rows();
+		$tolak = $this->db->get_where('cek_izin',array('status_jalan'=>'5'))->num_rows();
+		$all = $this->db->get('cek_izin')->num_rows();
 
 		$this->db->select('*');
 		$this->db->from('cek_izin');
-		$this->db->where_in('status',[1,2]);
+		$this->db->where('status',1);
 		$selesai = $this->db->get();
 		$hasilselesai = $selesai->num_rows();
-		echo json_encode(array('expired'=>$expired,'pending'=>$pending,'selesai'=>$hasilselesai));
+		echo json_encode(array('expired'=>$expired,'pending'=>$pending,'selesai'=>$hasilselesai,'tolak'=>$tolak,'all'=>$all));
+	}
+	public function countsidelevel()
+	{
+		if ($this->input->post('level') == '1') {
+			$hitung = $this->db->get_where('cek_izin',array('status'=>'3'))->num_rows();
+		}elseif ($this->input->post('level') == '2') {
+			$hitung = $this->db->get_where('cek_izin',array('status'=>'3'))->num_rows();
+		}else{
+			$hitung = $this->db->get_where('cek_izin',array('status'=>'3'))->num_rows();
+		}
+		echo json_encode(array('hitung'=>$hitung));
 	}
 	function getDataSemua()
 	{
@@ -346,21 +361,6 @@ class OfficeController extends CI_Controller {
 
 		} catch (Exception $e) {
 			throw $e;
-		}
-		echo json_encode($res);
-	}
-	function VerifyFoto()
-	{
-		try {
-			$idfoto = $this->input->post('idfoto');
-			$data = $this->oc->VerifFoto($idfoto);
-			if ($data) {
-				$res = $this->returnResult($data);
-			}else{
-				$res = $this->returnResultErrorDB();
-			}
-		} catch (Exception $e) {
-			$res = $this->returnResultCustom(false,'Tidak ada data');
 		}
 		echo json_encode($res);
 	}
@@ -480,6 +480,25 @@ class OfficeController extends CI_Controller {
 			throw $e;
 		}
 		echo json_encode($res);
+	}
+	function VerifyFoto()
+	{
+		try {
+			$idfoto = $this->input->post('idfoto');
+			$data = $this->oc->VerifFoto($idfoto);
+			if ($data) {
+				$res = $this->returnResult($data);
+			}else{
+				$res = $this->returnResultErrorDB();
+			}
+		} catch (Exception $e) {
+			$res = $this->returnResultCustom(false,'Tidak ada data');
+		}
+		echo json_encode($res);
+	}
+	function Tolak($value='')
+	{
+		# code...
 	}
 	function sendmail($idbangun)
 	{

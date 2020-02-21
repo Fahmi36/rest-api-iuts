@@ -100,9 +100,10 @@ class ValidasiController extends CI_Controller {
     function ValidasiIzin()
     {
       try {
-        $json = json_decode($this->input->post('dataRegist'));
-        $email = $this->input->post('emailAktif');
+        // $json = json_decode($this->input->post('dataRegist'));
+        $email = $this->input->post('email');
         $jenis = $this->input->post('jenis_izin');
+        $status_pemohon = $this->input->post('status_pemohon');
 
             //SLF
         $kdh_zonasi = $this->input->post('kdh');
@@ -282,145 +283,129 @@ class ValidasiController extends CI_Controller {
             //         return;
             //     }
             // }else if ($jenis == '3'){ //SLF dan IUTS 
-                // if(empty($kdh_zonasi) OR $kdh_zonasi == '-'){
-                //     echo json_encode($this->returnResultCustom(false,"Silakan Pilih Koefisien Daearh Hijau di Peta"));
-                //     return;
-                // }else if(empty($kdh_minimum) OR $kdh_minimum == '-'){
-                //     echo json_encode($this->returnResultCustom(false,"KDH Eksisting Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($kondisi_kdh) OR $kondisi_kdh == '-'){
-                //     echo json_encode($this->returnResultCustom(false,"Kondisi KDH Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($volume) OR $volume == '-'){
-                //     echo json_encode($this->returnResultCustom(false,"Volume Sumur Resapan Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($kondisipertandaan) OR $kondisipertandaan == '-'){
-                //     echo json_encode($this->returnResultCustom(false,"Kondisi Pertandaan Toko Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($kondisi_sumur) OR $kondisi_sumur == '-'){
-                //     echo json_encode($this->returnResultCustom(false,"Kondisi Sumur Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($drainase) OR $drainase == '-'){
-                //     echo json_encode($this->returnResultCustom(false,"Drainase Sekeliling Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($rek_slf) OR $rek_slf == '-'){
-                //     echo json_encode($this->returnResultCustom(false,"Rekomendasi SLF Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($imb) OR $imb == '-'){
-                //     echo json_encode($this->returnResultCustom(false,"IMB Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($asuransi) OR $asuransi == '-'){
-                //     echo json_encode($this->returnResultCustom(false,"Asuransi Toko Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($kelayakan) OR $kelayakan == '-'){
-                //     echo json_encode($this->returnResultCustom(false,"Waktu Pembaharuan Terakhir Kelayakan Gedung Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($limbah) OR $limbah == '-'){
-                //     echo json_encode($this->returnResultCustom(false,"Pengelolaan Air Kotor / Limbah Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($sampah) OR $sampah == '-'){
-                //     echo json_encode($this->returnResultCustom(false,"Pengelolaan Sampah Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($listrik) OR $listrik == '-'){
-                //     echo json_encode($this->returnResultCustom(false,"Ketersediaan Listrik Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($toilet) OR $toilet == '-'){
-                //     echo json_encode($this->returnResultCustom(false,"Ketersediaan Toilet Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($parkir) OR $parkir == '-'){
-                //     echo json_encode($this->returnResultCustom(false,"Kondisi Parkir Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($pbb) OR $pbb =='-' ){
-                //     echo json_encode($this->returnResultCustom(false,"Pemutakhiran PBB Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($umkm) OR $umkm =='-' ){
-                //     echo json_encode($this->returnResultCustom(false,"Keterlibatan UMKM Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($warga) OR $warga =='-' ){
-                //     echo json_encode($this->returnResultCustom(false,"Persetujuan Warga Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($asal_karyawan) OR $asal_karyawan=='-' ){
-                //     echo json_encode($this->returnResultCustom(false,"Asal Karyawan Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($jumlah_atm)){
-                //     echo json_encode($this->returnResultCustom(false,"Jumlah Karyawan Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($jumlah_pengunjung)){
-                //     echo json_encode($this->returnResultCustom(false,"Jumlah Pengunjung Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($rek_umkm) OR $rek_umkm=='-' ){
-                //     echo json_encode($this->returnResultCustom(false,"Rekomendasi UMKM Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($kajian) OR $kajian=='-' ){
-                //     echo json_encode($this->returnResultCustom(false,"Kajian Sosek Tidak Boleh Kosong"));
-                //     return;
-                // }else if(empty($jumlah_karyawan)){
-                //     echo json_encode($this->returnResultCustom(false,"Jumlah Karyawan Tidak Boleh Kosong"));
-                //     return;
-                // }
-                    $savepemohon = true;
-                    // $savepemohon = $this->savePemohon();
-                    if ($savepemohon) {
-                     $slf = $this->saveSlf();
-                     if ($slf) {
-                         $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
-                         $json['idslf'] = $slf;
-                         echo json_encode($json);
-                         return;
-                        $KondisiSlf = $this->saveKondisiSlf($slf);
-                        if ($KondisiSlf) {
-                            $iuts = $this->saveIuts();
-                            if ($iuts) {
-                                $kondisiiuts = $this->saveKondisiIuts($iuts,$id_tata);
-                                if ($kondisiiuts) {
-                                    $cekizin = $this->saveIzin($savepemohon,$slf,$iuts,$json);
-                                    $skor = $this->saveSkor($slf);
-                                    if ($skor) {
-                                        $tax = $this->saveTaxClear($slf,$status_npwp,$status_pbb);
-                                        if ($tax) {                                            
-                                            $foto_slf = $this->saveFotoslf();
-                                            if ($foto_slf) {
-                                                $fotoiuts = $this->saveFotoIuts();
-                                                if ($fotoiuts) {
-                                                    $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
-                                                    $this->sendmail($email);
-                                                }else{
-                                                    $json = $this->returnResultCustom(false,'Gagal Masukan Foto IUTS');
-                                                }
-                                            }else{
-                                                $json = $this->returnResultCustom(false,'Gagal Masukan Foto SLF');
-                                            }
-                                        }else{
-                                            $json = $this->returnResultCustom(false,'Gagal Masukan Tax Clear');
-                                        }
-                                    }else{
-                                        $json = $this->returnResultCustom(false,'Gagal Masukan Data Skor');
-                                    }
-
+                if(empty($kdh_zonasi) OR $kdh_zonasi == '-'){
+                    echo json_encode($this->returnResultCustom(false,"Silakan Pilih Koefisien Daearh Hijau di Peta"));
+                    return;
+                }else if(empty($kdh_minimum) OR $kdh_minimum == '-'){
+                    echo json_encode($this->returnResultCustom(false,"KDH Eksisting Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($kondisi_kdh) OR $kondisi_kdh == '-'){
+                    echo json_encode($this->returnResultCustom(false,"Kondisi KDH Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($volume) OR $volume == '-'){
+                    echo json_encode($this->returnResultCustom(false,"Volume Sumur Resapan Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($kondisipertandaan) OR $kondisipertandaan == '-'){
+                    echo json_encode($this->returnResultCustom(false,"Kondisi Pertandaan Toko Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($kondisi_sumur) OR $kondisi_sumur == '-'){
+                    echo json_encode($this->returnResultCustom(false,"Kondisi Sumur Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($drainase) OR $drainase == '-'){
+                    echo json_encode($this->returnResultCustom(false,"Drainase Sekeliling Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($rek_slf) OR $rek_slf == '-'){
+                    echo json_encode($this->returnResultCustom(false,"Rekomendasi SLF Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($imb) OR $imb == '-'){
+                    echo json_encode($this->returnResultCustom(false,"IMB Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($asuransi) OR $asuransi == '-'){
+                    echo json_encode($this->returnResultCustom(false,"Asuransi Toko Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($kelayakan) OR $kelayakan == '-'){
+                    echo json_encode($this->returnResultCustom(false,"Waktu Pembaharuan Terakhir Kelayakan Gedung Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($limbah) OR $limbah == '-'){
+                    echo json_encode($this->returnResultCustom(false,"Pengelolaan Air Kotor / Limbah Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($sampah) OR $sampah == '-'){
+                    echo json_encode($this->returnResultCustom(false,"Pengelolaan Sampah Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($listrik) OR $listrik == '-'){
+                    echo json_encode($this->returnResultCustom(false,"Ketersediaan Listrik Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($toilet) OR $toilet == '-'){
+                    echo json_encode($this->returnResultCustom(false,"Ketersediaan Toilet Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($parkir) OR $parkir == '-'){
+                    echo json_encode($this->returnResultCustom(false,"Kondisi Parkir Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($pbb) OR $pbb =='-' ){
+                    echo json_encode($this->returnResultCustom(false,"Pemutakhiran PBB Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($umkm) OR $umkm =='-' ){
+                    echo json_encode($this->returnResultCustom(false,"Keterlibatan UMKM Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($warga) OR $warga =='-' ){
+                    echo json_encode($this->returnResultCustom(false,"Persetujuan Warga Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($asal_karyawan) OR $asal_karyawan=='-' ){
+                    echo json_encode($this->returnResultCustom(false,"Asal Karyawan Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($jumlah_atm)){
+                    echo json_encode($this->returnResultCustom(false,"Jumlah Karyawan Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($jumlah_pengunjung)){
+                    echo json_encode($this->returnResultCustom(false,"Jumlah Pengunjung Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($rek_umkm) OR $rek_umkm=='-' ){
+                    echo json_encode($this->returnResultCustom(false,"Rekomendasi UMKM Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($kajian) OR $kajian=='-' ){
+                    echo json_encode($this->returnResultCustom(false,"Kajian Sosek Tidak Boleh Kosong"));
+                    return;
+                }else if(empty($jumlah_karyawan)){
+                    echo json_encode($this->returnResultCustom(false,"Jumlah Karyawan Tidak Boleh Kosong"));
+                    return;
+                }
+                    // $savepemohon = true;
+                $savepemohon = $this->savePemohon();
+                if ($savepemohon) {
+                   $slf = $this->saveSlf();
+                   if ($slf) {
+                    $KondisiSlf = $this->saveKondisiSlf($slf);
+                    if ($KondisiSlf) {
+                        $iuts = $this->saveIuts();
+                        if ($iuts) {
+                            $kondisiiuts = $this->saveKondisiIuts($iuts,$id_tata);
+                            if ($kondisiiuts) {
+                                $cekizin = $this->saveIzin($savepemohon,$slf,$iuts);
+                                $skor = $this->saveSkor($cekizin);
+                                if ($skor) {
+                                    // $tax = $this->saveTaxClear($slf,$status_npwp,$status_pbb);
+                                    // if ($tax) {                                            
+                                        $this->sendmail($email,$status_pemohon);
+                                        $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
+                                        $json['idslf'] = $slf;
+                                        $json['idiuts'] = $iuts;
+                                        // echo json_encode($json);
+                                        // return;
+                                    // }else{
+                                    //     $json = $this->returnResultCustom(false,'Gagal Masukan Foto IUTS');
+                                    // }
                                 }else{
-                                    $json = $this->returnResultCustom(false,'Gagal Masukan Data Kondisi IUTS');
+                                    $json = $this->returnResultCustom(false,'Gagal Masukan Foto SLF');
                                 }
                             }else{
-                                $json = $this->returnResultCustom(false,'Gagal Masukan Data IUTS');
+                                $json = $this->returnResultCustom(false,'Gagal Masukan Tax Clear');
                             }
                         }else{
-                            $json = $this->returnResultCustom(false,'Gagal Masukan Data Kondisi Slf');
+                            $json = $this->returnResultCustom(false,'Gagal Masukan Data Skor');
                         }
+
                     }else{
-                        $json = $this->returnResultCustom(false,'Gagal Masukan Data Data Slf');
+                        $json = $this->returnResultCustom(false,'Gagal Masukan Data Kondisi IUTS');
                     }
                 }else{
-                    $json = $this->returnResultCustom(false,'Gagal Masukan Data Pemohon');
+                    $json = $this->returnResultCustom(false,'Gagal Masukan Data IUTS');
                 }
-            // }else{
-            //     echo json_encode($this->returnResultCustom(false,"Silakan Pilih Izin Di Awal"));
-            //     return;
-            // }
+            }else{
+                $json = $this->returnResultCustom(false,'Gagal Masukan Data Kondisi Slf');
+            }
         } catch (Exception $e) {
             $json = $this->returnResultCustom(false,'Throws');
         }
-        $json['idslf'] = $idslf;
-
         echo json_encode($json);
     }
     public function doupload()
@@ -431,7 +416,7 @@ class ValidasiController extends CI_Controller {
             'upload_path' => "./data/helpdesk/".$fname,
             'allowed_types' => "gif|jpg|png|jpeg",
             'overwrite' => TRUE,
-            'max_size' => "2048000", 
+            'max_size' => "204800", 
             // 'max_height' => "768",
             // 'max_width' => "1024"
         ); 
@@ -487,21 +472,33 @@ class ValidasiController extends CI_Controller {
         list($type, $data) = explode(';', $data);
         list(, $data) = explode(',', $data);
         $data       = base64_decode($data);
-        file_put_contents('./data/foto_luar_bangunan/' . $serverFile, $data);
+        file_put_contents('./data/fotoslf/' . $serverFile, $data);
         $returnData = array("serverFile" => $serverFile);
         echo json_encode($returnData);
     }
-    
-    public function updateData() {
+    public function addAttachmentIUTS() {
+        $data       = $this->input->post('data');
+        $fileName   = $this->input->post('name');
+        $serverFile = $fileName;
+
+        list($type, $data) = explode(';', $data);
+        list(, $data) = explode(',', $data);
+        $data       = base64_decode($data);
+        file_put_contents('./data/fotoiuts/' . $serverFile, $data);
+        $returnData = array("serverFile" => $serverFile);
+        echo json_encode($returnData);
+    }
+    function updateData() {
         $idslf        = $this->input->post('id');
         $name      = $this->input->post('name');
+        $jenis      = $this->input->post('jenis');
 
         $this->load->library('uuid');
         $uuid = $this->uuid->v4();
         $id = str_replace('-', '', $uuid);
         $arrUpdate = array(
             'id_foto'=>$id,
-            'jenis_foto'=>'foto_luar_bangunan',
+            'jenis_foto'=>$jenis,
             'foto' => $name,
             'verif_by' => '1',
             'created_at'=>date('Y-m-d H:i:s'),
@@ -509,7 +506,15 @@ class ValidasiController extends CI_Controller {
             'status'=>'0',
             'id_slf'=>$idslf,
         );
-        $q         = $this->db->insert('foto_slf', $arrUpdate);
+        $cek = $this->us->cekFotoSlf($idslf,$jenis);
+        if ($cek->num_rows() > 0) {
+            $row = $cek->row();
+            $this->db->set('foto', 'foto,'.$name.'',FALSE);
+            $this->db->where('id_foto', $row->id);
+            $q = $this->db->update('foto_slf');
+        }else{
+            $q = $this->db->insert('foto_slf', $arrUpdate);
+        }
         if ($q) {
             $result = array('success' => true, 'msg' => 'Success update transaction');
         } else {
@@ -517,8 +522,42 @@ class ValidasiController extends CI_Controller {
         }
         echo json_encode($result);
     }
-    function savePemohon()
-    {
+    function updateDataiuts() {
+        $idiuts        = $this->input->post('id');
+        $name      = $this->input->post('name');
+        $jenis      = $this->input->post('jenis');
+
+        $this->load->library('uuid');
+        $uuid = $this->uuid->v4();
+        $id = str_replace('-', '', $uuid);
+        $arrUpdate = array(
+            'id_fotoi'=>$id,
+            'jenis_foto'=>$jenis,
+            'foto' => $name,
+            'verif_by' => '1',
+            'created_at'=>date('Y-m-d H:i:s'),
+            'updated_at'=>date('Y-m-d H:i:s'),
+            'status'=>'0',
+            'id_iuts'=>$idiuts,
+        );
+        $cek = $this->us->cekFotoIuts($idiuts,$jenis);
+        if ($cek->num_rows() > 0) {
+            $row = $cek->row();
+            $this->db->set('foto', 'foto,'.$name.'',FALSE);
+            $this->db->where('id_fotoi', $row->id);
+            $q = $this->db->update('foto_iuts');
+        }else{
+            $q = $this->db->insert('foto_iuts', $arrUpdate);
+        }
+        if ($q) {
+            $result = array('success' => true, 'msg' => 'Success update transaction');
+        } else {
+            $result = array('success' => false, 'msg' => 'Failed update transaction');
+        }
+        echo json_encode($result);
+    }
+    function savePemohon(){
+      
       $status_pemohon = $this->input->post('status_pemohon');
       $namaLengkap = $this->input->post('nama_lengkap_jawab');
       $namadirektur = $this->input->post('nama_direktur');
@@ -530,45 +569,52 @@ class ValidasiController extends CI_Controller {
       $alamat_perusahaan = $this->input->post('alamat_perusahaan');
       $no_telp = $this->input->post('no_telp');
       $emailAktif = $this->input->post('email');
+      $sistem_usaha = $this->input->post('sistem_usaha');
+      $status_nib = $this->input->post('status_nib');
 
-        $fotoktp = $this->uploadFoto('foto_ktp');
-        $fotonpwp = $this->uploadFoto('foto_npwp');
-        $fotoakta = $this->uploadFoto('aktePerusahaan');
-      $cek = $this->us->cekPemohon($nomorInKepen,$status_pemohon);
+      $fotoktp = $this->uploadFoto('foto_ktp');
+      $fotonpwp = $this->uploadFoto('foto_npwp');
+      $fotoakta = $this->uploadFoto('aktePerusahaan');
+      $cek = $this->us->cekPemohon($emailAktif,$status_pemohon);
 
       $idpemohon = $cek->row();
       $token = $this->incrementalHash(8);
-     //  if ($cek->num_rows() > 0) {
-     //     $tgl = $idpemohon->created_at;
-     //     $id = $idpemohon->id_pemohon;
-     //     $where = array(
-     //        'id_pemohon'=>$id
-     //    );
-     //     $arrayPermohonan = array(
-     //        'nama'=>$namaLengkap,
-     //        'nama_perusahaan'=>$nama_perusahaan,
-     //        'jabatan'=>$jabatan,
-     //        'nik'=>$nomorInKepen,
-     //        'foto_ktp'=>$fotoktp,
-     //        'nib'=>$nomorInBeru,
-     //        'npwp'=>$npwp,
-     //        'alamat_perusahaan'=>$alamat_perusahaan,
-     //        'no_hp'=>$no_telp,
-     //        'email'=>$emailAktif,
-     //        'foto_npwp'=>$fotonpwp,
-     //        'jenis_pemohon'=>$status_pemohon,
-     //        'password'=>password_hash($token, PASSWORD_DEFAULT),
-     //        'token'=>$token,
-     //        'created_at' => $tgl,
-     //        'updated_at' => date('Y-m-d H:i:s'),
-     //    );
-     //     $q = $this->db->update('pemohon_iuts',$arrayPermohonan,$where);
-     // }else{
+      if ($cek->num_rows() > 0) {
+         $tgl = $idpemohon->created_at;
+         $id = $idpemohon->id_pemohon;
+         $where = array(
+            'id_pemohon'=>$id
+        );
+        if ($namaLengkap == null) {
+            $nama = $namadirektur;
+        }else{
+            $nama = $namaLengkap;
+        }
+         $arrayPermohonan = array(
+            'nama'=>$nama,
+            'nama_perusahaan'=>$nama_perusahaan,
+            'jabatan'=>$jabatan,
+            'nik'=>$nomorInKepen,
+            'foto_ktp'=>$fotoktp,
+            'nib'=>$nomorInBeru,
+            'npwp'=>$npwp,
+            'alamat_perusahaan'=>$alamat_perusahaan,
+            'no_hp'=>$no_telp,
+            'email'=>$emailAktif,
+            'sistem_usaha'=>$sistem_usaha,
+            'status_nib'=>$status_nib,
+            'foto_npwp'=>$fotonpwp,
+            'akta_perusahaan'=>$fotoakta,
+            'created_at' => $tgl,
+            'updated_at' => date('Y-m-d H:i:s'),
+        );
+         $q = $this->db->update('pemohon_iuts',$arrayPermohonan,$where);
+     }else{
          $this->load->library('uuid');
          $uuid = $this->uuid->v4();
          $id = str_replace('-', '', $uuid);
-         $q = $this->us->InsertPemohon($id,$namaLengkap,$namadirektur,$nama_perusahaan,$jabatan,$nomorInKepen,$fotoktp,$nomorInBeru,$npwp,$alamat_perusahaan,$no_telp,$emailAktif,$fotonpwp,$status_pemohon,$token);
-     // }
+         $q = $this->us->InsertPemohon($id,$namaLengkap,$namadirektur,$nama_perusahaan,$jabatan,$nomorInKepen,$fotoktp,$nomorInBeru,$npwp,$alamat_perusahaan,$no_telp,$emailAktif,$fotonpwp,$status_pemohon,$token,$fotoakta,$sistem_usaha,$status_nib);
+     }
 
         if ($q) {
             return $id;
@@ -584,20 +630,19 @@ class ValidasiController extends CI_Controller {
         $uuid = $this->uuid->v4();
         $id = str_replace('-', '', $uuid);
 
+        $nopd_bangunan = $this->input->post('nopd_bangunan');
         $luas_lahan = $this->input->post('luas_lahan');
-        $status_milik = $this->input->post('status_milik');
+        $status_milik = $this->input->post('status_kepem_lahan');
         $ltb = $this->input->post('ltb');
         $jml_lantai = $this->input->post('jml_lantai');
         $luas_bangunan = $this->input->post('luas_bangunan');
         $tinggi_bangunan = $this->input->post('tinggi_bangunan');
         $peruntukan_bangunan = $this->input->post('peruntukan_bangunan');
+        $no_imb = $this->input->post('no_imb');
 
-        // Foto Bangunan
-        // $foto_luar_bangunan = $this->input->post('');
-        // $foto_dalam_bangunan = $this->input->post('');
-        // Foto Bangunan
         $arrayPermohonan = array(
             'id_slf'=>$id,
+            'nopd_bangunan'=>$nopd_bangunan,
             'luas_lahan'=>$luas_lahan,
             'status_milik'=>$status_milik,
             'luas_tapak'=>$ltb,
@@ -605,6 +650,7 @@ class ValidasiController extends CI_Controller {
             'luas_total_bangunan'=>$luas_bangunan,
             'tinggi_bangunan'=>$tinggi_bangunan,
             'peruntukan_bangunan'=>$peruntukan_bangunan,
+            'no_imb'=>$no_imb,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         );
@@ -623,14 +669,14 @@ class ValidasiController extends CI_Controller {
         $nop = $this->input->post('nop');
         $njop = $this->input->post('njop');
         $nama_toko = $this->input->post('nama_toko');
-        $kelompok = $this->input->post('kelompok');
+        $kelompok = $this->input->post('kelompok_usaha');
         $nama_badan_usaha = $this->input->post('nama_badan_usaha');
         $kategori_usaha = $this->input->post('kategori_usaha');
         $omset_perbulan = $this->input->post('omset_perbulan');
         $untuk_toko = $this->input->post('peruntukan_toko');
         $status_bangunan = $this->input->post('status_bangunan');
+        $lama_sewa = $this->input->post('lama_sewa_input');
 
-        $jumlah_atm = $this->input->post('jumlah_atm');
         $this->load->library('uuid');
         $uuid = $this->uuid->v4();
         $id = str_replace('-', '', $uuid);
@@ -638,18 +684,19 @@ class ValidasiController extends CI_Controller {
         $arrayPermohonan = array(
             'id_iuts'=>$id,
             'nopd'=>$nop,
-            'njop'=>$njop,
+            'njop'=>$njop, 
             'nama_toko'=>$nama_toko,
             'kelompok_usaha'=>$kelompok,
-            'nama_badan_usaha'=>$kelompok,
+            'nama_badan_usaha'=>$nama_badan_usaha,
             'kategori_usaha'=>$kategori_usaha,
-            'omset'=>$omset,
+            'omset'=>$omset_perbulan,
             'peruntukan_imb'=>$untuk_toko,
             'status_bangunan'=>$status_bangunan,
+            'lama_sewa'=>$lama_sewa,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         );
-        $q = $this->db->insert('bangunan_iuts',$arrayPermohonan);
+        $q = $this->db->insert('data_iuts',$arrayPermohonan);
         if ($q) {
             return $id;
         }else{
@@ -660,7 +707,7 @@ class ValidasiController extends CI_Controller {
     }
     function saveKondisiSlf($idslf)
     {
-        $kdh_zonasi = $this->input->post('kdh_zonasi');
+        $kdh_zonasi = $this->input->post('kdh');
         $kdh_minimum = $this->input->post('kdh_minimum');
         $kondisi_kdh = $this->input->post('kondisi_kdh');
         $volume = $this->input->post('volume_sumur_r');
@@ -668,7 +715,6 @@ class ValidasiController extends CI_Controller {
         $kondisi_sumur = $this->input->post('kondisi_sumur_r');
         $drainase = $this->input->post('drainase_disekeliling');
 
-        $rek_slf = $this->input->post('slf');
         $slf = $this->input->post('slf');
         $damkar = $this->input->post('izin_dinas_pkp');
         $tenaga_kerja = $this->input->post('izin_dinas_tkt');
@@ -685,15 +731,7 @@ class ValidasiController extends CI_Controller {
         $toilet = $this->input->post('ketersediaan_toilet');
         $parkir = $this->input->post('kondisi_parkir');
 
-        $uploadfoto1 = $this->uploadFotoLuar('fotoluar');
-        $uploadfoto2 = $this->uploadFotoDalam('foto_dalam_bangunan');
-        $uploadfoto3 = $this->uploadFoto('fileRekomendasiSlf');
-        $uploadfoto4 = $this->uploadFoto('fileSLF');
-        $uploadfoto5 = $this->uploadFoto('fileDamkar');
-        $uploadfoto6 = $this->uploadFoto('fileTKT');
-        $uploadfoto7 = $this->uploadFoto('fileIMB');
-
-        $cek = $this->us->cekKondisi($idslf);
+        $cek = $this->us->cekKondisislf($idslf);
         if ($cek->num_rows() > 0) {
             $getdata = $cek->row();
             $id = $getdata->id;
@@ -708,16 +746,10 @@ class ValidasiController extends CI_Controller {
                 'id_pertandaan_toko' => $kondisipertandaan,
                 'id_kondisi_sumur' => $kondisi_sumur,
                 'id_drainase' => $drainase,
-                'id_rek_slf' => $rek_slf,
-                'rek_slf' => $uploadfoto3,
                 'id_layak' => $slf,
-                'layak_fungsi' => $uploadfoto4,
                 'id_izin_damkar' => $damkar,
-                'izin_damkar' => $uploadfoto5,
                 'id_tenaga_kerja' => $tenaga_kerja, // baru
-                'tenaga_kerja' => $uploadfoto6, // baru
                 'id_imb' => $imb,
-                'foto_imb' => $uploadfoto7,
                 'id_penanggulangan_kebakaran' => $fasilitas,
                 'id_asuransi' => $asuransi,
                 'id_renovasi' => $kelayakan,
@@ -733,7 +765,7 @@ class ValidasiController extends CI_Controller {
             );
             $q = $this->db->update('kondisi_slf',$array,$where);
         }else{
-            $q = $this->us->InsertKondisiSlf($idslf,$kdh_zonasi,$kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$rek_slf,$uploadfoto3,$slf,$uploadfoto4,$damkar,$uploadfoto5,$tenaga_kerja,$uploadfoto6,$imb,$uploadfoto7,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$toilet,$parkir);
+            $q = $this->us->InsertKondisiSlf($idslf,$kdh_zonasi, $kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$slf,$damkar,$tenaga_kerja,$imb,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$toilet,$parkir);
         }
         return $q;
     }
@@ -748,11 +780,10 @@ class ValidasiController extends CI_Controller {
         $jumlah_atm = $this->input->post('jumlah_atm');
         $jumlah_pengunjung = $this->input->post('jumlah_pengunjung_b');
         $status_milik_usaha = $this->input->post('status_milik_usaha');
-        $peng_lahan = $this->input->post('penggunaan_lahan');
 
         $rek_umkm = $this->input->post('rekomendasi_umkm');
         $kajian = $this->input->post('kajian_sostek');
-        $cek = $this->us->cekKondisi($slf);
+        $cek = $this->us->cekKondisiiuts($idiuts);
         if ($cek->num_rows() > 0) {
             $getdata = $cek->row();
             $id = $getdata->id;
@@ -770,12 +801,13 @@ class ValidasiController extends CI_Controller {
                 'id_rek_umkm' => $rek_umkm,
                 'id_tata_ruang' => $id_tata,
                 'id_kasostek' => $kajian,
+                'id_warga'=>$warga,
                 'created_at' => $getdata->created_at,
                 'updated_at' => date('Y-m-d H:i:s'),
             );
             $q = $this->db->update('kondisi_iuts',$array,$where);
         }else{
-            $q = $this->us->InsertKondisiIuts($idiuts,$pbb,$umkm,$keterlibatan_umkm_input,$jumlah_karyawan,$asal_karyawan,$jumlah_atm,$jumlah_pengunjung,$rek_umkm,$id_tata,$kajian);
+            $q = $this->us->InsertKondisiIuts($idiuts,$pbb,$umkm,$keterlibatan_umkm_input,$jumlah_karyawan,$asal_karyawan,$jumlah_atm,$jumlah_pengunjung,$rek_umkm,$id_tata,$kajian,$warga);
         }
         return $q;
     }
@@ -788,7 +820,8 @@ class ValidasiController extends CI_Controller {
         $lng = $this->input->post('lng');
         $zona = $this->input->post('subzona');
         $sublock = $this->input->post('idsubblok');
-        $alamatpemohon = $this->input->post('alamat_lengkap');
+        $alamatpemohon = $this->input->post('lokasi_pemohon');
+        $alamatmaps = $this->input->post('lokasi_map');
         $kecamatan = $this->input->post('kecamatan');
         $kelurahan = $this->input->post('kelurahan');
         $jenis = $this->input->post('jenis_izin');
@@ -802,8 +835,8 @@ class ValidasiController extends CI_Controller {
             'id_pemohon' => $idpemohon,
             'id_slf' => $idslf,
             'id_iuts' => $idiuts,
-            'alamat_usaha' => $lokasi,
-            'alamat_maps' => $alamatpemohon,
+            'alamat_usaha' => $alamatpemohon,
+            'alamat_maps' => $alamatmaps,
             'lat' => $lat,
             'lon' => $lng,
             'kecamatan' => $kecamatan,
@@ -813,11 +846,17 @@ class ValidasiController extends CI_Controller {
             'code' => $kode,
             'status' => 0,
             'status_jalan' => 0,
-            'created_at' => $getdata->created_at,
+            'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
             'id_jenis' => $jenis,
         );
             $q = $this->db->insert('cek_izin',$array);
+            if ($q) {
+                return $id;
+            }else{
+                $json = $this->returnResultCustom(false,'Gagal Simpan Pemohon');
+            }
+        // echo json_encode($json);
         // }else{
         //     $this->load->library('uuid');
         //     $uuid = $this->uuid->v4();
@@ -829,7 +868,7 @@ class ValidasiController extends CI_Controller {
     function saveSkor($slf)
     {
         $skor = $this->us->SkoringWeb($slf)->row();
-        $avg =  $skor->skoriuts * $status_pbb * $status_pbb;
+        $avg =  $skor->skoriuts * 1 * 1;
         $rata = round($skor->skorslf,1);
         $iuts = round($avg,1);
 
@@ -848,16 +887,16 @@ class ValidasiController extends CI_Controller {
         }else if ($iuts > 2.5) {
             $status_iuts = '1';
         }
-
+        $totalslf = $skor->skorslf;
         $cek = $this->us->cekSkor($slf);
         if ($cek->num_rows() > 0) {
            $getdata = $cek->row();
            $id = $getdata->id;
            $where = array(
-            'id_bangunan' => $slf,
+            'id_bangunan' => $id,
         );
            $array = array(
-            'total_slf' => $rata,
+            'total_slf' => $totalslf,
             'total_iuts' => $iuts,
             'rata-rata' => $rata,
             'status_iuts' => $status_iuts,
@@ -867,7 +906,7 @@ class ValidasiController extends CI_Controller {
         );
            $q = $this->db->update('skor_bangunan',$array,$where);
        }else{
-           $q = $this->us->InsertSkor($bangunan,$hasil,$teknis,$dampak,$rata);
+           $q = $this->us->InsertSkor($slf,$totalslf,$iuts,$rata,$status_iuts,$status);
        }
        return $q;
    }
@@ -1001,9 +1040,9 @@ class ValidasiController extends CI_Controller {
         }
         return $newfiledalam;
     }
-    function sendmail($nik)
+    function sendmail($email,$status_pemohon='')
     {
-        $dPemohon = $this->us->cekPemohon($nik);
+        $dPemohon = $this->us->cekPemohon($email,$status_pemohon);
         $result = $this->returnResult($dPemohon);
         $json = json_encode($result);
         $decoder = json_decode($json);
@@ -1042,7 +1081,7 @@ class ValidasiController extends CI_Controller {
                 $result = $this->returnResultCustom(false,'Failed to send mail '. $this->email->print_debugger());
             }
         }else{
-            $result = $this->returnResultCustom(false,'Tidak ditemukan data dengan nomor token '.$token);
+            $result = $this->returnResultCustom(false,'Tidak ditemukan data dengan nomor token '.$tokenpemohon);
         }
     }
 }
