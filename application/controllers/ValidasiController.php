@@ -107,6 +107,7 @@ class ValidasiController extends CI_Controller {
 
             //SLF
         $kdh_zonasi = $this->input->post('kdh');
+        $jalaneksis = $this->input->post('jln_eksisting');
         $kdh_minimum = $this->input->post('kdh_minimum');
         $kondisi_kdh = $this->input->post('kondisi_kdh');
         $volume = $this->input->post('volume_sumur_r');
@@ -708,6 +709,7 @@ class ValidasiController extends CI_Controller {
     function saveKondisiSlf($idslf)
     {
         $kdh_zonasi = $this->input->post('kdh');
+        $jalaneksis = $this->input->post('jln_eksisting');
         $kdh_minimum = $this->input->post('kdh_minimum');
         $kondisi_kdh = $this->input->post('kondisi_kdh');
         $volume = $this->input->post('volume_sumur_r');
@@ -740,6 +742,7 @@ class ValidasiController extends CI_Controller {
             );
             $array = array(
                 'kdh_zonasi' => $kdh_zonasi,
+                'id_jalan_eksis' => $jalaneksis,
                 'id_kdh_minimum' => $kdh_minimum,
                 'id_kondisi_kdh' => $kondisi_kdh,
                 'id_volume_sumur' => $volume,
@@ -765,7 +768,7 @@ class ValidasiController extends CI_Controller {
             );
             $q = $this->db->update('kondisi_slf',$array,$where);
         }else{
-            $q = $this->us->InsertKondisiSlf($idslf,$kdh_zonasi, $kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$slf,$damkar,$tenaga_kerja,$imb,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$toilet,$parkir);
+            $q = $this->us->InsertKondisiSlf($idslf,$kdh_zonasi,$jalaneksis,$kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$slf,$damkar,$tenaga_kerja,$imb,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$toilet,$parkir);
         }
         return $q;
     }
@@ -910,14 +913,14 @@ class ValidasiController extends CI_Controller {
        }
        return $q;
    }
-   function saveTaxClear($idslf,$pbb,$npwp)
+   function saveTaxClear($idizin)
    {
         $cek = $this->us->cekTax($idslf);
         if ($cek->num_rows() > 0) {
             $getdata = $cek->row();
             $id = $getdata->id;
             $where = array(
-                'id_tax' => $id,
+                'id_izin' => $idizin,
             );
             $array = array(
                 'status_pbb' => $pbb,

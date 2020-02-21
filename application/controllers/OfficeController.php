@@ -82,8 +82,6 @@ class OfficeController extends CI_Controller {
 		$id_bangunan = $this->input->post('id_bangunan');
 		$admin = $this->input->post('admin');
 		$lahansekitar = $this->input->post('lahansekitar');
-		$rencanajalan = $this->input->post('rencanajalan');
-		$eksitingjalan = $this->input->post('eksitingjalan');
 		$statususaha = $this->input->post('statususaha');
 		$statuspasar = $this->input->post('statuspasar');
 		$keterangan = $this->input->post('keterangan');
@@ -98,30 +96,6 @@ class OfficeController extends CI_Controller {
 			$skorlahan = 3;
 		}else{
 			$skorlahan = 0;
-		}
-
-		if ($rencanajalan == '1') {
-			$skorrenjalan = 0;
-		}elseif ($rencanajalan == '2') {
-			$skorrenjalan = 1;
-		}elseif($rencanajalan == '3'){
-			$skorrenjalan = 2;
-		}else if($rencanajalan == '4'){
-			$skorrenjalan = 3;
-		}else{
-			$skorrenjalan = 0;
-		}
-
-		if ($eksitingjalan == '1') {
-			$skoreksijalan = 0;
-		}elseif ($eksitingjalan == '2') {
-			$skoreksijalan = 1;
-		}elseif($eksitingjalan == '3'){
-			$skoreksijalan = 2;
-		}else if($eksitingjalan == '4'){
-			$skoreksijalan = 3;
-		}else{
-			$skoreksijalan = 0;
 		}
 
 		if ($statususaha == '1') {
@@ -148,7 +122,7 @@ class OfficeController extends CI_Controller {
 			$skorpasar = 0;
 		}
 
-		$skor = ($skorpasar + $skorrenjalan + $skoreksijalan + $skortusah + $skorlahan)/5;
+		$skor = ($skorpasar + $skortusah + $skorlahan)/3;
 
 		$cek = $this->oc->cekTeknis($id_bangunan);
 		if ($cek->num_rows() > 0) {
@@ -159,8 +133,6 @@ class OfficeController extends CI_Controller {
             );
             $array = array(
             'id_pasar' => $statuspasar,
-            'id_rencana' => $rencanajalan,
-            'id_rencana_eksisting' => $eksitingjalan,
             'id_jarak' => $statususaha,
             'id_lahan' => $lahansekitar,
             'keterangan' => $keterangan,
@@ -169,7 +141,7 @@ class OfficeController extends CI_Controller {
         );
             $q = $this->db->update('admin_teknis',$array,$where);
 		}else{
-			$q = $this->oc->InsertAdminTeknis($id_bangunan,$admin,$lahansekitar,$rencanajalan,$eksitingjalan,$statususaha,$statuspasar,$keterangan,$skor);
+			$q = $this->oc->InsertAdminTeknis($id_bangunan,$admin,$lahansekitar,$statususaha,$statuspasar,$keterangan,$skor);
 		}
 		if ($q == true) {
 			$wherebangun = array(

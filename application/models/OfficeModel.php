@@ -128,14 +128,12 @@ class OfficeModel extends CI_Model {
 		$q = $this->db->insert('administrasi',$arrayPermohonan);
 		return $q;
 	}
-	function InsertAdminTeknis($id_bangunan,$admin,$lahansekitar,$rencanajalan,$eksitingjalan,$statususaha,$statuspasar,$keterangan,$skor)
+	function InsertAdminTeknis($id_bangunan,$admin,$lahansekitar,$statususaha,$statuspasar,$keterangan,$skor)
 	{
 		$arrayPermohonan = array(
 			'id_izin' => $id_bangunan,
             'id_admin'=>$admin,
             'id_pasar' => $statuspasar,
-            'id_rencana' => $rencanajalan,
-            'id_rencana_eksisting' => $eksitingjalan,
             'id_jarak' => $statususaha,
             'id_lahan' => $lahansekitar,
             'keterangan' => $keterangan,
@@ -236,7 +234,7 @@ class OfficeModel extends CI_Model {
 	function detailPermohonanAdminDinas($id_bangunan)
     {
         
-        $this->db->select('kondisi_kdh.skor as skorkondisikdh,kondisi_pertandaan.skor as skorpetandaan, status_pbb.skor as skorpbb, status_npwp.skor as skornpwp, jarak_pasar.skor as skorjarakpasar, rencana_jalan.skor as skorrenjalan, jalan_eksisting.skor as skorjalaneksis, tata_ruang.skor as skortataruang, jarak_usaha.skor as skorjarakusaha, penggunaan_lahan.skor as skorpenglahan, pemutakhiran_pbb.skor as skorpempbb, keterlibatan_umkm.skor as skorketumkm, rekomen_umkm.skor as skorrekumkm, izin_imb.skor as skorimb, kajian_sostek.skor as skorkajian, volume_sumur.skor as skorvolsumur, kondisi_drainase.skor as skordrainase, kondisi_sumur.skor as skorkondisisumur, cek_izin.code, pemohon_iuts.nama, pemohon_iuts.nib, pemohon_iuts.npwp,cek_izin.zona,cek_izin.kode_sublok, cek_izin.created_at as tgl, cek_izin.alamat_usaha, admin_teknis.keterangan as ketteknis,izin_damkar.skor as skordamkar,izin_tenaga_kerja.skor as skortkt,fasilitas_damkar.skor as skorfdamkar,asuransi_toko.skor as skorasuransi,kelayakan_gedung.skor as skorlayak,rekomendasi_slf.skor as skorslf, ketersedian_air.skor as skorketersediaan,pengelola_limbah.skor as skorlimbah,pengelola_sampah.skor as skorsampah,ketersedian_listrik.skor as skorlistrik,ketersedian_toilet.skor as skortoilet,kondisi_parkir.skor as skorparkir,asal_karyawan.skor as asalkaryawan, setuju_warga_sekitar.skor as skorwarga,ROUND(AVG(kondisi_kdh.skor + volume_sumur.skor + kondisi_pertandaan.skor + kondisi_sumur.skor + kondisi_drainase.skor + izin_damkar.skor + izin_tenaga_kerja.skor + izin_imb.skor + fasilitas_damkar.skor + asuransi_toko.skor + kelayakan_gedung.skor + ketersedian_air.skor + pengelola_limbah.skor + pengelola_sampah.skor + ketersedian_listrik.skor + ketersedian_toilet.skor + kondisi_parkir.skor + rekomendasi_slf.skor)/18,1) as skortotalslf, ROUND(AVG(pemutakhiran_pbb.skor + keterlibatan_umkm.skor + rekomen_umkm.skor + tata_ruang.skor + kajian_sostek.skor + penggunaan_lahan.skor + jalan_eksisting.skor + jarak_usaha.skor + jarak_pasar.skor + rencana_jalan.skor)/10,1) as skoriuts');
+        $this->db->select('kondisi_kdh.skor as skorkondisikdh,kondisi_pertandaan.skor as skorpetandaan, status_pbb.skor as skorpbb, status_npwp.skor as skornpwp, jarak_pasar.skor as skorjarakpasar, tata_ruang.skor as skortataruang, jarak_usaha.skor as skorjarakusaha, penggunaan_lahan.skor as skorpenglahan, pemutakhiran_pbb.skor as skorpempbb, keterlibatan_umkm.skor as skorketumkm, rekomen_umkm.skor as skorrekumkm, izin_imb.skor as skorimb, kajian_sostek.skor as skorkajian, volume_sumur.skor as skorvolsumur, kondisi_drainase.skor as skordrainase, kondisi_sumur.skor as skorkondisisumur, cek_izin.code, pemohon_iuts.nama, pemohon_iuts.nib, pemohon_iuts.npwp,cek_izin.zona,cek_izin.kode_sublok, cek_izin.created_at as tgl, cek_izin.alamat_usaha, admin_teknis.keterangan as ketteknis,izin_damkar.skor as skordamkar,izin_tenaga_kerja.skor as skortkt,fasilitas_damkar.skor as skorfdamkar,asuransi_toko.skor as skorasuransi,kelayakan_gedung.skor as skorlayak,rekomendasi_slf.skor as skorslf, ketersedian_air.skor as skorketersediaan,pengelola_limbah.skor as skorlimbah,pengelola_sampah.skor as skorsampah,ketersedian_listrik.skor as skorlistrik,ketersedian_toilet.skor as skortoilet,kondisi_parkir.skor as skorparkir,asal_karyawan.skor as asalkaryawan, setuju_warga_sekitar.skor as skorwarga,jalan_eksisting.skor as skorjalaneksis, ROUND(AVG(kondisi_kdh.skor + volume_sumur.skor + kondisi_pertandaan.skor + kondisi_sumur.skor + kondisi_drainase.skor + izin_damkar.skor + izin_tenaga_kerja.skor + izin_imb.skor + fasilitas_damkar.skor + asuransi_toko.skor + kelayakan_gedung.skor + ketersedian_air.skor + pengelola_limbah.skor + pengelola_sampah.skor + ketersedian_listrik.skor + ketersedian_toilet.skor + kondisi_parkir.skor + rekomendasi_slf.skor + jalan_eksisting.skor)/19,1) as skortotalslf, ROUND(AVG(pemutakhiran_pbb.skor + keterlibatan_umkm.skor + rekomen_umkm.skor + tata_ruang.skor + kajian_sostek.skor + penggunaan_lahan.skor + jarak_usaha.skor + jarak_pasar.skor)/8,1) as skoriuts');
         $this->db->from('cek_izin');
         $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = cek_izin.id_pemohon', 'INNER');
         $this->db->join('data_iuts', 'cek_izin.id_iuts = data_iuts.id_iuts', 'left');
@@ -246,6 +244,7 @@ class OfficeModel extends CI_Model {
         $this->db->join('taxclear', 'taxclear.id_slf = data_slf.id_slf', 'left');
         $this->db->join('admin_teknis', 'admin_teknis.id_izin = cek_izin.id_izin', 'left');
 
+        $this->db->join('jalan_eksisting', 'jalan_eksisting.id = kondisi_slf.id_jalan_eksis', 'left');
         $this->db->join('kdh_minimum', 'kdh_minimum.id = kondisi_slf.id_kdh_minimum', 'left');
         $this->db->join('kondisi_kdh', 'kondisi_kdh.id = kondisi_slf.id_kondisi_kdh', 'left');
         $this->db->join('volume_sumur', 'volume_sumur.id = kondisi_slf.id_volume_sumur', 'left');
@@ -275,8 +274,6 @@ class OfficeModel extends CI_Model {
         $this->db->join('setuju_warga_sekitar', 'setuju_warga_sekitar.id = kondisi_iuts.id_warga', 'left');
 
         $this->db->join('jarak_pasar', 'jarak_pasar.id = admin_teknis.id_pasar', 'left');
-        $this->db->join('rencana_jalan', 'rencana_jalan.id = admin_teknis.id_rencana', 'left');
-        $this->db->join('jalan_eksisting', 'jalan_eksisting.id = admin_teknis.id_rencana_eksisting', 'left');
         $this->db->join('jarak_usaha', 'jarak_usaha.id = admin_teknis.id_jarak', 'left');
         $this->db->join('penggunaan_lahan', 'penggunaan_lahan.id = admin_teknis.id_lahan', 'left');
 
