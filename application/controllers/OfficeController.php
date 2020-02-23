@@ -388,9 +388,9 @@ class OfficeController extends CI_Controller {
       			$tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG'); 
       			$tcpdf->setSignatureAppearance(117, 201, 60, 18); 
 		        $tcpdf->WriteHTML($html);
-      			return var_dump($html);
+      			// return var_dump($html);
 				$tcpdf->Output($filename, 'I'); 
-				ob_end_clean();
+				// ob_end_clean();
 		    }
 		}
 		
