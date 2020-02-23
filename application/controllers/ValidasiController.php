@@ -946,24 +946,29 @@ class ValidasiController extends CI_Controller {
        }
        return $q;
    }
-   function saveTaxClear($idizin)
+   function saveTaxClear()
    {
+        $id = $this->input->post('id');
+        $pbb = $this->input->post('status_pbb');
+        $npwp = $this->input->post('status_npwp');
+        $jenis = $this->input->post('jenis');
         $cek = $this->us->cekTax($idizin);
         if ($cek->num_rows() > 0) {
             $getdata = $cek->row();
             $id = $getdata->id;
             $where = array(
-                'id_izin' => $idizin,
+                'id_izin' => $id,
             );
             $array = array(
                 'status_pbb' => $pbb,
                 'status_npwp' => $npwp,
+                'jenis' => $jenis,
                 'created_at' => $getdata->created_at,
                 'updated_at' => date('Y-m-d H:i:s'),
             );
             $q = $this->db->update('taxclear',$array,$where);
         }else{
-            $q = $this->us->InsertTax($bangunan,$hasil,$teknis,$dampak,$rata);
+            $q = $this->us->InsertTax($id,$pbb,$npwp,$jenis);
         }
         return $q;
     }

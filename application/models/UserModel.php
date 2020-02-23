@@ -44,7 +44,7 @@ class UserModel extends CI_Model {
     }
     function cekFotoAdmin($id,$jenis)
     {
-        $this->db->where('id_izin', $id);
+        $this->db->where('idizin', $id);
         $this->db->where('jenis_foto', $jenis);
         $q = $this->db->get('foto_admin');
         return $q;
@@ -315,6 +315,21 @@ class UserModel extends CI_Model {
         return $q;
 		
 	}
+    function InsertTax($id,$pbb,$npwp,$jenis)
+    {
+        $array = array(
+            'id_izin'=>$id,
+            'total_slf' => $totalslf,
+            'status_pbb' => $pbb,
+            'status_npwp' => $npwp,
+            'jenis_izin' => $jenis,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        );
+        $q = $this->db->insert('skor_bangunan',$array);
+        return $q;
+        
+    }
     function loginuser($email,$token)
     {
         $where = array(
