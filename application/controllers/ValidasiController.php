@@ -740,6 +740,7 @@ class ValidasiController extends CI_Controller {
         $tinggi_bangunan = $this->input->post('tinggi_bangunan');
         $peruntukan_bangunan = $this->input->post('peruntukan_bangunan');
         $no_imb = $this->input->post('no_imb');
+        $no_slf = $this->input->post('no_slf');
 
         $arrayPermohonan = array(
             'id_slf'=>$id,
@@ -752,6 +753,7 @@ class ValidasiController extends CI_Controller {
             'tinggi_bangunan'=>$tinggi_bangunan,
             'peruntukan_bangunan'=>$peruntukan_bangunan,
             'no_imb'=>$no_imb,
+            'no_slf'=>$no_slf,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         );

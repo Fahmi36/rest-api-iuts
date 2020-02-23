@@ -76,16 +76,6 @@
 
 		</ol>
 	</div>
-	<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:24px">
-		<p><b>Larangan</b></p>
-		<ol>
-			<?php foreach ($larangan->result() as $larang): ?>
-
-				<li><?=$larang->deksripsi?></li>
-			<?php endforeach ?>
-
-		</ol>
-	</div>
 </div>
 
 </body>

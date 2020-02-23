@@ -223,6 +223,7 @@ class OfficeController extends CI_Controller {
 		$bangunan = $this->input->post('id_bangunan');
 		$id_admin = $this->input->post('admin');
 		$tgl = date('Y-m-d',strtotime($this->input->post('tanggal')));
+		$jam = $this->input->post('jam');
 		$cek = $this->oc->cekSurat($bangunan);
 		if ($cek->num_rows() > 0) {
 			$getdata = $cek->row();
@@ -233,11 +234,12 @@ class OfficeController extends CI_Controller {
             $array = array(
 	            'tanggal' => $tgl,
 	            'tgl_ambil' => $tgl,
+	            'jam' => $jam,
 	            'updated_at' => date('Y-m-d H:i:s'),
         	);
             $q = $this->db->update('janjian',$array,$where);
 		}else{
-			$q = $this->oc->InsertSurat($bangunan,$id_admin,$tgl);
+			$q = $this->oc->InsertSurat($bangunan,$id_admin,$tgl,$jam);
 		}
         if ($q == true) {
 			$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
@@ -384,7 +386,7 @@ class OfficeController extends CI_Controller {
 		        	'Reason' => 'Verified Berkas',
 		        	'ContactInfo' => site_url('/'),
     			);    		
-    			$taut='Diisikan dengan informasi yang diinginkan'; 
+    			$taut='https://perizinan.jakarta.go.id/'; 
 				$tcpdf->write2DBarcode($taut, 'QRCODE,H', 20,190,20,20);
       			$tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info); 
       			$tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG'); 
@@ -393,7 +395,7 @@ class OfficeController extends CI_Controller {
 		        $html = $this->load->view('pages/bawaberkas',$data, true);
 		        $tcpdf->WriteHTML($html);
       			// return var_dump($html);
-				$tcpdf->Output($filename, 'I'); 
+				$tcpdf->Output($filename, 'D'); 
 				// ob_end_clean();
 		    }
 		}

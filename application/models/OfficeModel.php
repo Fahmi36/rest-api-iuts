@@ -169,13 +169,14 @@ class OfficeModel extends CI_Model {
 		$q = $this->db->insert('admindinas',$arrayPermohonan);
 		return $q;
 	}
-    function InsertSurat($bangunan,$id_admin,$tgl)
+    function InsertSurat($bangunan,$id_admin,$tgl,$jam)
     {
         $arrayPermohonan = array(
             'id_admin' => $id_admin,
             'id_bangunan' => $bangunan,
             'tanggal' => $tgl,
             'tgl_ambil' => $tgl,
+            'jam' => $jam,
             'status'=>1,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
