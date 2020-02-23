@@ -33,7 +33,7 @@
 						<td>Alamat Perusahaan</td><td style="width: 20px">:</td><td><?=$data->alamat_perusahaan?> </td>
 					</tr>
 					<tr>
-						<td>Nama Usaha</td><td style="width: 20px">:</td><td><?=$data->nama_usaha?> </td>
+						<td>Nama Usaha</td><td style="width: 20px">:</td><td><?=$data->nama_badan_usaha?> </td>
 					</tr>
 					<tr>
 						<td>Alamat Usaha</td><td style="width: 20px">:</td><td><?=$data->alamat_usaha?> </td>
