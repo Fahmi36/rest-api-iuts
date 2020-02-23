@@ -24,7 +24,7 @@
 					<?php foreach ($datauser->result() as $data): ?>
 						
 					<tr>
-						<td>Nama Perusahaan</td><td style="width: 20px">:</td><td><?=$data->nama_badan_usaha?></td>
+						<td>Nama Perusahaan</td><td style="width: 20px">:</td><td><?=$data->nama_perusahaan?></td>
 					</tr>
 					<tr>
 						<td>Nama penanggung Jawab dan Jabatan</td><td style="width: 20px">:</td><td><?=$data->nama?> </td>
@@ -36,19 +36,19 @@
 						<td>Nama Usaha</td><td style="width: 20px">:</td><td><?=$data->nama_usaha?> </td>
 					</tr>
 					<tr>
-						<td>Alamat Usaha</td><td style="width: 20px">:</td><td><?=$data->alamat?> </td>
+						<td>Alamat Usaha</td><td style="width: 20px">:</td><td><?=$data->alamat_usaha?> </td>
 					</tr>
 					<tr>
 						<td>Nomor Telepon/Fax</td><td style="width: 20px">:</td><td><?=$data->no_hp?> </td>
 					</tr>
 					<tr>
-						<td>Luas Lantai Usaha</td><td style="width: 20px">:</td><td><?=$data->luas_lantai?> </td>
+						<td>Luas Lantai Usaha</td><td style="width: 20px">:</td><td><?=$data->luas_tapak?> </td>
 					</tr>
 					<tr>
 						<td>Kegiatan Usaha</td><td style="width: 20px">:</td><td><b>Toko Swalayan</b> </td>
 					</tr>
 					<tr>
-						<td>Barang/Jasa Dagangan Utama</td><td style="width: 20px">:</td><td><?=$data->jasa?> </td>
+						<td>Barang/Jasa Dagangan Utama</td><td style="width: 20px">:</td><td>Belum ada Onput jasa</td>
 					</tr>
 				</table>
 					<?php endforeach ?>
