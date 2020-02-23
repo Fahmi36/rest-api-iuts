@@ -42,6 +42,13 @@ class UserModel extends CI_Model {
         $q = $this->db->get('foto_slf');
         return $q;
     }
+    function cekFotoAdmin($id,$jenis)
+    {
+        $this->db->where('id_izin', $id);
+        $this->db->where('jenis_foto', $jenis);
+        $q = $this->db->get('foto_admin');
+        return $q;
+    }
     function SkoringWeb($slf)
     {
         $this->db->select('taxclear.status_pbb,taxclear.status_npwp,AVG(kondisi_kdh.skor + volume_sumur.skor + kondisi_pertandaan.skor + kondisi_sumur.skor + kondisi_drainase.skor + izin_damkar.skor + izin_tenaga_kerja.skor + izin_imb.skor + fasilitas_damkar.skor + asuransi_toko.skor + kelayakan_gedung.skor + ketersedian_air.skor + pengelola_limbah.skor + pengelola_sampah.skor + ketersedian_listrik.skor + ketersedian_toilet.skor + kondisi_parkir.skor + rekomendasi_slf.skor + jalan_eksisting.skor)/19 as skorslf,AVG(pemutakhiran_pbb.skor + keterlibatan_umkm.skor + rekomen_umkm.skor + tata_ruang.skor + kajian_sostek.skor)/5 as skoriuts');

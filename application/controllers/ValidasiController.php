@@ -380,6 +380,7 @@ class ValidasiController extends CI_Controller {
                                         $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
                                         $json['idslf'] = $slf;
                                         $json['idiuts'] = $iuts;
+                                        $json['idizin'] = $cekizin;
                                         // echo json_encode($json);
                                         // return;
                                     // }else{
@@ -489,6 +490,40 @@ class ValidasiController extends CI_Controller {
         $returnData = array("serverFile" => $serverFile);
         echo json_encode($returnData);
     }
+     function updateDataAdmin() {
+        $idizin        = $this->input->post('id');
+        $name      = $this->input->post('name');
+        $jenis      = $this->input->post('jenis');
+
+        $this->load->library('uuid');
+        $uuid = $this->uuid->v4();
+        $id = str_replace('-', '', $uuid);
+        $arrUpdate = array(
+            'idfotoadmin'=>$id,
+            'jenis_foto'=>$jenis,
+            'foto' => $name,
+            'verif_by' => '1',
+            'created_at'=>date('Y-m-d H:i:s'),
+            'updated_at'=>date('Y-m-d H:i:s'),
+            'status'=>'0',
+            'idizin'=>$idizin,
+        );
+        $cek = $this->us->cekFotoAdmin($idizin,$jenis);
+        if ($cek->num_rows() > 0) {
+            $row = $cek->row();
+            $this->db->set('foto', 'foto,'.$name.'',FALSE);
+            $this->db->where('id_foto', $row->id);
+            $q = $this->db->update('foto_admin');
+        }else{
+            $q = $this->db->insert('foto_admin', $arrUpdate);
+        }
+        if ($q) {
+            $result = array('success' => true, 'msg' => 'Success update transaction');
+        } else {
+            $result = array('success' => false, 'msg' => 'Failed update transaction');
+        }
+        echo json_encode($result);
+    }
     function updateData() {
         $idslf        = $this->input->post('id');
         $name      = $this->input->post('name');
@@ -507,15 +542,15 @@ class ValidasiController extends CI_Controller {
             'status'=>'0',
             'id_slf'=>$idslf,
         );
-        // $cek = $this->us->cekFotoSlf($idslf,$jenis);
-        // if ($cek->num_rows() > 0) {
-        //     $row = $cek->row();
-        //     $this->db->set('foto', 'foto,'.$name.'',FALSE);
-        //     $this->db->where('id_foto', $row->id);
-        //     $q = $this->db->update('foto_slf');
-        // }else{
+        $cek = $this->us->cekFotoSlf($idslf,$jenis);
+        if ($cek->num_rows() > 0) {
+            $row = $cek->row();
+            $this->db->set('foto', 'foto,'.$name.'',FALSE);
+            $this->db->where('id_foto', $row->id);
+            $q = $this->db->update('foto_slf');
+        }else{
             $q = $this->db->insert('foto_slf', $arrUpdate);
-        // }
+        }
         if ($q) {
             $result = array('success' => true, 'msg' => 'Success update transaction');
         } else {
@@ -541,15 +576,15 @@ class ValidasiController extends CI_Controller {
             'status'=>'0',
             'id_iuts'=>$idiuts,
         );
-        // $cek = $this->us->cekFotoIuts($idiuts,$jenis);
-        // if ($cek->num_rows() > 0) {
-        //     $row = $cek->row();
-        //     $this->db->set('foto', 'foto,'.$name.'',FALSE);
-        //     $this->db->where('id_fotoi', $row->id);
-        //     $q = $this->db->update('foto_iuts');
-        // }else{
+        $cek = $this->us->cekFotoIuts($idiuts,$jenis);
+        if ($cek->num_rows() > 0) {
+            $row = $cek->row();
+            $this->db->set('foto', 'foto,'.$name.'',FALSE);
+            $this->db->where('id_fotoi', $row->id);
+            $q = $this->db->update('foto_iuts');
+        }else{
             $q = $this->db->insert('foto_iuts', $arrUpdate);
-        // }
+        }
         if ($q) {
             $result = array('success' => true, 'msg' => 'Success update transaction');
         } else {
@@ -913,7 +948,7 @@ class ValidasiController extends CI_Controller {
    }
    function saveTaxClear($idizin)
    {
-        $cek = $this->us->cekTax($idslf);
+        $cek = $this->us->cekTax($idizin);
         if ($cek->num_rows() > 0) {
             $getdata = $cek->row();
             $id = $getdata->id;
