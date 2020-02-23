@@ -19,6 +19,7 @@ class ValidasiController extends CI_Controller {
 
 		$this->load->model('MainModel', 'mm');
 		$this->load->model('UserModel', 'us');
+        $this->load->model('OfficeModel', 'om');
 	}
 
 	function returnResult($data)
@@ -94,6 +95,70 @@ class ValidasiController extends CI_Controller {
             }
         } catch (Exception $e) {
             $json = $this->returnResultCustom(false,$e);
+        }
+        echo json_encode($json);
+    }
+    function ValidasiFoto()
+    {
+        try {
+            $admin = $this->input->post('admin');
+            $idizin = $this->input->post('idizin');
+            $ktp = $this->input->post('ktp');
+            $npwp = $this->input->post('npwp');
+            $aktaperusahaan = $this->input->post('aktaperusahaan');
+            $fotoluar = $this->input->post('fotoluar');
+            $fotodalam = $this->input->post('fotodalam');
+            $imb = $this->input->post('imb');
+            $slf = $this->input->post('slf');
+            $damkar = $this->input->post('damkar');
+            $tkt = $this->input->post('tkt');
+            $asuransi = $this->input->post('asuransi');
+            $pbb = $this->input->post('pbb');
+            $persetujuan_warga = $this->input->post('persetujuan_warga');
+            $umkm = $this->input->post('umkm');
+            $kajian_sostek = $this->input->post('kajian_sostek');
+            $keterangan = $this->input->post('keterangan');
+
+            $izinnya = $this->om->cekAdministrasi($idizin);
+
+            if ($izinnya->num_rows() > 0) {
+                $row = $izinnya->row();
+                $where = array(
+                    'id_administrasi'=>$row->id_administrasi,
+                );
+                $arrayPermohonan = array(
+                    'id_admin'=>$admin,
+                    'id_izin'=>$idizin,
+                    'fotoktp'=>$ktp,
+                    'fotonpwp'=>$npwp,
+                    'fotoakta'=>$aktaperusahaan,
+                    'fotoluar'=>$fotoluar,
+                    'fotodalam'=>$fotodalam,
+                    'fotoimb'=>$imb,
+                    'fotoslf'=>$slf,
+                    'fotodamkar'=>$damkar,
+                    'fototkt'=>$tkt,
+                    'fotoasuransi'=>$asuransi,
+                    'fotopbb'=>$pbb,
+                    'fotoperw'=>$persetujuan_warga,
+                    'fotorekumkm'=>$umkm,
+                    'fotokajian'=>$kajian_sostek,
+                    'keterangan'=>$keterangan,
+                    'created_at' => $tgl,
+                    'updated_at' => date('Y-m-d H:i:s'),
+                );
+                $q = $this->db->update('administrasi',$arrayPermohonan,$where);
+            }else{
+               $q = $this->om->InsertAdministrasi($admin,$idizin,$ktp,$npwp,$aktaperusahaan,$fotoluar,$fotodalam,$imb,$slf,$damkar,$tkt,$asuransi,$pbb,$persetujuan_warga,$umkm,$kajian_sostek,$keterangan);
+            }
+
+            if ($q) {
+                return $id;
+            }else{
+                $json = $this->returnResultCustom(false,'Gagal Verifikasi Foto');
+            }
+        } catch (Exception $e) {
+            $json = $this->returnResultCustom(false,'Throws');
         }
         echo json_encode($json);
     }

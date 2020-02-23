@@ -449,6 +449,17 @@ class UserModel extends CI_Model {
     }
     function detailPemohonAdministrasi($id_izin)
     {
+        $this->db->select('*');
+        $this->db->from('cek_izin');
+        $this->db->join('administrasi', 'cek_izin.id_izin = administrasi.id_izin', 'INNER');
+
+        $this->db->where('cek_izin.id_izin', $id_izin);
+        $this->db->group_by('cek_izin.id_izin');
+        $q = $this->db->get();
+        return $q;
+    }
+    function getAllfoto()
+    {
         $this->db->select('foto_iuts.status as statusiuts, foto_iuts.jenis_foto as jenisiuts, foto_slf.status as statusslf, foto_slf.jenis_foto as jenisslf, foto_slf.foto as fotoiuts, foto_iuts.foto as fotoiuts');
         $this->db->from('cek_izin');
         $this->db->join('data_iuts', 'cek_izin.id_iuts = data_iuts.id_iuts', 'INNER');
@@ -460,9 +471,7 @@ class UserModel extends CI_Model {
         $this->db->group_by('cek_izin.id_izin');
         $q = $this->db->get();
         return $q;
-        // return var_dump($this->db->last_query());
     }
-
     function detailPemohonteknis($id_bangunan,$id)
     {
         $this->db->select('jarak_pasar.skor as skorjarakpasar, jarak_usaha.skor as skorjarakusaha, penggunaan_lahan.skor as skorpenglahan, ROUND(AVG(jarak_pasar.skor + jarak_usaha.skor + penggunaan_lahan.skor) /3 ,1) as skormanfaat ');
