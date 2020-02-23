@@ -376,7 +376,6 @@ class OfficeController extends CI_Controller {
 				$data['larangan'] = $this->oc->detailLarangan();
     			$tcpdf->AddPage();
 		        $html = $this->load->view('pages/suratsk',$data, true);
-		        $tcpdf->WriteHTML($html);
     			$info = array(
 		        	'Name' => 'DPMPTSP DKI JAKARTA',
 		        	'Location' => 'DPMPTSP DKI JAKARTA',
@@ -388,6 +387,7 @@ class OfficeController extends CI_Controller {
       			$tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info); 
       			$tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG'); 
       			$tcpdf->setSignatureAppearance(117, 201, 60, 18); 
+		        $tcpdf->WriteHTML($html);
       			// return var_dump($data);
 				$tcpdf->Output($filename, 'D'); 
 				ob_end_clean();
