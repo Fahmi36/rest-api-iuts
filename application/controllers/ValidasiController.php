@@ -153,7 +153,7 @@ class ValidasiController extends CI_Controller {
             }
 
             if ($q) {
-                return $id;
+                $json = $this->returnResultCustom(true,'Berhasil Verifikasi Foto');
             }else{
                 $json = $this->returnResultCustom(false,'Gagal Verifikasi Foto');
             }
