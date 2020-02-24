@@ -19,6 +19,7 @@ class ValidasiController extends CI_Controller {
 
 		$this->load->model('MainModel', 'mm');
 		$this->load->model('UserModel', 'us');
+        $this->load->model('OfficeModel', 'om');
 	}
 
 	function returnResult($data)
@@ -97,6 +98,70 @@ class ValidasiController extends CI_Controller {
         }
         echo json_encode($json);
     }
+    function ValidasiFoto()
+    {
+        try {
+            $admin = $this->input->post('admin');
+            $idizin = $this->input->post('idizin');
+            $ktp = $this->input->post('ktp');
+            $npwp = $this->input->post('npwp');
+            $aktaperusahaan = $this->input->post('aktaperusahaan');
+            $fotoluar = $this->input->post('fotoluar');
+            $fotodalam = $this->input->post('fotodalam');
+            $imb = $this->input->post('imb');
+            $slf = $this->input->post('slf');
+            $damkar = $this->input->post('damkar');
+            $tkt = $this->input->post('tkt');
+            $asuransi = $this->input->post('asuransi');
+            $pbb = $this->input->post('pbb');
+            $persetujuan_warga = $this->input->post('persetujuan_warga');
+            $umkm = $this->input->post('umkm');
+            $kajian_sostek = $this->input->post('kajian_sostek');
+            $keterangan = $this->input->post('keterangan');
+
+            $izinnya = $this->om->cekAdministrasi($idizin);
+
+            if ($izinnya->num_rows() > 0) {
+                $row = $izinnya->row();
+                $where = array(
+                    'id_administrasi'=>$row->id_administrasi,
+                );
+                $arrayPermohonan = array(
+                    'id_admin'=>$admin,
+                    'id_izin'=>$idizin,
+                    'fotoktp'=>$ktp,
+                    'fotonpwp'=>$npwp,
+                    'fotoakta'=>$aktaperusahaan,
+                    'fotoluar'=>$fotoluar,
+                    'fotodalam'=>$fotodalam,
+                    'fotoimb'=>$imb,
+                    'fotoslf'=>$slf,
+                    'fotodamkar'=>$damkar,
+                    'fototkt'=>$tkt,
+                    'fotoasuransi'=>$asuransi,
+                    'fotopbb'=>$pbb,
+                    'fotoperw'=>$persetujuan_warga,
+                    'fotorekumkm'=>$umkm,
+                    'fotokajian'=>$kajian_sostek,
+                    'keterangan'=>$keterangan,
+                    'created_at' => $tgl,
+                    'updated_at' => date('Y-m-d H:i:s'),
+                );
+                $q = $this->db->update('administrasi',$arrayPermohonan,$where);
+            }else{
+               $q = $this->om->InsertAdministrasi($admin,$idizin,$ktp,$npwp,$aktaperusahaan,$fotoluar,$fotodalam,$imb,$slf,$damkar,$tkt,$asuransi,$pbb,$persetujuan_warga,$umkm,$kajian_sostek,$keterangan);
+            }
+
+            if ($q) {
+                return $id;
+            }else{
+                $json = $this->returnResultCustom(false,'Gagal Verifikasi Foto');
+            }
+        } catch (Exception $e) {
+            $json = $this->returnResultCustom(false,'Throws');
+        }
+        echo json_encode($json);
+    }
     function ValidasiIzin()
     {
       try {
@@ -107,6 +172,7 @@ class ValidasiController extends CI_Controller {
 
             //SLF
         $kdh_zonasi = $this->input->post('kdh');
+        $jalaneksis = $this->input->post('jln_eksisting');
         $kdh_minimum = $this->input->post('kdh_minimum');
         $kondisi_kdh = $this->input->post('kondisi_kdh');
         $volume = $this->input->post('volume_sumur_r');
@@ -379,6 +445,7 @@ class ValidasiController extends CI_Controller {
                                         $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
                                         $json['idslf'] = $slf;
                                         $json['idiuts'] = $iuts;
+                                        $json['idizin'] = $cekizin;
                                         // echo json_encode($json);
                                         // return;
                                     // }else{
@@ -487,6 +554,40 @@ class ValidasiController extends CI_Controller {
         file_put_contents('./data/fotoiuts/' . $serverFile, $data);
         $returnData = array("serverFile" => $serverFile);
         echo json_encode($returnData);
+    }
+     function updateDataAdmin() {
+        $idizin        = $this->input->post('id');
+        $name      = $this->input->post('name');
+        $jenis      = $this->input->post('jenis');
+
+        $this->load->library('uuid');
+        $uuid = $this->uuid->v4();
+        $id = str_replace('-', '', $uuid);
+        $arrUpdate = array(
+            'idfotoadmin'=>$id,
+            'jenis_foto'=>$jenis,
+            'foto' => $name,
+            'verif_by' => '1',
+            'created_at'=>date('Y-m-d H:i:s'),
+            'updated_at'=>date('Y-m-d H:i:s'),
+            'status'=>'0',
+            'idizin'=>$idizin,
+        );
+        $cek = $this->us->cekFotoAdmin($idizin,$jenis);
+        if ($cek->num_rows() > 0) {
+            $row = $cek->row();
+            $this->db->set('foto', 'foto,'.$name.'',FALSE);
+            $this->db->where('id_foto', $row->id);
+            $q = $this->db->update('foto_admin');
+        }else{
+            $q = $this->db->insert('foto_admin', $arrUpdate);
+        }
+        if ($q) {
+            $result = array('success' => true, 'msg' => 'Success update transaction');
+        } else {
+            $result = array('success' => false, 'msg' => 'Failed update transaction');
+        }
+        echo json_encode($result);
     }
     function updateData() {
         $idslf        = $this->input->post('id');
@@ -639,6 +740,7 @@ class ValidasiController extends CI_Controller {
         $tinggi_bangunan = $this->input->post('tinggi_bangunan');
         $peruntukan_bangunan = $this->input->post('peruntukan_bangunan');
         $no_imb = $this->input->post('no_imb');
+        $no_slf = $this->input->post('no_slf');
 
         $arrayPermohonan = array(
             'id_slf'=>$id,
@@ -651,6 +753,7 @@ class ValidasiController extends CI_Controller {
             'tinggi_bangunan'=>$tinggi_bangunan,
             'peruntukan_bangunan'=>$peruntukan_bangunan,
             'no_imb'=>$no_imb,
+            'no_slf'=>$no_slf,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         );
@@ -671,7 +774,6 @@ class ValidasiController extends CI_Controller {
         $nama_toko = $this->input->post('nama_toko');
         $kelompok = $this->input->post('kelompok_usaha');
         $nama_badan_usaha = $this->input->post('nama_badan_usaha');
-        $kategori_usaha = $this->input->post('kategori_usaha');
         $omset_perbulan = $this->input->post('omset_perbulan');
         $untuk_toko = $this->input->post('peruntukan_toko');
         $status_bangunan = $this->input->post('status_bangunan');
@@ -688,7 +790,6 @@ class ValidasiController extends CI_Controller {
             'nama_toko'=>$nama_toko,
             'kelompok_usaha'=>$kelompok,
             'nama_badan_usaha'=>$nama_badan_usaha,
-            'kategori_usaha'=>$kategori_usaha,
             'omset'=>$omset_perbulan,
             'peruntukan_imb'=>$untuk_toko,
             'status_bangunan'=>$status_bangunan,
@@ -708,6 +809,7 @@ class ValidasiController extends CI_Controller {
     function saveKondisiSlf($idslf)
     {
         $kdh_zonasi = $this->input->post('kdh');
+        $jalaneksis = $this->input->post('jln_eksisting');
         $kdh_minimum = $this->input->post('kdh_minimum');
         $kondisi_kdh = $this->input->post('kondisi_kdh');
         $volume = $this->input->post('volume_sumur_r');
@@ -740,6 +842,7 @@ class ValidasiController extends CI_Controller {
             );
             $array = array(
                 'kdh_zonasi' => $kdh_zonasi,
+                'id_jalan_eksis' => $jalaneksis,
                 'id_kdh_minimum' => $kdh_minimum,
                 'id_kondisi_kdh' => $kondisi_kdh,
                 'id_volume_sumur' => $volume,
@@ -765,7 +868,7 @@ class ValidasiController extends CI_Controller {
             );
             $q = $this->db->update('kondisi_slf',$array,$where);
         }else{
-            $q = $this->us->InsertKondisiSlf($idslf,$kdh_zonasi, $kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$slf,$damkar,$tenaga_kerja,$imb,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$toilet,$parkir);
+            $q = $this->us->InsertKondisiSlf($idslf,$kdh_zonasi,$jalaneksis,$kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$slf,$damkar,$tenaga_kerja,$imb,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$toilet,$parkir);
         }
         return $q;
     }
@@ -910,24 +1013,29 @@ class ValidasiController extends CI_Controller {
        }
        return $q;
    }
-   function saveTaxClear($idslf,$pbb,$npwp)
+   function saveTaxClear()
    {
-        $cek = $this->us->cekTax($idslf);
+        $id = $this->input->post('id');
+        $pbb = $this->input->post('status_pbb');
+        $npwp = $this->input->post('status_npwp');
+        $jenis = $this->input->post('jenis');
+        $cek = $this->us->cekTax($idizin);
         if ($cek->num_rows() > 0) {
             $getdata = $cek->row();
             $id = $getdata->id;
             $where = array(
-                'id_tax' => $id,
+                'id_izin' => $id,
             );
             $array = array(
                 'status_pbb' => $pbb,
                 'status_npwp' => $npwp,
+                'jenis' => $jenis,
                 'created_at' => $getdata->created_at,
                 'updated_at' => date('Y-m-d H:i:s'),
             );
             $q = $this->db->update('taxclear',$array,$where);
         }else{
-            $q = $this->us->InsertTax($bangunan,$hasil,$teknis,$dampak,$rata);
+            $q = $this->us->InsertTax($id,$pbb,$npwp,$jenis);
         }
         return $q;
     }
@@ -982,7 +1090,7 @@ class ValidasiController extends CI_Controller {
         $this->load->library('upload');
 
         $config['upload_path'] = './assets/fotodalam/';
-        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf';
         $config['encrypt_name']         = TRUE;
         $config['remove_spaces']        = TRUE;
 
@@ -1013,7 +1121,7 @@ class ValidasiController extends CI_Controller {
     {
         $this->load->library('upload');
         $config['upload_path'] = './assets/fileslf/';
-        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|';
         $config['encrypt_name']         = TRUE;
         $config['remove_spaces']        = TRUE;
 

@@ -42,15 +42,23 @@ class UserModel extends CI_Model {
         $q = $this->db->get('foto_slf');
         return $q;
     }
+    function cekFotoAdmin($id,$jenis)
+    {
+        $this->db->where('idizin', $id);
+        $this->db->where('jenis_foto', $jenis);
+        $q = $this->db->get('foto_admin');
+        return $q;
+    }
     function SkoringWeb($slf)
     {
-        $this->db->select('taxclear.status_pbb,taxclear.status_npwp,AVG(kondisi_kdh.skor + volume_sumur.skor + kondisi_pertandaan.skor + kondisi_sumur.skor + kondisi_drainase.skor + izin_damkar.skor + izin_tenaga_kerja.skor + izin_imb.skor + fasilitas_damkar.skor + asuransi_toko.skor + kelayakan_gedung.skor + ketersedian_air.skor + pengelola_limbah.skor + pengelola_sampah.skor + ketersedian_listrik.skor + ketersedian_toilet.skor + kondisi_parkir.skor)/17 as skorslf,AVG(pemutakhiran_pbb.skor + keterlibatan_umkm.skor + rekomen_umkm.skor + tata_ruang.skor + kajian_sostek.skor)/5 as skoriuts');
+        $this->db->select('taxclear.status_pbb,taxclear.status_npwp,AVG(kondisi_kdh.skor + volume_sumur.skor + kondisi_pertandaan.skor + kondisi_sumur.skor + kondisi_drainase.skor + izin_damkar.skor + izin_tenaga_kerja.skor + izin_imb.skor + fasilitas_damkar.skor + asuransi_toko.skor + kelayakan_gedung.skor + ketersedian_air.skor + pengelola_limbah.skor + pengelola_sampah.skor + ketersedian_listrik.skor + ketersedian_toilet.skor + kondisi_parkir.skor + rekomendasi_slf.skor + jalan_eksisting.skor)/19 as skorslf,AVG(pemutakhiran_pbb.skor + keterlibatan_umkm.skor + rekomen_umkm.skor + tata_ruang.skor + kajian_sostek.skor)/5 as skoriuts');
         $this->db->from('cek_izin');
         $this->db->join('kondisi_slf', 'kondisi_slf.id_slf = cek_izin.id_slf', 'INNER');
         $this->db->join('kondisi_iuts', 'kondisi_iuts.id_iuts = cek_izin.id_iuts', 'INNER');
         $this->db->join('taxclear', 'taxclear.id_slf = kondisi_slf.id_slf', 'LEFT');
 
         $this->db->join('kondisi_kdh', 'kondisi_kdh.id = kondisi_slf.id_kondisi_kdh', 'left');
+        $this->db->join('jalan_eksisting', 'jalan_eksisting.id = kondisi_slf.id_jalan_eksis', 'left');
         $this->db->join('volume_sumur', 'volume_sumur.id = kondisi_slf.id_volume_sumur', 'left');
         $this->db->join('kondisi_pertandaan', 'kondisi_pertandaan.id = kondisi_slf.id_pertandaan_toko', 'left');
         $this->db->join('kondisi_sumur', 'kondisi_sumur.id = kondisi_slf.id_kondisi_sumur', 'left');
@@ -58,6 +66,7 @@ class UserModel extends CI_Model {
         $this->db->join('izin_damkar', 'izin_damkar.id = kondisi_slf.id_izin_damkar', 'left');
         $this->db->join('izin_tenaga_kerja', 'izin_tenaga_kerja.id = kondisi_slf.id_tenaga_kerja', 'left');
         $this->db->join('izin_imb', 'izin_imb.id = kondisi_slf.id_imb', 'left');
+        $this->db->join('rekomendasi_slf', 'rekomendasi_slf.id = kondisi_slf.id_layak', 'left');
         $this->db->join('fasilitas_damkar', 'fasilitas_damkar.id = kondisi_slf.id_penanggulangan_kebakaran', 'left');
         $this->db->join('asuransi_toko', 'asuransi_toko.id = kondisi_slf.id_asuransi', 'left');
         $this->db->join('kelayakan_gedung', 'kelayakan_gedung.id = kondisi_slf.id_renovasi', 'left');
@@ -181,11 +190,12 @@ class UserModel extends CI_Model {
         $q = $this->db->insert('pemohon_iuts',$array);
         return $q;
 	}
-    function InsertKondisiSlf($idslf,$kdh_zonasi,$kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$slf,$damkar,$tenaga_kerja,$imb,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$toilet,$parkir)
+    function InsertKondisiSlf($idslf,$kdh_zonasi,$jalaneksis,$kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$slf,$damkar,$tenaga_kerja,$imb,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$toilet,$parkir)
     {
         $array = array(
             'id_slf'=>$slf,
             'kdh_zonasi' => $kdh_zonasi,
+                'id_jalan_eksis' => $jalaneksis,
                 'id_kdh_minimum' => $kdh_minimum,
                 'id_kondisi_kdh' => $kondisi_kdh,
                 'id_volume_sumur' => $volume,
@@ -305,6 +315,21 @@ class UserModel extends CI_Model {
         return $q;
 		
 	}
+    function InsertTax($id,$pbb,$npwp,$jenis)
+    {
+        $array = array(
+            'id_izin'=>$id,
+            'total_slf' => $totalslf,
+            'status_pbb' => $pbb,
+            'status_npwp' => $npwp,
+            'jenis_izin' => $jenis,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        );
+        $q = $this->db->insert('skor_bangunan',$array);
+        return $q;
+        
+    }
     function loginuser($email,$token)
     {
         $where = array(
@@ -424,6 +449,17 @@ class UserModel extends CI_Model {
     }
     function detailPemohonAdministrasi($id_izin)
     {
+        $this->db->select('*');
+        $this->db->from('cek_izin');
+        $this->db->join('administrasi', 'cek_izin.id_izin = administrasi.id_izin', 'INNER');
+
+        $this->db->where('cek_izin.id_izin', $id_izin);
+        $this->db->group_by('cek_izin.id_izin');
+        $q = $this->db->get();
+        return $q;
+    }
+    function getAllfoto()
+    {
         $this->db->select('foto_iuts.status as statusiuts, foto_iuts.jenis_foto as jenisiuts, foto_slf.status as statusslf, foto_slf.jenis_foto as jenisslf, foto_slf.foto as fotoiuts, foto_iuts.foto as fotoiuts');
         $this->db->from('cek_izin');
         $this->db->join('data_iuts', 'cek_izin.id_iuts = data_iuts.id_iuts', 'INNER');
@@ -435,12 +471,10 @@ class UserModel extends CI_Model {
         $this->db->group_by('cek_izin.id_izin');
         $q = $this->db->get();
         return $q;
-        // return var_dump($this->db->last_query());
     }
-
     function detailPemohonteknis($id_bangunan,$id)
     {
-        $this->db->select('jarak_pasar.skor as skorjarakpasar, rencana_jalan.skor as skorrenjalan, jalan_eksisting.skor as skorjalaneksis, jarak_usaha.skor as skorjarakusaha, penggunaan_lahan.skor as skorpenglahan, ROUND(AVG(jarak_pasar.skor + rencana_jalan.skor + jalan_eksisting.skor + jarak_usaha.skor + penggunaan_lahan.skor) /5 ,1) as skormanfaat ');
+        $this->db->select('jarak_pasar.skor as skorjarakpasar, jarak_usaha.skor as skorjarakusaha, penggunaan_lahan.skor as skorpenglahan, ROUND(AVG(jarak_pasar.skor + jarak_usaha.skor + penggunaan_lahan.skor) /3 ,1) as skormanfaat ');
         $this->db->from('cek_izin');
         $this->db->join('data_slf', 'cek_izin.id_slf = data_slf.id_slf', 'left');
         $this->db->join('data_iuts', 'data_iuts.id_iuts = cek_izin.id_iuts', 'left');
@@ -449,8 +483,6 @@ class UserModel extends CI_Model {
         $this->db->join('admin_teknis', 'admin_teknis.id_izin = cek_izin.id_izin', 'INNER');
 
         $this->db->join('jarak_pasar', 'jarak_pasar.id = admin_teknis.id_pasar', 'INNER');
-        $this->db->join('rencana_jalan', 'rencana_jalan.id = admin_teknis.id_rencana', 'INNER');
-        $this->db->join('jalan_eksisting', 'jalan_eksisting.id = admin_teknis.id_rencana_eksisting', 'INNER');
         $this->db->join('penggunaan_lahan', 'penggunaan_lahan.id = admin_teknis.id_lahan', 'INNER');
         $this->db->join('jarak_usaha', 'jarak_usaha.id = admin_teknis.id_jarak', 'INNER');
         $this->db->where('cek_izin.id_izin', $id_bangunan);

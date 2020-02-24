@@ -82,8 +82,6 @@ class OfficeController extends CI_Controller {
 		$id_bangunan = $this->input->post('id_bangunan');
 		$admin = $this->input->post('admin');
 		$lahansekitar = $this->input->post('lahansekitar');
-		$rencanajalan = $this->input->post('rencanajalan');
-		$eksitingjalan = $this->input->post('eksitingjalan');
 		$statususaha = $this->input->post('statususaha');
 		$statuspasar = $this->input->post('statuspasar');
 		$keterangan = $this->input->post('keterangan');
@@ -98,30 +96,6 @@ class OfficeController extends CI_Controller {
 			$skorlahan = 3;
 		}else{
 			$skorlahan = 0;
-		}
-
-		if ($rencanajalan == '1') {
-			$skorrenjalan = 0;
-		}elseif ($rencanajalan == '2') {
-			$skorrenjalan = 1;
-		}elseif($rencanajalan == '3'){
-			$skorrenjalan = 2;
-		}else if($rencanajalan == '4'){
-			$skorrenjalan = 3;
-		}else{
-			$skorrenjalan = 0;
-		}
-
-		if ($eksitingjalan == '1') {
-			$skoreksijalan = 0;
-		}elseif ($eksitingjalan == '2') {
-			$skoreksijalan = 1;
-		}elseif($eksitingjalan == '3'){
-			$skoreksijalan = 2;
-		}else if($eksitingjalan == '4'){
-			$skoreksijalan = 3;
-		}else{
-			$skoreksijalan = 0;
 		}
 
 		if ($statususaha == '1') {
@@ -148,7 +122,7 @@ class OfficeController extends CI_Controller {
 			$skorpasar = 0;
 		}
 
-		$skor = ($skorpasar + $skorrenjalan + $skoreksijalan + $skortusah + $skorlahan)/5;
+		$skor = ($skorpasar + $skortusah + $skorlahan)/3;
 
 		$cek = $this->oc->cekTeknis($id_bangunan);
 		if ($cek->num_rows() > 0) {
@@ -159,8 +133,6 @@ class OfficeController extends CI_Controller {
             );
             $array = array(
             'id_pasar' => $statuspasar,
-            'id_rencana' => $rencanajalan,
-            'id_rencana_eksisting' => $eksitingjalan,
             'id_jarak' => $statususaha,
             'id_lahan' => $lahansekitar,
             'keterangan' => $keterangan,
@@ -169,7 +141,7 @@ class OfficeController extends CI_Controller {
         );
             $q = $this->db->update('admin_teknis',$array,$where);
 		}else{
-			$q = $this->oc->InsertAdminTeknis($id_bangunan,$admin,$lahansekitar,$rencanajalan,$eksitingjalan,$statususaha,$statuspasar,$keterangan,$skor);
+			$q = $this->oc->InsertAdminTeknis($id_bangunan,$admin,$lahansekitar,$statususaha,$statuspasar,$keterangan,$skor);
 		}
 		if ($q == true) {
 			$wherebangun = array(
@@ -203,7 +175,7 @@ class OfficeController extends CI_Controller {
 			$getdata = $cek->row();
 			$id = $getdata->id_dinas;
             $where = array(
-                'id_bangunan' => $bangunan,
+                'id_izin' => $bangunan,
             );
             $array = array(
             'keterangan' => $keterangan,
@@ -214,21 +186,23 @@ class OfficeController extends CI_Controller {
         );
             $q = $this->db->update('admindinas',$array,$where);
 		}else{
-			$q = $this->oc->InsertAdminDinasBaru($bangunan,$id_admin,$keterangan,$status,$skor);
+			$q = $this->oc->InsertAdminDinasBaru($bangunan,$id_admin,$keterangan,$status,$skorslf,$skoriuts);
 		}
         if ($q == true) {
-        	if ($status == 1) {
-        		$status_bangun = 4;
+        	if ($status == 5) {
+        		$statusweb = 2;
+        	}elseif ($status == 6) {
+        		$statusweb = 2;
+        	}elseif ($status == 3) {
         		$statusweb = 1;
         	}else{
-        		$status_bangun = 5;
         		$statusweb = 2;
         	}
         	$where = array(
-                'id_bangunan' => $bangunan,
+                'id_izin' => $bangunan,
             );
 			$data = array(
-				'status_jalan'=>$status_bangun,
+				'status_jalan'=>$status,
 				'status'=>$statusweb,
 
 			);
@@ -249,6 +223,7 @@ class OfficeController extends CI_Controller {
 		$bangunan = $this->input->post('id_bangunan');
 		$id_admin = $this->input->post('admin');
 		$tgl = date('Y-m-d',strtotime($this->input->post('tanggal')));
+		$jam = $this->input->post('jam');
 		$cek = $this->oc->cekSurat($bangunan);
 		if ($cek->num_rows() > 0) {
 			$getdata = $cek->row();
@@ -259,11 +234,12 @@ class OfficeController extends CI_Controller {
             $array = array(
 	            'tanggal' => $tgl,
 	            'tgl_ambil' => $tgl,
+	            'jam' => $jam,
 	            'updated_at' => date('Y-m-d H:i:s'),
         	);
             $q = $this->db->update('janjian',$array,$where);
 		}else{
-			$q = $this->oc->InsertSurat($bangunan,$id_admin,$tgl);
+			$q = $this->oc->InsertSurat($bangunan,$id_admin,$tgl,$jam);
 		}
         if ($q == true) {
 			$json = $this->returnResultCustom(true,'Berhasil Simpan Data');
@@ -400,23 +376,27 @@ class OfficeController extends CI_Controller {
 				$data['janji'] = $this->oc->cekSurat($id);
 				$data['kewajiban'] = $this->oc->detailKewajiban();
 				$data['larangan'] = $this->oc->detailLarangan();
+				$data['bawa'] = $this->oc->cekAdministrasi($id);
     			$tcpdf->AddPage();
+		        $html = $this->load->view('pages/suratsk',$data, true);
+		        $tcpdf->WriteHTML($html);
     			$info = array(
 		        	'Name' => 'DPMPTSP DKI JAKARTA',
 		        	'Location' => 'DPMPTSP DKI JAKARTA',
 		        	'Reason' => 'Verified Berkas',
 		        	'ContactInfo' => site_url('/'),
     			);    		
-    			$taut='Diisikan dengan informasi yang diinginkan'; 
-				$data['barcode'] = $tcpdf->write2DBarcode($taut, 'QRCODE,H', 20,190,20,20);
-      			$data['setsignature'] = $tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info); 
-      			$data['image'] = $tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG'); 
-      			$data['setapp'] = $tcpdf->setSignatureAppearance(117, 201, 60, 18); 
-      			// return var_dump($data);
-		        $html = $this->load->view('pages/suratsk',$data, true);
+    			$taut='https://perizinan.jakarta.go.id/'; 
+				$tcpdf->write2DBarcode($taut, 'QRCODE,H', 20,190,20,20);
+      			$tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info); 
+      			$tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG'); 
+      			$tcpdf->setSignatureAppearance(117, 201, 60, 18); 
+    			$tcpdf->AddPage();
+		        $html = $this->load->view('pages/bawaberkas',$data, true);
 		        $tcpdf->WriteHTML($html);
+      			// return var_dump($html);
 				$tcpdf->Output($filename, 'D'); 
-				ob_end_clean();
+				// ob_end_clean();
 		    }
 		}
 		
