@@ -144,7 +144,7 @@ class ValidasiController extends CI_Controller {
                     'fotorekumkm'=>$umkm,
                     'fotokajian'=>$kajian_sostek,
                     'keterangan'=>$keterangan,
-                    'created_at' => $tgl,
+                    'created_at' => $row->created_at,
                     'updated_at' => date('Y-m-d H:i:s'),
                 );
                 $q = $this->db->update('administrasi',$arrayPermohonan,$where);
