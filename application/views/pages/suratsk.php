@@ -23,35 +23,35 @@
 					</tr>
 					<?php foreach ($datauser->result() as $data): ?>
 						
-					<tr>
-						<td>Nama Perusahaan</td><td style="width: 20px">:</td><td><?=$data->nama_perusahaan?></td>
-					</tr>
-					<tr>
-						<td>Nama penanggung Jawab dan Jabatan</td><td style="width: 20px">:</td><td><?=$data->nama?> </td>
-					</tr>
-					<tr>
-						<td>Alamat Perusahaan</td><td style="width: 20px">:</td><td><?=$data->alamat_perusahaan?> </td>
-					</tr>
-					<tr>
-						<td>Nama Usaha</td><td style="width: 20px">:</td><td><?=$data->nama_badan_usaha?> </td>
-					</tr>
-					<tr>
-						<td>Alamat Usaha</td><td style="width: 20px">:</td><td><?=$data->alamat_usaha?> </td>
-					</tr>
-					<tr>
-						<td>Nomor Telepon/Fax</td><td style="width: 20px">:</td><td><?=$data->no_hp?> </td>
-					</tr>
-					<tr>
-						<td>Luas Lantai Usaha</td><td style="width: 20px">:</td><td><?=$data->luas_tapak?> </td>
-					</tr>
-					<tr>
-						<td>Kegiatan Usaha</td><td style="width: 20px">:</td><td><b>Toko Swalayan</b> </td>
-					</tr>
-					<tr>
-						<td>Barang/Jasa Dagangan Utama</td><td style="width: 20px">:</td><td>Belum ada Onput jasa</td>
-					</tr>
-				</table>
-					<?php endforeach ?>
+						<tr>
+							<td>Nama Perusahaan</td><td style="width: 20px">:</td><td><?=$data->nama_perusahaan?></td>
+						</tr>
+						<tr>
+							<td>Nama penanggung Jawab dan Jabatan</td><td style="width: 20px">:</td><td><?=$data->nama?> </td>
+						</tr>
+						<tr>
+							<td>Alamat Perusahaan</td><td style="width: 20px">:</td><td><?=$data->alamat_perusahaan?> </td>
+						</tr>
+						<tr>
+							<td>Nama Usaha</td><td style="width: 20px">:</td><td><?=$data->nama_badan_usaha?> </td>
+						</tr>
+						<tr>
+							<td>Alamat Usaha</td><td style="width: 20px">:</td><td><?=$data->alamat_usaha?> </td>
+						</tr>
+						<tr>
+							<td>Nomor Telepon/Fax</td><td style="width: 20px">:</td><td><?=$data->no_hp?> </td>
+						</tr>
+						<tr>
+							<td>Luas Lantai Usaha</td><td style="width: 20px">:</td><td><?=$data->luas_tapak?> </td>
+						</tr>
+						<tr>
+							<td>Kegiatan Usaha</td><td style="width: 20px">:</td><td><b>Toko Swalayan</b> </td>
+						</tr>
+						<tr>
+							<td>Barang/Jasa Dagangan Utama</td><td style="width: 20px">:</td><td>Belum ada Onput jasa</td>
+						</tr>
+					</table>
+				<?php endforeach ?>
 				<!-- Buat Pemohon baru -->
 				<p>Izin usaha ini berlaku untuk melakukan kegiatan usaha Toko Swalayan pada 1 (satu) lokasi dan wajib didaftarkan ulang setiap 5 (lima) tahun.</p>
 				<p>Setiap perubahan jenis barang/jasa dagangan utama dan luas lantai usaha yang digunakan, terlebih dahulu harus mendapat persetujuan tertulis dari Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu Provinsi DKI Jakarta.</p>
@@ -86,7 +86,7 @@
 			<ol>
 				<?php foreach ($kewajiban->result() as $key): ?>
 					
-				<li><?=$key->deskripsi?></li>
+					<li><?=$key->deskripsi?></li>
 				<?php endforeach ?>
 				
 			</ol>
@@ -96,12 +96,11 @@
 			<ol>
 				<?php foreach ($larangan->result() as $larang): ?>
 					
-				<li><?=$larang->deksripsi?></li>
+					<li><?=$larang->deksripsi?></li>
 				<?php endforeach ?>
 				
 			</ol>
 		</div>
 	</div>
-
-	</body>
-	</html>
+</body>
+</html>
