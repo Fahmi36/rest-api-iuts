@@ -98,6 +98,40 @@ class ValidasiController extends CI_Controller {
         }
         echo json_encode($json);
     }
+
+    function ValidasiAwal($urlnya='')
+    {
+        $alamat = $_SERVER['HTTP_REFERER'];
+        $hasil = $this->getAddresses_www($alamat);
+        if ($hasil == '45.13.133.94' OR $hasil == '127.0.0.1') {
+            $json = $this->$urlnya;
+        }else{
+            $json = $this->returnResultCustom(false,'Tidak Boleh Akses');
+        }
+        echo json_encode($json);
+    }
+    function getAddresses($domain) {
+        $records = dns_get_record($domain);
+        $res = array();
+        foreach ($records as $r) {
+            if ($r['host'] != $domain) continue; // glue entry
+            if (!isset($r['type'])) continue; // DNSSec
+
+            if ($r['type'] == 'A') $res[] = $r['ip'];
+            if ($r['type'] == 'AAAA') $res[] = $r['ipv6'];
+        }
+        return $res;
+    }
+    function getAddresses_www($domain) {
+        $res = getAddresses($domain);
+        if (count($res) == 0) {
+            $res = getAddresses('www.' . $domain);
+        }
+        for ($i=0; $i < count($res) ; $i++) { 
+            $hasil = $res[$i];
+        }
+        return $hasil;
+    }
     function ValidasiFoto()
     {
         try {
@@ -144,7 +178,7 @@ class ValidasiController extends CI_Controller {
                     'fotorekumkm'=>$umkm,
                     'fotokajian'=>$kajian_sostek,
                     'keterangan'=>$keterangan,
-                    'created_at' => $tgl,
+                    'created_at' => $row->created_at,
                     'updated_at' => date('Y-m-d H:i:s'),
                 );
                 $q = $this->db->update('administrasi',$arrayPermohonan,$where);
@@ -153,7 +187,7 @@ class ValidasiController extends CI_Controller {
             }
 
             if ($q) {
-                return $id;
+                $json = $this->returnResultCustom(true,'Berhasil Verifikasi Foto');
             }else{
                 $json = $this->returnResultCustom(false,'Gagal Verifikasi Foto');
             }
