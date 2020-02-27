@@ -27,8 +27,8 @@
 		vertical-align: top;
 	}
 	td p{
-		margin-bottom: 4px;
-		margin-top: 4px;
+		margin-bottom: 0;
+		margin-top: 0;
 	}
 </style>
 <body style="overflow-x: hidden;">
@@ -47,7 +47,7 @@
 				<br>
 				<center>
 					<p style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.2;margin-bottom: 20px;">KEPUTUSAN KEPALA UNIT PENGELOLA PENANAMAN MODAL DAN PELAYANAN <br>
-						TERPADU SATU PINTU KECAMATAN ............................<br>
+						TERPADU SATU PINTU KECAMATAN ............................<br><br>
 						NOMOR .....................................<br>
 					</p>
 					<p style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.8;margin-bottom: 20px;">TENTANG <br>
@@ -57,7 +57,7 @@
 						KECAMATAN ..........................,
 					</p>
 				</center>
-				<table>
+				<table style="text-align:justify;">
 					<tbody>
 						<tr>
 							<td width="149">
@@ -178,17 +178,6 @@
 							</td>
 						</tr>
 						<tr>
-							<td>
-								<p>&nbsp;</p>
-							</td>
-							<td>
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="8">
-								<p>&nbsp;</p>
-							</td>
-						</tr>
-						<tr>
 							<td width="149">
 								<p>MENGINGAT :</p>
 							</td>
@@ -256,7 +245,7 @@
 								<p>&nbsp;</p>
 							</td>
 							<td colspan="6" width="468">
-								<p>Memberikan Sertifikat Layak Fungsi Nomor .................................<br> tanggal .... ............... .... terhadap Seluruh bangunan:</p>
+								<p>Memberikan Sertifikat Layak Fungsi Nomor .......................<br> tanggal .... ............... .... terhadap Seluruh bangunan:</p>
 							</td>
 						</tr>
 						<tr>
@@ -273,7 +262,7 @@
 								<p>:</p>
 							</td>
 							<td colspan="2" width="230">
-								<p>..................................</p>
+								<p>.................................</p>
 							</td>
 						</tr>
 						<tr>
@@ -290,7 +279,7 @@
 								<p>:</p>
 							</td>
 							<td colspan="2" width="230">
-								<p>..................................</p>
+								<p>.................................</p>
 							</td>
 						</tr>
 						<tr>
@@ -301,13 +290,13 @@
 								<p><strong>&nbsp;</strong></p>
 							</td>
 							<td colspan="3" width="219">
-								<p>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Penggunaan</p>
+								<p>- Penggunaan</p>
 							</td>
 							<td width="19">
 								<p>:</p>
 							</td>
 							<td colspan="2" width="230">
-								<p>..................................</p>
+								<p>.................................</p>
 							</td>
 						</tr>
 						<tr>
@@ -318,13 +307,13 @@
 								<p><strong>&nbsp;</strong></p>
 							</td>
 							<td colspan="3" width="219">
-								<p>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Nama Bangunan</p>
+								<p>- Nama Bangunan</p>
 							</td>
 							<td width="19">
 								<p>:</p>
 							</td>
 							<td colspan="2" width="230">
-								<p>..................................</p>
+								<p>.................................</p>
 							</td>
 						</tr>
 						<tr>
@@ -364,684 +353,696 @@
 				</table>
 				<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;">
 					<div>
-						<p style="float: right;">Ditetapkan di Jakarta <br>
+						<p style="float: right;font-size: 12pt;">Ditetapkan di Jakarta <br>
 							pada tanggal ...... ..................... …… <br><br>
-							<span style="text-align: center;">Kepala Unit Pengelola Penanaman Modal<br> dan PTSP</span><br>
-							Kecamatan ...... ..................... ……
+							<span style="text-align: center;float: right;">KEPALA UNIT PENGELOLA<br> PENANAMAN MODAL DAN<br> PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
 						</p>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
+						<br><br><br><br><br><br><br><br><br>
 						<p style="float: right;padding-right: 40px;">...........................................<br>
 						NIP. ....................................</p><br>
-						<br>
-						<p style="float: right;"><span style="font-weight: bold;">Lampiran I</span>	:<br>
-							Keputusan Kepala Unit Pengelola Penanaman<br>
-							Modal dan Pelayanan Terpadu Satu Pintu<br>
-							Kecamatan ........................<br>
-							Nomor	: ......................................<br>
-							Tanggal	: .... ................... .....<br>
-						</p>
-					</div>
-				</div>
-				<p style="width: 100%;display: inline-flex;">Data Administrasi</p>
-				<table>
-					<tbody>
-						<tr>
-							<td width="38">
-								<p>A.</p>
-							</td>
-							<td width="233">
-								<p>Yang Mendapat Izin</p>
-							</td>
-							<td width="22">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="7" width="363">
-								<p>&nbsp;</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>Nama</p>
-							</td>
-							<td width="22">
-								<p>:</p>
-							</td>
-							<td colspan="7" width="363">
-								<p>......................................</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>Alamat</p>
-							</td>
-							<td width="22">
-								<p>:</p>
-							</td>
-							<td colspan="7" width="363">
-								<p>......................................</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>Rt/Rw</p>
-							</td>
-							<td width="22">
-								<p>:</p>
-							</td>
-							<td colspan="7" width="363">
-								<p>......................................</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>Kelurahan</p>
-							</td>
-							<td width="22">
-								<p>:</p>
-							</td>
-							<td colspan="7" width="363">
-								<p>......................................</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>Kecamatan</p>
-							</td>
-							<td width="22">
-								<p>:</p>
-							</td>
-							<td colspan="7" width="363">
-								<p>......................................</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>Wilayah</p>
-							</td>
-							<td width="22">
-								<p>:</p>
-							</td>
-							<td colspan="7" width="363">
-								<p>......................................</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>B.</p>
-							</td>
-							<td width="233">
-								<p>Lokasi Bangunan</p>
-							</td>
-							<td width="22">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="3" width="155">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="3" width="84">
-								<p>&nbsp;</p>
-							</td>
-							<td width="124">
-								<p>&nbsp;</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>Lokasi</p>
-							</td>
-							<td width="22">
-								<p>:</p>
-							</td>
-							<td colspan="7" width="363">
-								<p>......................................</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>Rt/Rw</p>
-							</td>
-							<td width="22">
-								<p>:</p>
-							</td>
-							<td colspan="7" width="363">
-								<p>......................................</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>Kelurahan</p>
-							</td>
-							<td width="22">
-								<p>:</p>
-							</td>
-							<td colspan="7" width="363">
-								<p>......................................</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>Kecamatan</p>
-							</td>
-							<td width="22">
-								<p>:</p>
-							</td>
-							<td colspan="7" width="363">
-								<p>......................................</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>Wilayah</p>
-							</td>
-							<td width="22">
-								<p>:</p>
-							</td>
-							<td colspan="7" width="363">
-								<p>......................................</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>C.</p>
-							</td>
-							<td colspan="9" width="618">
-								<p>Perizinan bangunan yang menyertai dan memperhatikan atau menimbang</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KRK No. ............................</p>
-							</td>
-							<td colspan="5">
-								<p>Tgl. .............</p>
-							</td>
-							<td colspan="3">
-								<p>a.n. ......................................</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IMB No. ............................</p>
-							</td>
-							<td colspan="5">
-								<p>Tgl. .............</p>
-							</td>
-							<td colspan="3">
-								<p>a.n. ......................................</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KMB No. ............................</p>
-							</td>
-							<td colspan="5">
-								<p>Tgl. .............</p>
-							</td>
-							<td colspan="3">
-								<p>a.n. ......................................</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IPPB No. ............................</p>
-							</td>
-							<td colspan="5">
-								<p>Tgl. .............</p>
-							</td>
-							<td colspan="3">
-								<p>a.n. ......................................</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="5">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="5">
-								<p>&nbsp;</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>D.</p>
-							</td>
-							<td colspan="9" width="618">
-								<p>Surat bukti kepemilikan hak atas tanah &amp; yang menyertainya</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>1.&nbsp;&nbsp; Surat Tanah</p>
-							</td>
-							<td colspan="5">
-								<p>No. .............</p>
-							</td>
-							<td colspan="3">
-								<p>a.n. ....................................</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="5" width="180">
-								<p>&nbsp;</p>
-							</td>
-							<td width="69">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>&nbsp;</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>E.</p>
-							</td>
-							<td colspan="9" width="618">
-								<p>Rekomendasi/ keterangan Instansi lain</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="3" width="277">
-								<p>1.&nbsp;&nbsp;&nbsp;&nbsp; Rekomendasi Penyalur Petir</p>
-							</td>
-							<td colspan="4" width="205">
-								<p>No. ................</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>Tgl. ... ......... ....</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="3" width="277">
-								<p>2.&nbsp;&nbsp;&nbsp;&nbsp; Rekomendasi Lift</p>
-							</td>
-							<td colspan="4" width="205">
-								<p>No. ................</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>Tgl. ... ......... ....</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="3" width="277">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="4" width="205">
-								<p>No. ................</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>Tgl. ... ......... ....</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="3" width="277">
-								<p>3.&nbsp;&nbsp;&nbsp;&nbsp; Rekomendasi Motor Diesel</p>
-							</td>
-							<td colspan="4" width="205">
-								<p>No. ................</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>Tgl. ... ......... ....</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="3" width="277">
-								<p>4.&nbsp;&nbsp;&nbsp;&nbsp; Rekomendasi Gondola</p>
-							</td>
-							<td colspan="4" width="205">
-								<p>No. ................</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>Tgl. ... ......... ....</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="3" width="277">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="4" width="205">
-								<p>No. ................</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>Tgl. ... ......... ....</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="3" width="277">
-								<p>5.&nbsp;&nbsp;&nbsp;&nbsp; Rekening Tenaga Listrik</p>
-							</td>
-							<td colspan="4" width="205">
-								<p>No. ................</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>Tgl. ... ......... ....</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="3" width="277">
-								<p>6.&nbsp;&nbsp;&nbsp;&nbsp; Sertifikat Keselataman Kebakaran</p>
-							</td>
-							<td colspan="4" width="205">
-								<p>SKK No. ..........</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>Tgl. ... ......... ....</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="3" width="277">
-								<p>7.&nbsp;&nbsp;&nbsp;&nbsp; Rekomendasi Escalator</p>
-							</td>
-							<td colspan="4" width="205">
-								<p>No. ................</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>Tgl. ... ......... ....</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="3" width="277">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="4" width="205">
-								<p>No. ................</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>Tgl. ... ......... ....</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>F.</p>
-							</td>
-							<td colspan="9" width="618">
-								<p>Laporan Pengkaji Teknis/ Direksi Pengawas</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>1.&nbsp; ..................................</p>
-							</td>
-							<td colspan="6" width="249">
-								<p>No. ..................................</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>Pengkaji Teknis</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>2.&nbsp; ..................................</p>
-							</td>
-							<td colspan="6" width="249">
-								<p>No. ..................................</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>Pengkaji Teknis</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>3.&nbsp; ..................................</p>
-							</td>
-							<td colspan="6" width="249">
-								<p>No. ..................................</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>Pengkaji Teknis</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>4.&nbsp; ..................................</p>
-							</td>
-							<td colspan="6" width="249">
-								<p>No. ..................................</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>Pengkaji Teknis</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>5.&nbsp; ..................................</p>
-							</td>
-							<td colspan="6" width="249">
-								<p>No. ..................................</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>Pengkaji Teknis</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>6.&nbsp; ..................................</p>
-							</td>
-							<td colspan="6" width="249">
-								<p>No. ..................................</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>Pengkaji Teknis</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>7.&nbsp; ..................................</p>
-							</td>
-							<td colspan="6" width="249">
-								<p>No. ..................................</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>Pengkaji Teknis</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>&nbsp;</p>
-							</td>
-							<td width="233">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="6" width="249">
-								<p>&nbsp;</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>&nbsp;</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>G.</p>
-							</td>
-							<td width="233">
-								<p>Surat Pernyataan SRAH</p>
-							</td>
-							<td colspan="6" width="249">
-								<p>SRAH:SRAH TTD .............</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>Tgl. ... ........... ....</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>H.</p>
-							</td>
-							<td width="233">
-								<p>Surat Pernyataan kesediaan menyediakan lahan untuk pemasangan 4G (jaringan fiberoptik) untuk umum (tidak bisa dikomersilkan) oleh Direktur PT. .........................</p>
-							</td>
-							<td colspan="6" width="249">
-								<p>Nomor ...............................</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>Tgl. ... ........... ....</p>
-							</td>
-						</tr>
-						<tr>
-							<td width="38">
-								<p>I.</p>
-							</td>
-							<td width="233">
-								<p>Akta Pendirian Perusahaan</p>
-							</td>
-							<td colspan="6" width="249">
-								<p>Keputusan Kantor Menteri Negara/Badan Penanaman Modal dan Pembinaan Badan Usaha Milik Negara No. .......................................... Tanggal .... ............... ......</p>
-							</td>
-							<td colspan="2" width="136">
-								<p>&nbsp;</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-				<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;">
-					<div>
-						<p style="float: right;">Ditetapkan di Jakarta <br>
-							pada tanggal ...... ..................... …… <br><br>
-							<span style="text-align: center;">KEPALA UNIT PENGELOLA<br> PENANAMAN MODAL DAN<br> PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
-						</p>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<br>
-						<p style="float: right;padding-right: 40px;">...........................................<br>
-						NIP. ....................................</p><br>
-						<br>
-						<br>
-						<p style="float: right;"><span style="font-weight: bold;">Lampiran II</span>	:<br>
-							Keputusan Kepala Unit Pengelola Penanaman<br>
-							Modal dan Pelayanan Terpadu Satu Pintu<br>
-							Kecamatan ........................<br>
-							Nomor	: ......................................<br>
-							Tanggal	: .... ................... .....<br>
-						</p>
+						<br><br>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:24px;display: inline-block;">
-			<p>Kepada pemegang dan/atau penerima Sertifikat Layak Fungsi ini, dikenakan ketentuan sebagai berikut :</p>
-			<ol style="padding-left: 16px;">
+		<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;page-break-before: always;">
+			<p style="float: right;font-size: 10pt;">Lampiran I	:<br>
+				Keputusan Kepala Unit Pengelola Penanaman<br>
+				Modal dan Pelayanan Terpadu Satu Pintu<br>
+				Kecamatan ........................<br>
+				Nomor	: ......................................<br>
+				Tanggal	: .... ................... .....<br>
+			</p>
+			<p style="width: 100%;display: inline-flex;margin: 0;">Data Administrasi</p>
+			<table style="font-size: 12pt;" class="data-admin">
+				<tbody>
+					<tr>
+						<td width="38">
+							<p>A.</p>
+						</td>
+						<td width="233">
+							<p>Yang Mendapat Izin</p>
+						</td>
+						<td width="22">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="7" width="363">
+							<p>&nbsp;</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>Nama</p>
+						</td>
+						<td width="22">
+							<p>:</p>
+						</td>
+						<td colspan="7" width="363">
+							<p>......................................</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>Alamat</p>
+						</td>
+						<td width="22">
+							<p>:</p>
+						</td>
+						<td colspan="7" width="363">
+							<p>......................................</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>Rt/Rw</p>
+						</td>
+						<td width="22">
+							<p>:</p>
+						</td>
+						<td colspan="7" width="363">
+							<p>......................................</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>Kelurahan</p>
+						</td>
+						<td width="22">
+							<p>:</p>
+						</td>
+						<td colspan="7" width="363">
+							<p>......................................</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>Kecamatan</p>
+						</td>
+						<td width="22">
+							<p>:</p>
+						</td>
+						<td colspan="7" width="363">
+							<p>......................................</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>Wilayah</p>
+						</td>
+						<td width="22">
+							<p>:</p>
+						</td>
+						<td colspan="7" width="363">
+							<p>......................................</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="5">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="5">
+							<p>&nbsp;</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>B.</p>
+						</td>
+						<td width="233">
+							<p>Lokasi Bangunan</p>
+						</td>
+						<td width="22">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="3" width="155">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="3" width="84">
+							<p>&nbsp;</p>
+						</td>
+						<td width="124">
+							<p>&nbsp;</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>Lokasi</p>
+						</td>
+						<td width="22">
+							<p>:</p>
+						</td>
+						<td colspan="7" width="363">
+							<p>......................................</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>Rt/Rw</p>
+						</td>
+						<td width="22">
+							<p>:</p>
+						</td>
+						<td colspan="7" width="363">
+							<p>......................................</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>Kelurahan</p>
+						</td>
+						<td width="22">
+							<p>:</p>
+						</td>
+						<td colspan="7" width="363">
+							<p>......................................</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>Kecamatan</p>
+						</td>
+						<td width="22">
+							<p>:</p>
+						</td>
+						<td colspan="7" width="363">
+							<p>......................................</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>Wilayah</p>
+						</td>
+						<td width="22">
+							<p>:</p>
+						</td>
+						<td colspan="7" width="363">
+							<p>......................................</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="5">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="5">
+							<p>&nbsp;</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>C.</p>
+						</td>
+						<td colspan="9" width="618">
+							<p>Perizinan bangunan yang menyertai dan memperhatikan atau menimbang</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KRK No. ............................</p>
+						</td>
+						<td colspan="5">
+							<p>Tgl. .............</p>
+						</td>
+						<td colspan="3">
+							<p>a.n. ......................................</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IMB No. ............................</p>
+						</td>
+						<td colspan="5">
+							<p>Tgl. .............</p>
+						</td>
+						<td colspan="3">
+							<p>a.n. ......................................</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; KMB No. ............................</p>
+						</td>
+						<td colspan="5">
+							<p>Tgl. .............</p>
+						</td>
+						<td colspan="3">
+							<p>a.n. ......................................</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; IPPB No. ............................</p>
+						</td>
+						<td colspan="5">
+							<p>Tgl. .............</p>
+						</td>
+						<td colspan="3">
+							<p>a.n. ......................................</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="5">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="5">
+							<p>&nbsp;</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>D.</p>
+						</td>
+						<td colspan="9" width="618">
+							<p>Surat bukti kepemilikan hak atas tanah &amp; yang menyertainya</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>1.&nbsp;&nbsp; Surat Tanah</p>
+						</td>
+						<td colspan="5">
+							<p>No. .............</p>
+						</td>
+						<td colspan="3">
+							<p>a.n. ....................................</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="5" width="180">
+							<p>&nbsp;</p>
+						</td>
+						<td width="69">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>&nbsp;</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>E.</p>
+						</td>
+						<td colspan="9" width="618">
+							<p>Rekomendasi/ keterangan Instansi lain</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="3" width="277">
+							<p>1.&nbsp;&nbsp;&nbsp;&nbsp; Rekomendasi Penyalur Petir</p>
+						</td>
+						<td colspan="4" width="205">
+							<p>No. ................</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>Tgl. ... ......... ....</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="3" width="277">
+							<p>2.&nbsp;&nbsp;&nbsp;&nbsp; Rekomendasi Lift</p>
+						</td>
+						<td colspan="4" width="205">
+							<p>No. ................</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>Tgl. ... ......... ....</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="3" width="277">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="4" width="205">
+							<p>No. ................</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>Tgl. ... ......... ....</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="3" width="277">
+							<p>3.&nbsp;&nbsp;&nbsp;&nbsp; Rekomendasi Motor Diesel</p>
+						</td>
+						<td colspan="4" width="205">
+							<p>No. ................</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>Tgl. ... ......... ....</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="3" width="277">
+							<p>4.&nbsp;&nbsp;&nbsp;&nbsp; Rekomendasi Gondola</p>
+						</td>
+						<td colspan="4" width="205">
+							<p>No. ................</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>Tgl. ... ......... ....</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="3" width="277">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="4" width="205">
+							<p>No. ................</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>Tgl. ... ......... ....</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="3" width="277">
+							<p>5.&nbsp;&nbsp;&nbsp;&nbsp; Rekening Tenaga Listrik</p>
+						</td>
+						<td colspan="4" width="205">
+							<p>No. ................</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>Tgl. ... ......... ....</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="3" width="277">
+							<p>6.&nbsp;&nbsp;&nbsp;&nbsp; Sertifikat Keselataman Kebakaran</p>
+						</td>
+						<td colspan="4" width="205">
+							<p>SKK No. ........</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>Tgl. ... ......... ....</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="3" width="277">
+							<p>7.&nbsp;&nbsp;&nbsp;&nbsp; Rekomendasi Escalator</p>
+						</td>
+						<td colspan="4" width="205">
+							<p>No. ................</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>Tgl. ... ......... ....</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="3" width="277">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="4" width="205">
+							<p>No. ................</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>Tgl. ... ......... ....</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>F.</p>
+						</td>
+						<td colspan="9" width="618">
+							<p>Laporan Pengkaji Teknis/ Direksi Pengawas</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>1.&nbsp; ..................................</p>
+						</td>
+						<td colspan="6" width="249">
+							<p>No. ................................</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>Pengkaji Teknis</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>2.&nbsp; ..................................</p>
+						</td>
+						<td colspan="6" width="249">
+							<p>No. ................................</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>Pengkaji Teknis</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>3.&nbsp; ..................................</p>
+						</td>
+						<td colspan="6" width="249">
+							<p>No. ................................</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>Pengkaji Teknis</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>4.&nbsp; ..................................</p>
+						</td>
+						<td colspan="6" width="249">
+							<p>No. ................................</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>Pengkaji Teknis</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>5.&nbsp; ..................................</p>
+						</td>
+						<td colspan="6" width="249">
+							<p>No. ................................</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>Pengkaji Teknis</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>6.&nbsp; ..................................</p>
+						</td>
+						<td colspan="6" width="249">
+							<p>No. ................................</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>Pengkaji Teknis</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>7.&nbsp; ..................................</p>
+						</td>
+						<td colspan="6" width="249">
+							<p>No. ................................</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>Pengkaji Teknis</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>&nbsp;</p>
+						</td>
+						<td width="233">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="6" width="249">
+							<p>&nbsp;</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>&nbsp;</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>G.</p>
+						</td>
+						<td width="233">
+							<p>Surat Pernyataan SRAH</p>
+						</td>
+						<td colspan="6" width="249">
+							<p>SRAH:SRAH TTD .............</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>Tgl. ... ........... ....</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>H.</p>
+						</td>
+						<td width="233">
+							<p>Surat Pernyataan kesediaan menyediakan lahan untuk pemasangan 4G (jaringan fiberoptik) untuk umum (tidak bisa dikomersilkan) oleh Direktur PT. .........................</p>
+						</td>
+						<td colspan="6" width="249">
+							<p>Nomor ...........................</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>Tgl. ... ........... ....</p>
+						</td>
+					</tr>
+					<tr>
+						<td width="38">
+							<p>I.</p>
+						</td>
+						<td width="233">
+							<p>Akta Pendirian Perusahaan</p>
+						</td>
+						<td colspan="6" width="249">
+							<p>Keputusan Kantor Menteri Negara/Badan Penanaman Modal dan Pembinaan Badan Usaha Milik Negara No. ...................................... Tanggal .... ............. ......</p>
+						</td>
+						<td colspan="2" width="136">
+							<p>&nbsp;</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div>
+				<br><br>
+				<p style="float: right;font-size: 12pt;">Ditetapkan di Jakarta <br>
+					pada tanggal ...... ..................... …… <br><br>
+					<span style="text-align: center;float: right;">KEPALA UNIT PENGELOLA<br> PENANAMAN MODAL DAN<br> PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
+				</p>
+				<br><br><br><br><br><br><br><br><br><br><br>
+				<p style="float: right;padding-right: 40px;">...........................................<br>
+				NIP. ....................................</p><br>
+			</div>
+		</div>
+		<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;page-break-before: always;">
+			<p style="float: right;font-size: 10pt;">Lampiran II :<br>
+				Keputusan Kepala Unit Pengelola Penanaman<br>
+				Modal dan Pelayanan Terpadu Satu Pintu<br>
+				Kecamatan ........................<br>
+				Nomor	: ......................................<br>
+				Tanggal	: .... ................... .....<br>
+			</p>
+			<br><br><br><br><br><br><br><br>
+			<p style="font-size: 12pt;margin: 0;line-height: 1.3;">Kepada pemegang dan/atau penerima Sertifikat Layak Fungsi ini, dikenakan ketentuan sebagai berikut :</p>
+			<ol style="padding-left: 16px;font-size: 12pt;margin: 0;line-height: 1.1;">
 				<li style="text-align:justify;">Bahwa ketentuan-ketentuan dalam SLF/SLFn yang terkait pada SLF yang belum dilaksanakan dan/atau diisyaratkan tetap merupakan hal-hal dan kewajiban yang harus dipenuhi;</li>
 				<li style="text-align:justify;">Bahwa ketentuan-ketentuan dalam IMB yang terkait pada SLF yang belum dilaksanakan dan/atau disyaratkan tetap merupakan hal-hal dan kewajiban yang harus dipenuhi;</li>
 				<li style="text-align:justify;">Bahwa tidak diperbolehkan untuk merubah fisik bangunan termasuk instalasi dan perlengkapan bangunan dan penggunaan setiap bagian-bagian bangunan/ ruangan tersebut tanpa mendapat izin tertulis dari Kepala Unit Pelaksana Pelayanan Terpadu Satu Pintu Kecamatan .......................;</li>
@@ -1070,136 +1071,80 @@
 				<li style="text-align:justify;">Bahwa pemilik/pengelola bangunan agar menyediakan ruang untuk menyusui (nursery room) yang berada di dalam gedung;</li>
 				<li style="text-align:justify;">Terhadap tidak dipenuhi ketentuan-ketentuan sebagaimana tersebut di atas maka Sertifikat Layak Fungsi ini akan ditinjau ulang.</li>
 			</ol>
-		</div>
-		<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.5;padding-left:20px;padding-right:20px;padding-bottom:12px;">
 			<div>
-				<p style="float: right;">Ditetapkan di Jakarta <br>
+				<br><br>
+				<p style="float: right;font-size: 12pt;">Ditetapkan di Jakarta <br>
 					pada tanggal ...... ..................... …… <br><br>
-					<span style="text-align: center;">KEPALA UNIT PENGELOLA<br> PENANAMAN MODAL DAN<br> PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
+					<span style="text-align: center;float: right;">KEPALA UNIT PENGELOLA<br> PENANAMAN MODAL DAN<br> PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
 				</p>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
+				<br><br><br><br><br><br><br><br><br><br>
 				<p style="float: right;padding-right: 40px;">...........................................<br>
 				NIP. ....................................</p><br>
-				<br>
-				<br>
-				<br>
-				<p style="float: right;"><span style="font-weight: bold;">Lampiran III</span>	:<br>
-					Keputusan Kepala Unit Pengelola Penanaman<br>
-					Modal dan Pelayanan Terpadu Satu Pintu<br>
-					Kecamatan ........................<br>
-					Nomor	: ......................................<br>
-					Tanggal	: .... ................... .....<br>
-				</p>
+				<br><br><br><br><br><br>		
 			</div>
 		</div>
-		<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:24px;">
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
+		<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;page-break-before: always;">
+			<p style="float: right;font-size: 10pt;">Lampiran III	:<br>
+				Keputusan Kepala Unit Pengelola Penanaman<br>
+				Modal dan Pelayanan Terpadu Satu Pintu<br>
+				Kecamatan ........................<br>
+				Nomor	: ......................................<br>
+				Tanggal	: .... ................... .....<br>
+			</p>
+			<br><br><br><br><br><br><br><br>
 			<center>
 				<p><strong>SITUASI</strong></p>
 				<div style="border:solid 1px #555;width: 80%;height: 300px;line-height: 20;">Gambar</div>
 			</center>
 			<div>
-				<br>
-				<br>
-				<p style="float: right;">Ditetapkan di Jakarta <br>
+				<br><br>
+				<p style="float: right;font-size: 12pt;">Ditetapkan di Jakarta <br>
 					pada tanggal ...... ..................... …… <br><br>
-					<span style="text-align: center;">KEPALA UNIT PENGELOLA<br> PENANAMAN MODAL DAN<br> PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
+					<span style="text-align: center;float: right;">KEPALA UNIT PENGELOLA<br> PENANAMAN MODAL DAN<br> PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
 				</p>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
+				<br><br><br><br><br><br><br><br><br><br><br>
 				<p style="float: right;padding-right: 40px;">...........................................<br>
 				NIP. ....................................</p><br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<p style="float: right;"><span style="font-weight: bold;">Lampiran IV</span>	:<br>
-					Keputusan Kepala Unit Pengelola Penanaman<br>
-					Modal dan Pelayanan Terpadu Satu Pintu<br>
-					Kecamatan ........................<br>
-					Nomor	: ......................................<br>
-					Tanggal	: .... ................... .....<br>
-				</p>
+				<br><br><br><br>
 			</div>
 		</div>
 
-		<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:24px;">
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
+		<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;page-break-before: always;">
+			<p style="float: right;font-size: 10pt;">Lampiran IV:<br>
+				Keputusan Kepala Unit Pengelola Penanaman<br>
+				Modal dan Pelayanan Terpadu Satu Pintu<br>
+				Kecamatan ........................<br>
+				Nomor	: ......................................<br>
+				Tanggal	: .... ................... .....<br>
+			</p>
+			<br><br><br><br><br><br><br><br>
 			<center>
 				<p><strong>TAMPAK DEPAN</strong></p>
 				<div style="border:solid 1px #555;width: 80%;height: 300px;line-height: 20;">Gambar</div>
 			</center>
 			<div>
-				<br>
-				<br>
-				<p style="float: right;">Ditetapkan di Jakarta <br>
+				<br><br>
+				<p style="float: right;font-size: 12pt;">Ditetapkan di Jakarta <br>
 					pada tanggal ...... ..................... …… <br><br>
-					<span style="text-align: center;">KEPALA UNIT PENGELOLA<br> PENANAMAN MODAL DAN<br> PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
+					<span style="text-align: center;float: right;">KEPALA UNIT PENGELOLA<br> PENANAMAN MODAL DAN<br> PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
 				</p>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
+				<br><br><br><br><br><br><br><br><br><br>
 				<p style="float: right;padding-right: 40px;">...........................................<br>
 				NIP. ....................................</p><br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
-				<p style="float: right;"><span style="font-weight: bold;">Lampiran V</span>	:<br>
-					Keputusan Kepala Unit Pengelola Penanaman<br>
-					Modal dan Pelayanan Terpadu Satu Pintu<br>
-					Kecamatan ........................<br>
-					Nomor	: ......................................<br>
-					Tanggal	: .... ................... .....<br>
-				</p>
+				<br><br><br><br><br><br>		
 			</div>
 		</div>
 
-		<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:24px;">
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<center><p><strong>TABEL PERHITUNGAN INTENSITAS BANGUNAN</strong></p>
+		<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;page-break-before: always;">
+			<p style="float: right;font-size: 10pt;">Lampiran V	:<br>
+				Keputusan Kepala Unit Pengelola Penanaman<br>
+				Modal dan Pelayanan Terpadu Satu Pintu<br>
+				Kecamatan ........................<br>
+				Nomor	: ......................................<br>
+				Tanggal	: .... ................... .....<br>
+			</p>
+			<br><br><br><br><br><br><br><br>
+			<center><p style="display: inline-flex;"><strong>TABEL PERHITUNGAN INTENSITAS BANGUNAN</strong></p>
 				<table width="636">
 					<tbody>
 						<tr>
@@ -1340,79 +1285,59 @@
 							<td width="198"></td>
 						</tr>
 					</tbody>
-				</table></center>
-				<div>
-					<p style="float: right;">Ditetapkan di Jakarta <br>
-						pada tanggal ...... ..................... …… <br><br>
-						<span style="text-align: center;">KEPALA UNIT PENGELOLA<br> PENANAMAN MODAL DAN<br> PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
-					</p>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<p style="float: right;padding-right: 40px;">...........................................<br>
-					NIP. ....................................</p><br>
-					<br>
-					<br>
-					<br>
-					<p style="float: right;"><span style="font-weight: bold;">Lampiran VI</span>	:<br>
-						Keputusan Kepala Unit Pengelola Penanaman<br>
-						Modal dan Pelayanan Terpadu Satu Pintu<br>
-						Kecamatan ........................<br>
-						Nomor	: ......................................<br>
-						Tanggal	: .... ................... .....<br>
-					</p>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<p>Kepada pemegang dan/atau penerima Sertifikat Layak Fungsi ini, dikenakan ketentuan sebagai berikut :</p>
-					<ol style="padding-left: 16px;">
-						<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki Koefisien Dasar Hijau (KDH) hingga memenuhi ketentuan yang telah ditetapkan paling lambat dalam 3 bulan.</li>
-						<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki sumur resapan yang sesuai dengan ketentuan yang tercantum pada Peraturan Gubernur Provinsi DKI Jakarta Nomor 20 Tahun 2013 paling lambat dalam 3 bulan.</li>
-						<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki Kondisi Pertandaan Toko hingga memenuhi ketentuan yang telah ditetapkan paling lambat dalam 3  bulan.</li>
-						<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki Drainase Sekeliling Tapak hingga memenuhi ketentuan yang telah ditetapkan paling lambat dalam 3  bulan.</li>
-						<li style="text-align:justify;">Bahwa harus sudah memiliki Izin Mendirikan Bangunan paling lambat dalam 12 bulan.</li>
-						<li style="text-align:justify;">Bahwa harus sudah memiliki dokumen Rekomendasi dari Dinas Penanggulangan Kebakaran dan Penyelamatan paling lambat dalam 6 bulan.</li>
-						<li style="text-align:justify;">Bahwa harus sudah memiliki dokumen Rekomendasi dari Dinas Tenaga Kerja dan Transmigrasi paling lambat dalam 6 bulan.</li>
-						<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki Fasilitas Penanggulangan Kebakaran hingga memenuhi ketentuan yang telah ditetapkan paling lambat dalam 3  bulan.</li>
-						<li style="text-align:justify;">Bahwa harus sudah memiliki Asuransi Toko paling lambat dalam 12 bulan.</li>
-						<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki Ketersediaan Air Bersih hingga memenuhi ketentuan yang telah ditetapkan paling lambat dalam 3  bulan.</li>
-						<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki Pengelolaan Air Kotor/Limbah hingga memenuhi ketentuan yang telah ditetapkan paling lambat dalam 3  bulan.</li>
-						<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki Pengelolaan Sampah hingga memenuhi ketentuan yang telah ditetapkan paling lambat dalam 3  bulan.</li>
-						<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki Ketersediaan Listrik hingga memenuhi ketentuan yang telah ditetapkan paling lambat dalam 3  bulan.</li>
-						<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki Ketersediaan Toilet hingga memenuhi ketentuan yang telah ditetapkan paling lambat dalam 3  bulan.</li>
-						<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki Ketersediaan Parkir yang sesuai dengan ketentuan yang tercantum pada Peraturan Presiden  Republik Indonesia Nomor  112 Tahun 2007 tentang Penataan dan Pembinaan Pasar Tradisional Pusat Perbelanjaan dan Toko Modern paling lambat dalam 3 bulan.</li>
-						<li style="text-align:justify;">Bahwa penetapan tenggat waktu terhitung sejak Surat Keputusan Sertifikat Layak Fungsi ini diberikan kepada orang yang mengajukan permohonan dan tertanda pada Surat Keputusan Sertifikat Layak Fungsi ini.</li>
-						<li style="text-align:justify;">Terhadap tidak dipenuhi ketentuan-ketentuan sebagaimana tersebut di atas maka Pihak Berwenang, dalam hal ini PMPTSP DKI Jakarta, berhak mencabut Sertifikat Layak Fungsi ini.</li>
-					</ol>
-					<br>
-					<br>
-					<p style="float: right;">Ditetapkan di Jakarta <br>
-						pada tanggal ...... ..................... …… <br><br>
-						<span style="text-align: center;">KEPALA UNIT PENGELOLA<br> PENANAMAN MODAL DAN<br> PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
-					</p>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<p style="float: right;padding-right: 40px;">...........................................<br>
-					NIP. ....................................</p><br>
-				</div>
+				</table>
+			</center>
+			<div>
+				<p style="float: right;font-size: 12pt;">Ditetapkan di Jakarta <br>
+					pada tanggal ...... ..................... …… <br>
+					<span style="text-align: center;float: right;margin-top: 12px;">KEPALA UNIT PENGELOLA<br> PENANAMAN MODAL DAN<br> PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
+				</p>
+				<br><br><br><br><br><br><br><br><br><br>
+				<p style="float: right;padding-right: 40px;">...........................................<br>
+				NIP. ....................................</p><br>
 			</div>
 		</div>
-	</body>
-	</html>
+		<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;page-break-before: always;">
+			<img src="../../../assets/img/Picture.png" style="width: 100%;">
+		</div>
+		<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;page-break-before: always;">
+			<p style="float: right;font-size: 10pt;">Lampiran VI	:<br>
+				Keputusan Kepala Unit Pengelola Penanaman<br>
+				Modal dan Pelayanan Terpadu Satu Pintu<br>
+				Kecamatan ........................<br>
+				Nomor	: ......................................<br>
+				Tanggal	: .... ................... .....<br>
+			</p>
+			<br><br><br><br><br><br><br>
+			<p style="font-size: 12pt;">Kepada pemegang dan/atau penerima Sertifikat Layak Fungsi ini, dikenakan ketentuan sebagai berikut :</p>
+			<ol style="padding-left: 16px;font-size: 12pt;">
+				<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki Koefisien Dasar Hijau (KDH) hingga memenuhi ketentuan yang telah ditetapkan paling lambat dalam 3 bulan.</li>
+				<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki sumur resapan yang sesuai dengan ketentuan yang tercantum pada Peraturan Gubernur Provinsi DKI Jakarta Nomor 20 Tahun 2013 paling lambat dalam 3 bulan.</li>
+				<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki Kondisi Pertandaan Toko hingga memenuhi ketentuan yang telah ditetapkan paling lambat dalam 3  bulan.</li>
+				<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki Drainase Sekeliling Tapak hingga memenuhi ketentuan yang telah ditetapkan paling lambat dalam 3  bulan.</li>
+				<li style="text-align:justify;">Bahwa harus sudah memiliki Izin Mendirikan Bangunan paling lambat dalam 12 bulan.</li>
+				<li style="text-align:justify;">Bahwa harus sudah memiliki dokumen Rekomendasi dari Dinas Penanggulangan Kebakaran dan Penyelamatan paling lambat dalam 6 bulan.</li>
+				<li style="text-align:justify;">Bahwa harus sudah memiliki dokumen Rekomendasi dari Dinas Tenaga Kerja dan Transmigrasi paling lambat dalam 6 bulan.</li>
+				<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki Fasilitas Penanggulangan Kebakaran hingga memenuhi ketentuan yang telah ditetapkan paling lambat dalam 3  bulan.</li>
+				<li style="text-align:justify;">Bahwa harus sudah memiliki Asuransi Toko paling lambat dalam 12 bulan.</li>
+				<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki Ketersediaan Air Bersih hingga memenuhi ketentuan yang telah ditetapkan paling lambat dalam 3  bulan.</li>
+				<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki Pengelolaan Air Kotor/Limbah hingga memenuhi ketentuan yang telah ditetapkan paling lambat dalam 3  bulan.</li>
+				<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki Pengelolaan Sampah hingga memenuhi ketentuan yang telah ditetapkan paling lambat dalam 3  bulan.</li>
+				<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki Ketersediaan Listrik hingga memenuhi ketentuan yang telah ditetapkan paling lambat dalam 3  bulan.</li>
+				<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki Ketersediaan Toilet hingga memenuhi ketentuan yang telah ditetapkan paling lambat dalam 3  bulan.</li>
+				<li style="text-align:justify;">Bahwa harus menyediakan dan atau memperbaiki Ketersediaan Parkir yang sesuai dengan ketentuan yang tercantum pada Peraturan Presiden  Republik Indonesia Nomor  112 Tahun 2007 tentang Penataan dan Pembinaan Pasar Tradisional Pusat Perbelanjaan dan Toko Modern paling lambat dalam 3 bulan.</li>
+				<li style="text-align:justify;">Bahwa penetapan tenggat waktu terhitung sejak Surat Keputusan Sertifikat Layak Fungsi ini diberikan kepada orang yang mengajukan permohonan dan tertanda pada Surat Keputusan Sertifikat Layak Fungsi ini.</li>
+				<li style="text-align:justify;">Terhadap tidak dipenuhi ketentuan-ketentuan sebagaimana tersebut di atas maka Pihak Berwenang, dalam hal ini PMPTSP DKI Jakarta, berhak mencabut Sertifikat Layak Fungsi ini.</li>
+			</ol>
+			<br><br>
+			<p style="float: right;font-size: 12pt;">Ditetapkan di Jakarta <br>
+				pada tanggal ...... ..................... …… <br><br>
+				<span style="text-align: center;float: right;">KEPALA UNIT PENGELOLA<br> PENANAMAN MODAL DAN<br> PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
+			</p>
+			<br><br><br><br><br><br><br><br><br><br>
+			<p style="float: right;padding-right: 40px;">...........................................<br>
+			NIP. ....................................</p><br>
+		</div>
+	</div>
+</body>
+</html>
