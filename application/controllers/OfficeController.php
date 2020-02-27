@@ -421,6 +421,21 @@ class OfficeController extends CI_Controller {
     			$tcpdf->AddPage();
 		        $html = $this->load->view('pages/suratsk_slf',$data, true);
 		        $tcpdf->WriteHTML($html);
+    			$tcpdf->AddPage();
+		        $html = $this->load->view('pages/lampiran1',$data, true);
+		        $tcpdf->WriteHTML($html);
+    			$tcpdf->AddPage();
+		        $html = $this->load->view('pages/lampiran2',$data, true);
+		        $tcpdf->WriteHTML($html);
+    			$tcpdf->AddPage();
+		        $html = $this->load->view('pages/lampiran3',$data, true);
+		        $tcpdf->WriteHTML($html);
+    			$tcpdf->AddPage();
+		        $html = $this->load->view('pages/lampiran4slf',$data, true);
+		        $tcpdf->WriteHTML($html);
+    			$tcpdf->AddPage();
+		        $html = $this->load->view('pages/lampiran5slf',$data, true);
+		        $tcpdf->WriteHTML($html);
     			$info = array(
 		        	'Name' => 'DPMPTSP DKI JAKARTA',
 		        	'Location' => 'DPMPTSP DKI JAKARTA',
