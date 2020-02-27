@@ -376,7 +376,7 @@ class OfficeController extends CI_Controller {
 				$data['janji'] = $this->oc->cekSurat($id);
 				$data['kewajiban'] = $this->oc->detailKewajiban();
 				$data['larangan'] = $this->oc->detailLarangan();
-				$data['bawa'] = $this->oc->cekAdministrasi($id);
+				$data['bawa'] = $this->oc->detailPermohonanAdminDinas($id);
     			$tcpdf->AddPage();
 		        $html = $this->load->view('pages/suratsk',$data, true);
 		        $tcpdf->WriteHTML($html);
@@ -393,6 +393,46 @@ class OfficeController extends CI_Controller {
       			$tcpdf->setSignatureAppearance(117, 201, 60, 18); 
     			$tcpdf->AddPage();
 		        $html = $this->load->view('pages/bawaberkas',$data, true);
+		        $tcpdf->WriteHTML($html);
+      			// return var_dump($html);
+				$tcpdf->Output($filename, 'D'); 
+				// ob_end_clean();
+		    }
+		}
+		
+	}
+	function downloadpdfslf($id)
+	{
+		
+		$tcpdf = new setasign\Fpdi\Tcpdf\Fpdi;
+		if ($id == null) {
+        	$html = $this->load->view('errors/error_404',[], true);
+        	$tcpdf->WriteHTML($html);
+			return $tcpdf->Output('test.pdf','D');
+		}else{
+		$newP12 = openssl_pkcs12_read(file_get_contents(site_url('assets/sertifikat/JAKEVO.p12')), $results, "AJ102938++!");
+	    	if ($newP12){
+	    		$filename = str_replace(' ','','SuratSKSLF' . date('YmdHis') . '.pdf'); 
+				$data['datauser'] = $this->oc->cekPemohon($id);
+				$data['janji'] = $this->oc->cekSurat($id);
+				$data['kewajiban'] = $this->oc->detailKewajiban();
+				$data['larangan'] = $this->oc->detailLarangan();
+				$data['bawa'] = $this->oc->detailPermohonanAdminDinas($id);
+    			$tcpdf->AddPage();
+		        $html = $this->load->view('pages/suratsk_slf',$data, true);
+		        $tcpdf->WriteHTML($html);
+    			$info = array(
+		        	'Name' => 'DPMPTSP DKI JAKARTA',
+		        	'Location' => 'DPMPTSP DKI JAKARTA',
+		        	'Reason' => 'Verified Berkas',
+		        	'ContactInfo' => site_url('/'),
+    			);    		
+    			$taut='https://perizinan.jakarta.go.id/'; 
+				$tcpdf->write2DBarcode($taut, 'QRCODE,H', 80,30,20,20);
+      			$tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info); 
+      			$tcpdf->setSignatureAppearance(117, 201, 60, 18); 
+    			$tcpdf->AddPage();
+		        $html = $this->load->view('pages/bawaberkasslf',$data, true);
 		        $tcpdf->WriteHTML($html);
       			// return var_dump($html);
 				$tcpdf->Output($filename, 'D'); 

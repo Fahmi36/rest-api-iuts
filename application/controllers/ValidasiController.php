@@ -104,7 +104,7 @@ class ValidasiController extends CI_Controller {
         $alamat = $_SERVER['HTTP_REFERER'];
         $hasil = $this->getAddresses_www($alamat);
         if ($hasil == '45.13.133.94' OR $hasil == '127.0.0.1') {
-            $json = $this->$urlnya();
+            $json = $this->$urlnya($hasil);
         }else{
             $json = $this->returnResultCustom(false,'Tidak Boleh Akses');
         }

@@ -16,11 +16,11 @@
 						<br>KECAMATAN ……………………
 					</h4>
 				</center>
-				<table style="width:100%;padding:10px;margin-top:10px;word-break:break-all;word-wrap:break-word;">
+				<table style="width:100%;padding:10px;font-size:12pt;margin-top:10px;word-break:break-all;word-wrap:break-word;">
 					<tr>
 						<td colspan="3">
 							<center>
-								<h4 style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:14pt;line-height:1.2;margin-bottom: 20px;">IZIN USAHA TOKO SWALAYAN <br>
+								<h4 style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.2;margin-bottom: 20px;">IZIN USAHA TOKO SWALAYAN <br>
 									<span style="font-weight: 400;">NOMOR .....................................</span><br>
 								</h4>
 							</center>
@@ -40,13 +40,13 @@
 							<td>Nama Usaha</td><td style="width: 20px">:</td><td><?=$data->nama_usaha?> </td>
 						</tr>
 						<tr>
-							<td>Alamat Usaha</td><td style="width: 20px">:</td><td><?=$data->alamat?> </td>
+							<td>Alamat Usaha</td><td style="width: 20px">:</td><td><?=$data->alamat_usaha?> </td>
 						</tr>
 						<tr>
 							<td>Nomor Telepon/Fax</td><td style="width: 20px">:</td><td><?=$data->no_hp?> </td>
 						</tr>
 						<tr>
-							<td>Luas Lantai Usaha</td><td style="width: 20px">:</td><td><?=$data->luas_lantai?> </td>
+							<td>Luas Lantai Usaha</td><td style="width: 20px">:</td><td><?=$data->luas_tapak?> </td>
 						</tr>
 						<tr>
 							<td>Kegiatan Usaha</td><td style="width: 20px">:</td><td><b>Toko Swalayan</b> </td>
@@ -110,47 +110,6 @@
 					<?php endforeach ?>
 
 				</ol>
-			</div>
-			<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:10pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:15px;page-break-before: always;">
-				<div style="float: right;">
-					<p style="float: right;"><span style="font-weight: bold;">Lampiran I</span>	:<br>
-						Keputusan Kepala Unit Pengelola Penanaman<br>
-						Modal dan Pelayanan Terpadu Satu Pintu<br>
-						Kecamatan ........................<br>
-						Nomor	: ......................................<br>
-						Tanggal	: .... ................... .....<br>
-					</p>
-				</div>
-			</div>
-			<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:24px;display: inline-block;">
-				<p>Kepada pemegang dan/atau penerima Izin Usaha Toko Swalayan ini, dikenakan ketentuan untuk melengkapi berkas yang kurang sebagai berikut :</p>
-				<ol style="padding-left: 16px;">
-					<li style="text-align:justify;">Bahwa harus sudah memiliki Surat Keterangan Persetujuan Warga Sekitar paling lambat dalam 3 atau 6 bulan, disesuaikan dengan data yang pemohon ajukan pada persyaratan Persetujuan Warga Sekitar.</li>
-					<li style="text-align:justify;">Bahwa harus sudah memiliki Surat Keterangan Rekomendasi dari UMKM paling lambat dalam 1 atau 3 bulan, disesuaikan dengan data yang pemohon ajukan pada persyaratan Ada Rekomendasi UMKM.</li>
-					<li style="text-align:justify;">Bahwa harus sudah memiliki Dokumen Kajian Sosial Ekonomi paling lambat dalam 3 bulan.</li>
-					<li style="text-align:justify;">Bahwa penetapan tenggat waktu terhitung sejak Surat Keputusan Izin Usaha Toko Swalayan ini diberikan kepada orang yang mengajukan permohonan dan tertanda pada Surat Keputusan Izin Usaha Toko Swalayan ini.</li>
-					<li style="text-align:justify;">Terhadap tidak dipenuhi ketentuan-ketentuan sebagaimana tersebut di atas maka Pihak Berwenang, dalam hal ini PMPTSP DKI Jakarta, berhak mencabut Surat Keputusan Izin Usaha Toko Swalayan ini.</li>
-				</ol>
-			</div>
-			<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;">
-				<div style="float: right;">
-					<p style="float: right;">Ditetapkan di Jakarta <br>
-						pada tanggal ...... ..................... …… <br><br>
-						<span style="text-align: center;float: right;">KEPALA UNIT PENGELOLA PENANAMAN <br> MODAL DAN PELAYANAN TERPADU SATU<br>PINTU<br>Kecamatan ………………………..</span><br>
-					</p>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<p style="float: right;padding-right: 40px;">...........................................<br>
-					NIP. ....................................</p>
-				</div>
 			</div>
 		</div>
 
