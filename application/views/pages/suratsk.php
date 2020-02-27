@@ -28,32 +28,32 @@
 					</tr>
 					<?php foreach ($datauser->result() as $data): ?>		
 						<tr>
-							<td>Nama Perusahaan</td><td style="width: 20px">:</td><td><?=$data->nama_badan_usaha?></td>
+							<td>Nama Perusahaan</td><td>:</td><td><?=$data->nama_badan_usaha?></td>
 						</tr>
 						<tr>
-							<td>Nama penanggung Jawab dan Jabatan</td><td style="width: 20px">:</td><td><?=$data->nama?> </td>
+							<td>Nama penanggung Jawab dan Jabatan</td><td>:</td><td><?=$data->nama?> </td>
 						</tr>
 						<tr>
-							<td>Alamat Perusahaan</td><td style="width: 20px">:</td><td><?=$data->alamat_perusahaan?> </td>
+							<td>Alamat Perusahaan</td><td>:</td><td><?=$data->alamat_perusahaan?> </td>
 						</tr>
 						<tr>
-							<td>Nama Usaha</td><td style="width: 20px">:</td><td><?=$data->nama_usaha?> </td>
+							<td>Nama Usaha</td><td>:</td><td><?=$data->nama_toko?> </td>
 						</tr>
 						<tr>
-							<td>Alamat Usaha</td><td style="width: 20px">:</td><td><?=$data->alamat_usaha?> </td>
+							<td>Alamat Usaha</td><td>:</td><td><?=$data->alamat_usaha?> </td>
 						</tr>
 						<tr>
-							<td>Nomor Telepon/Fax</td><td style="width: 20px">:</td><td><?=$data->no_hp?> </td>
+							<td>Nomor Telepon/Fax</td><td>:</td><td><?=$data->no_hp?> </td>
 						</tr>
 						<tr>
-							<td>Luas Lantai Usaha</td><td style="width: 20px">:</td><td><?=$data->luas_tapak?> </td>
+							<td>Luas Lantai Usaha</td><td>:</td><td><?=$data->luas_tapak?> </td>
 						</tr>
 						<tr>
-							<td>Kegiatan Usaha</td><td style="width: 20px">:</td><td><b>Toko Swalayan</b> </td>
+							<td>Kegiatan Usaha</td><td>:</td><td><b>Toko Swalayan</b> </td>
 						</tr>
-						<tr>
-							<td>Barang/Jasa Dagangan Utama</td><td style="width: 20px">:</td><td><?=$data->jasa?> </td>
-						</tr>
+						<!-- <tr>
+							<td>Barang/Jasa Dagangan Utama</td><td>:</td><td><?=$data->jasa?> </td>
+						</tr> -->
 					<?php endforeach ?>
 				</table>
 				<!-- Buat Pemohon baru -->
