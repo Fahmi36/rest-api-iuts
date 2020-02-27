@@ -16,13 +16,14 @@ class OfficeModel extends CI_Model {
 	}
     function cekPemohon($idbangun)
     {
-        $this->db->select('cek_izin.code,cek_izin.created_at,cek_izin.kode_sublok,cek_izin.zona,cek_izin.lat,cek_izin.lon,cek_izin.alamat_usaha,data_iuts.njop,data_iuts.nama_toko,data_iuts.nama_badan_usaha,pemohon_iuts.nama,pemohon_iuts.foto_ktp,pemohon_iuts.foto_npwp,data_iuts.nopd,,data_slf.luas_lahan,data_slf.nopd_bangunan,data_iuts.status_bangunan,data_slf.luas_tapak,data_slf.jumlah_lantai,data_slf.luas_total_bangunan,data_slf.tinggi_bangunan,data_slf.peruntukan_bangunan,data_slf.no_imb,pemohon_iuts.nama,pemohon_iuts.nama_perusahaan,pemohon_iuts.nik,pemohon_iuts.email,pemohon_iuts.npwp,pemohon_iuts.jabatan,pemohon_iuts.nib,pemohon_iuts.alamat_perusahaan,pemohon_iuts.jenis_pemohon,pemohon_iuts.no_hp,kdh_minimum.nama as id_kdh_minimum,kondisi_kdh.nama as id_kondisi_kdh,volume_sumur.nama as id_volume_sumur,kondisi_pertandaan.nama as id_pertandaan_toko, kondisi_sumur.nama as id_kondisi_sumur,kondisi_drainase.nama as id_drainase,izin_damkar.nama as id_izin_damkar,izin_tenaga_kerja.nama as id_tenaga_kerja,izin_imb.nama as id_imb,rekomendasi_slf.nama as id_layak,fasilitas_damkar.nama as id_penanggulangan_kebakaran,asuransi_toko.nama as id_asuransi,kelayakan_gedung.nama as id_renovasi,ketersedian_air.nama as id_bersih,pengelola_limbah.nama as id_limbah,pengelola_sampah.nama as id_sampah,ketersedian_listrik.nama as id_listrik,ketersedian_toilet.nama as id_toilet,kondisi_parkir.nama as id_parkir,pemutakhiran_pbb.nama as id_pem_pbb,rekomen_umkm.nama as id_umkm,tata_ruang.nama as id_tata_ruang,kajian_sostek.nama as id_kasostek,asal_karyawan.nama as asal_karyawan,setuju_warga_sekitar.nama as id_warga,keterlibatan_umkm.nama as id_umkm,kelompok_usaha.nama as kelompok, data_iuts.omset , data_slf.status_milik, kondisi_iuts.jml_karyawan,kondisi_iuts.jml_atm,kondisi_iuts.jml_pengunjung,kondisi_slf.sumber_air');
+        $this->db->select('cek_izin.code,cek_izin.created_at,cek_izin.kode_sublok,cek_izin.zona,cek_izin.lat,cek_izin.lon,cek_izin.alamat_usaha,data_iuts.njop,data_iuts.nama_toko,data_iuts.nama_badan_usaha,pemohon_iuts.nama,pemohon_iuts.foto_ktp,pemohon_iuts.foto_npwp,data_iuts.nopd,,data_slf.luas_lahan,data_slf.nopd_bangunan,data_iuts.status_bangunan,data_slf.luas_tapak,data_slf.jumlah_lantai,data_slf.luas_total_bangunan,data_slf.tinggi_bangunan,data_slf.peruntukan_bangunan,data_slf.no_imb,pemohon_iuts.nama,pemohon_iuts.nama_perusahaan,pemohon_iuts.nik,pemohon_iuts.email,pemohon_iuts.npwp,pemohon_iuts.jabatan,pemohon_iuts.nib,pemohon_iuts.alamat_perusahaan,pemohon_iuts.jenis_pemohon,pemohon_iuts.no_hp,kdh_minimum.nama as id_kdh_minimum,kondisi_kdh.nama as id_kondisi_kdh,volume_sumur.nama as id_volume_sumur,kondisi_pertandaan.nama as id_pertandaan_toko, kondisi_sumur.nama as id_kondisi_sumur,kondisi_drainase.nama as id_drainase,izin_damkar.nama as id_izin_damkar,izin_tenaga_kerja.nama as id_tenaga_kerja,izin_imb.nama as id_imb,rekomendasi_slf.nama as id_layak,fasilitas_damkar.nama as id_penanggulangan_kebakaran,asuransi_toko.nama as id_asuransi,kelayakan_gedung.nama as id_renovasi,ketersedian_air.nama as id_bersih,pengelola_limbah.nama as id_limbah,pengelola_sampah.nama as id_sampah,ketersedian_listrik.nama as id_listrik,ketersedian_toilet.nama as id_toilet,kondisi_parkir.nama as id_parkir,pemutakhiran_pbb.nama as id_pem_pbb,rekomen_umkm.nama as id_rek_umkm,tata_ruang.nama as id_tata_ruang,kajian_sostek.nama as id_kasostek,asal_karyawan.nama as asal_karyawan,setuju_warga_sekitar.nama as id_warga,keterlibatan_umkm.nama as id_umkm,kelompok_usaha.nama as kelompok, data_iuts.omset , data_slf.status_milik, kondisi_iuts.jml_karyawan,kondisi_iuts.jml_atm,kondisi_iuts.jml_pengunjung,kondisi_slf.sumber_air, jalan_eksisting.nama as id_jalan_eksis, penggunaan_lahan.nama as id_penglahan, jarak_pasar.nama as id_jarak_pasar, jarak_usaha.nama as id_jarak_usaha');
         $this->db->from('cek_izin');
         $this->db->join('data_iuts', 'data_iuts.id_iuts = cek_izin.id_iuts', 'LEFT');
         $this->db->join('data_slf', 'data_slf.id_slf = cek_izin.id_slf', 'LEFT');
         $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = cek_izin.id_pemohon', 'INNER');
         $this->db->join('kondisi_slf', 'kondisi_slf.id_slf = data_slf.id_slf', 'LEFT');
         $this->db->join('kondisi_iuts', 'kondisi_iuts.id_iuts = data_iuts.id_iuts', 'LEFT');
+        $this->db->join('admin_teknis', 'admin_teknis.id_izin = cek_izin.id_izin', 'left');
 
         $this->db->join('kdh_minimum', 'kdh_minimum.id = kondisi_slf.id_kdh_minimum', 'left');
         $this->db->join('kondisi_kdh', 'kondisi_kdh.id = kondisi_slf.id_kondisi_kdh', 'left');
@@ -42,6 +43,7 @@ class OfficeModel extends CI_Model {
         $this->db->join('pengelola_sampah', 'pengelola_sampah.id = kondisi_slf.id_sampah', 'left');
         $this->db->join('ketersedian_listrik', 'ketersedian_listrik.id = kondisi_slf.id_listrik', 'left');
         $this->db->join('ketersedian_toilet', 'ketersedian_toilet.id = kondisi_slf.id_toilet', 'left');
+        $this->db->join('jalan_eksisting', 'jalan_eksisting.id = kondisi_slf.id_jalan_eksis', 'left');
         $this->db->join('kondisi_parkir', 'kondisi_parkir.id = kondisi_slf.id_parkir', 'left');
 
         $this->db->join('pemutakhiran_pbb', 'pemutakhiran_pbb.id = kondisi_iuts.id_pem_pbb', 'left');
@@ -52,6 +54,10 @@ class OfficeModel extends CI_Model {
         $this->db->join('kajian_sostek', 'kajian_sostek.id = kondisi_iuts.id_kasostek', 'left');
         $this->db->join('asal_karyawan', 'asal_karyawan.id = kondisi_iuts.asal_karyawan', 'left');
         $this->db->join('setuju_warga_sekitar', 'setuju_warga_sekitar.id = kondisi_iuts.id_warga', 'left');
+
+        $this->db->join('jarak_pasar', 'jarak_pasar.id = admin_teknis.id_pasar', 'left');
+        $this->db->join('jarak_usaha', 'jarak_usaha.id = admin_teknis.id_jarak', 'left');
+        $this->db->join('penggunaan_lahan', 'penggunaan_lahan.id = admin_teknis.id_lahan', 'left');
         $this->db->where('cek_izin.id_izin', $idbangun);
         $this->db->group_by('cek_izin.code');
         $q = $this->db->get();
