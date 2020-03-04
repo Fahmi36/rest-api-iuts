@@ -12,7 +12,7 @@
 				Nomor	: ......................................<br>
 				Tanggal	: .... ................... .....<br>
 			</p>
-			<br><br><br><br><br><br><br>
+			<br><br><br>
 			<p style="font-size: 12pt;">Kepada pemegang dan/atau penerima Sertifikat Layak Fungsi ini, dikenakan ketentuan sebagai berikut :</p>
 	</div>
 	<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:24px;display: inline-block;">
@@ -75,13 +75,12 @@
 			<?php endforeach ?>
 				<li style="text-align:justify;">Bahwa penetapan tenggat waktu terhitung sejak Surat Keputusan Sertifikat Layak Fungsi ini diberikan kepada orang yang mengajukan permohonan dan tertanda pada Surat Keputusan Sertifikat Layak Fungsi ini.</li>
 				<li style="text-align:justify;">Terhadap tidak dipenuhi ketentuan-ketentuan sebagaimana tersebut di atas maka Pihak Berwenang, dalam hal ini PMPTSP DKI Jakarta, berhak mencabut Sertifikat Layak Fungsi ini.</li>
-			
 		</ol>
 	</div>
-	<br><br>
+	<br>
 			<p align="right" style="text-align:left;float: right;font-size: 12pt;">Ditetapkan di Jakarta </p>
 			<p align="right" style="text-align:left;float: right;font-size: 12pt;">pada tanggal ..................... </p>
-			<p align="right"><span align="right" style="text-align: center;float: right;">KEPALA UNIT PENGELOLA PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
+			<p><span align="right" style="text-align: center;float: right;">KEPALA UNIT PENGELOLA PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
 			</p>
 			<br><br><br><br><br><br><br><br><br><br>
 			<p align="right" style="float: right;padding-right: 40px;">...........................................<br>

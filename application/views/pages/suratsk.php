@@ -8,7 +8,7 @@
 		<div style="padding: 20px 20px 0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:15px;border-radius: 15px;">
 			<div style="margin-top:10px!important;padding:10px;margin-top:10px;">
 				<center align="center">
-					<img class="CToWUd" height="52" src="<?=base_url('assets/img/logopemprov.png')?>" style="width: 100px;height: 100px;margin-top: -40px;">
+					<img align="center" class="CToWUd" height="52" src="<?=base_url('assets/img/logopemprov.png')?>">
 				</center>
 				<br>
 				<center>
@@ -60,12 +60,12 @@
 		</div>
 		<div align="right" style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;display: flex;">
 			<div style="width: 50%;">
-				<tcpdf method="write1DBarcode" params="<?= $data->barcode ?>" />
+				<tcpdf method="write2DBarcode" params="<?= $data->barcode ?>" />
 				</div>
 				<div style="width: 50%;float: right;">
 					<p align="right" style="text-align:left;float: right;margin: 0;">Ditetapkan di Jakarta</p>
-					<p align="right" style="text-align: left;">pada tanggal ...... ..................... …… </p>
-					<p align="right"><span style="text-align: center;float: right;margin-top: 8pt;">KEPALA UNIT PENGELOLA PENANAMAN MODAL<br> dan PELAYANAN TERPADU SATU PINTU<br>Kecamatan ………………………..</span><br>
+					<p align="right" style="text-align: left;float: right;margin: 0;">pada tanggal</p>
+					<p align="right"><span style="text-align: center;float: right;float: right;margin-top: 8pt;">KEPALA UNIT PENGELOLA PENANAMAN MODAL<br> dan PELAYANAN TERPADU SATU PINTU<br>Kecamatan ………………………..</span><br>
 					</p>
 					<br>
 					<br>
