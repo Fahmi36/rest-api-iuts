@@ -77,12 +77,20 @@
 				<li style="text-align:justify;">Terhadap tidak dipenuhi ketentuan-ketentuan sebagaimana tersebut di atas maka Pihak Berwenang, dalam hal ini PMPTSP DKI Jakarta, berhak mencabut Sertifikat Layak Fungsi ini.</li>
 		</ol>
 	</div>
-			<p align="right" style="text-align:left;float: right;font-size: 12pt;">Ditetapkan di Jakarta </p>
-			<p align="right" style="text-align:left;float: right;font-size: 12pt;">pada tanggal ..................... </p>
-			<p align="right"><span style="float: right;margin-top: 8pt;">KEPALA UNIT PENGELOLA PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
-			</p>
-			<br><br><br><br><br>
-			<p align="right" style="float: right;padding-right: 40px;">...........................................<br>
-			NIP. ....................................</p><br>
+		<div align="right" style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;display: flex;">
+			<div style="width: 50%;">
+				</div>
+				<div style="width: 50%;float: right;">
+					<p align="right" style="text-align:left;float: right;margin: 0;">Ditetapkan di Jakarta</p>
+					<p align="right" style="text-align: left;float: right;margin: 0;">Pada tanggal .... ... </p>
+					<p align="right"><span style="float: right;float: right;margin-top: 8pt;">KEPALA UNIT PENGELOLA PENANAMAN MODAL<br> dan PELAYANAN TERPADU SATU PINTU<br>Kecamatan ………………………..</span><br>
+					</p>
+					<br>
+					<br>
+					<br>
+					<p style="float: right;padding-right: 40px;">...........................................<br>
+					NIP. ....................................</p>
+				</div>
+			</div>
 </body>
 </html>

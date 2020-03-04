@@ -156,14 +156,20 @@
 					</tbody>
 				</table>
 			</center>
-			<div>
-				<p style="float: right;font-size: 12pt;">Ditetapkan di Jakarta <br>
-					pada tanggal ...... ..................... …… <br>
-					<span style="text-align: center;float: right;margin-top: 12px;">KEPALA UNIT PENGELOLA<br> PENANAMAN MODAL DAN<br> PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
-				</p>
-				<br><br><br><br><br><br><br><br><br><br>
-				<p style="float: right;padding-right: 40px;">...........................................<br>
-				NIP. ....................................</p><br>
+					<div align="right" style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;display: flex;">
+			<div style="width: 50%;">
+				</div>
+				<div style="width: 50%;float: right;">
+					<p align="right" style="text-align:left;float: right;margin: 0;">Ditetapkan di Jakarta</p>
+					<p align="right" style="text-align: left;float: right;margin: 0;">Pada tanggal .... ... </p>
+					<p align="right"><span style="float: right;float: right;margin-top: 8pt;">KEPALA UNIT PENGELOLA PENANAMAN MODAL<br> dan PELAYANAN TERPADU SATU PINTU<br>Kecamatan ………………………..</span><br>
+					</p>
+					<br>
+					<br>
+					<br>
+					<p style="float: right;padding-right: 40px;">...........................................<br>
+					NIP. ....................................</p>
+				</div>
 			</div>
 		</div>
 		<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;page-break-before: always;">

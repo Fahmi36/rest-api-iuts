@@ -35,22 +35,22 @@
 	<div style="word-break:break-word">
 		<div style="padding: 20px 20px;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:15px;border-radius: 15px;">
 			<div style="margin-top:10px!important;padding:10px;margin-top:10px;">
-				<center>
-					<img class="CToWUd" height="52" src="../../../assets/img/logopemprov.png" style="width: 100px;height: 100px;">
-				</center>
+				<div align="center">
+					<img class="CToWUd" height="52" src="<?=base_url('assets/img/logopemprov.png')?>">
+				</div>
 				<br>
 				<center>
-					<h4 style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.2">UNIT PENGELOLA PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU
+					<h4 align="center" style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:14pt;line-height:1.2;">UNIT PENGELOLA PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU
 						<br>KECAMATAN ……………………
 					</h4>
 				</center>
 				<br>
 				<center>
-					<p style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.2;margin-bottom: 20px;">KEPUTUSAN KEPALA UNIT PENGELOLA PENANAMAN MODAL DAN PELAYANAN <br>
+					<p align="center" style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.2;margin-bottom: 20px;">KEPUTUSAN KEPALA UNIT PENGELOLA PENANAMAN MODAL DAN PELAYANAN <br>
 						TERPADU SATU PINTU KECAMATAN ............................<br><br>
 						NOMOR .....................................<br>
 					</p>
-					<p style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.8;margin-bottom: 20px;">TENTANG <br>
+					<p align="center" style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.8;margin-bottom: 20px;">TENTANG <br>
 						SERTIFIKAT LAYAK FUNGSI KELAS C<br>
 						DENGAN RAHMAT TUHAN YANG MAHA ESA<br>
 						KEPALA UNIT PENGELOLA PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU <br>
@@ -351,18 +351,21 @@
 						</tr>
 					</tbody>
 				</table>
-				<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;">
-					<div>
-						<p style="float: right;font-size: 12pt;">Ditetapkan di Jakarta <br>
-							pada tanggal ...... ..................... …… <br><br>
-							<span style="text-align: center;float: right;">KEPALA UNIT PENGELOLA<br> PENANAMAN MODAL DAN<br> PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
-						</p>
-						<br><br><br><br><br><br><br><br><br>
-						<p style="float: right;padding-right: 40px;">...........................................<br>
-						NIP. ....................................</p><br>
-						<br><br>
-					</div>
+						<div align="right" style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;display: flex;">
+			<div style="width: 50%;">
 				</div>
+				<div style="width: 50%;float: right;">
+					<p align="right" style="text-align:left;float: right;margin: 0;">Ditetapkan di Jakarta</p>
+					<p align="right" style="text-align: left;float: right;margin: 0;">Pada tanggal .... ... </p>
+					<p align="right"><span style="float: right;float: right;margin-top: 8pt;">KEPALA UNIT PENGELOLA PENANAMAN MODAL<br> dan PELAYANAN TERPADU SATU PINTU<br>Kecamatan ………………………..</span><br>
+					</p>
+					<br>
+					<br>
+					<br>
+					<p style="float: right;padding-right: 40px;">...........................................<br>
+					NIP. ....................................</p>
+				</div>
+			</div>
 			</div>
 		</div>
 	</div>
