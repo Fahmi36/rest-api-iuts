@@ -393,7 +393,7 @@ class OfficeController extends CI_Controller {
 		        	'ContactInfo' => site_url('/'),
     			);    		
     			$taut='https://perizinan.jakarta.go.id/'; 
-				$data['barcode'] = $tcpdf->write2DBarcode($taut, 'QRCODE,H', 80,30,20,20);
+				$data['barcode'] = $tcpdf->write2DBarcode($taut, 'QRCODE,H', 80,150,20,20);
       			$tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info); 
       			$tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG'); 
       			$tcpdf->setSignatureAppearance(117, 201, 60, 18);
@@ -432,12 +432,7 @@ class OfficeController extends CI_Controller {
 				$data['bawa'] = $this->oc->detailPermohonanAdminDinas($id);
     			$tcpdf->AddPage();
 		        $html = $this->load->view('pages/suratsk_slf',$data, true);
-		        $html .= $this->load->view('pages/lampiran1',$data, true);
-		        $html .= $this->load->view('pages/lampiran2',$data, true);
-		        $html .= $this->load->view('pages/lampiran3',$data, true);
-		        $html .= $this->load->view('pages/lampiran4slf',$data, true);
-		        $html .= $this->load->view('pages/lampiran5slf',$data, true);
-		        $html .= $this->load->view('pages/bawaberkasslf',$data, true);
+		        $tcpdf->WriteHTML($html);
     			$info = array(
 		        	'Name' => 'DPMPTSP DKI JAKARTA',
 		        	'Location' => 'DPMPTSP DKI JAKARTA',
@@ -449,6 +444,12 @@ class OfficeController extends CI_Controller {
       			$tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info);
       			$tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG');  
       			$tcpdf->setSignatureAppearance(117, 201, 60, 18);
+		        $html .= $this->load->view('pages/lampiran1',$data, true);
+		        $html .= $this->load->view('pages/lampiran2',$data, true);
+		        $html .= $this->load->view('pages/lampiran3',$data, true);
+		        $html .= $this->load->view('pages/lampiran4slf',$data, true);
+		        $html .= $this->load->view('pages/lampiran5slf',$data, true);
+		        $html .= $this->load->view('pages/bawaberkasslf',$data, true);
 		        $tcpdf->WriteHTML($html,true,false,true,false,true,false,true,false,true,false,true,false,true,false,'');
       			// return var_dump($html);
 				$tcpdf->Output($filename, 'I'); 
