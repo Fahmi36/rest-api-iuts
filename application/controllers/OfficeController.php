@@ -397,8 +397,7 @@ class OfficeController extends CI_Controller {
       			$tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info); 
       			$tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG'); 
       			$tcpdf->setSignatureAppearance(117, 201, 60, 18);
-      			$html .= '<br pagebreak="true"/>';
-		        $html .= $this->load->view('pages/klausul',$data, true);
+		        $html = $this->load->view('pages/klausul',$data, true);
 		        $tcpdf->WriteHTML($html);
 		        $html .= $this->load->view('pages/bawaberkas',$data, true);
 		        $tcpdf->WriteHTML($html,true,false,true,false,true,false,'');
