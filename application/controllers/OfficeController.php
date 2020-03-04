@@ -444,19 +444,31 @@ class OfficeController extends CI_Controller {
       			$tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info);
       			$tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG');  
       			$tcpdf->setSignatureAppearance(117, 201, 60, 18);
-      			$html .= '<br pagebreak="true"/>';
-		        $html .= $this->load->view('pages/lampiran1',$data, true);
-      			$html .= '<br pagebreak="true"/>';
-		        $html .= $this->load->view('pages/lampiran2',$data, true);
-      			$html .= '<br pagebreak="true"/>';
-		        $html .= $this->load->view('pages/lampiran3',$data, true);
-      			$html .= '<br pagebreak="true"/>';
-		        $html .= $this->load->view('pages/lampiran4slf',$data, true);
-      			$html .= '<br pagebreak="true"/>';
-		        $html .= $this->load->view('pages/lampiran5slf',$data, true);
-      			$html .= '<br pagebreak="true"/>';
-		        $html .= $this->load->view('pages/bawaberkasslf',$data, true);
-		        $tcpdf->WriteHTML($html,true,false,true,false,true,false,true,false,true,false,true,false,true,false,true,false,true,false,true,false,true,false,true,false,true,false,'');
+      			$tcpdf->AddPage();
+		        
+		        $html = $this->load->view('pages/lampiran1',$data, true);
+		        $tcpdf->WriteHTML($html);
+      			$tcpdf->AddPage();
+		        
+		        $html = $this->load->view('pages/lampiran2',$data, true);
+		        $tcpdf->WriteHTML($html);
+      			$tcpdf->AddPage();
+		        
+		        $html = $this->load->view('pages/lampiran3',$data, true);
+		        $tcpdf->WriteHTML($html);
+      			$tcpdf->AddPage();
+		        
+		        $html = $this->load->view('pages/lampiran4slf',$data, true);
+		        $tcpdf->WriteHTML($html);
+      			$tcpdf->AddPage();
+		        
+		        $html = $this->load->view('pages/lampiran5slf',$data, true);
+		        $tcpdf->WriteHTML($html);
+      			$tcpdf->AddPage();
+		        
+		        $html = $this->load->view('pages/bawaberkasslf',$data, true);
+
+		        $tcpdf->WriteHTML($html);
       			// return var_dump($html);
 				$tcpdf->Output($filename, 'I'); 
 				// ob_end_clean();
