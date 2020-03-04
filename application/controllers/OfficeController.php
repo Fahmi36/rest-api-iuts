@@ -400,7 +400,7 @@ class OfficeController extends CI_Controller {
 		        $html = $this->load->view('pages/klausul',$data, true);
 		        $tcpdf->WriteHTML($html);
 		        $html .= $this->load->view('pages/bawaberkas',$data, true);
-		        $tcpdf->WriteHTML($html,true,false,true,false,true,false,'');
+		        $tcpdf->WriteHTML($html,true,false,true,false,'');
       			// return var_dump($data['barcode']);
 				$tcpdf->Output($filename, 'I'); 
 				// ob_end_clean();
