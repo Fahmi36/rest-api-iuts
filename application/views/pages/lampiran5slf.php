@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
 		<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;page-break-before: always;">
 			<p style="float: right;font-size: 10pt;">Lampiran V	:<br>
 				Keputusan Kepala Unit Pengelola Penanaman<br>
@@ -163,3 +169,5 @@
 		<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:14px;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;page-break-before: always;">
 			<img src="../../../assets/img/Picture.png" style="width: 100%;">
 		</div>
+	</body>
+	</html>
