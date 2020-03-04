@@ -393,7 +393,7 @@ class OfficeController extends CI_Controller {
 		        	'ContactInfo' => site_url('/'),
     			);    		
     			$taut='https://perizinan.jakarta.go.id/'; 
-				$tcpdf->write2DBarcode($taut, 'QRCODE,H', 80,-100,20,20);
+				$tcpdf->write2DBarcode($taut, 'QRCODE,H', 80,0,20,20);
       			$tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info); 
       			$tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG'); 
       			$tcpdf->setSignatureAppearance(117, 201, 60, 18);
@@ -444,28 +444,16 @@ class OfficeController extends CI_Controller {
       			$tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info);
       			$tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG');  
       			$tcpdf->setSignatureAppearance(117, 201, 60, 18);
-      			$tcpdf->AddPage();
-		        
 		        $html = $this->load->view('pages/lampiran1',$data, true);
 		        $tcpdf->WriteHTML($html);
-      			$tcpdf->AddPage();
-		        
 		        $html = $this->load->view('pages/lampiran2',$data, true);
 		        $tcpdf->WriteHTML($html);
-      			$tcpdf->AddPage();
-		        
 		        $html = $this->load->view('pages/lampiran3',$data, true);
 		        $tcpdf->WriteHTML($html);
-      			$tcpdf->AddPage();
-		        
 		        $html = $this->load->view('pages/lampiran4slf',$data, true);
 		        $tcpdf->WriteHTML($html);
-      			$tcpdf->AddPage();
-		        
 		        $html = $this->load->view('pages/lampiran5slf',$data, true);
 		        $tcpdf->WriteHTML($html);
-      			$tcpdf->AddPage();
-		        
 		        $html = $this->load->view('pages/bawaberkasslf',$data, true);
 
 		        $tcpdf->WriteHTML($html);
