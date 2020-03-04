@@ -393,7 +393,7 @@ class OfficeController extends CI_Controller {
 		        	'ContactInfo' => site_url('/'),
     			);    		
     			$taut='https://perizinan.jakarta.go.id/'; 
-				$data['barcode'] = $tcpdf->write2DBarcode($taut, 'QRCODE,H', 80,40,100,10);
+				$data['barcode'] = $tcpdf->write2DBarcode($taut, 'QRCODE,H', 80,1000,10,20);
       			$tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info); 
       			$tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG'); 
       			$tcpdf->setSignatureAppearance(117, 201, 60, 18);

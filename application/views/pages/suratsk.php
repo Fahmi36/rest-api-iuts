@@ -51,12 +51,8 @@
 						<tr>
 							<td>Kegiatan Usaha</td><td>:</td><td><b>Toko Swalayan</b> </td>
 						</tr>
-						<!-- <tr>
-							<td>Barang/Jasa Dagangan Utama</td><td>:</td><td><?=$data->jasa?> </td>
-						</tr> -->
 					<?php endforeach ?>
 				</table>
-				<!-- Buat Pemohon baru -->
 				<p style="text-align:justify;font-size: 12pt;">Izin usaha ini berlaku untuk melakukan kegiatan usaha Toko Swalayan pada 1 (satu) lokasi dan wajib didaftarkan ulang setiap 5 (lima) tahun.</p>
 				<p style="text-align:justify;font-size: 12pt;">Setiap perubahan jenis barang/jasa dagangan utama dan luas lantai usaha yang digunakan, terlebih dahulu harus mendapat persetujuan tertulis dari Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu Provinsi DKI Jakarta.</p>
 				<p style="text-align:justify;font-size: 12pt;margin-bottom: 10px;">Apabila setelah Izin Usaha Toko Swalayan diterbitkan pemegang izin tidak memenuhi persyaratan sebagaimana disebutkan di atas serta tidak memenuhi klausul yang menjadi bagian dari perizinan ini, maka Izin Usaha Toko Swalayan akan ditinjau kembali.</p>
