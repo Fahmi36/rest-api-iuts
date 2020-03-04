@@ -383,8 +383,6 @@ class OfficeController extends CI_Controller {
 				$data['kewajiban'] = $this->oc->detailKewajiban();
 				$data['larangan'] = $this->oc->detailLarangan();
 				$data['bawa'] = $this->oc->detailPermohonanAdminDinas($id);
-    			$taut='https://perizinan.jakarta.go.id/'; 
-				$data['barcode'] = $tcpdf->write2DBarcode($taut, 'QRCODE,H', 80,30,20,20);
     			$tcpdf->AddPage();
 		        $html = $this->load->view('pages/suratsk',$data, true);
 		        $tcpdf->WriteHTML($html);
@@ -394,6 +392,8 @@ class OfficeController extends CI_Controller {
 		        	'Reason' => 'Verified Berkas',
 		        	'ContactInfo' => site_url('/'),
     			);    		
+    			$taut='https://perizinan.jakarta.go.id/'; 
+				$data['barcode'] = $tcpdf->write2DBarcode($taut, 'QRCODE,H', 10,40,10,10);
       			$tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info); 
       			$tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG'); 
       			$tcpdf->setSignatureAppearance(117, 201, 60, 18);

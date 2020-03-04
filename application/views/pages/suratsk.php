@@ -8,7 +8,7 @@
 		<div style="padding: 20px 20px 0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:15px;border-radius: 15px;">
 			<div style="margin-top:10px!important;padding:10px;margin-top:10px;">
 				<center>
-					<img class="CToWUd" height="52" src="<?=base_url('assets/img/logopemprov.png')?>" style="width: 100px;height: 100px;margin-top: -40px;">
+					<img align="center" class="CToWUd" height="52" src="<?=base_url('assets/img/logopemprov.png')?>" style="width: 100px;height: 100px;margin-top: -40px;">
 				</center>
 				<br>
 				<center>
@@ -67,9 +67,9 @@
 				<tcpdf method="write1DBarcode" params="<?= $data->barcode ?>" />
 				</div>
 				<div style="width: 50%;float: right;">
-					<p style="float: right;margin: 0;">Ditetapkan di Jakarta <br>
-						pada tanggal ...... ..................... …… <br>
-						<span style="text-align: right;float: right;margin-top: 8pt;">Kepala Unit Pengelola Penanaman Modal<br> dan PTSP<br>Kecamatan ………………………..</span><br>
+					<p style="text-align:left;float: right;margin: 0;">Ditetapkan di Jakarta</p>
+					<p style="text-align: left;">pada tanggal ...... ..................... …… </p>
+					<p><span style="text-align: center;float: right;margin-top: 8pt;">KEPALA UNIT PENGELOLA PENANAMAN MODAL<br> dan PELAYANAN TERPADU SATU PINTU<br>Kecamatan ………………………..</span><br>
 					</p>
 					<br>
 					<br>
