@@ -7,9 +7,9 @@
 	<div style="word-break:break-word">
 		<div style="padding: 20px 20px 0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:15px;border-radius: 15px;">
 			<div style="margin-top:10px!important;padding:10px;margin-top:10px;">
-				<center align="center">
-					<img align="center" class="CToWUd" height="52" src="<?=base_url('assets/img/logopemprov.png')?>">
-				</center>
+				<div align="center">
+					<img class="CToWUd" height="52" src="<?=base_url('assets/img/logopemprov.png')?>">
+				</div>
 				<br>
 				<center>
 					<h4 align="center" style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:14pt;line-height:1.2;">UNIT PENGELOLA PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU
@@ -60,12 +60,11 @@
 		</div>
 		<div align="right" style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;display: flex;">
 			<div style="width: 50%;">
-				<tcpdf method="write2DBarcode" params="<?= $data->barcode ?>" />
 				</div>
 				<div style="width: 50%;float: right;">
 					<p align="right" style="text-align:left;float: right;margin: 0;">Ditetapkan di Jakarta</p>
-					<p align="right" style="text-align: left;float: right;margin: 0;">pada tanggal</p>
-					<p align="right"><span style="text-align: center;float: right;float: right;margin-top: 8pt;">KEPALA UNIT PENGELOLA PENANAMAN MODAL<br> dan PELAYANAN TERPADU SATU PINTU<br>Kecamatan ………………………..</span><br>
+					<p align="right" style="text-align: left;float: right;margin: 0;">Pada tanggal .... ... </p>
+					<p align="right"><span style="float: right;float: right;margin-top: 8pt;">KEPALA UNIT PENGELOLA PENANAMAN MODAL<br> dan PELAYANAN TERPADU SATU PINTU<br>Kecamatan ………………………..</span><br>
 					</p>
 					<br>
 					<br>
