@@ -371,6 +371,12 @@ class OfficeController extends CI_Controller {
 		}else{
 		$newP12 = openssl_pkcs12_read(file_get_contents(site_url('assets/sertifikat/JAKEVO.p12')), $results, "AJ102938++!");
 	    	if ($newP12){
+	    		// set margins
+	    		$tcpdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+	    		$tcpdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+	    		$tcpdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+	    		$tcpdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+	    		$tcpdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 	    		$filename = str_replace(' ','','SuratSKIUTS' . date('YmdHis') . '.pdf'); 
 				$data['datauser'] = $this->oc->cekPemohon($id);
 				$data['janji'] = $this->oc->cekSurat($id);

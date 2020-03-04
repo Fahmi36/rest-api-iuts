@@ -12,7 +12,7 @@
 				</center>
 				<br>
 				<center>
-					<h4 style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.2;">UNIT PENGELOLA PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU
+					<h4 align="center" style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:14pt;line-height:1.2;">UNIT PENGELOLA PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU
 						<br>KECAMATAN ……………………
 					</h4>
 				</center>
@@ -20,7 +20,7 @@
 					<tr>
 						<td colspan="3">
 							<center>
-								<h4 style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.2;margin-bottom: 20px;">IZIN USAHA TOKO SWALAYAN <br>
+								<h4 align="center" style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.2;margin-bottom: 20px;">IZIN USAHA TOKO SWALAYAN <br>
 									<span style="font-weight: 400;">NOMOR .....................................</span><br>
 								</h4>
 							</center>
@@ -69,7 +69,7 @@
 				<div style="width: 50%;float: right;">
 					<p style="float: right;margin: 0;">Ditetapkan di Jakarta <br>
 						pada tanggal ...... ..................... …… <br>
-						<span style="text-align: center;float: right;margin-top: 8pt;">Kepala Unit Pengelola Penanaman Modal<br> dan PTSP<br>Kecamatan ………………………..</span><br>
+						<span align="right" style="text-align: right;float: right;margin-top: 8pt;">Kepala Unit Pengelola Penanaman Modal<br> dan PTSP<br>Kecamatan ………………………..</span><br>
 					</p>
 					<br>
 					<br>
