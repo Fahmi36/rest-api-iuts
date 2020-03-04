@@ -77,7 +77,6 @@
 				<li style="text-align:justify;">Terhadap tidak dipenuhi ketentuan-ketentuan sebagaimana tersebut di atas maka Pihak Berwenang, dalam hal ini PMPTSP DKI Jakarta, berhak mencabut Sertifikat Layak Fungsi ini.</li>
 		</ol>
 	</div>
-	<br>
 			<p align="right" style="text-align:left;float: right;font-size: 12pt;">Ditetapkan di Jakarta </p>
 			<p align="right" style="text-align:left;float: right;font-size: 12pt;">pada tanggal ..................... </p>
 			<p align="right"><span style="float: right;margin-top: 8pt;">KEPALA UNIT PENGELOLA PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
