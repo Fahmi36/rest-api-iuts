@@ -375,7 +375,7 @@ class OfficeController extends CI_Controller {
 	    		$tcpdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
 	    		$tcpdf->SetHeaderMargin(PDF_MARGIN_HEADER);
 	    		$tcpdf->SetFooterMargin(PDF_MARGIN_FOOTER);
-	    		$tcpdf->SetAutoPageBreak(TRUE, 0);
+	    		$tcpdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 	    		$tcpdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 	    		$filename = str_replace(' ','','SuratSKIUTS' . date('YmdHis') . '.pdf'); 
 				$data['datauser'] = $this->oc->cekPemohon($id);
@@ -448,7 +448,7 @@ class OfficeController extends CI_Controller {
       			$tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info);
       			$tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG');  
       			$tcpdf->setSignatureAppearance(117, 201, 60, 18);
-		        $html = $this->load->view('pages/bawaberkasslf',$data, true);
+		        $html .= $this->load->view('pages/bawaberkasslf',$data, true);
 		        $tcpdf->WriteHTML($html,true,false,true,false,true,false,true,false,true,false,true,false,true,false,'');
       			// return var_dump($html);
 				$tcpdf->Output($filename, 'I'); 
