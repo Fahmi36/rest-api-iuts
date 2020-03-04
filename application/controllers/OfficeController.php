@@ -390,12 +390,12 @@ class OfficeController extends CI_Controller {
 				$tcpdf->write2DBarcode($taut, 'QRCODE,H', 80,30,20,20);
       			$tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info); 
       			$tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG'); 
-      			$tcpdf->setSignatureAppearance(117, 201, 60, 18); 
-    			$tcpdf->AddPage();
-		        $html = $this->load->view('pages/bawaberkas',$data, true);
-		        $tcpdf->WriteHTML($html);
+      			$tcpdf->setSignatureAppearance(117, 201, 60, 18);
+      			$html .= '<br pagebreak="true"/>';
+		        $html .= $this->load->view('pages/bawaberkas',$data, true);
+		        $tcpdf->WriteHTML($html,true,false,true,false,true,false,'');
       			// return var_dump($html);
-				$tcpdf->Output($filename, 'D'); 
+				$tcpdf->Output($filename, 'I'); 
 				// ob_end_clean();
 		    }
 		}
