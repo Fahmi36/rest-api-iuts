@@ -4,7 +4,7 @@
 	<title></title>
 </head>
 <body>
-	<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:10pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:15px;page-break-before: always;">
+	<div align="right" style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:10pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:15px;page-break-before: always;">
 		<div style="float: right;">
 			<p style="float: right;"><span style="font-weight: bold;">Lampiran I</span>	:<br>
 				Keputusan Kepala Unit Pengelola Penanaman<br>
@@ -61,7 +61,7 @@
 			<li style="text-align:justify;">Terhadap tidak dipenuhi ketentuan-ketentuan sebagaimana tersebut di atas maka Pihak Berwenang, dalam hal ini PMPTSP DKI Jakarta, berhak mencabut Surat Keputusan Izin Usaha Toko Swalayan ini.</li>
 		</ol>
 	</div>
-	<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;">
+	<div align="right" style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;">
 		<div style="float: right;">
 			<p style="float: right;">Ditetapkan di Jakarta <br>
 				pada tanggal ...... ..................... …… <br><br>
