@@ -393,14 +393,14 @@ class OfficeController extends CI_Controller {
 		        	'ContactInfo' => site_url('/'),
     			);    		
     			$taut='https://perizinan.jakarta.go.id/'; 
-				$data['barcode'] = $tcpdf->write2DBarcode($taut, 'QRCODE,H', 80,1500,20,20);
+				$data['barcode'] = $tcpdf->write2DBarcode($taut, 'QRCODE,H', 80,40,20,20);
       			$tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info); 
       			$tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG'); 
       			$tcpdf->setSignatureAppearance(117, 201, 60, 18);
       			$html .= '<br pagebreak="true"/>';
 		        $html .= $this->load->view('pages/bawaberkas',$data, true);
 		        $tcpdf->WriteHTML($html,true,false,true,false,true,false,'');
-      			// return var_dump($html);
+      			return var_dump($data['barcode']);
 				$tcpdf->Output($filename, 'I'); 
 				// ob_end_clean();
 		    }

@@ -80,7 +80,7 @@
 	<br>
 			<p align="right" style="text-align:left;float: right;font-size: 12pt;">Ditetapkan di Jakarta </p>
 			<p align="right" style="text-align:left;float: right;font-size: 12pt;">pada tanggal ..................... </p>
-			<p><span align="right" style="float: right;">KEPALA UNIT PENGELOLA PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
+			<p align="right"><span style="float: right;float: right;margin-top: 8pt;">KEPALA UNIT PENGELOLA PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU<br> KECAMATAN ................... </span><br>
 			</p>
 			<br><br><br><br><br><br><br><br><br><br>
 			<p align="right" style="float: right;padding-right: 40px;">...........................................<br>
