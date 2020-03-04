@@ -450,7 +450,7 @@ class OfficeController extends CI_Controller {
 		        $html .= $this->load->view('pages/lampiran4slf',$data, true);
 		        $html .= $this->load->view('pages/lampiran5slf',$data, true);
 		        $html .= $this->load->view('pages/bawaberkasslf',$data, true);
-		        $tcpdf->WriteHTML($html,true,false,true,false,true,false,true,false,true,false,true,false,'');
+		        $tcpdf->WriteHTML($html,true,false,true,false,true,false,true,false,true,false,true,false,true,false,'');
       			// return var_dump($html);
 				$tcpdf->Output($filename, 'I'); 
 				// ob_end_clean();
