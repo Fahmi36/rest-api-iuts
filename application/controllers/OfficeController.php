@@ -399,8 +399,8 @@ class OfficeController extends CI_Controller {
       			$tcpdf->setSignatureAppearance(117, 201, 60, 18);
 		        $html = $this->load->view('pages/klausul',$data, true);
 		        $tcpdf->WriteHTML($html);
-		        $html .= $this->load->view('pages/bawaberkas',$data, true);
-		        $tcpdf->WriteHTML($html,true,false,true,false,'');
+		        $html = $this->load->view('pages/bawaberkas',$data, true);
+		        $tcpdf->WriteHTML($html);
       			// return var_dump($data['barcode']);
 				$tcpdf->Output($filename, 'I'); 
 				// ob_end_clean();
