@@ -456,7 +456,7 @@ class OfficeController extends CI_Controller {
 		        $html .= $this->load->view('pages/lampiran5slf',$data, true);
       			$html .= '<br pagebreak="true"/>';
 		        $html .= $this->load->view('pages/bawaberkasslf',$data, true);
-		        $tcpdf->WriteHTML($html,'');
+		        $tcpdf->WriteHTML($html,true,false,true,false,true,false,true,false,true,false,true,false,true,false,true,false,true,false,true,false,true,false,true,false,true,false,'');
       			// return var_dump($html);
 				$tcpdf->Output($filename, 'I'); 
 				// ob_end_clean();
