@@ -1115,7 +1115,7 @@ class ValidasiController extends CI_Controller {
             $uuid = $this->uuid->v4();
             $iduniv = str_replace('-', '', $uuid);
             $data = array(
-                'idfotoadmin'=>$iduniv
+                'idfotoadmin'=>$iduniv,
                 'idizin'=>$id,
                 'foto_ktp' => $fotoktp,
                 'foto_npwp' => $fotonpwp,
@@ -1160,7 +1160,7 @@ class ValidasiController extends CI_Controller {
             $uuid = $this->uuid->v4();
             $iduniv = str_replace('-', '', $uuid);
             $data = array(
-                'id_fotoi'=>$iduniv
+                'id_fotoi'=>$iduniv,
                 'idizin'=>$id,
                 'fotopbb' => $filePBB,
                 'fotoperw' => $filePerW,
@@ -1217,7 +1217,7 @@ class ValidasiController extends CI_Controller {
             $uuid = $this->uuid->v4();
             $iduniv = str_replace('-', '', $uuid);
             $data = array(
-                'idfotoadmin'=>$iduniv
+                'idfotoadmin'=>$iduniv,
                 'idizin'=>$id,
                 'filelahan' => $filelahan,
                 'fotoluar' => $fotoluar,
