@@ -395,7 +395,7 @@ class OfficeController extends CI_Controller {
 		        $html = $this->load->view('pages/bawaberkas',$data, true);
 		        $tcpdf->WriteHTML($html);
       			// return var_dump($html);
-				$tcpdf->Output($filename, 'D'); 
+				$tcpdf->Output($filename, 'I'); 
 				// ob_end_clean();
 		    }
 		}
