@@ -65,13 +65,11 @@ class OfficeModel extends CI_Model {
     }
     function cekFotoPemohon($idizin)
     {
-        $this->db->select('foto_slf.jenis_foto as jenisslf,foto_iuts.jenis_foto as jenisiuts,foto_slf.foto as fotoslf,foto_iuts.foto as fotoiuts,foto_iuts.id_fotoi as idiuts,foto_slf.id_foto as idslf');
+        $this->db->select('foto_admin.foto_ktp,foto_admin.foto_npwp,foto_admin.foto_akta,foto_iuts.fotopbb,foto_iuts.fotoperw,foto_iuts.fotorekumkm,foto_iuts.fotokajian,foto_slf.filelahan,foto_slf.fotoluar,foto_slf.fotodalam,foto_slf.fotoimb,foto_slf.fotoslf,foto_slf.filepengkaji,foto_slf.fotodamkar,foto_slf.fototkt,foto_slf.fotoasuransi');
         $this->db->from('cek_izin');
-        $this->db->join('data_iuts', 'data_iuts.id_iuts = cek_izin.id_iuts', 'INNER');
-        $this->db->join('data_slf', 'data_slf.id_slf = cek_izin.id_slf', 'INNER');
         $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = cek_izin.id_pemohon', 'INNER');
-        $this->db->join('foto_slf', 'foto_slf.id_slf = data_slf.id_slf', 'INNER');
-        $this->db->join('foto_iuts', 'foto_iuts.id_iuts = data_iuts.id_iuts', 'INNER');
+        $this->db->join('foto_slf', 'foto_slf.idizin = cek_izin.id_izin', 'INNER');
+        $this->db->join('foto_iuts', 'foto_iuts.idizin = cek_izin.id_izin', 'INNER');
         $this->db->join('foto_admin', 'foto_admin.idizin = cek_izin.id_izin', 'INNER');
         $this->db->where('cek_izin.id_izin', $idizin);
         $q = $this->db->get();

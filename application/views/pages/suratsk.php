@@ -7,20 +7,20 @@
 	<div style="word-break:break-word">
 		<div style="padding: 20px 20px 0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:15px;border-radius: 15px;">
 			<div style="margin-top:10px!important;padding:10px;margin-top:10px;">
-				<center>
-					<img class="CToWUd" height="52" src="../../../assets/img/logopemprov.png" style="width: 100px;height: 100px;margin-top: -40px;">
-				</center>
+				<div align="center">
+					<img class="CToWUd" height="52" src="<?=base_url('assets/img/logopemprov.png')?>">
+				</div>
 				<br>
 				<center>
-					<h4 style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.2;">UNIT PENGELOLA PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU
+					<h4 align="center" style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:14pt;line-height:1.2;">UNIT PENGELOLA PENANAMAN MODAL DAN PELAYANAN TERPADU SATU PINTU
 						<br>KECAMATAN ……………………
 					</h4>
 				</center>
-				<table style="width:100%;padding:10px;margin-top:10px;word-break:break-all;word-wrap:break-word;">
+				<table style="width:100%;padding:10px;font-size:12pt;margin-top:10px;word-break:break-all;word-wrap:break-word;">
 					<tr>
 						<td colspan="3">
 							<center>
-								<h4 style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:14pt;line-height:1.2;margin-bottom: 20px;">IZIN USAHA TOKO SWALAYAN <br>
+								<h4 align="center" style="margin:0;font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.2;margin-bottom: 20px;">IZIN USAHA TOKO SWALAYAN <br>
 									<span style="font-weight: 400;">NOMOR .....................................</span><br>
 								</h4>
 							</center>
@@ -28,119 +28,44 @@
 					</tr>
 					<?php foreach ($datauser->result() as $data): ?>		
 						<tr>
-							<td>Nama Perusahaan</td><td style="width: 20px">:</td><td><?=$data->nama_badan_usaha?></td>
+							<td>Nama Perusahaan</td><td>:</td><td><?=$data->nama_badan_usaha?></td>
 						</tr>
 						<tr>
-							<td>Nama penanggung Jawab dan Jabatan</td><td style="width: 20px">:</td><td><?=$data->nama?> </td>
+							<td>Nama penanggung Jawab dan Jabatan</td><td>:</td><td><?=$data->nama?> </td>
 						</tr>
 						<tr>
-							<td>Alamat Perusahaan</td><td style="width: 20px">:</td><td><?=$data->alamat_perusahaan?> </td>
+							<td>Alamat Perusahaan</td><td>:</td><td><?=$data->alamat_perusahaan?> </td>
 						</tr>
 						<tr>
-							<td>Nama Usaha</td><td style="width: 20px">:</td><td><?=$data->nama_usaha?> </td>
+							<td>Nama Usaha</td><td>:</td><td><?=$data->nama_toko?> </td>
 						</tr>
 						<tr>
-							<td>Alamat Usaha</td><td style="width: 20px">:</td><td><?=$data->alamat?> </td>
+							<td>Alamat Usaha</td><td>:</td><td><?=$data->alamat_usaha?> </td>
 						</tr>
 						<tr>
-							<td>Nomor Telepon/Fax</td><td style="width: 20px">:</td><td><?=$data->no_hp?> </td>
+							<td>Nomor Telepon/Fax</td><td>:</td><td><?=$data->no_hp?> </td>
 						</tr>
 						<tr>
-							<td>Luas Lantai Usaha</td><td style="width: 20px">:</td><td><?=$data->luas_lantai?> </td>
+							<td>Luas Lantai Usaha</td><td>:</td><td><?=$data->luas_tapak?> </td>
 						</tr>
 						<tr>
-							<td>Kegiatan Usaha</td><td style="width: 20px">:</td><td><b>Toko Swalayan</b> </td>
-						</tr>
-						<tr>
-							<td>Barang/Jasa Dagangan Utama</td><td style="width: 20px">:</td><td><?=$data->jasa?> </td>
+							<td>Kegiatan Usaha</td><td>:</td><td><b>Toko Swalayan</b> </td>
 						</tr>
 					<?php endforeach ?>
 				</table>
-				<!-- Buat Pemohon baru -->
 				<p style="text-align:justify;font-size: 12pt;">Izin usaha ini berlaku untuk melakukan kegiatan usaha Toko Swalayan pada 1 (satu) lokasi dan wajib didaftarkan ulang setiap 5 (lima) tahun.</p>
 				<p style="text-align:justify;font-size: 12pt;">Setiap perubahan jenis barang/jasa dagangan utama dan luas lantai usaha yang digunakan, terlebih dahulu harus mendapat persetujuan tertulis dari Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu Provinsi DKI Jakarta.</p>
 				<p style="text-align:justify;font-size: 12pt;margin-bottom: 10px;">Apabila setelah Izin Usaha Toko Swalayan diterbitkan pemegang izin tidak memenuhi persyaratan sebagaimana disebutkan di atas serta tidak memenuhi klausul yang menjadi bagian dari perizinan ini, maka Izin Usaha Toko Swalayan akan ditinjau kembali.</p>
 			</div>
 		</div>
-		<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;display: flex;">
+		<div align="right" style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;display: flex;">
 			<div style="width: 50%;">
-				<tcpdf method="write2DBarcode" params="<?= $data->barcode ?>" />
 				</div>
 				<div style="width: 50%;float: right;">
-					<p style="float: right;margin: 0;">Ditetapkan di Jakarta <br>
-						pada tanggal ...... ..................... …… <br>
-						<span style="text-align: center;float: right;margin-top: 8pt;">Kepala Unit Pengelola Penanaman Modal<br> dan PTSP<br>Kecamatan ………………………..</span><br>
+					<p align="right" style="text-align:left;float: right;margin: 0;">Ditetapkan di Jakarta</p>
+					<p align="right" style="text-align: left;float: right;margin: 0;">Pada tanggal .... ... </p>
+					<p align="right"><span style="float: right;float: right;margin-top: 8pt;">KEPALA UNIT PENGELOLA PENANAMAN MODAL<br> dan PELAYANAN TERPADU SATU PINTU<br>Kecamatan ………………………..</span><br>
 					</p>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<br>
-					<p style="float: right;padding-right: 40px;">...........................................<br>
-					NIP. ....................................</p>
-				</div>
-			</div>
-			<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:24px;width: 100%;">
-				<p style="margin: 0;">Tembusan :</p>
-				<ol style="padding-left: 16px;margin: 0;">
-					<li>Kepala Dinas Koperasi, Usaha Mikro, Kecil dan Menengah, serta Perdagangan Provinsi DKI Jakarta;</li>
-					<li>Kepala Satuan Polisi Pamong Praja Provinsi DKI Jakarta;</li>
-					<li>Arsip.</li>
-				</ol>
-			</div>
-			<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:11pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:24px">
-				<center><h4 style="margin: 0;"><b>KLAUSUL</b></h4></center>
-				<p>KEWAJIBAN</p>
-				<ol style="padding-left: 16px;">
-					<?php foreach ($kewajiban->result() as $key): ?>
-
-						<li><?=$key->deskripsi?></li>
-					<?php endforeach ?>
-
-				</ol>
-			</div>
-			<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:11pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;">
-				<p>Larangan</p>
-				<ol style="padding-left: 16px;">
-					<?php foreach ($larangan->result() as $larang): ?>
-
-						<li><?=$larang->deksripsi?></li>
-					<?php endforeach ?>
-
-				</ol>
-			</div>
-			<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:10pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:15px;page-break-before: always;">
-				<div style="float: right;">
-					<p style="float: right;"><span style="font-weight: bold;">Lampiran I</span>	:<br>
-						Keputusan Kepala Unit Pengelola Penanaman<br>
-						Modal dan Pelayanan Terpadu Satu Pintu<br>
-						Kecamatan ........................<br>
-						Nomor	: ......................................<br>
-						Tanggal	: .... ................... .....<br>
-					</p>
-				</div>
-			</div>
-			<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:24px;display: inline-block;">
-				<p>Kepada pemegang dan/atau penerima Izin Usaha Toko Swalayan ini, dikenakan ketentuan untuk melengkapi berkas yang kurang sebagai berikut :</p>
-				<ol style="padding-left: 16px;">
-					<li style="text-align:justify;">Bahwa harus sudah memiliki Surat Keterangan Persetujuan Warga Sekitar paling lambat dalam 3 atau 6 bulan, disesuaikan dengan data yang pemohon ajukan pada persyaratan Persetujuan Warga Sekitar.</li>
-					<li style="text-align:justify;">Bahwa harus sudah memiliki Surat Keterangan Rekomendasi dari UMKM paling lambat dalam 1 atau 3 bulan, disesuaikan dengan data yang pemohon ajukan pada persyaratan Ada Rekomendasi UMKM.</li>
-					<li style="text-align:justify;">Bahwa harus sudah memiliki Dokumen Kajian Sosial Ekonomi paling lambat dalam 3 bulan.</li>
-					<li style="text-align:justify;">Bahwa penetapan tenggat waktu terhitung sejak Surat Keputusan Izin Usaha Toko Swalayan ini diberikan kepada orang yang mengajukan permohonan dan tertanda pada Surat Keputusan Izin Usaha Toko Swalayan ini.</li>
-					<li style="text-align:justify;">Terhadap tidak dipenuhi ketentuan-ketentuan sebagaimana tersebut di atas maka Pihak Berwenang, dalam hal ini PMPTSP DKI Jakarta, berhak mencabut Surat Keputusan Izin Usaha Toko Swalayan ini.</li>
-				</ol>
-			</div>
-			<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;">
-				<div style="float: right;">
-					<p style="float: right;">Ditetapkan di Jakarta <br>
-						pada tanggal ...... ..................... …… <br><br>
-						<span style="text-align: center;float: right;">KEPALA UNIT PENGELOLA PENANAMAN <br> MODAL DAN PELAYANAN TERPADU SATU<br>PINTU<br>Kecamatan ………………………..</span><br>
-					</p>
-					<br>
-					<br>
-					<br>
 					<br>
 					<br>
 					<br>
@@ -153,6 +78,5 @@
 				</div>
 			</div>
 		</div>
-
 	</body>
 	</html>

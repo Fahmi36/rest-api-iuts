@@ -104,7 +104,7 @@ class ValidasiController extends CI_Controller {
         $alamat = $_SERVER['HTTP_REFERER'];
         $hasil = $this->getAddresses_www($alamat);
         if ($hasil == '45.13.133.94' OR $hasil == '127.0.0.1') {
-            $json = $this->$urlnya;
+            $json = $this->$urlnya($hasil);
         }else{
             $json = $this->returnResultCustom(false,'Tidak Boleh Akses');
         }
@@ -188,6 +188,15 @@ class ValidasiController extends CI_Controller {
 
             if ($q) {
                 $json = $this->returnResultCustom(true,'Berhasil Verifikasi Foto');
+                $wherefoto = array(
+                    'idizin'=>$idizin,
+                );
+                $datafoto = array(
+                    'status'=>'1',
+                );
+                $this->db->update('foto_admin', $datafoto,$wherefoto);
+                $this->db->update('foto_iuts', $datafoto,$wherefoto);
+                $this->db->update('foto_slf', $datfoto,$wherefoto);
             }else{
                 $json = $this->returnResultCustom(false,'Gagal Verifikasi Foto');
             }
@@ -473,13 +482,16 @@ class ValidasiController extends CI_Controller {
                                 $cekizin = $this->saveIzin($savepemohon,$slf,$iuts);
                                 $skor = $this->saveSkor($cekizin);
                                 if ($skor) {
+                                    $this->saveFotoAdmin($cekizin);
+                                    $this->saveFotoSLF($cekizin);
+                                    $this->saveIuts($cekizin);
                                     // $tax = $this->saveTaxClear($slf,$status_npwp,$status_pbb);
                                     // if ($tax) {                                            
                                         $this->sendmail($email,$status_pemohon);
                                         $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
-                                        $json['idslf'] = $slf;
-                                        $json['idiuts'] = $iuts;
-                                        $json['idizin'] = $cekizin;
+                                        // $json['idslf'] = $slf;
+                                        // $json['idiuts'] = $iuts;
+                                        // $json['idizin'] = $cekizin;
                                         // echo json_encode($json);
                                         // return;
                                     // }else{
@@ -1071,7 +1083,163 @@ class ValidasiController extends CI_Controller {
         }else{
             $q = $this->us->InsertTax($id,$pbb,$npwp,$jenis);
         }
-        return $q;
+        if ($q) {
+            $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
+        }else{
+            $json = $this->returnResultCustom(false,'Gagal Simpan Data');
+        }
+
+        echo json_encode($json);
+    }
+    function saveFotoAdmin($id)
+    {
+        $jenis = 'foto_admin';
+        $fotoktp = $this->uploadFotoAdmin('foto_ktp');
+        $fotonpwp = $this->uploadFotoAdmin('foto_npwp');
+        $fotoakta = $this->uploadFotoAdmin('aktePerusahaan');
+        $cek = $this->us->cekFotoAll($id,$jenis);
+        if ($cek->num_rows() > 0) {
+            $where = array(
+                'idizin' => $id,
+            );
+            $array = array(
+                'foto_ktp' => $fotoktp,
+                'foto_npwp' => $fotonpwp,
+                'foto_akta' => $fotoakta,
+                'created_at' => $getdata->created_at,
+                'updated_at' => date('Y-m-d H:i:s'),
+            );
+            $q = $this->db->update($jenis,$array,$where);
+        }else{
+            $this->load->library('uuid');
+            $uuid = $this->uuid->v4();
+            $iduniv = str_replace('-', '', $uuid);
+            $data = array(
+                'idfotoadmin'=>$iduniv,
+                'idizin'=>$id,
+                'foto_ktp' => $fotoktp,
+                'foto_npwp' => $fotonpwp,
+                'foto_akta' => $fotoakta,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            );
+            $q = $this->db->insert($jenis, $data);
+        }
+        if ($q) {
+            $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
+        }else{
+            $json = $this->returnResultCustom(false,'Gagal Simpan Data');
+        }
+        
+        echo json_encode($json);
+    }
+    function saveFotoIUTS($id)
+    {
+        $jenis = 'foto_iuts';
+        $filePBB = $this->uploadFotoIuts('filePBB');
+        $filePerW = $this->uploadFotoIuts('filePerW');
+        $fileUMKM = $this->uploadFotoIuts('fileUMKM');
+        $fileSostek = $this->uploadFotoIuts('fileSostek');
+
+        $cek = $this->us->cekFotoAll($id,$jenis);
+        if ($cek->num_rows() > 0) {
+            $where = array(
+                'idizin' => $id,
+            );
+            $array = array(
+                'fotopbb' => $filePBB,
+                'fotoperw' => $filePerW,
+                'fotorekumkm' => $fileUMKM,
+                'fotokajian' => $fileSostek,
+                'created_at' => $getdata->created_at,
+                'updated_at' => date('Y-m-d H:i:s'),
+            );
+            $q = $this->db->update($jenis,$array,$where);
+        }else{
+            $this->load->library('uuid');
+            $uuid = $this->uuid->v4();
+            $iduniv = str_replace('-', '', $uuid);
+            $data = array(
+                'id_fotoi'=>$iduniv,
+                'idizin'=>$id,
+                'fotopbb' => $filePBB,
+                'fotoperw' => $filePerW,
+                'fotorekumkm' => $fileUMKM,
+                'fotokajian' => $fileSostek,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            );
+            $q = $this->db->insert($jenis, $data);
+        }
+        if ($q) {
+            $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
+        }else{
+            $json = $this->returnResultCustom(false,'Gagal Simpan Data');
+        }
+        
+        echo json_encode($json);
+
+    }
+    function saveFotoSLF($id)
+    {
+        $jenis = 'foto_slf';
+        $filelahan = $this->uploadFoto('fileStatusLahan');
+        $fotoluar = $this->uploadFoto('fotoluar');
+        $foto_dalam_bangunan = $this->uploadFoto('foto_dalam_bangunan');
+        $fileIMB = $this->uploadFoto('fileIMB');
+        $fileSLF = $this->uploadFoto('fileSLF');
+        $fileSuratP = $this->uploadFoto('fileSuratP');
+        $fileDamkar = $this->uploadFoto('fileDamkar');
+        $fileTKT = $this->uploadFoto('fileTKT');
+        $fileAsuransi = $this->uploadFoto('fileAsuransi');
+
+        $cek = $this->us->cekFotoAll($id,$jenis);
+        if ($cek->num_rows() > 0) {
+            $where = array(
+                'idizin' => $id,
+            );
+            $array = array(
+                'filelahan' => $filelahan,
+                'fotoluar' => $fotoluar,
+                'fotodalam' => $foto_dalam_bangunan,
+                'fotoimb' => $fileIMB,
+                'fotoslf' => $fileSLF,
+                'filepengkaji' => $fileSuratP,
+                'fotodamkar' => $fileDamkar,
+                'fototkt' => $fileTKT,
+                'fotoasuransi' => $fileAsuransi,
+                'created_at' => $getdata->created_at,
+                'updated_at' => date('Y-m-d H:i:s'),
+            );
+            $q = $this->db->update($jenis,$array,$where);
+        }else{
+            $this->load->library('uuid');
+            $uuid = $this->uuid->v4();
+            $iduniv = str_replace('-', '', $uuid);
+            $data = array(
+                'idfotoadmin'=>$iduniv,
+                'idizin'=>$id,
+                'filelahan' => $filelahan,
+                'fotoluar' => $fotoluar,
+                'fotodalam' => $foto_dalam_bangunan,
+                'fotoimb' => $fileIMB,
+                'fotoslf' => $fileSLF,
+                'filepengkaji' => $fileSuratP,
+                'fotodamkar' => $fileDamkar,
+                'fototkt' => $fileTKT,
+                'fotoasuransi' => $fileAsuransi,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            );
+            $q = $this->db->insert($jenis, $data);
+        }
+        if ($q) {
+            $json = $this->returnResultCustom(true,'Berhasil Simpan Data');
+        }else{
+            $json = $this->returnResultCustom(false,'Gagal Simpan Data');
+        }
+        
+        echo json_encode($json);
     }
     function DetailPemohon()
     {
@@ -1155,6 +1323,68 @@ class ValidasiController extends CI_Controller {
     {
         $this->load->library('upload');
         $config['upload_path'] = './assets/fileslf/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|';
+        $config['encrypt_name']         = TRUE;
+        $config['remove_spaces']        = TRUE;
+
+        $ga = "";
+        $this->upload->initialize($config);
+        if ($this->upload->do_upload($params)) {
+            $s = $this->upload->data();
+            if (count($s) != 14) {
+                for ($i=0; $i < count($s); $i++) {
+                    $abc = $s[$i]['file_name'].',';
+                    $ga .= $abc;
+                }
+                $newfiledalam = substr($ga, 0, -1);
+            }else{
+                $newfiledalam = $s['file_name'];
+            }
+        }else{
+            $s = $this->input->post($params);
+            for ($i=0; $i < count($s); $i++) {
+                $abc = $s[$i].',';
+                $ga .= $abc;
+            }
+            $newfiledalam = substr($s, 0, -1);
+        }
+        return $newfiledalam;
+    }
+    function uploadFotoAdmin($params)
+    {
+        $this->load->library('upload');
+        $config['upload_path'] = './assets/fileadmin/';
+        $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|';
+        $config['encrypt_name']         = TRUE;
+        $config['remove_spaces']        = TRUE;
+
+        $ga = "";
+        $this->upload->initialize($config);
+        if ($this->upload->do_upload($params)) {
+            $s = $this->upload->data();
+            if (count($s) != 14) {
+                for ($i=0; $i < count($s); $i++) {
+                    $abc = $s[$i]['file_name'].',';
+                    $ga .= $abc;
+                }
+                $newfiledalam = substr($ga, 0, -1);
+            }else{
+                $newfiledalam = $s['file_name'];
+            }
+        }else{
+            $s = $this->input->post($params);
+            for ($i=0; $i < count($s); $i++) {
+                $abc = $s[$i].',';
+                $ga .= $abc;
+            }
+            $newfiledalam = substr($s, 0, -1);
+        }
+        return $newfiledalam;
+    }
+    function uploadFotoIuts($params)
+    {
+        $this->load->library('upload');
+        $config['upload_path'] = './assets/iuts/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|';
         $config['encrypt_name']         = TRUE;
         $config['remove_spaces']        = TRUE;

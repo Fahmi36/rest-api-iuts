@@ -371,12 +371,18 @@ class OfficeController extends CI_Controller {
 		}else{
 		$newP12 = openssl_pkcs12_read(file_get_contents(site_url('assets/sertifikat/JAKEVO.p12')), $results, "AJ102938++!");
 	    	if ($newP12){
+	    		// set margins
+	    		$tcpdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+	    		$tcpdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+	    		$tcpdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+	    		$tcpdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+	    		$tcpdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 	    		$filename = str_replace(' ','','SuratSKIUTS' . date('YmdHis') . '.pdf'); 
 				$data['datauser'] = $this->oc->cekPemohon($id);
 				$data['janji'] = $this->oc->cekSurat($id);
 				$data['kewajiban'] = $this->oc->detailKewajiban();
 				$data['larangan'] = $this->oc->detailLarangan();
-				$data['bawa'] = $this->oc->cekAdministrasi($id);
+				$data['bawa'] = $this->oc->detailPermohonanAdminDinas($id);
     			$tcpdf->AddPage();
 		        $html = $this->load->view('pages/suratsk',$data, true);
 		        $tcpdf->WriteHTML($html);
@@ -387,12 +393,69 @@ class OfficeController extends CI_Controller {
 		        	'ContactInfo' => site_url('/'),
     			);    		
     			$taut='https://perizinan.jakarta.go.id/'; 
-				$tcpdf->write2DBarcode($taut, 'QRCODE,H', 80,30,20,20);
+				$tcpdf->write2DBarcode($taut, 'QRCODE,H', 20,90,20,20);
       			$tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info); 
       			$tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG'); 
-      			$tcpdf->setSignatureAppearance(117, 201, 60, 18); 
-    			$tcpdf->AddPage();
+      			$tcpdf->setSignatureAppearance(117, 201, 60, 18);
+		        $html = $this->load->view('pages/klausul',$data, true);
+		        $tcpdf->WriteHTML($html);
 		        $html = $this->load->view('pages/bawaberkas',$data, true);
+		        $tcpdf->WriteHTML($html);
+      			// return var_dump($data['barcode']);
+				$tcpdf->Output($filename, 'I'); 
+				// ob_end_clean();
+		    }
+		}
+		
+	}
+	function downloadpdfslf($id)
+	{
+		
+		$tcpdf = new setasign\Fpdi\Tcpdf\Fpdi;
+		if ($id == null) {
+        	$html = $this->load->view('errors/error_404',[], true);
+        	$tcpdf->WriteHTML($html);
+			return $tcpdf->Output('test.pdf','D');
+		}else{
+		$newP12 = openssl_pkcs12_read(file_get_contents(site_url('assets/sertifikat/JAKEVO.p12')), $results, "AJ102938++!");
+	    	if ($newP12){
+	    		$tcpdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+	    		$tcpdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+	    		$tcpdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+	    		$tcpdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
+	    		$tcpdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+
+	    		$filename = str_replace(' ','','SuratSKSLF' . date('YmdHis') . '.pdf'); 
+				$data['datauser'] = $this->oc->cekPemohon($id);
+				$data['janji'] = $this->oc->cekSurat($id);
+				$data['kewajiban'] = $this->oc->detailKewajiban();
+				$data['larangan'] = $this->oc->detailLarangan();
+				$data['bawa'] = $this->oc->detailPermohonanAdminDinas($id);
+    			$tcpdf->AddPage();
+		        $html = $this->load->view('pages/suratsk_slf',$data, true);
+		        $tcpdf->WriteHTML($html);
+    			$info = array(
+		        	'Name' => 'DPMPTSP DKI JAKARTA',
+		        	'Location' => 'DPMPTSP DKI JAKARTA',
+		        	'Reason' => 'Verified Berkas',
+		        	'ContactInfo' => site_url('/'),
+    			);    		
+    			$taut='https://perizinan.jakarta.go.id/'; 
+				$tcpdf->write2DBarcode($taut, 'QRCODE,H', 20,30,20,20);
+      			$tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info);
+      			$tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG');  
+      			$tcpdf->setSignatureAppearance(117, 201, 60, 18);
+		        $html = $this->load->view('pages/lampiran1',$data, true);
+		        $tcpdf->WriteHTML($html);
+		        $html = $this->load->view('pages/lampiran2',$data, true);
+		        $tcpdf->WriteHTML($html);
+		        $html = $this->load->view('pages/lampiran3',$data, true);
+		        $tcpdf->WriteHTML($html);
+		        $html = $this->load->view('pages/lampiran4slf',$data, true);
+		        $tcpdf->WriteHTML($html);
+		        $html = $this->load->view('pages/lampiran5slf',$data, true);
+		        $tcpdf->WriteHTML($html);
+		        $html = $this->load->view('pages/bawaberkasslf',$data, true);
 		        $tcpdf->WriteHTML($html);
       			// return var_dump($html);
 				$tcpdf->Output($filename, 'I'); 

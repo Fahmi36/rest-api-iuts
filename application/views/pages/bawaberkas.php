@@ -4,79 +4,77 @@
 	<title></title>
 </head>
 <body>
-	<div style="word-break:break-word">
-		<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:24px">
-			<p><b>Berkas yang harus di bawa</b></p>
+	<div align="right" style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:10pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:15px;page-break-before: always;">
+		<div style="float: right;">
+			<p style="float: right;"><span style="font-weight: bold;">Lampiran I</span>	:<br>
+				Keputusan Kepala Unit Pengelola Penanaman<br>
+				Modal dan Pelayanan Terpadu Satu Pintu<br>
+				Kecamatan ........................<br>
+				Nomor	: ......................................<br>
+				Tanggal	: .... ................... .....<br>
+			</p>
+		</div>
+	</div>
+	<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:24px;display: inline-block;">
+		<p>Kepada pemegang dan/atau penerima Izin Usaha Toko Swalayan ini, dikenakan ketentuan untuk melengkapi berkas yang kurang sebagai berikut :</p>
+		<ol style="padding-left: 16px;">
 			<?php foreach ($bawa->result() as $key): ?>
 				<?php
-				if ($key->fotoktp == '2') {
-					echo '<p>Silakan Bawa Berkas KTP Ke DPMPTSP</p>';
+				if ($key->skorwarga != '3') {
+					echo '<li>Bahwa harus sudah memiliki Surat Keterangan Persetujuan Warga Sekitar paling lambat dalam 3 atau 6 bulan, disesuaikan dengan data yang pemohon ajukan pada persyaratan Persetujuan Warga Sekitar</li>';
 				} 
 
-				if ($key->fotonpwp == '2') {
-					echo '<p>Silakan Bawa Berkas NPWP Ke DPMPTSP</p>';
-				}
-
-
-				if ($key->fotoakta == '2') {
-					echo '<p>Silakan Bawa Berkas FOTO AKTA PERUSAHAAN Ke DPMPTSP</p>';
+				if ($key->skorrekumkm != '3') {
+					echo '<li>Bahwa harus sudah memiliki Surat Keterangan Rekomendasi dari UMKM paling lambat dalam 1 atau 3 bulan, disesuaikan dengan data yang pemohon ajukan pada persyaratan Ada Rekomendasi UMKM.</li>';
+				} 
+				if ($key->skorkajian != '3') {
+					echo '<li>Bahwa harus sudah memiliki Dokumen Kajian Sosial Ekonomi paling lambat dalam 3 bulan.</li>';
 				} 
 
-
-				if ($key->fotoluar == '2') {
-					echo '<p>Silakan Bawa Berkas FOTO LUAR BANGUNAN Ke DPMPTSP</p>';
-				}
-
-				if ($key->fotodalam == '2') {
-					echo '<p>Silakan Bawa Berkas FOTO DALAM BANGUNAN Ke DPMPTSP</p>';
-				} 
+				// if ($key->skortataruang != '3') {
+				// 	echo '<li>Silakan Bawa Berkas FOTO LUAR BANGUNAN Ke DPMPTSP</li>';
+				// }
 
 
-				if ($key->fotoimb == '2') {
-					echo '<p>Silakan Bawa Berkas IZIN MENDIRIKAN BANGUNAN Ke DPMPTSP</p>';
-				}
 
-				if ($key->fotoslf == '2') {
-					echo '<p>Silakan Bawa Berkas SERTIFIKAT LAYAK FUNGSI Ke DPMPTSP</p>';
-				} 
+				// if ($key->skorpenglahan != '3') {
+				// 	echo '<li>Silakan Bawa Berkas IZIN MENDIRIKAN BANGUNAN Ke DPMPTSP</li>';
+				// }
 
+				// if ($key->skorjarakusaha != '3') {
+				// 	echo '<li>Silakan Bawa Berkas SERTIFIKAT LAYAK FUNGSI Ke DPMPTSP</li>';
+				// } 
 
-				if ($key->fotodamkar == '2') {
-					echo '<p>Silakan Bawa Berkas Rekomendasi dari Dinas Penanggunlangan Kebakaran dan Penyelamatan Ke DPMPTSP</p>';
-				} 
+				// if ($key->skorjarakpasar != '3') {
+				// 	echo '<li>Silakan Bawa Berkas Rekomendasi dari Dinas Penanggunlangan Kebakaran dan Penyelamatan Ke DPMPTSP</li>';
+				// } 
+				// if ($key->skorpempbb != '3') {
+				// 	echo '<li>Silakan Bawa Berkas KTP Ke DPMPTSP</li>';
+				// } 
 
-
-				if ($key->fototkt == '2') {
-					echo '<p>Silakan Bawa Berkas Rekomendasi dari Dinas Tenaga Kerja dan Transmigrasi Ke DPMPTSP</p>';
-				} 
-
-
-				if ($key->fotoasuransi == '2') {
-					echo '<p>Silakan Bawa Berkas Berkas Asuransi Toko Ke DPMPTSP</p>';
-				}
-
-				if ($key->fotopbb == '2') {
-					echo '<p>Silakan Bawa Berkas Bukti Pemutahiran PBB Ke DPMPTSP</p>';
-				}
-
-				if ($key->fotoperw == '2') {
-					echo '<p>Silakan Bawa Berkas Persetujuan Warga Ke DPMPTSP</p>';
-				} 
-
-
-				if ($key->fotorekumkm == '2') {
-					echo '<p>Silakan Bawa Berkas UMKM Ke DPMPTSP</p>';
-				} 
-
-				if ($key->fotokajian == '2') {
-					echo '<p>Silakan Bawa Berkas Kajian Sosek Ke DPMPTSP</p>';
-				}
+				// if ($key->skorketumkm != '3') {
+				// 	echo '<li>Silakan Bawa Berkas NPWP Ke DPMPTSP</li>';
+				// }
 				?>
 			<?php endforeach ?>
-
+			<li style="text-align:justify;">Bahwa penetapan tenggat waktu terhitung sejak Surat Keputusan Izin Usaha Toko Swalayan ini diberikan kepada orang yang mengajukan permohonan dan tertanda pada Surat Keputusan Izin Usaha Toko Swalayan ini.</li>
+			<li style="text-align:justify;">Terhadap tidak dipenuhi ketentuan-ketentuan sebagaimana tersebut di atas maka Pihak Berwenang, dalam hal ini PMPTSP DKI Jakarta, berhak mencabut Surat Keputusan Izin Usaha Toko Swalayan ini.</li>
 		</ol>
 	</div>
-</div>
-
+		<div align="right" style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;display: flex;">
+			<div style="width: 50%;">
+				</div>
+				<div style="width: 50%;float: right;">
+					<p align="right" style="text-align:left;float: right;margin: 0;">Ditetapkan di Jakarta</p>
+					<p align="right" style="text-align: left;float: right;margin: 0;">Pada tanggal .... ... </p>
+					<p align="right"><span style="float: right;float: right;margin-top: 8pt;">KEPALA UNIT PENGELOLA PENANAMAN MODAL<br> dan PELAYANAN TERPADU SATU PINTU<br>Kecamatan ………………………..</span><br>
+					</p>
+					<br>
+					<br>
+					<br>
+					<p style="float: right;padding-right: 40px;">...........................................<br>
+					NIP. ....................................</p>
+				</div>
+			</div>
 </body>
 </html>

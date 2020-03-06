@@ -28,7 +28,7 @@ class UserModel extends CI_Model {
         $q = $this->db->get('skor_bangunan');
         return $q;
     }
-    function cekFotoIuts($id,$jenis)
+    function cekFotoIuts($id)
     {
         $this->db->where('id_iuts', $id);
         $this->db->where('jenis_foto', $jenis);
@@ -47,6 +47,12 @@ class UserModel extends CI_Model {
         $this->db->where('idizin', $id);
         $this->db->where('jenis_foto', $jenis);
         $q = $this->db->get('foto_admin');
+        return $q;
+    }
+    function cekFotoAll($idizin,$database)
+    {
+        $this->db->where('idizin', $idizin);
+        $q = $this->db->get($database);
         return $q;
     }
     function SkoringWeb($slf)
