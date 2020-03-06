@@ -1,23 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-	<div align="right" style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:10pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:15px;page-break-before: always;">
-		<div style="float: right;">
-			<p style="float: right;"><span style="font-weight: bold;">Lampiran I</span>	:<br>
-				Keputusan Kepala Unit Pengelola Penanaman<br>
-				Modal dan Pelayanan Terpadu Satu Pintu<br>
-				Kecamatan ........................<br>
-				Nomor	: ......................................<br>
-				Tanggal	: .... ................... .....<br>
-			</p>
-		</div>
-	</div>
-	<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;padding-top:24px;display: inline-block;">
-		<p>Kepada pemegang dan/atau penerima Izin Usaha Toko Swalayan ini, dikenakan ketentuan untuk melengkapi berkas yang kurang sebagai berikut :</p>
-		<ol style="padding-left: 16px;">
+	<div style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:10pt;line-height:1.6;page-break-before: always;">
+		<p align="right"><span style="font-weight: bold;">Lampiran I</span>	:<br>
+			Keputusan Kepala Unit Pengelola Penanaman<br>
+			Modal dan Pelayanan Terpadu Satu Pintu<br>
+			Kecamatan ........................<br>
+			Nomor	: ......................................<br>
+			Tanggal	: .... ................... .....<br>
+		</p>
+		<p style="font-size:12pt;line-height:1.2;">Kepada pemegang dan/atau penerima Izin Usaha Toko Swalayan ini, dikenakan ketentuan untuk melengkapi berkas yang kurang sebagai berikut :</p>
+		<ol style="font-size:12pt;line-height:1.2;">
 			<?php foreach ($bawa->result() as $key): ?>
 				<?php
 				if ($key->skorwarga != '3') {
@@ -61,20 +51,18 @@
 			<li style="text-align:justify;">Terhadap tidak dipenuhi ketentuan-ketentuan sebagaimana tersebut di atas maka Pihak Berwenang, dalam hal ini PMPTSP DKI Jakarta, berhak mencabut Surat Keputusan Izin Usaha Toko Swalayan ini.</li>
 		</ol>
 	</div>
-		<div align="right" style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;line-height:1.6;padding-left:20px;padding-right:20px;padding-bottom:12px;display: flex;">
-			<div style="width: 50%;">
-				</div>
-				<div style="width: 50%;float: right;">
-					<p align="right" style="text-align:left;float: right;margin: 0;">Ditetapkan di Jakarta</p>
-					<p align="right" style="text-align: left;float: right;margin: 0;">Pada tanggal .... ... </p>
-					<p align="right"><span style="float: right;float: right;margin-top: 8pt;">KEPALA UNIT PENGELOLA PENANAMAN MODAL<br> dan PELAYANAN TERPADU SATU PINTU<br>Kecamatan ………………………..</span><br>
-					</p>
-					<br>
-					<br>
-					<br>
-					<p style="float: right;padding-right: 40px;">...........................................<br>
+	<div align="right" style="font-family:Roboto-Regular,Helvetica,Arial,sans-serif;font-size:12pt;padding-left:20px;display: flex;">
+		<table cellpadding="1" style="font-size:12pt;word-break:break-all;word-wrap:break-word;">
+			<tr>
+				<td></td>
+				<td>
+					<p align="left">Ditetapkan di Jakarta <br>Pada tanggal .... .................... .....</p>
+					<!-- <p align="right" style="text-align: left;float: right;"> </p> -->
+					<p align="center"><span>KEPALA UNIT PENGELOLA PENANAMAN <br>MODAL DAN PELAYANAN TERPADU SATU PINTU<br>Kecamatan ………………………..</span></p>
+					<div></div><div></div><div></div>
+					<p align="center">...........................................<br>
 					NIP. ....................................</p>
-				</div>
-			</div>
-</body>
-</html>
+				</td>
+			</tr>
+		</table>
+	</div>
