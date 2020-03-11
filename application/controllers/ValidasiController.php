@@ -1492,7 +1492,7 @@ class ValidasiController extends CI_Controller {
                 }
             }else{
                 $token = $this->incrementalHash(8);
-                $pemohon array(
+                $pemohon = array(
                     'id_pemohon'=>$id,
                     'nama'=>$this->input->post('nama'),
                     'email'=>$email,
