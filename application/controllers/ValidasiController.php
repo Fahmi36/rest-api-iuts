@@ -1527,6 +1527,8 @@ class ValidasiController extends CI_Controller {
                     'notlp' =>$this->input->post('notlp'),
                     'code'=>$this->incrementalHash(8),
                     'status'=>0,
+                    'created_at'=>date('Y-m-d H:i:s'),
+                    'updated_at'=>date('Y-m-d H:i:s'),
                 );
 
                 $q = $this->db->insert('data_iumk', $array);
