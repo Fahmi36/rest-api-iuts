@@ -427,8 +427,8 @@ class OfficeController extends CI_Controller {
 		$newP12 = openssl_pkcs12_read(file_get_contents(site_url('assets/sertifikat/JAKEVO.p12')), $results, "AJ102938++!");
 	    	if ($newP12){
 	    		$tcpdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-	    		$tcpdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-	    		$tcpdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+	    		$tcpdf->setPrintHeader(false);
+				$tcpdf->setPrintFooter(false);
 	    		$tcpdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 	    		$tcpdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 
@@ -438,7 +438,7 @@ class OfficeController extends CI_Controller {
 				$data['kewajiban'] = $this->oc->detailKewajiban();
 				$data['larangan'] = $this->oc->detailLarangan();
 				$data['bawa'] = $this->oc->detailPermohonanAdminDinas($id);
-    			$tcpdf->AddPage();
+    			$tcpdf->AddPage('P', 'F4');
 		        $html = $this->load->view('pages/suratsk_slf',$data, true);
 		        $tcpdf->WriteHTML($html);
     			$info = array(
@@ -468,8 +468,7 @@ class OfficeController extends CI_Controller {
 				$tcpdf->Output($filename, 'I'); 
 				// ob_end_clean();
 		    }
-		}
-		
+		}	
 	}
 	function getBangunan()
 	{
