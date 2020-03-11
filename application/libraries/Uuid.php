@@ -70,7 +70,7 @@ class Uuid
 	public function v4($trim = false) 
 	{
 		
-		$format = ($trim == false) ? '%04x%04x-%04x-%04x-%04x-%04x%04x%04x' : '%04x%04x%04x%04x%04x%04x%04x%04x';
+		$format = ($trim == false) ? '%04x%04x-%04x-%04x-%04x%04x' : '%04x%04x%04x%04x%04x%04x';
     	
 		return sprintf($format,
 

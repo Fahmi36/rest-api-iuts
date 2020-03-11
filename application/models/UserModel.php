@@ -3,13 +3,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 date_default_timezone_set('Asia/Jakarta');
 class UserModel extends CI_Model {
 
+    function cekDataIUMK($email='')
+    {
+        $this->db->where('email', $email);
+        $q = $this->db->get('data_iumk');
+        return $q;
+    }
 	function cekPemohon($nik='',$id='')
     {
         if($nik){
             $this->db->where('email',$nik);
             $this->db->where('jenis_pemohon', $id);
         }
-        $q = $this->db->get('pemohon_iuts');
+        $q = $this->db->get('pemohon');
         return $q;
     }
     function cekBangunan($data)
@@ -193,7 +199,7 @@ class UserModel extends CI_Model {
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         );
-        $q = $this->db->insert('pemohon_iuts',$array);
+        $q = $this->db->insert('pemohon',$array);
         return $q;
 	}
     function InsertKondisiSlf($idslf,$kdh_zonasi,$jalaneksis,$kdh_minimum,$kondisi_kdh,$volume,$kondisipertandaan,$kondisi_sumur,$drainase,$slf,$damkar,$tenaga_kerja,$imb,$fasilitas,$asuransi,$kelayakan,$air,$sumber_air,$limbah,$sampah,$listrik,$toilet,$parkir)
@@ -342,12 +348,12 @@ class UserModel extends CI_Model {
             'email'=>$email,
             'token'=>$token,
         );
-        $row = $this->db->get_where('pemohon_iuts',$where);
+        $row = $this->db->get_where('pemohon',$where);
         if ($row->num_rows() > 0) {
             $cekrow = $row->row();
             $cekpemohon = password_verify(''.$token.'', ''.$cekrow->password.'');
             if ($cekpemohon == true) {
-                $q = $this->db->get_where('pemohon_iuts',$where);
+                $q = $this->db->get_where('pemohon',$where);
             }else{
                 $q = false;
             }
@@ -381,10 +387,10 @@ class UserModel extends CI_Model {
         $where = array(
             'token'=>$token,
         );
-        $row = $this->db->get('pemohon_iuts',$where)->row();
+        $row = $this->db->get('pemohon',$where)->row();
         $cekpemohon = password_verify(''.$token.'', ''.$row->password.'');
         if ($cekpemohon == true) {
-            $q = $this->db->get('pemohon_iuts',$where);
+            $q = $this->db->get('pemohon',$where);
         }else{
             $q = false;
         }
@@ -392,11 +398,11 @@ class UserModel extends CI_Model {
     }
     function listPermohonan($id,$status='',$awal,$akhir)
     {
-        $this->db->select('cek_izin.id_izin,cek_izin.id_slf,cek_izin.id_iuts,cek_izin.code,cek_izin.status,cek_izin.created_at,pemohon_iuts.nama,jenis_izin.nama as jenis');
+        $this->db->select('cek_izin.id_izin,cek_izin.id_slf,cek_izin.id_iuts,cek_izin.code,cek_izin.status,cek_izin.created_at,pemohon.nama,jenis_izin.nama as jenis');
         $this->db->from('cek_izin');
         $this->db->join('data_slf', 'data_slf.id_slf = cek_izin.id_slf', 'LEFT');
         $this->db->join('data_iuts', 'data_iuts.id_iuts = cek_izin.id_iuts', 'LEFT');
-        $this->db->join('pemohon_iuts', 'pemohon_iuts.id_pemohon = cek_izin.id_pemohon', 'INNER');
+        $this->db->join('pemohon', 'pemohon.id_pemohon = cek_izin.id_pemohon', 'INNER');
         $this->db->join('jenis_izin', 'jenis_izin.id_izin = cek_izin.id_jenis', 'INNER');
         $this->db->group_by('cek_izin.code');
         if ($status != '') {
