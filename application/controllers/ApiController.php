@@ -28,7 +28,7 @@ class ApiController extends CI_Controller {
 		$this->db->or_like('v.name', $search, 'after');
 		$this->db->where('p.id', 31);
 		$q = $this->db->get();
-		echo json_encode($q->result());
+		echo json_encode(array('data'=>$q->result()));
 	}
 	function pilihWilayah(){
 
@@ -44,7 +44,7 @@ class ApiController extends CI_Controller {
 	}
 	function cektoken()
 	{
-	$curl = curl_init();
+		$curl = curl_init();
 
         curl_setopt_array($curl, array(
         CURLOPT_URL => "https://jakevo.jakarta.go.id/login",

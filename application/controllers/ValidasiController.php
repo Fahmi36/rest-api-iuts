@@ -1461,7 +1461,7 @@ class ValidasiController extends CI_Controller {
         $this->load->library('uuid');
         $uuid = $this->uuid->v4();
         $id = str_replace('-', '', $uuid);
-
+        $email = $this->input->post('email');
         if ($this->input->post('password') != $this->input->post('ulang_password')) {
             $json = $this->returnResultCustom(false,'Password Tidak Sama');
         }else{
@@ -1506,7 +1506,7 @@ class ValidasiController extends CI_Controller {
                 );
                 $array = array(
                     'email' => $email,
-                    'user_id'=> $id,
+                    'id_user'=> $id,
                     'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
                     'ulang_password' => $this->input->post('password'),
                     'nik' => $this->input->post('nik'),
