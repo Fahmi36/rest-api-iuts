@@ -372,9 +372,10 @@ class OfficeController extends CI_Controller {
 		$newP12 = openssl_pkcs12_read(file_get_contents(site_url('assets/sertifikat/JAKEVO.p12')), $results, "AJ102938++!");
 	    	if ($newP12){
 	    		// set margins
-	    		$tcpdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-	    		$tcpdf->SetHeaderMargin(PDF_MARGIN_HEADER);
-	    		$tcpdf->SetFooterMargin(PDF_MARGIN_FOOTER);
+	    		// $tcpdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
+	    		$tcpdf->SetMargins(20, 1, 20,true);
+	    		$tcpdf->setPrintHeader(false);
+				$tcpdf->setPrintFooter(false);
 	    		$tcpdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 	    		$tcpdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
 	    		$filename = str_replace(' ','','SuratSKIUTS' . date('YmdHis') . '.pdf'); 
@@ -391,9 +392,15 @@ class OfficeController extends CI_Controller {
 		        	'Location' => 'DPMPTSP DKI JAKARTA',
 		        	'Reason' => 'Verified Berkas',
 		        	'ContactInfo' => site_url('/'),
-    			);    		
+    			);    
+    			$style = array(
+				    // 'fgcolor' => array(254,105,55),
+				    'bgcolor' => false,
+				    'module_width' => 20, // width of a single module in points
+				    'module_height' => 20 // height of a single module in points
+				);		
     			$taut='https://perizinan.jakarta.go.id/'; 
-				$tcpdf->write2DBarcode($taut, 'QRCODE,H', 20,90,20,20);
+				$tcpdf->write2DBarcode($taut, 'QRCODE,H', 40,220,20,0, $style);
       			$tcpdf->setSignature($results['cert'], $results['pkey'], 'AJ102938++!', '', 2, $info); 
       			$tcpdf->Image(base_url('assets/sertifikat/tte4.jpg'), 117, 201, 60, 18, 'PNG'); 
       			$tcpdf->setSignatureAppearance(117, 201, 60, 18);
