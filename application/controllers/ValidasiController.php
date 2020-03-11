@@ -1521,7 +1521,7 @@ class ValidasiController extends CI_Controller {
                     'rt' =>$this->input->post('rt'),
                     'rw' => $this->input->post('rw'),
                     'tmplahir' => $this->input->post('tmplahir'),
-                    'tglahir' =>$this->input->post('tglahir'),
+                    'tglahir' =>date('Y-m-d',strtotime($this->input->post('tglahir'))),
                     'jenis_kelamin' =>$this->input->post('jenis_kelamin'),
                     'npwp' =>$this->input->post('npwp'),
                     'notlp' =>$this->input->post('notlp'),
